@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>F2 Sports | Premium Cricket Bats - English Willow, Kashmir Willow & Tennis</title>
-  <!-- Google Fonts & Font Awesome Icons -->
+  <title>F2 Sports | Official Cricket Bats Store</title>
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -47,7 +47,6 @@
       font-weight: 700;
     }
 
-    /* TOP BAR & NAVBAR */
     .top-bar {
       background: #b91c1c;
       color: #fff;
@@ -134,7 +133,7 @@
       gap: 5px;
     }
 
-    .nav-links a:hover, .nav-links a.active-link {
+    .nav-links a:hover {
       color: var(--gold);
     }
 
@@ -176,7 +175,6 @@
       justify-content: center;
     }
 
-    /* HERO SECTION */
     .hero {
       background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9)), 
                   url('https://images.unsplash.com/photo-1531415074868-036b107e775a?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
@@ -238,7 +236,6 @@
       transform: translateY(-2px);
     }
 
-    /* CONTAINER & PRODUCT GRIDS */
     .container {
       max-width: 1280px;
       margin: 0 auto;
@@ -358,16 +355,10 @@
       display: flex;
       align-items: center;
       gap: 4px;
-      animation: pulseSale 2s infinite;
-    }
-
-    @keyframes pulseSale {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
     }
 
     .sale-promo-strip {
-      background: linear-gradient(90deg, #fef2f2, #fff1f2);
+      background: #fef2f2;
       border-left: 3px solid #ef4444;
       color: #991b1b;
       padding: 4px 8px;
@@ -518,8 +509,9 @@
       font-size: 0.9rem;
     }
 
-    /* ================= MAIN PAGE ADMIN SECTION ================= */
+    /* HIDDEN ADMIN SECTION */
     .admin-main-section {
+      display: none;
       background: #0b1329;
       color: #f8fafc;
       border-top: 4px solid var(--gold);
@@ -527,31 +519,8 @@
       padding: 60px 24px;
     }
 
-    .admin-auth-card {
-      max-width: 440px;
-      margin: 0 auto;
-      background: #1e293b;
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: var(--shadow-xl);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      text-align: center;
-    }
-
-    .admin-auth-card h3 {
-      font-size: 1.4rem;
-      margin-bottom: 6px;
-      color: #fff;
-    }
-
-    .admin-auth-card p {
-      font-size: 0.85rem;
-      color: #94a3b8;
-      margin-bottom: 20px;
-    }
-
     .admin-workspace {
-      display: none;
+      display: block;
     }
 
     .admin-stats-grid {
@@ -706,7 +675,6 @@
       gap: 16px;
     }
 
-    /* BULK ORDERS SECTION */
     .bulk-section {
       background: linear-gradient(135deg, #0f172a, #1e293b);
       color: white;
@@ -773,7 +741,6 @@
       transition: var(--transition);
     }
 
-    /* CART DRAWER */
     .cart-drawer-overlay {
       position: fixed;
       inset: 0;
@@ -899,7 +866,6 @@
       margin-bottom: 8px;
     }
 
-    /* MODALS */
     .modal-overlay {
       position: fixed;
       inset: 0;
@@ -974,7 +940,7 @@
       color: #334155;
     }
 
-    .admin-form-box .form-label, .admin-auth-card .form-label, #editProductModal .form-label {
+    .admin-form-box .form-label, #editProductModal .form-label, #adminLoginModal .form-label {
       color: #cbd5e1;
     }
 
@@ -988,7 +954,7 @@
     }
 
     .admin-form-box .form-input, .admin-form-box .form-select, .admin-form-box .form-textarea,
-    .admin-auth-card .form-input, #editProductModal .form-input, #editProductModal .form-select {
+    #editProductModal .form-input, #editProductModal .form-select, #adminLoginModal .form-input {
       background: #0f172a;
       border-color: #334155;
       color: #fff;
@@ -1012,7 +978,6 @@
       background: var(--primary-dark);
     }
 
-    /* FAQ & FOOTER */
     .info-section {
       background: #ffffff;
       border-top: 1px solid #e2e8f0;
@@ -1155,19 +1120,17 @@
 </head>
 <body>
 
-  <!-- Top Announcement Bar -->
   <div class="top-bar">
-    ⚡ F2 Sports Official Store: English Willow, Kashmir Willow & Power Tennis Bats | Pan-India Fast Delivery 🏏
+    F2 Sports Official Store: English Willow, Kashmir Willow &amp; Power Tennis Bats | Pan-India Fast Delivery
   </div>
 
-  <!-- Header -->
   <header>
     <div class="navbar">
       <a href="#home" class="logo-container">
         <div class="logo-badge">F2</div>
         <div>
           <span class="logo-title">F2 <span>SPORTS</span></span>
-          <span class="logo-tagline">Engineered For Champions™</span>
+          <span class="logo-tagline">Engineered For Champions</span>
         </div>
       </a>
 
@@ -1177,7 +1140,7 @@
         <li><a href="#kashmir-section"><i class="fa-solid fa-shield-halved"></i> Kashmir Willow</a></li>
         <li><a href="#tennis-section"><i class="fa-solid fa-baseball-bat-ball"></i> Tennis Bats</a></li>
         <li><a href="#bulk-order"><i class="fa-solid fa-truck-ramp-box"></i> Bulk Orders</a></li>
-        <li><a href="#admin-section" style="color:var(--gold);"><i class="fa-solid fa-user-shield"></i> Admin Portal</a></li>
+        <li><a href="javascript:void(0)" onclick="triggerAdminModal()" style="color:var(--gold);"><i class="fa-solid fa-user-shield"></i> Admin Portal</a></li>
       </ul>
 
       <div class="nav-actions">
@@ -1190,7 +1153,6 @@
     </div>
   </header>
 
-  <!-- Hero Section -->
   <section class="hero" id="home">
     <h1>Power Your Game With <span>F2 Sports Mastercraft Bats</span></h1>
     <p>Professional Cricket Bats handpicked for extraordinary ping, perfect balance, and monstrous power hitting across all formats.</p>
@@ -1198,58 +1160,50 @@
       <a href="#english-section" class="btn-hero btn-hero-primary"><i class="fa-solid fa-award"></i> English Willow</a>
       <a href="#kashmir-section" class="btn-hero btn-hero-secondary"><i class="fa-solid fa-shield-halved"></i> Kashmir Willow</a>
       <a href="#tennis-section" class="btn-hero btn-hero-secondary"><i class="fa-solid fa-bolt"></i> Tennis Series</a>
-      <a href="#admin-section" class="btn-hero btn-hero-secondary" style="border-color:var(--gold);"><i class="fa-solid fa-lock"></i> Admin Dashboard</a>
+      <a href="javascript:void(0)" onclick="triggerAdminModal()" class="btn-hero btn-hero-secondary" style="border-color:var(--gold);"><i class="fa-solid fa-lock"></i> Admin Dashboard</a>
     </div>
   </section>
 
-  <!-- Main Content -->
   <main>
-
-    <!-- 1. ENGLISH WILLOW SECTION -->
     <section class="container" id="english-section">
       <div class="section-header">
         <span class="section-subtitle">International Standard</span>
-        <h2 class="section-title">🏴󠁧󠁢󠁥󠁮󠁧󠁿 English Willow Bats Collection</h2>
+        <h2 class="section-title">English Willow Bats Collection</h2>
         <p class="section-desc">Hand-crafted from genuine imported English Willow clefts for maximum rebound velocity and feather-light pickup.</p>
       </div>
       <div class="product-grid" id="englishProductsGrid"></div>
     </section>
 
-    <!-- 2. KASHMIR WILLOW LEATHER BATS SECTION -->
     <section class="container" id="kashmir-section" style="padding-top: 0;">
       <div class="section-header">
         <span class="section-subtitle">Traditional Power</span>
-        <h2 class="section-title">🏏 Kashmir Willow Leather Bats Collection</h2>
+        <h2 class="section-title">Kashmir Willow Leather Bats Collection</h2>
         <p class="section-desc">Selected Grade Kashmir Willow leather ball bats crafted with heavy spines and thick edges for tournament performance.</p>
       </div>
       <div class="product-grid" id="kashmirProductsGrid"></div>
     </section>
 
-    <!-- 3. TENNIS BATS SECTION -->
     <section class="container" id="tennis-section" style="padding-top: 0;">
       <div class="section-header">
-        <span class="section-subtitle">Hard & Soft Tennis Dominators</span>
-        <h2 class="section-title">⚡ Tennis Cricket Bats Collection</h2>
+        <span class="section-subtitle">Hard &amp; Soft Tennis Dominators</span>
+        <h2 class="section-title">Tennis Cricket Bats Collection</h2>
         <p class="section-desc">Engineered specifically for tennis ball cricket with scoop and power-blade dynamics for 360-degree boundary clearing.</p>
       </div>
       <div class="product-grid" id="tennisProductsGrid"></div>
     </section>
 
-    <!-- BULK ORDERS CONTACT SECTION -->
     <section class="container" id="bulk-order" style="padding-top: 0;">
       <div class="bulk-section">
         <div class="bulk-content">
           <div class="bulk-text">
-            <span style="color:var(--gold); font-weight:800; font-size:0.85rem; text-transform:uppercase; letter-spacing:1px;">Academy & Club Wholesaler</span>
-            <h3>Bulk Orders & Custom Team Inquiries</h3>
+            <span style="color:var(--gold); font-weight:800; font-size:0.85rem; text-transform:uppercase; letter-spacing:1px;">Academy &amp; Club Wholesaler</span>
+            <h3>Bulk Orders &amp; Custom Team Inquiries</h3>
             <p>Planning bulk bat procurement for your academy, cricket club, corporate team, or tournament sponsor? Contact our sales desk for custom pricing and handle branding.</p>
           </div>
           <div class="bulk-actions">
-            <!-- Replace 919876543210 with your exact WhatsApp phone number -->
             <a href="https://wa.me/919876543210?text=Hi%20F2%20Sports,%20I%20want%20to%20inquire%20about%20a%20bulk%20order%20of%20cricket%20bats." target="_blank" class="btn-bulk-whatsapp">
               <i class="fa-brands fa-whatsapp" style="font-size:1.2rem;"></i> WhatsApp Bulk Desk
             </a>
-            <!-- Replace +919876543210 with your direct calling number -->
             <a href="tel:+919876543210" class="btn-bulk-call">
               <i class="fa-solid fa-phone"></i> Call Direct
             </a>
@@ -1258,43 +1212,21 @@
       </div>
     </section>
 
-    <!-- ================= 4. MAIN PAGE ADMIN SECTION ================= -->
+    <!-- ADMIN WORKSPACE (HIDDEN INITIALLY) -->
     <section class="admin-main-section" id="admin-section">
       <div class="container" style="padding-top:0; padding-bottom:0;">
         <div class="section-header" style="margin-bottom:30px;">
           <span class="section-subtitle" style="color:var(--gold);">Store Management</span>
-          <h2 class="section-title" style="color:#ffffff;">🛡️ F2 Sports Admin Control Center</h2>
-          <p class="section-desc" style="color:#94a3b8;">Edit existing products, manage sales & discounts (e.g. Eid Offers), track customer orders, and update catalog inventory.</p>
+          <h2 class="section-title" style="color:#ffffff;">F2 Sports Admin Control Center</h2>
+          <p class="section-desc" style="color:#94a3b8;">Edit existing products, manage sales &amp; discounts, track customer orders, and update catalog inventory.</p>
         </div>
 
-        <!-- Admin Login Gate -->
-        <div class="admin-auth-card" id="adminAuthBox">
-          <div style="font-size:2.5rem; color:var(--gold); margin-bottom:10px;"><i class="fa-solid fa-shield-halved"></i></div>
-          <h3>Admin Authentication</h3>
-          <p>Please enter your credentials to access the store management tools.</p>
-          <form onsubmit="handleMainAdminLogin(event)">
-            <div class="form-group">
-              <label class="form-label">Username</label>
-              <input type="text" id="mainAdminUser" class="form-input" placeholder="admin" required />
-            </div>
-            <div class="form-group">
-              <label class="form-label">Password</label>
-              <input type="password" id="mainAdminPass" class="form-input" placeholder="••••••••" required />
-            </div>
-            <p style="font-size:0.75rem; color:#64748b; margin-bottom:12px;">Default credentials: <b>admin</b> / <b>f2sports2026</b></p>
-            <button type="submit" class="btn-submit-order" style="background:var(--gold); color:#0f172a;"><i class="fa-solid fa-right-to-bracket"></i> Login as Admin</button>
-          </form>
-        </div>
-
-        <!-- Authenticated Admin Workspace -->
         <div class="admin-workspace" id="adminWorkspace">
-          
-          <!-- Top Stats Bar -->
           <div class="admin-stats-grid">
             <div class="stat-box">
               <div class="stat-icon" style="background:rgba(212, 175, 55, 0.15); color:var(--gold);"><i class="fa-solid fa-indian-rupee-sign"></i></div>
               <div>
-                <div class="stat-num" id="statRevenue">₹0</div>
+                <div class="stat-num" id="statRevenue">Rs. 0</div>
                 <div class="stat-label">Total Revenue</div>
               </div>
             </div>
@@ -1314,7 +1246,7 @@
             </div>
             <div class="stat-box" style="justify-content:space-between;">
               <div>
-                <div style="font-size:0.85rem; font-weight:700; color:#fff;">Admin Session Active</div>
+                <div style="font-size:0.85rem; font-weight:700; color:#fff;">Admin Active</div>
                 <div style="font-size:0.75rem; color:#94a3b8;">Owner: Sajid | F2 Sports</div>
               </div>
               <button onclick="handleMainAdminLogout()" class="admin-action-btn" style="background:#ef4444; color:#fff; padding:8px 14px;">
@@ -1323,14 +1255,12 @@
             </div>
           </div>
 
-          <!-- Navigation Tabs -->
           <div class="admin-tabs-nav">
             <button class="admin-tab-btn active" onclick="switchAdminTab('orders')"><i class="fa-solid fa-clipboard-list"></i> Customer Orders (<span id="adminOrdersTabCount">0</span>)</button>
-            <button class="admin-tab-btn" onclick="switchAdminTab('products')"><i class="fa-solid fa-boxes-packing"></i> Manage & Edit Catalog (<span id="adminProdsTabCount">0</span>)</button>
+            <button class="admin-tab-btn" onclick="switchAdminTab('products')"><i class="fa-solid fa-boxes-packing"></i> Manage &amp; Edit Catalog (<span id="adminProdsTabCount">0</span>)</button>
             <button class="admin-tab-btn" onclick="switchAdminTab('add-product')"><i class="fa-solid fa-plus-circle"></i> Add New Cricket Bat</button>
           </div>
 
-          <!-- TAB 1: CUSTOMER ORDERS -->
           <div class="admin-tab-pane active" id="adminPaneOrders">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; flex-wrap:wrap; gap:10px;">
               <h4 style="font-size:1.1rem; color:#fff;">Received Orders Log</h4>
@@ -1339,7 +1269,6 @@
             <div id="mainAdminOrdersList"></div>
           </div>
 
-          <!-- TAB 2: MANAGE & EDIT PRODUCTS -->
           <div class="admin-tab-pane" id="adminPaneProducts">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
               <h4 style="font-size:1.1rem; color:#fff;">Active Bat Products List</h4>
@@ -1363,7 +1292,6 @@
             </div>
           </div>
 
-          <!-- TAB 3: ADD NEW PRODUCT -->
           <div class="admin-tab-pane" id="adminPaneAddProduct">
             <div class="admin-form-box">
               <h4 style="font-size:1.15rem; color:#fff; margin-bottom:18px;"><i class="fa-solid fa-circle-plus" style="color:var(--gold);"></i> Add New Bat to Catalog</h4>
@@ -1389,7 +1317,7 @@
                     <input type="text" id="newProdName" class="form-input" placeholder="e.g. F2 Mastercraft Power Pro Bat" required />
                   </div>
                   <div class="form-group">
-                    <label class="form-label">Price in ₹ (INR)</label>
+                    <label class="form-label">Price in Rs. (INR)</label>
                     <input type="number" id="newProdPrice" class="form-input" placeholder="e.g. 8499" required />
                   </div>
                 </div>
@@ -1408,7 +1336,7 @@
                 <div class="form-grid-2">
                   <div class="form-group">
                     <label class="form-label">Sale / Discount Badge (Optional)</label>
-                    <input type="text" id="newProdSaleBadge" class="form-input" placeholder="e.g. 20% OFF, FLAT ₹1000 OFF" />
+                    <input type="text" id="newProdSaleBadge" class="form-input" placeholder="e.g. 20% OFF, FLAT 1000 OFF" />
                   </div>
                   <div class="form-group">
                     <label class="form-label">Offer Description (Optional)</label>
@@ -1417,7 +1345,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label class="form-label">Key Specifications & Features (comma separated)</label>
+                  <label class="form-label">Key Specifications &amp; Features (comma separated)</label>
                   <input type="text" id="newProdFeatures" class="form-input" placeholder="e.g. 40mm Edges, 9-10 Straight Grains, 1170g Light Pickup" required />
                 </div>
 
@@ -1435,25 +1363,23 @@
               </form>
             </div>
           </div>
-
         </div>
       </div>
     </section>
 
-    <!-- HELP & SUGGESTIONS -->
     <section class="info-section" id="help-suggestions">
       <div class="container" style="padding: 0;">
         <div class="section-header">
           <span class="section-subtitle">Player Support</span>
-          <h2 class="section-title">Help, Inquiries & Suggestions</h2>
+          <h2 class="section-title">Help, Inquiries &amp; Suggestions</h2>
         </div>
 
         <div class="info-grid">
           <div class="info-card">
-            <h3><i class="fa-solid fa-circle-question" style="color:var(--primary);"></i> FAQs & Bat Care</h3>
+            <h3><i class="fa-solid fa-circle-question" style="color:var(--primary);"></i> FAQs &amp; Bat Care</h3>
             <div class="faq-item active">
               <div class="faq-question" onclick="toggleFaq(this)">
-                <span>What is the difference between Grade A & Grade B English Willow?</span>
+                <span>What is the difference between Grade A &amp; Grade B English Willow?</span>
                 <i class="fa-solid fa-chevron-down"></i>
               </div>
               <div class="faq-answer">Grade A features 8-11 straight grains with minimal blemishes for international match play. Grade B has 6-8 grains offering elite power and durability at a competitive price.</div>
@@ -1486,7 +1412,6 @@
     </section>
   </main>
 
-  <!-- CART DRAWER -->
   <div class="cart-drawer-overlay" id="cartOverlay" onclick="toggleCartDrawer()"></div>
   <div class="cart-drawer" id="cartDrawer">
     <div class="cart-header">
@@ -1497,7 +1422,7 @@
     <div class="cart-footer">
       <div class="cart-total-row">
         <span>Grand Total:</span>
-        <span id="cartGrandTotal">₹0</span>
+        <span id="cartGrandTotal">Rs. 0</span>
       </div>
       <button class="btn-checkout" id="checkoutBtn" onclick="openCheckoutModal()" disabled>
         <i class="fa-solid fa-lock"></i> Proceed to QR / UPI Checkout
@@ -1505,19 +1430,18 @@
     </div>
   </div>
 
-  <!-- CHECKOUT MODAL -->
   <div class="modal-overlay" id="checkoutModal">
     <div class="modal-box">
       <div class="modal-header">
-        <h3><i class="fa-solid fa-qrcode"></i> Scan & Pay (UPI / QR)</h3>
+        <h3><i class="fa-solid fa-qrcode"></i> Scan &amp; Pay (UPI / QR)</h3>
         <button class="close-cart-btn" onclick="closeCheckoutModal()"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div class="modal-body">
         <div class="qr-container">
           <p style="font-size:0.85rem; margin-bottom:8px; font-weight:600;">Scan with GPay, PhonePe, Paytm, or BHIM</p>
-          <img src="https://api.qrserver.com/v1/create-qr-code/?size=170x170&data=upi://pay?pa=f2sports@upi%26pn=F2%20Sports%20Official%26mc=5945" alt="F2 Sports QR Scanner" class="qr-image" />
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=170x170&amp;data=upi://pay?pa=f2sports@upi%26pn=F2%20Sports%20Official%26mc=5945" alt="F2 Sports QR Scanner" class="qr-image" />
           <p style="font-family:monospace; font-weight:700; font-size:0.95rem;">UPI ID: f2sports@upi</p>
-          <p style="font-size:0.85rem; margin-top:6px;">Payable Amount: <b style="color:var(--primary);" id="checkoutModalTotal">₹0</b></p>
+          <p style="font-size:0.85rem; margin-top:6px;">Payable Amount: <b style="color:var(--primary);" id="checkoutModalTotal">Rs. 0</b></p>
         </div>
 
         <form id="orderForm" onsubmit="handlePlaceOrder(event)">
@@ -1534,14 +1458,40 @@
             <input type="tel" id="custPhone" class="form-input" placeholder="+91 98765 43210" required />
           </div>
           <div class="form-group">
-            <label class="form-label">Delivery Address & Pincode</label>
+            <label class="form-label">Delivery Address &amp; Pincode</label>
             <textarea id="custAddress" class="form-textarea" rows="2" placeholder="Full delivery address" required></textarea>
           </div>
           <div class="form-group">
             <label class="form-label">UPI Transaction Reference ID (UTR)</label>
             <input type="text" id="custUtr" class="form-input" placeholder="12-digit UTR after payment" required />
           </div>
-          <button type="submit" class="btn-submit-order">Confirm & Place Order</button>
+          <button type="submit" class="btn-submit-order">Confirm &amp; Place Order</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- POPUP ADMIN LOGIN MODAL -->
+  <div class="modal-overlay" id="adminLoginModal">
+    <div class="modal-box" style="background:#1e293b; color:#fff;">
+      <div class="modal-header" style="background:#0f172a;">
+        <h3><i class="fa-solid fa-shield-halved" style="color:var(--gold);"></i> Admin Portal Login</h3>
+        <button class="close-cart-btn" onclick="closeAdminLoginModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <form onsubmit="handleModalAdminLogin(event)">
+          <div class="form-group">
+            <label class="form-label">Admin Username</label>
+            <input type="text" id="modalAdminUser" class="form-input" placeholder="admin" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Admin Password</label>
+            <input type="password" id="modalAdminPass" class="form-input" placeholder="••••••••" required />
+          </div>
+          <p style="font-size:0.75rem; color:#94a3b8; margin-bottom:12px;">Default credentials: <b>admin</b> / <b>f2sports2026</b></p>
+          <button type="submit" class="btn-submit-order" style="background:var(--gold); color:#0f172a;">
+            <i class="fa-solid fa-right-to-bracket"></i> Login &amp; Open Workspace
+          </button>
         </form>
       </div>
     </div>
@@ -1551,7 +1501,7 @@
   <div class="modal-overlay" id="editProductModal">
     <div class="modal-box" style="background:#1e293b; color:#fff; max-width:600px;">
       <div class="modal-header" style="background:#0f172a;">
-        <h3><i class="fa-solid fa-pen-to-square" style="color:var(--gold);"></i> Edit Bat Details & Sale Offers</h3>
+        <h3><i class="fa-solid fa-pen-to-square" style="color:var(--gold);"></i> Edit Bat Details &amp; Sale Offers</h3>
         <button class="close-cart-btn" onclick="closeEditModal()"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div class="modal-body">
@@ -1579,7 +1529,7 @@
               <input type="text" id="editProdName" class="form-input" required />
             </div>
             <div class="form-group">
-              <label class="form-label">Price in ₹ (INR)</label>
+              <label class="form-label">Price in Rs. (INR)</label>
               <input type="number" id="editProdPrice" class="form-input" required />
             </div>
           </div>
@@ -1595,7 +1545,6 @@
             </div>
           </div>
 
-          <!-- Edit Sale & Promo Options -->
           <div class="form-grid-2" style="background:rgba(239, 68, 68, 0.1); padding:12px; border-radius:8px; border:1px dashed #ef4444; margin-bottom:14px;">
             <div class="form-group" style="margin-bottom:0;">
               <label class="form-label" style="color:#fca5a5;"><i class="fa-solid fa-tag"></i> Sale Label (e.g. 20% OFF)</label>
@@ -1621,14 +1570,13 @@
           </div>
 
           <button type="submit" class="btn-submit-order" style="background:var(--gold); color:#0f172a;">
-            <i class="fa-solid fa-floppy-disk"></i> Save & Update Product
+            <i class="fa-solid fa-floppy-disk"></i> Save &amp; Update Product
           </button>
         </form>
       </div>
     </div>
   </div>
 
-  <!-- FOOTER -->
   <footer id="contact">
     <div class="footer-grid">
       <div class="footer-col">
@@ -1664,30 +1612,28 @@
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Contact & Bulk Desk</h4>
+        <h4>Contact &amp; Bulk Desk</h4>
         <p><i class="fa-solid fa-phone" style="color:var(--gold);"></i> +91 98765 43210</p>
         <p><i class="fa-solid fa-envelope" style="color:var(--gold);"></i> support@f2sports.com</p>
         <p><i class="fa-solid fa-location-dot" style="color:var(--gold);"></i> Sports Complex Road, India</p>
       </div>
     </div>
 
-    <!-- Trade Mark Notice -->
     <div class="trademark-bar">
-      <div>© 2026 <strong>F2 Sports™</strong>. All Rights Reserved.</div>
-      <div><i class="fa-solid fa-trademark"></i> F2 SPORTS™ is a Registered Trademark</div>
+      <div>&copy; 2026 <strong>F2 Sports</strong>. All Rights Reserved.</div>
+      <div><i class="fa-solid fa-trademark"></i> F2 SPORTS is a Registered Trademark</div>
     </div>
   </footer>
 
-  <!-- Toast Notification -->
   <div class="toast" id="appToast">
     <i class="fa-solid fa-circle-check" style="color:#10b981;"></i>
     <span id="toastMsg">Added to cart</span>
   </div>
 
-  <!-- JAVASCRIPT LOGIC -->
   <script>
+    const fallbackImage = 'https://images.unsplash.com/photo-1531415074868-036b107e775a?q=80&w=600&auto=format&fit=crop';
+
     const initialProducts = [
-      // 1. ENGLISH WILLOW BATS (Grade A, Grade B)
       {
         id: 'EW1',
         category: 'english',
@@ -1714,8 +1660,6 @@
         saleDesc: '',
         features: ['6-8 Grains with Natural Character', 'Superb Rebound Ping', 'Semi-Oval Cane Handle']
       },
-
-      // 2. KASHMIR WILLOW LEATHER BATS
       {
         id: 'KW1',
         category: 'kashmir',
@@ -1781,8 +1725,6 @@
         saleDesc: '',
         features: ['Durable Kashmir Willow Blade', 'Even Weight Distribution', 'Great Entry-level League Bat']
       },
-
-      // 3. TENNIS BATS
       {
         id: 'TN1',
         category: 'tennis',
@@ -1875,11 +1817,17 @@
       localStorage.setItem('f2_orders', JSON.stringify(orders));
     }
 
-    /* RENDER STOREFRONT CATALOG */
+    function handleImgError(imgElement) {
+      imgElement.onerror = null;
+      imgElement.src = fallbackImage;
+    }
+
     function renderProducts() {
       const englishContainer = document.getElementById('englishProductsGrid');
       const kashmirContainer = document.getElementById('kashmirProductsGrid');
       const tennisContainer = document.getElementById('tennisProductsGrid');
+
+      if (!englishContainer || !kashmirContainer || !tennisContainer) return;
 
       englishContainer.innerHTML = '';
       kashmirContainer.innerHTML = '';
@@ -1906,7 +1854,7 @@
             ` : ''}
 
             <div class="product-img-wrapper">
-              <img src="${product.img}" alt="${product.name}" class="product-img" onerror="this.src='https://images.unsplash.com/photo-1531415074868-036b107e775a?q=80&w=600&auto=format&fit=crop'" />
+              <img src="${product.img}" alt="${product.name}" class="product-img" loading="lazy" onerror="handleImgError(this)" />
             </div>
 
             <div class="product-body">
@@ -1924,7 +1872,7 @@
               </ul>
 
               <div class="product-footer">
-                <div class="price-value">₹${Number(product.price).toLocaleString('en-IN')}</div>
+                <div class="price-value">Rs. ${Number(product.price).toLocaleString('en-IN')}</div>
                 <div id="btn-container-${product.id}">
                   ${!isAvailable ? `
                     <button class="btn-out-of-stock" disabled><i class="fa-solid fa-ban"></i> Sold Out</button>
@@ -1955,7 +1903,6 @@
       });
     }
 
-    /* CART OPERATIONS */
     function addToCart(productId) {
       const product = products.find(p => p.id === productId);
       if (!product || product.inStock === false) return;
@@ -1993,7 +1940,7 @@
           <h4>Your cart is empty</h4>
         </div>`;
         checkoutBtn.disabled = true;
-        document.getElementById('cartGrandTotal').innerText = '₹0';
+        document.getElementById('cartGrandTotal').innerText = 'Rs. 0';
       } else {
         let totalAmount = 0;
         cartList.innerHTML = '';
@@ -2002,11 +1949,11 @@
           totalAmount += itemTotal;
           cartList.innerHTML += `
             <div class="cart-item">
-              <img src="${item.img}" alt="${item.name}" class="cart-item-img" onerror="this.src='https://images.unsplash.com/photo-1531415074868-036b107e775a?q=80&w=600&auto=format&fit=crop'" />
+              <img src="${item.img}" alt="${item.name}" class="cart-item-img" onerror="handleImgError(this)" />
               <div class="cart-item-details">
                 <div class="cart-item-title">${item.name}</div>
-                <div style="font-size:0.75rem; color:#64748b;">₹${Number(item.price).toLocaleString('en-IN')} each</div>
-                <div class="cart-item-price">₹${itemTotal.toLocaleString('en-IN')}</div>
+                <div style="font-size:0.75rem; color:#64748b;">Rs. ${Number(item.price).toLocaleString('en-IN')} each</div>
+                <div class="cart-item-price">Rs. ${itemTotal.toLocaleString('en-IN')}</div>
               </div>
               <div class="qty-control-inline">
                 <button class="qty-btn" onclick="updateQuantity('${item.id}', -1)">-</button>
@@ -2016,7 +1963,7 @@
             </div>
           `;
         });
-        document.getElementById('cartGrandTotal').innerText = `₹${totalAmount.toLocaleString('en-IN')}`;
+        document.getElementById('cartGrandTotal').innerText = `Rs. ${totalAmount.toLocaleString('en-IN')}`;
         checkoutBtn.disabled = false;
       }
 
@@ -2068,7 +2015,6 @@
       setTimeout(() => toast.classList.remove('show'), 2500);
     }
 
-    /* HANDLE ORDER PLACEMENT */
     function handlePlaceOrder(e) {
       e.preventDefault();
       const name = document.getElementById('custName').value;
@@ -2094,7 +2040,7 @@
       orders.unshift(orderData);
       saveOrders();
 
-      alert(`🎉 Thank you, ${name}! Your order #${orderData.orderId} has been placed. You will receive dispatch updates via email.`);
+      alert(`Thank you, ${name}! Your order #${orderData.orderId} has been placed. You will receive dispatch updates via email.`);
       
       cart = {};
       updateCartUI();
@@ -2110,40 +2056,47 @@
       e.target.reset();
     }
 
-    /* ================= MAIN PAGE ADMIN LOGIC ================= */
-    function handleMainAdminLogin(e) {
+    /* ADMIN TRIGGER LOGIC */
+    function triggerAdminModal() {
+      const isAuth = sessionStorage.getItem('f2_main_admin_auth');
+      if (isAuth) {
+        revealAdminDashboard();
+      } else {
+        document.getElementById('adminLoginModal').classList.add('active');
+      }
+    }
+
+    function closeAdminLoginModal() {
+      document.getElementById('adminLoginModal').classList.remove('active');
+    }
+
+    function handleModalAdminLogin(e) {
       e.preventDefault();
-      const user = document.getElementById('mainAdminUser').value;
-      const pass = document.getElementById('mainAdminPass').value;
+      const user = document.getElementById('modalAdminUser').value;
+      const pass = document.getElementById('modalAdminPass').value;
 
       if (user === 'admin' && pass === 'f2sports2026') {
         sessionStorage.setItem('f2_main_admin_auth', 'true');
+        closeAdminLoginModal();
         showToast('Admin logged in successfully!');
-        checkAdminAuthStatus();
+        revealAdminDashboard();
       } else {
-        alert('Invalid Admin credentials! Use default: admin / f2sports2026');
+        alert('Invalid Admin credentials! Default: admin / f2sports2026');
       }
+    }
+
+    function revealAdminDashboard() {
+      const adminSection = document.getElementById('admin-section');
+      adminSection.style.display = 'block';
+      updateAdminDashboard();
+      adminSection.scrollIntoView({ behavior: 'smooth' });
     }
 
     function handleMainAdminLogout() {
       sessionStorage.removeItem('f2_main_admin_auth');
+      document.getElementById('admin-section').style.display = 'none';
       showToast('Logged out from Admin Dashboard');
-      checkAdminAuthStatus();
-    }
-
-    function checkAdminAuthStatus() {
-      const isAuth = sessionStorage.getItem('f2_main_admin_auth');
-      const authBox = document.getElementById('adminAuthBox');
-      const workspace = document.getElementById('adminWorkspace');
-
-      if (isAuth) {
-        authBox.style.display = 'none';
-        workspace.style.display = 'block';
-        updateAdminDashboard();
-      } else {
-        authBox.style.display = 'block';
-        workspace.style.display = 'none';
-      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function switchAdminTab(tabName) {
@@ -2167,11 +2120,15 @@
 
     function updateAdminDashboard() {
       const totalRev = orders.reduce((sum, o) => sum + (o.numericAmount || 0), 0);
-      document.getElementById('statRevenue').innerText = `₹${totalRev.toLocaleString('en-IN')}`;
-      document.getElementById('statOrders').innerText = orders.length;
-      document.getElementById('statProducts').innerText = products.length;
-      document.getElementById('adminOrdersTabCount').innerText = orders.length;
-      document.getElementById('adminProdsTabCount').innerText = products.length;
+      
+      const revElem = document.getElementById('statRevenue');
+      if (revElem) {
+        revElem.innerText = `Rs. ${totalRev.toLocaleString('en-IN')}`;
+        document.getElementById('statOrders').innerText = orders.length;
+        document.getElementById('statProducts').innerText = products.length;
+        document.getElementById('adminOrdersTabCount').innerText = orders.length;
+        document.getElementById('adminProdsTabCount').innerText = products.length;
+      }
 
       renderAdminOrdersList();
       renderAdminProductsTable();
@@ -2179,6 +2136,8 @@
 
     function renderAdminOrdersList() {
       const container = document.getElementById('mainAdminOrdersList');
+      if (!container) return;
+
       if (orders.length === 0) {
         container.innerHTML = '<div style="text-align:center; color:#94a3b8; padding:30px; background:#1e293b; border-radius:10px;">No customer orders placed yet.</div>';
         return;
@@ -2216,6 +2175,8 @@
 
     function renderAdminProductsTable() {
       const tbody = document.getElementById('adminProductsTableBody');
+      if (!tbody) return;
+
       tbody.innerHTML = '';
 
       products.forEach(p => {
@@ -2226,13 +2187,13 @@
           <tr>
             <td>
               <div style="display:flex; align-items:center; gap:10px;">
-                <img src="${p.img}" alt="${p.name}" style="width:36px; height:36px; object-fit:contain; background:#fff; border-radius:4px; padding:2px;" onerror="this.src='https://images.unsplash.com/photo-1531415074868-036b107e775a?q=80&w=600&auto=format&fit=crop'" />
+                <img src="${p.img}" alt="${p.name}" style="width:36px; height:36px; object-fit:contain; background:#fff; border-radius:4px; padding:2px;" onerror="handleImgError(this)" />
                 <b>${p.name}</b>
               </div>
             </td>
             <td style="text-transform:capitalize;">${p.category} Willow</td>
             <td>${p.catName}</td>
-            <td>₹${Number(p.price).toLocaleString('en-IN')}</td>
+            <td>Rs. ${Number(p.price).toLocaleString('en-IN')}</td>
             <td>
               <div>${saleBadgeStr}</div>
               ${p.saleDesc ? `<div style="font-size:0.75rem; color:#94a3b8;">${p.saleDesc}</div>` : ''}
@@ -2260,7 +2221,6 @@
       });
     }
 
-    /* ================= EDIT PRODUCT DETAILS & OFFERS ================= */
     function openEditModal(productId) {
       const prod = products.find(p => p.id === productId);
       if (!prod) return;
@@ -2311,10 +2271,9 @@
       renderProducts();
       updateAdminDashboard();
       closeEditModal();
-      showToast(`Updated details & offers for "${products[index].name}"!`);
+      showToast(`Updated "${products[index].name}"!`);
     }
 
-    /* ADD NEW PRODUCT */
     function handleAdminAddNewProduct(e) {
       e.preventDefault();
       const category = document.getElementById('newProdCategory').value;
@@ -2378,15 +2337,14 @@
       }
     }
 
-    /* EMAIL NOTIFICATIONS */
     function sendOrderPlacedEmail(index) {
       const order = orders[index];
-      const itemsList = order.items.map(i => `- ${i.name} (Qty: ${i.qty}) - ₹${(Number(i.price) * i.qty).toLocaleString('en-IN')}`).join('%0D%0A');
+      const itemsList = order.items.map(i => `- ${i.name} (Qty: ${i.qty}) - Rs. ${(Number(i.price) * i.qty).toLocaleString('en-IN')}`).join('%0D%0A');
       
-      const subject = encodeURIComponent(`Order Confirmation - #${order.orderId} | F2 Sports™`);
+      const subject = encodeURIComponent(`Order Confirmation - #${order.orderId} | F2 Sports`);
       const body = encodeURIComponent(
         `Dear ${order.customer.name},\n\n` +
-        `Thank you for choosing F2 Sports! Your order #${order.orderId} has been confirmed and is being processed by our bat crafting team.\n\n` +
+        `Thank you for choosing F2 Sports! Your order #${order.orderId} has been confirmed.\n\n` +
         `Order Details:\n` +
         `Order ID: #${order.orderId}\n` +
         `Total Amount: ${order.totalAmount}\n` +
@@ -2415,16 +2373,16 @@
       saveOrders();
       updateAdminDashboard();
 
-      const subject = encodeURIComponent(`Your Bat Has Dispatched! - #${order.orderId} | F2 Sports™`);
+      const subject = encodeURIComponent(`Your Bat Has Dispatched! - #${order.orderId} | F2 Sports`);
       const body = encodeURIComponent(
         `Dear ${order.customer.name},\n\n` +
-        `Great news! Your F2 Sports bat order #${order.orderId} has been securely packed and dispatched.\n\n` +
+        `Great news! Your F2 Sports bat order #${order.orderId} has been packed and dispatched.\n\n` +
         `Shipment Tracking Information:\n` +
         `Courier Partner: ${courierName}\n` +
         `Tracking / AWB Number: ${trackingNo}\n` +
         `Delivery Destination: ${order.customer.address}\n\n` +
         `You can track your package on the ${courierName} website. Expected delivery within 3-5 working days.\n\n` +
-        `Thank you for trusting F2 Sports™ - Engineered For Champions!\n\n` +
+        `Thank you for trusting F2 Sports!\n\n` +
         `Best regards,\n` +
         `F2 Sports Dispatch & Fulfillment Team\n` +
         `support@f2sports.com`
@@ -2445,7 +2403,10 @@
     document.addEventListener('DOMContentLoaded', () => {
       renderProducts();
       updateCartUI();
-      checkAdminAuthStatus();
+      if (sessionStorage.getItem('f2_main_admin_auth')) {
+        document.getElementById('admin-section').style.display = 'block';
+        updateAdminDashboard();
+      }
     });
   </script>
 </body>
