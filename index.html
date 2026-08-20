@@ -2008,89 +2008,142 @@
       el.parentElement.classList.toggle('active');
     }
 
-    function showToast(msg) {
-      const toast = document.getElementById('appToast');
-      document.getElementById('toastMsg').innerText = msg;
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 2500);
+function showToast(msg) {
+  const toast = document.getElementById('appToast');
+  if (!toast) return;
+  document.getElementById('toastMsg').innerText = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2500);
+}
+
+const WEB3FORMS_ACCESS_KEY = "fc01bd0b-ab5f-4932-8fea-104a615588d7";
+
+async function handlePlaceOrder(e) {
+  e.preventDefault();
+
+  const submitBtn = e.target.querySelector('button[type="submit"]');
+  const originalBtnText = submitBtn ? submitBtn.innerHTML : '';
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing Order...';
+  }
+
+  const name = document.getElementById('custName').value.trim();
+  const email = document.getElementById('custEmail').value.trim();
+  const phone = document.getElementById('custPhone').value.trim();
+  const address = document.getElementById('custAddress').value.trim();
+  const utr = document.getElementById('custUtr').value.trim();
+  const totalAmount = document.getElementById('cartGrandTotal').innerText;
+  const rawNum = Number(totalAmount.replace(/[^0-9]/g, '')) || 0;
+
+  const orderId = 'F2-' + Math.floor(100000 + Math.random() * 900000);
+  const itemsList = Object.values(cart);
+  const itemsSummary = itemsList.map(i => `${i.name} (Qty: ${i.qty}) - Rs. ${(Number(i.price) * i.qty).toLocaleString('en-IN')}`).join('\n');
+
+  const orderData = {
+    orderId: orderId,
+    date: new Date().toLocaleString('en-IN'),
+    customer: { name, email, phone, address },
+    utr: utr,
+    items: itemsList,
+    totalAmount: totalAmount,
+    numericAmount: rawNum,
+    status: 'Order Placed'
+  };
+
+  // Save to local storage for Admin Dashboard
+  orders.unshift(orderData);
+  saveOrders();
+  updateAdminDashboard();
+
+  // Send direct email notification via Web3Forms
+  try {
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+        access_key: WEB3FORMS_ACCESS_KEY,
+        subject: `New F2 Sports Bat Order: #${orderId} (${totalAmount})`,
+        from_name: "F2 Sports Storefront",
+        customer_name: name,
+        customer_email: email,
+        customer_phone: phone,
+        delivery_address: address,
+        upi_utr_id: utr,
+        order_total: totalAmount,
+        ordered_bats: itemsSummary,
+        message: `New Order Received!\n\nOrder ID: #${orderId}\nCustomer: ${name}\nPhone: ${phone}\nEmail: ${email}\nDelivery Address: ${address}\nUPI UTR: ${utr}\nTotal Amount: ${totalAmount}\n\nItems Ordered:\n${itemsSummary}`
+      })
+    });
+
+    const result = await response.json();
+    if (result.success) {
+      alert(`🎉 Thank you, ${name}!\nYour order #${orderId} has been placed. You will receive dispatch updates via email.`);
+    } else {
+      alert(`Order #${orderId} recorded. We will contact you at ${phone}.`);
     }
-
-    function handlePlaceOrder(e) {
-      e.preventDefault();
-      const name = document.getElementById('custName').value;
-      const email = document.getElementById('custEmail').value;
-      const phone = document.getElementById('custPhone').value;
-      const address = document.getElementById('custAddress').value;
-      const utr = document.getElementById('custUtr').value;
-      const totalAmount = document.getElementById('cartGrandTotal').innerText;
-
-      const rawNum = Number(totalAmount.replace(/[^0-9]/g, '')) || 0;
-
-      const orderData = {
-        orderId: 'F2-' + Math.floor(100000 + Math.random() * 900000),
-        date: new Date().toLocaleString(),
-        customer: { name, email, phone, address },
-        utr,
-        items: Object.values(cart),
-        totalAmount,
-        numericAmount: rawNum,
-        status: 'Order Placed'
-      };
-
-      orders.unshift(orderData);
-      saveOrders();
-
-      alert(`Thank you, ${name}! Your order #${orderData.orderId} has been placed. You will receive dispatch updates via email.`);
-      
-      cart = {};
-      updateCartUI();
-      closeCheckoutModal();
-      document.getElementById('orderForm').reset();
-      
-      updateAdminDashboard();
+  } catch (err) {
+    console.error("Order transmission error:", err);
+    alert(`Thank you, ${name}! Your order #${orderId} was recorded.`);
+  } finally {
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnText;
     }
+  }
 
-    function handleSuggestionSubmit(e) {
-      e.preventDefault();
-      alert('Thank you for your valuable suggestion! The F2 Sports bat crafting team will review it.');
-      e.target.reset();
-    }
+  // Reset cart and checkout UI
+  cart = {};
+  updateCartUI();
+  closeCheckoutModal();
+  document.getElementById('orderForm').reset();
+}
 
-    /* ADMIN TRIGGER LOGIC */
-    function triggerAdminModal() {
-      const isAuth = sessionStorage.getItem('f2_main_admin_auth');
-      if (isAuth) {
-        revealAdminDashboard();
-      } else {
-        document.getElementById('adminLoginModal').classList.add('active');
-      }
-    }
+function handleSuggestionSubmit(e) {
+  e.preventDefault();
+  alert('Thank you for your valuable suggestion! The F2 Sports bat crafting team will review it.');
+  e.target.reset();
+}
 
-    function closeAdminLoginModal() {
-      document.getElementById('adminLoginModal').classList.remove('active');
-    }
+/* ADMIN TRIGGER LOGIC */
+function triggerAdminModal() {
+  const isAuth = sessionStorage.getItem('f2_main_admin_auth');
+  if (isAuth) {
+    revealAdminDashboard();
+  } else {
+    document.getElementById('adminLoginModal').classList.add('active');
+  }
+}
 
-    function handleModalAdminLogin(e) {
-      e.preventDefault();
-      const user = document.getElementById('modalAdminUser').value;
-      const pass = document.getElementById('modalAdminPass').value;
+function closeAdminLoginModal() {
+  document.getElementById('adminLoginModal').classList.remove('active');
+}
 
-      if (user === 'admin' && pass === 'f2sports2026') {
-        sessionStorage.setItem('f2_main_admin_auth', 'true');
-        closeAdminLoginModal();
-        showToast('Admin logged in successfully!');
-        revealAdminDashboard();
-      } else {
-        alert('Invalid Admin credentials! Default: admin / f2sports2026');
-      }
-    }
+function handleModalAdminLogin(e) {
+  e.preventDefault();
+  const user = document.getElementById('modalAdminUser').value;
+  const pass = document.getElementById('modalAdminPass').value;
 
-    function revealAdminDashboard() {
-      const adminSection = document.getElementById('admin-section');
-      adminSection.style.display = 'block';
-      updateAdminDashboard();
-      adminSection.scrollIntoView({ behavior: 'smooth' });
-    }
+  if (user === 'admin' && pass === 'f2sports2026') {
+    sessionStorage.setItem('f2_main_admin_auth', 'true');
+    closeAdminLoginModal();
+    showToast('Admin logged in successfully!');
+    revealAdminDashboard();
+  } else {
+    alert('Invalid Admin credentials! Default: admin / f2sports2026');
+  }
+}
+
+function revealAdminDashboard() {
+  const adminSection = document.getElementById('admin-section');
+  if (!adminSection) return;
+  adminSection.style.display = 'block';
+  updateAdminDashboard();
+  adminSection.scrollIntoView({ behavior: 'smooth' });
+}
 
     function handleMainAdminLogout() {
       sessionStorage.removeItem('f2_main_admin_auth');
