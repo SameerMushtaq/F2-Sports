@@ -1,1 +1,2453 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>F2 Sports | Premium Cricket Bats - English Willow, Kashmir Willow & Tennis</title>
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary: #d32f2f;
+      --primary-dark: #9a0007;
+      --gold: #d4af37;
+      --gold-dark: #aa8c2c;
+      --dark: #0f172a;
+      --light: #f8fafc;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border-color: #e2e8f0;
+      --radius: 12px;
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+      --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.1);
+      --shadow-xl: 0 20px 35px -10px rgba(0,0,0,0.25);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #f1f5f9;
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    h1, h2, h3, h4, .brand-font {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+    }
+
+    /* TOP BAR & NAVBAR */
+    .top-bar {
+      background: #b91c1c;
+      color: #fff;
+      font-size: 0.85rem;
+      padding: 6px 0;
+      text-align: center;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .navbar {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 24px;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-badge {
+      background: linear-gradient(135deg, #d32f2f, #d4af37);
+      color: white;
+      font-weight: 900;
+      font-size: 1.4rem;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(211, 47, 47, 0.4);
+    }
+
+    .logo-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.1;
+    }
+
+    .logo-title span {
+      color: var(--gold);
+    }
+
+    .logo-tagline {
+      font-size: 0.72rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #e2e8f0;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .nav-links a:hover, .nav-links a.active-link {
+      color: var(--gold);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .cart-btn-trigger {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 9px 18px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: var(--transition);
+    }
+
+    .cart-btn-trigger:hover {
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .cart-badge-count {
+      background: var(--gold);
+      color: #0f172a;
+      font-size: 0.75rem;
+      font-weight: 800;
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9)), 
+                  url('https://images.unsplash.com/photo-1531415074868-036b107e775a?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+      color: white;
+      padding: 75px 24px 55px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.9rem;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(to right, #ff4b4b, #d4af37);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: #cbd5e1;
+      max-width: 700px;
+      margin: 0 auto 28px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-hero {
+      padding: 11px 22px;
+      border-radius: 30px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-hero-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #fff;
+    }
+
+    .btn-hero-secondary {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-hero:hover {
+      transform: translateY(-2px);
+    }
+
+    /* CONTAINER & PRODUCT GRIDS */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 50px 24px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .section-subtitle {
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 2.1rem;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 0.95rem;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 26px;
+    }
+
+    .product-card {
+      background: #ffffff;
+      border-radius: var(--radius);
+      border: 1px solid var(--border-color);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .product-card.out-of-stock {
+      opacity: 0.82;
+    }
+
+    .product-tag {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(15, 23, 42, 0.88);
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      z-index: 2;
+    }
+
+    .product-tag.gold-tag {
+      background: linear-gradient(135deg, #d4af37, #997819);
+      color: #0f172a;
+    }
+
+    .stock-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      z-index: 2;
+    }
+
+    .stock-available {
+      background: #dcfce7;
+      color: #15803d;
+      border: 1px solid #86efac;
+    }
+
+    .stock-out {
+      background: #fee2e2;
+      color: #b91c1c;
+      border: 1px solid #fca5a5;
+    }
+
+    .sale-badge {
+      position: absolute;
+      top: 44px;
+      right: 12px;
+      background: linear-gradient(135deg, #ef4444, #b91c1c);
+      color: #ffffff;
+      padding: 3px 9px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      z-index: 2;
+      box-shadow: 0 2px 6px rgba(239, 68, 68, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      animation: pulseSale 2s infinite;
+    }
+
+    @keyframes pulseSale {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .sale-promo-strip {
+      background: linear-gradient(90deg, #fef2f2, #fff1f2);
+      border-left: 3px solid #ef4444;
+      color: #991b1b;
+      padding: 4px 8px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .product-img-wrapper {
+      height: 230px;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      overflow: hidden;
+    }
+
+    .product-img {
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+      transition: transform 0.4s ease;
+    }
+
+    .product-card:hover .product-img {
+      transform: scale(1.06);
+    }
+
+    .product-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .product-cat-name {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: var(--primary);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .product-title {
+      font-size: 1.18rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+
+    .product-features {
+      list-style: none;
+      margin-bottom: 16px;
+      font-size: 0.83rem;
+      color: var(--text-muted);
+    }
+
+    .product-features li {
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .product-features li i {
+      color: #10b981;
+      font-size: 0.75rem;
+    }
+
+    .product-footer {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 12px;
+      border-top: 1px solid #f1f5f9;
+    }
+
+    .price-value {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .btn-add-cart {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 9px 16px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+    }
+
+    .btn-add-cart:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-out-of-stock {
+      background: #94a3b8;
+      color: #fff;
+      border: none;
+      padding: 9px 14px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: not-allowed;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .qty-control-inline {
+      display: flex;
+      align-items: center;
+      background: #f1f5f9;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
+      padding: 2px;
+    }
+
+    .qty-btn {
+      background: white;
+      border: 1px solid #cbd5e1;
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .qty-number {
+      padding: 0 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    /* ================= MAIN PAGE ADMIN SECTION ================= */
+    .admin-main-section {
+      background: #0b1329;
+      color: #f8fafc;
+      border-top: 4px solid var(--gold);
+      border-bottom: 4px solid var(--primary);
+      padding: 60px 24px;
+    }
+
+    .admin-auth-card {
+      max-width: 440px;
+      margin: 0 auto;
+      background: #1e293b;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: var(--shadow-xl);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+    }
+
+    .admin-auth-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+
+    .admin-auth-card p {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin-bottom: 20px;
+    }
+
+    .admin-workspace {
+      display: none;
+    }
+
+    .admin-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-bottom: 35px;
+    }
+
+    .stat-box {
+      background: #1e293b;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .stat-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+
+    .stat-num {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .admin-tabs-nav {
+      display: flex;
+      gap: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
+
+    .admin-tab-btn {
+      background: transparent;
+      border: none;
+      color: #94a3b8;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 12px 20px;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+
+    .admin-tab-btn.active {
+      color: var(--gold);
+      border-bottom-color: var(--gold);
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px 8px 0 0;
+    }
+
+    .admin-tab-pane {
+      display: none;
+    }
+
+    .admin-tab-pane.active {
+      display: block;
+    }
+
+    .admin-table-wrapper {
+      background: #1e293b;
+      border-radius: 12px;
+      overflow-x: auto;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.88rem;
+    }
+
+    .admin-table th {
+      background: #0f172a;
+      padding: 14px 18px;
+      color: #94a3b8;
+      font-weight: 700;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .admin-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      color: #e2e8f0;
+      vertical-align: middle;
+    }
+
+    .admin-table tr:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .admin-action-btn {
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: none;
+      font-weight: 700;
+      font-size: 0.78rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: var(--transition);
+    }
+
+    .btn-edit-prod {
+      background: #f59e0b;
+      color: #0f172a;
+    }
+
+    .btn-toggle-stock {
+      background: #3b82f6;
+      color: white;
+    }
+
+    .btn-delete-prod {
+      background: #ef4444;
+      color: white;
+    }
+
+    .admin-form-box {
+      background: #1e293b;
+      padding: 26px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    /* BULK ORDERS SECTION */
+    .bulk-section {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: white;
+      border-radius: 16px;
+      padding: 40px 30px;
+      margin: 40px auto 10px;
+      max-width: 1230px;
+      box-shadow: var(--shadow-xl);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+    }
+
+    .bulk-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 25px;
+    }
+
+    .bulk-text h3 {
+      font-size: 1.8rem;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .bulk-text p {
+      color: #94a3b8;
+      font-size: 0.95rem;
+      max-width: 600px;
+    }
+
+    .bulk-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-bulk-whatsapp {
+      background: #25d366;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+
+    .btn-bulk-call {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 12px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+
+    /* CART DRAWER */
+    .cart-drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+    }
+
+    .cart-drawer-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: -480px;
+      width: 100%;
+      max-width: 440px;
+      height: 100%;
+      background: #ffffff;
+      box-shadow: var(--shadow-xl);
+      z-index: 1000;
+      transition: right 0.35s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cart-drawer.active {
+      right: 0;
+    }
+
+    .cart-header {
+      padding: 18px 22px;
+      background: #0f172a;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .close-cart-btn {
+      background: rgba(255, 255, 255, 0.15);
+      border: none;
+      color: #fff;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .cart-items-container {
+      flex-grow: 1;
+      overflow-y: auto;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .cart-item {
+      display: flex;
+      gap: 12px;
+      padding: 10px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      align-items: center;
+    }
+
+    .cart-item-img {
+      width: 55px;
+      height: 55px;
+      object-fit: contain;
+      background: white;
+      border-radius: 6px;
+      padding: 2px;
+    }
+
+    .cart-item-details {
+      flex-grow: 1;
+    }
+
+    .cart-item-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .cart-item-price {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 0.9rem;
+    }
+
+    .cart-footer {
+      padding: 18px 22px;
+      border-top: 1px solid #e2e8f0;
+      background: #fafafa;
+    }
+
+    .cart-total-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .btn-checkout {
+      width: 100%;
+      background: #10b981;
+      color: white;
+      border: none;
+      padding: 13px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-bottom: 8px;
+    }
+
+    /* MODALS */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.75);
+      z-index: 1050;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-box {
+      background: white;
+      width: 100%;
+      max-width: 520px;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: var(--shadow-xl);
+    }
+
+    .modal-header {
+      background: #0f172a;
+      color: white;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-body {
+      padding: 22px;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .qr-container {
+      background: #f8fafc;
+      border: 2px dashed #cbd5e1;
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .qr-image {
+      width: 170px;
+      height: 170px;
+      margin: 0 auto 10px;
+      display: block;
+      background: white;
+      padding: 8px;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+      text-align: left;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.83rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: #334155;
+    }
+
+    .admin-form-box .form-label, .admin-auth-card .form-label, #editProductModal .form-label {
+      color: #cbd5e1;
+    }
+
+    .form-input, .form-textarea, .form-select {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-family: inherit;
+    }
+
+    .admin-form-box .form-input, .admin-form-box .form-select, .admin-form-box .form-textarea,
+    .admin-auth-card .form-input, #editProductModal .form-input, #editProductModal .form-select {
+      background: #0f172a;
+      border-color: #334155;
+      color: #fff;
+    }
+
+    .btn-submit-order {
+      width: 100%;
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: var(--transition);
+    }
+
+    .btn-submit-order:hover {
+      background: var(--primary-dark);
+    }
+
+    /* FAQ & FOOTER */
+    .info-section {
+      background: #ffffff;
+      border-top: 1px solid #e2e8f0;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 50px 24px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+    }
+
+    .info-card {
+      background: #f8fafc;
+      padding: 24px;
+      border-radius: 10px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .info-card h3 {
+      margin-bottom: 14px;
+      font-size: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .faq-item {
+      margin-bottom: 10px;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 8px;
+    }
+
+    .faq-question {
+      font-weight: 600;
+      font-size: 0.92rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-answer {
+      font-size: 0.85rem;
+      color: #64748b;
+      margin-top: 6px;
+      display: none;
+    }
+
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+
+    footer {
+      background: #0f172a;
+      color: #94a3b8;
+      padding: 50px 24px 20px;
+      font-size: 0.88rem;
+    }
+
+    .footer-grid {
+      max-width: 1280px;
+      margin: 0 auto 35px;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr;
+      gap: 30px;
+    }
+
+    .footer-col h4 {
+      color: #ffffff;
+      font-size: 1.05rem;
+      margin-bottom: 14px;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 8px;
+    }
+
+    .footer-links a {
+      color: #94a3b8;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    .trademark-bar {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.8rem;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #0f172a;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      box-shadow: var(--shadow-xl);
+      border-left: 4px solid var(--primary);
+      z-index: 2000;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    @media (max-width: 992px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-bar">
+    ⚡ F2 Sports Official Store: English Willow, Kashmir Willow & Power Tennis Bats | Pan-India Fast Delivery 🏏
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="navbar">
+      <a href="#home" class="logo-container">
+        <div class="logo-badge">F2</div>
+        <div>
+          <span class="logo-title">F2 <span>SPORTS</span></span>
+          <span class="logo-tagline">Engineered For Champions™</span>
+        </div>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#home"><i class="fa-solid fa-house"></i> Home</a></li>
+        <li><a href="#english-section"><i class="fa-solid fa-award"></i> English Willow</a></li>
+        <li><a href="#kashmir-section"><i class="fa-solid fa-shield-halved"></i> Kashmir Willow</a></li>
+        <li><a href="#tennis-section"><i class="fa-solid fa-baseball-bat-ball"></i> Tennis Bats</a></li>
+        <li><a href="#bulk-order"><i class="fa-solid fa-truck-ramp-box"></i> Bulk Orders</a></li>
+        <li><a href="#admin-section" style="color:var(--gold);"><i class="fa-solid fa-user-shield"></i> Admin Portal</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="cart-btn-trigger" onclick="toggleCartDrawer()">
+          <i class="fa-solid fa-basket-shopping"></i>
+          <span>Cart</span>
+          <span class="cart-badge-count" id="cartCountBadge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <h1>Power Your Game With <span>F2 Sports Mastercraft Bats</span></h1>
+    <p>Professional Cricket Bats handpicked for extraordinary ping, perfect balance, and monstrous power hitting across all formats.</p>
+    <div class="hero-buttons">
+      <a href="#english-section" class="btn-hero btn-hero-primary"><i class="fa-solid fa-award"></i> English Willow</a>
+      <a href="#kashmir-section" class="btn-hero btn-hero-secondary"><i class="fa-solid fa-shield-halved"></i> Kashmir Willow</a>
+      <a href="#tennis-section" class="btn-hero btn-hero-secondary"><i class="fa-solid fa-bolt"></i> Tennis Series</a>
+      <a href="#admin-section" class="btn-hero btn-hero-secondary" style="border-color:var(--gold);"><i class="fa-solid fa-lock"></i> Admin Dashboard</a>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main>
+
+    <!-- 1. ENGLISH WILLOW SECTION -->
+    <section class="container" id="english-section">
+      <div class="section-header">
+        <span class="section-subtitle">International Standard</span>
+        <h2 class="section-title">🏴󠁧󠁢󠁥󠁮󠁧󠁿 English Willow Bats Collection</h2>
+        <p class="section-desc">Hand-crafted from genuine imported English Willow clefts for maximum rebound velocity and feather-light pickup.</p>
+      </div>
+      <div class="product-grid" id="englishProductsGrid"></div>
+    </section>
+
+    <!-- 2. KASHMIR WILLOW LEATHER BATS SECTION -->
+    <section class="container" id="kashmir-section" style="padding-top: 0;">
+      <div class="section-header">
+        <span class="section-subtitle">Traditional Power</span>
+        <h2 class="section-title">🏏 Kashmir Willow Leather Bats Collection</h2>
+        <p class="section-desc">Selected Grade Kashmir Willow leather ball bats crafted with heavy spines and thick edges for tournament performance.</p>
+      </div>
+      <div class="product-grid" id="kashmirProductsGrid"></div>
+    </section>
+
+    <!-- 3. TENNIS BATS SECTION -->
+    <section class="container" id="tennis-section" style="padding-top: 0;">
+      <div class="section-header">
+        <span class="section-subtitle">Hard & Soft Tennis Dominators</span>
+        <h2 class="section-title">⚡ Tennis Cricket Bats Collection</h2>
+        <p class="section-desc">Engineered specifically for tennis ball cricket with scoop and power-blade dynamics for 360-degree boundary clearing.</p>
+      </div>
+      <div class="product-grid" id="tennisProductsGrid"></div>
+    </section>
+
+    <!-- BULK ORDERS CONTACT SECTION -->
+    <section class="container" id="bulk-order" style="padding-top: 0;">
+      <div class="bulk-section">
+        <div class="bulk-content">
+          <div class="bulk-text">
+            <span style="color:var(--gold); font-weight:800; font-size:0.85rem; text-transform:uppercase; letter-spacing:1px;">Academy & Club Wholesaler</span>
+            <h3>Bulk Orders & Custom Team Inquiries</h3>
+            <p>Planning bulk bat procurement for your academy, cricket club, corporate team, or tournament sponsor? Contact our sales desk for custom pricing and handle branding.</p>
+          </div>
+          <div class="bulk-actions">
+            <!-- Replace 919876543210 with your exact WhatsApp phone number -->
+            <a href="https://wa.me/919876543210?text=Hi%20F2%20Sports,%20I%20want%20to%20inquire%20about%20a%20bulk%20order%20of%20cricket%20bats." target="_blank" class="btn-bulk-whatsapp">
+              <i class="fa-brands fa-whatsapp" style="font-size:1.2rem;"></i> WhatsApp Bulk Desk
+            </a>
+            <!-- Replace +919876543210 with your direct calling number -->
+            <a href="tel:+919876543210" class="btn-bulk-call">
+              <i class="fa-solid fa-phone"></i> Call Direct
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 4. MAIN PAGE ADMIN SECTION ================= -->
+    <section class="admin-main-section" id="admin-section">
+      <div class="container" style="padding-top:0; padding-bottom:0;">
+        <div class="section-header" style="margin-bottom:30px;">
+          <span class="section-subtitle" style="color:var(--gold);">Store Management</span>
+          <h2 class="section-title" style="color:#ffffff;">🛡️ F2 Sports Admin Control Center</h2>
+          <p class="section-desc" style="color:#94a3b8;">Edit existing products, manage sales & discounts (e.g. Eid Offers), track customer orders, and update catalog inventory.</p>
+        </div>
+
+        <!-- Admin Login Gate -->
+        <div class="admin-auth-card" id="adminAuthBox">
+          <div style="font-size:2.5rem; color:var(--gold); margin-bottom:10px;"><i class="fa-solid fa-shield-halved"></i></div>
+          <h3>Admin Authentication</h3>
+          <p>Please enter your credentials to access the store management tools.</p>
+          <form onsubmit="handleMainAdminLogin(event)">
+            <div class="form-group">
+              <label class="form-label">Username</label>
+              <input type="text" id="mainAdminUser" class="form-input" placeholder="admin" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Password</label>
+              <input type="password" id="mainAdminPass" class="form-input" placeholder="••••••••" required />
+            </div>
+            <p style="font-size:0.75rem; color:#64748b; margin-bottom:12px;">Default credentials: <b>admin</b> / <b>f2sports2026</b></p>
+            <button type="submit" class="btn-submit-order" style="background:var(--gold); color:#0f172a;"><i class="fa-solid fa-right-to-bracket"></i> Login as Admin</button>
+          </form>
+        </div>
+
+        <!-- Authenticated Admin Workspace -->
+        <div class="admin-workspace" id="adminWorkspace">
+          
+          <!-- Top Stats Bar -->
+          <div class="admin-stats-grid">
+            <div class="stat-box">
+              <div class="stat-icon" style="background:rgba(212, 175, 55, 0.15); color:var(--gold);"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+              <div>
+                <div class="stat-num" id="statRevenue">₹0</div>
+                <div class="stat-label">Total Revenue</div>
+              </div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-icon" style="background:rgba(59, 130, 246, 0.15); color:#60a5fa;"><i class="fa-solid fa-truck-fast"></i></div>
+              <div>
+                <div class="stat-num" id="statOrders">0</div>
+                <div class="stat-label">Total Orders</div>
+              </div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-icon" style="background:rgba(16, 185, 129, 0.15); color:#34d399;"><i class="fa-solid fa-baseball-bat-ball"></i></div>
+              <div>
+                <div class="stat-num" id="statProducts">0</div>
+                <div class="stat-label">Live Bats Catalog</div>
+              </div>
+            </div>
+            <div class="stat-box" style="justify-content:space-between;">
+              <div>
+                <div style="font-size:0.85rem; font-weight:700; color:#fff;">Admin Session Active</div>
+                <div style="font-size:0.75rem; color:#94a3b8;">Owner: Sajid | F2 Sports</div>
+              </div>
+              <button onclick="handleMainAdminLogout()" class="admin-action-btn" style="background:#ef4444; color:#fff; padding:8px 14px;">
+                <i class="fa-solid fa-power-off"></i> Logout
+              </button>
+            </div>
+          </div>
+
+          <!-- Navigation Tabs -->
+          <div class="admin-tabs-nav">
+            <button class="admin-tab-btn active" onclick="switchAdminTab('orders')"><i class="fa-solid fa-clipboard-list"></i> Customer Orders (<span id="adminOrdersTabCount">0</span>)</button>
+            <button class="admin-tab-btn" onclick="switchAdminTab('products')"><i class="fa-solid fa-boxes-packing"></i> Manage & Edit Catalog (<span id="adminProdsTabCount">0</span>)</button>
+            <button class="admin-tab-btn" onclick="switchAdminTab('add-product')"><i class="fa-solid fa-plus-circle"></i> Add New Cricket Bat</button>
+          </div>
+
+          <!-- TAB 1: CUSTOMER ORDERS -->
+          <div class="admin-tab-pane active" id="adminPaneOrders">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; flex-wrap:wrap; gap:10px;">
+              <h4 style="font-size:1.1rem; color:#fff;">Received Orders Log</h4>
+              <button class="admin-action-btn" style="background:#475569; color:#fff;" onclick="clearAllOrders()"><i class="fa-solid fa-trash"></i> Clear Order History</button>
+            </div>
+            <div id="mainAdminOrdersList"></div>
+          </div>
+
+          <!-- TAB 2: MANAGE & EDIT PRODUCTS -->
+          <div class="admin-tab-pane" id="adminPaneProducts">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+              <h4 style="font-size:1.1rem; color:#fff;">Active Bat Products List</h4>
+              <button class="admin-action-btn" style="background:var(--gold); color:#0f172a;" onclick="switchAdminTab('add-product')"><i class="fa-solid fa-plus"></i> Add Another Bat</button>
+            </div>
+            <div class="admin-table-wrapper">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Section</th>
+                    <th>Sub-Category</th>
+                    <th>Price</th>
+                    <th>Sale / Offer Tag</th>
+                    <th>Stock</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="adminProductsTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- TAB 3: ADD NEW PRODUCT -->
+          <div class="admin-tab-pane" id="adminPaneAddProduct">
+            <div class="admin-form-box">
+              <h4 style="font-size:1.15rem; color:#fff; margin-bottom:18px;"><i class="fa-solid fa-circle-plus" style="color:var(--gold);"></i> Add New Bat to Catalog</h4>
+              <form id="addNewProductForm" onsubmit="handleAdminAddNewProduct(event)">
+                <div class="form-grid-2">
+                  <div class="form-group">
+                    <label class="form-label">Store Section Category</label>
+                    <select id="newProdCategory" class="form-select" required>
+                      <option value="english">English Willow Bats</option>
+                      <option value="kashmir">Kashmir Willow Bats</option>
+                      <option value="tennis">Tennis Cricket Bats</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Category Sub-Type Name</label>
+                    <input type="text" id="newProdCatName" class="form-input" placeholder="e.g. Players Edition, Grade A, 36 Inch" required />
+                  </div>
+                </div>
+
+                <div class="form-grid-2">
+                  <div class="form-group">
+                    <label class="form-label">Product Full Name / Title</label>
+                    <input type="text" id="newProdName" class="form-input" placeholder="e.g. F2 Mastercraft Power Pro Bat" required />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Price in ₹ (INR)</label>
+                    <input type="number" id="newProdPrice" class="form-input" placeholder="e.g. 8499" required />
+                  </div>
+                </div>
+
+                <div class="form-grid-2">
+                  <div class="form-group">
+                    <label class="form-label">Badge / Willow Tag</label>
+                    <input type="text" id="newProdTag" class="form-input" placeholder="e.g. Grade 1 English Willow / Reserve Cleft" required />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Image Filename / URL</label>
+                    <input type="text" id="newProdImg" class="form-input" placeholder="e.g. ./custom_bat.jpg" required />
+                  </div>
+                </div>
+
+                <div class="form-grid-2">
+                  <div class="form-group">
+                    <label class="form-label">Sale / Discount Badge (Optional)</label>
+                    <input type="text" id="newProdSaleBadge" class="form-input" placeholder="e.g. 20% OFF, FLAT ₹1000 OFF" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Offer Description (Optional)</label>
+                    <input type="text" id="newProdSaleDesc" class="form-input" placeholder="e.g. Eid Special Offer, Festival Deal" />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Key Specifications & Features (comma separated)</label>
+                  <input type="text" id="newProdFeatures" class="form-input" placeholder="e.g. 40mm Edges, 9-10 Straight Grains, 1170g Light Pickup" required />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Initial Stock Status</label>
+                  <select id="newProdStock" class="form-select">
+                    <option value="true">Available in Stock</option>
+                    <option value="false">Out of Stock</option>
+                  </select>
+                </div>
+
+                <button type="submit" class="btn-submit-order" style="background:var(--gold); color:#0f172a; max-width:260px;">
+                  <i class="fa-solid fa-plus-circle"></i> Publish Product
+                </button>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- HELP & SUGGESTIONS -->
+    <section class="info-section" id="help-suggestions">
+      <div class="container" style="padding: 0;">
+        <div class="section-header">
+          <span class="section-subtitle">Player Support</span>
+          <h2 class="section-title">Help, Inquiries & Suggestions</h2>
+        </div>
+
+        <div class="info-grid">
+          <div class="info-card">
+            <h3><i class="fa-solid fa-circle-question" style="color:var(--primary);"></i> FAQs & Bat Care</h3>
+            <div class="faq-item active">
+              <div class="faq-question" onclick="toggleFaq(this)">
+                <span>What is the difference between Grade A & Grade B English Willow?</span>
+                <i class="fa-solid fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">Grade A features 8-11 straight grains with minimal blemishes for international match play. Grade B has 6-8 grains offering elite power and durability at a competitive price.</div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-question" onclick="toggleFaq(this)">
+                <span>How can I pay via UPI or QR Code?</span>
+                <i class="fa-solid fa-chevron-down"></i>
+              </div>
+              <div class="faq-answer">Add your bats to cart, click checkout, scan our verified QR Scanner with Google Pay, PhonePe, or Paytm, and submit your 12-digit UTR number.</div>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <h3><i class="fa-solid fa-lightbulb" style="color:var(--primary);"></i> Custom Suggestions</h3>
+            <form onsubmit="handleSuggestionSubmit(event)">
+              <div class="form-group">
+                <label class="form-label">Your Name</label>
+                <input type="text" class="form-input" placeholder="Player Name" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Suggestions / Custom Specs Request</label>
+                <textarea class="form-textarea" rows="3" placeholder="Tell us your preferred weight, handle shape, or custom requests..." required></textarea>
+              </div>
+              <button type="submit" class="btn-submit-order" style="background:#0f172a;">Submit Feedback</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- CART DRAWER -->
+  <div class="cart-drawer-overlay" id="cartOverlay" onclick="toggleCartDrawer()"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <h3><i class="fa-solid fa-basket-shopping"></i> Your Cart (<span id="cartCountTitle">0</span>)</h3>
+      <button class="close-cart-btn" onclick="toggleCartDrawer()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="cart-items-container" id="cartItemsList"></div>
+    <div class="cart-footer">
+      <div class="cart-total-row">
+        <span>Grand Total:</span>
+        <span id="cartGrandTotal">₹0</span>
+      </div>
+      <button class="btn-checkout" id="checkoutBtn" onclick="openCheckoutModal()" disabled>
+        <i class="fa-solid fa-lock"></i> Proceed to QR / UPI Checkout
+      </button>
+    </div>
+  </div>
+
+  <!-- CHECKOUT MODAL -->
+  <div class="modal-overlay" id="checkoutModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-qrcode"></i> Scan & Pay (UPI / QR)</h3>
+        <button class="close-cart-btn" onclick="closeCheckoutModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="qr-container">
+          <p style="font-size:0.85rem; margin-bottom:8px; font-weight:600;">Scan with GPay, PhonePe, Paytm, or BHIM</p>
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=170x170&data=upi://pay?pa=f2sports@upi%26pn=F2%20Sports%20Official%26mc=5945" alt="F2 Sports QR Scanner" class="qr-image" />
+          <p style="font-family:monospace; font-weight:700; font-size:0.95rem;">UPI ID: f2sports@upi</p>
+          <p style="font-size:0.85rem; margin-top:6px;">Payable Amount: <b style="color:var(--primary);" id="checkoutModalTotal">₹0</b></p>
+        </div>
+
+        <form id="orderForm" onsubmit="handlePlaceOrder(event)">
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input type="text" id="custName" class="form-input" placeholder="Your Name" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Customer Email Address</label>
+            <input type="email" id="custEmail" class="form-input" placeholder="customer@gmail.com" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">WhatsApp / Contact Number</label>
+            <input type="tel" id="custPhone" class="form-input" placeholder="+91 98765 43210" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Delivery Address & Pincode</label>
+            <textarea id="custAddress" class="form-textarea" rows="2" placeholder="Full delivery address" required></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">UPI Transaction Reference ID (UTR)</label>
+            <input type="text" id="custUtr" class="form-input" placeholder="12-digit UTR after payment" required />
+          </div>
+          <button type="submit" class="btn-submit-order">Confirm & Place Order</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDIT PRODUCT MODAL -->
+  <div class="modal-overlay" id="editProductModal">
+    <div class="modal-box" style="background:#1e293b; color:#fff; max-width:600px;">
+      <div class="modal-header" style="background:#0f172a;">
+        <h3><i class="fa-solid fa-pen-to-square" style="color:var(--gold);"></i> Edit Bat Details & Sale Offers</h3>
+        <button class="close-cart-btn" onclick="closeEditModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <form id="editProductForm" onsubmit="handleSaveEditedProduct(event)">
+          <input type="hidden" id="editProdId" />
+          
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label">Category Section</label>
+              <select id="editProdCategory" class="form-select" required>
+                <option value="english">English Willow Bats</option>
+                <option value="kashmir">Kashmir Willow Bats</option>
+                <option value="tennis">Tennis Cricket Bats</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Sub-Category</label>
+              <input type="text" id="editProdCatName" class="form-input" required />
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label">Product Name</label>
+              <input type="text" id="editProdName" class="form-input" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Price in ₹ (INR)</label>
+              <input type="number" id="editProdPrice" class="form-input" required />
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label">Badge / Willow Tag</label>
+              <input type="text" id="editProdTag" class="form-input" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Image Path / URL</label>
+              <input type="text" id="editProdImg" class="form-input" required />
+            </div>
+          </div>
+
+          <!-- Edit Sale & Promo Options -->
+          <div class="form-grid-2" style="background:rgba(239, 68, 68, 0.1); padding:12px; border-radius:8px; border:1px dashed #ef4444; margin-bottom:14px;">
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label" style="color:#fca5a5;"><i class="fa-solid fa-tag"></i> Sale Label (e.g. 20% OFF)</label>
+              <input type="text" id="editProdSaleBadge" class="form-input" placeholder="Leave empty if no sale" />
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label" style="color:#fca5a5;"><i class="fa-solid fa-gift"></i> Sale Description (e.g. Eid Offer)</label>
+              <input type="text" id="editProdSaleDesc" class="form-input" placeholder="e.g. Eid Special Discount" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Features (comma separated)</label>
+            <input type="text" id="editProdFeatures" class="form-input" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Stock Status</label>
+            <select id="editProdStock" class="form-select">
+              <option value="true">Available in Stock</option>
+              <option value="false">Out of Stock</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn-submit-order" style="background:var(--gold); color:#0f172a;">
+            <i class="fa-solid fa-floppy-disk"></i> Save & Update Product
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4 style="font-size: 1.2rem;">F2 <span style="color:var(--gold);">SPORTS</span></h4>
+        <p>Precision handcrafted cricket bats designed for boundary power, premium aesthetics, and long-lasting match durability.</p>
+      </div>
+      <div class="footer-col">
+        <h4>English Willow</h4>
+        <ul class="footer-links">
+          <li><a href="#english-section">Grade A English Willow</a></li>
+          <li><a href="#english-section">Grade B English Willow</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Kashmir Willow</h4>
+        <ul class="footer-links">
+          <li><a href="#kashmir-section">Players Edition</a></li>
+          <li><a href="#kashmir-section">Platinum</a></li>
+          <li><a href="#kashmir-section">Diamond</a></li>
+          <li><a href="#kashmir-section">Gold</a></li>
+          <li><a href="#kashmir-section">Silver</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Tennis Series</h4>
+        <ul class="footer-links">
+          <li><a href="#tennis-section">Designed</a></li>
+          <li><a href="#tennis-section">Without Design</a></li>
+          <li><a href="#tennis-section">Popular</a></li>
+          <li><a href="#tennis-section">Cane Handle</a></li>
+          <li><a href="#tennis-section">Kissan Tennis</a></li>
+          <li><a href="#tennis-section">36 Inch Monster</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact & Bulk Desk</h4>
+        <p><i class="fa-solid fa-phone" style="color:var(--gold);"></i> +91 98765 43210</p>
+        <p><i class="fa-solid fa-envelope" style="color:var(--gold);"></i> support@f2sports.com</p>
+        <p><i class="fa-solid fa-location-dot" style="color:var(--gold);"></i> Sports Complex Road, India</p>
+      </div>
+    </div>
+
+    <!-- Trade Mark Notice -->
+    <div class="trademark-bar">
+      <div>© 2026 <strong>F2 Sports™</strong>. All Rights Reserved.</div>
+      <div><i class="fa-solid fa-trademark"></i> F2 SPORTS™ is a Registered Trademark</div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="appToast">
+    <i class="fa-solid fa-circle-check" style="color:#10b981;"></i>
+    <span id="toastMsg">Added to cart</span>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    const initialProducts = [
+      // 1. ENGLISH WILLOW BATS (Grade A, Grade B)
+      {
+        id: 'EW1',
+        category: 'english',
+        catName: 'Grade A',
+        name: 'F2 Pro Grade A English Willow Bat',
+        price: 24999,
+        tag: 'Grade A Cleft',
+        img: './grade_a_english.jpg',
+        inStock: true,
+        saleBadge: '15% OFF',
+        saleDesc: 'Eid Special Offer',
+        features: ['8-11 Straight Defined Grains', '40mm Monster Edges', 'Full Concave Profile (1160-1180g)']
+      },
+      {
+        id: 'EW2',
+        category: 'english',
+        catName: 'Grade B',
+        name: 'F2 Match Grade B English Willow Bat',
+        price: 16999,
+        tag: 'Grade B Cleft',
+        img: './grade_b_english.jpg',
+        inStock: true,
+        saleBadge: '',
+        saleDesc: '',
+        features: ['6-8 Grains with Natural Character', 'Superb Rebound Ping', 'Semi-Oval Cane Handle']
+      },
+
+      // 2. KASHMIR WILLOW LEATHER BATS
+      {
+        id: 'KW1',
+        category: 'kashmir',
+        catName: 'Players Edition',
+        name: 'F2 Players Edition Kashmir Leather Bat',
+        price: 7999,
+        tag: 'Top Reserve KW',
+        img: './Players_edition.jpg',
+        inStock: true,
+        saleBadge: '20% OFF',
+        saleDesc: 'Eid Mubarak Festival Deal',
+        features: ['Dense Grain Selected Kashmir Willow', 'Massive Sweet Spot', 'Pre-knocked with 10k strikes']
+      },
+      {
+        id: 'KW2',
+        category: 'kashmir',
+        catName: 'Platinum',
+        name: 'F2 Platinum Leather Bat',
+        price: 6499,
+        tag: 'Platinum Reserve',
+        img: './platinum.jpg',
+        inStock: true,
+        saleBadge: '',
+        saleDesc: '',
+        features: ['Curved Blade for Maximum Elevation', 'Fitted Toe Guard', 'Excellent Pickup & Balance']
+      },
+      {
+        id: 'KW3',
+        category: 'kashmir',
+        catName: 'Diamond',
+        name: 'F2 Diamond Leather Bat',
+        price: 5199,
+        tag: 'Diamond Series',
+        img: './diamond.jpg',
+        inStock: true,
+        saleBadge: '',
+        saleDesc: '',
+        features: ['38mm Thick Edge Profile', 'Hard Pressed Willow Face', 'Comfort Chevron Grip']
+      },
+      {
+        id: 'KW4',
+        category: 'kashmir',
+        catName: 'Gold',
+        name: 'F2 Gold Reserve Leather Bat',
+        price: 4199,
+        tag: 'Gold Standard',
+        img: './gold.jpg',
+        inStock: false,
+        saleBadge: '',
+        saleDesc: '',
+        features: ['Clean Natural Face', 'Full Spine Swell', 'Ideal for League Matches']
+      },
+      {
+        id: 'KW5',
+        category: 'kashmir',
+        catName: 'Silver',
+        name: 'F2 Silver Club Leather Bat',
+        price: 3299,
+        tag: 'Silver Club',
+        img: './silver.jpg',
+        inStock: true,
+        saleBadge: '',
+        saleDesc: '',
+        features: ['Durable Kashmir Willow Blade', 'Even Weight Distribution', 'Great Entry-level League Bat']
+      },
+
+      // 3. TENNIS BATS
+      {
+        id: 'TN1',
+        category: 'tennis',
+        catName: 'Designed',
+        name: 'F2 Laser-Designed Hard Tennis Bat',
+        price: 2499,
+        tag: 'UV 3D Graphics',
+        img: './designed.jpg',
+        inStock: true,
+        saleBadge: '10% OFF',
+        saleDesc: 'Turf Special',
+        features: ['High-Gloss Designer Decal', 'Thick Bottom for Turf Hitting', 'Lightweight 1030g']
+      },
+      {
+        id: 'TN2',
+        category: 'tennis',
+        catName: 'Without Design',
+        name: 'F2 Classic Raw (Without Design) Tennis Bat',
+        price: 1999,
+        tag: 'Raw Natural Polish',
+        img: './without_design.jpg',
+        inStock: true,
+        saleBadge: '',
+        saleDesc: '',
+        features: ['Natural Wood Polish Finish', 'Clean Minimal Blade', 'Massive Center Meat Profile']
+      },
+      {
+        id: 'TN3',
+        category: 'tennis',
+        catName: 'Popular',
+        name: 'F2 Popular Turf Dominator Tennis Bat',
+        price: 1799,
+        tag: 'Top Turf Seller',
+        img: './popular.jpg',
+        inStock: true,
+        saleBadge: '',
+        saleDesc: '',
+        features: ['Duckbill Toe for Super Fast Swing', 'Suited for Soft & Light Tennis', 'Explosive Lofting Power']
+      },
+      {
+        id: 'TN4',
+        category: 'tennis',
+        catName: 'Cane',
+        name: 'F2 Full Cane Handle Tennis Bat',
+        price: 2899,
+        tag: '9-Piece Cane Handle',
+        img: './cane.jpg',
+        inStock: false,
+        saleBadge: '',
+        saleDesc: '',
+        features: ['Full Singapore Cane Handle', 'Zero Shock Vibration on Hard Ball', 'Unbreakable Build']
+      },
+      {
+        id: 'TN5',
+        category: 'tennis',
+        catName: 'Kissan Tennis',
+        name: 'F2 Kissan Tennis Heavy Punch Bat',
+        price: 2299,
+        tag: 'Heavy Punch Willow',
+        img: './kissan_tennis.jpg',
+        inStock: true,
+        saleBadge: '',
+        saleDesc: '',
+        features: ['Specially Seasoned Hard Willow', '4.5 Inch Extra Broad Blade', 'Suited for Heavy Red Tennis Balls']
+      },
+      {
+        id: 'TN6',
+        category: 'tennis',
+        catName: '36 Inch',
+        name: 'F2 36-Inch Long Blade Monster Tennis Bat',
+        price: 2999,
+        tag: '36-Inch Long Blade',
+        img: './36inch.jpg',
+        inStock: true,
+        saleBadge: '',
+        saleDesc: '',
+        features: ['Extended 36-Inch Leverage', 'Extra Reach on Wide Deliveries', 'Massive Boundary Trajectory']
+      }
+    ];
+
+    let products = JSON.parse(localStorage.getItem('f2_products')) || initialProducts;
+    let orders = JSON.parse(localStorage.getItem('f2_orders')) || [];
+    let cart = {};
+
+    function saveProducts() {
+      localStorage.setItem('f2_products', JSON.stringify(products));
+    }
+
+    function saveOrders() {
+      localStorage.setItem('f2_orders', JSON.stringify(orders));
+    }
+
+    /* RENDER STOREFRONT CATALOG */
+    function renderProducts() {
+      const englishContainer = document.getElementById('englishProductsGrid');
+      const kashmirContainer = document.getElementById('kashmirProductsGrid');
+      const tennisContainer = document.getElementById('tennisProductsGrid');
+
+      englishContainer.innerHTML = '';
+      kashmirContainer.innerHTML = '';
+      tennisContainer.innerHTML = '';
+
+      products.forEach(product => {
+        const qty = cart[product.id] ? cart[product.id].qty : 0;
+        const isAvailable = product.inStock !== false;
+        const hasSale = Boolean(product.saleBadge && product.saleBadge.trim() !== '');
+
+        const cardHtml = `
+          <div class="product-card ${!isAvailable ? 'out-of-stock' : ''}" id="card-${product.id}">
+            <span class="product-tag ${product.category === 'english' ? 'gold-tag' : ''}">${product.tag}</span>
+            
+            <span class="stock-badge ${isAvailable ? 'stock-available' : 'stock-out'}">
+              <i class="fa-solid ${isAvailable ? 'fa-circle-check' : 'fa-circle-xmark'}"></i>
+              ${isAvailable ? 'Available' : 'Out of Stock'}
+            </span>
+
+            ${hasSale ? `
+              <span class="sale-badge">
+                <i class="fa-solid fa-fire"></i> ${product.saleBadge}
+              </span>
+            ` : ''}
+
+            <div class="product-img-wrapper">
+              <img src="${product.img}" alt="${product.name}" class="product-img" onerror="this.src='https://images.unsplash.com/photo-1531415074868-036b107e775a?q=80&w=600&auto=format&fit=crop'" />
+            </div>
+
+            <div class="product-body">
+              <span class="product-cat-name">${product.catName}</span>
+              <h3 class="product-title">${product.name}</h3>
+
+              ${hasSale && product.saleDesc ? `
+                <div class="sale-promo-strip">
+                  <i class="fa-solid fa-tag"></i> <span>${product.saleDesc}</span>
+                </div>
+              ` : ''}
+
+              <ul class="product-features">
+                ${product.features.map(f => `<li><i class="fa-solid fa-check"></i> ${f}</li>`).join('')}
+              </ul>
+
+              <div class="product-footer">
+                <div class="price-value">₹${Number(product.price).toLocaleString('en-IN')}</div>
+                <div id="btn-container-${product.id}">
+                  ${!isAvailable ? `
+                    <button class="btn-out-of-stock" disabled><i class="fa-solid fa-ban"></i> Sold Out</button>
+                  ` : qty === 0 ? `
+                    <button class="btn-add-cart" onclick="addToCart('${product.id}')">
+                      <i class="fa-solid fa-cart-plus"></i> Add
+                    </button>
+                  ` : `
+                    <div class="qty-control-inline">
+                      <button class="qty-btn" onclick="updateQuantity('${product.id}', -1)">-</button>
+                      <span class="qty-number">${qty}</span>
+                      <button class="qty-btn" onclick="updateQuantity('${product.id}', 1)">+</button>
+                    </div>
+                  `}
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+
+        if (product.category === 'english') {
+          englishContainer.innerHTML += cardHtml;
+        } else if (product.category === 'kashmir') {
+          kashmirContainer.innerHTML += cardHtml;
+        } else if (product.category === 'tennis') {
+          tennisContainer.innerHTML += cardHtml;
+        }
+      });
+    }
+
+    /* CART OPERATIONS */
+    function addToCart(productId) {
+      const product = products.find(p => p.id === productId);
+      if (!product || product.inStock === false) return;
+
+      if (!cart[productId]) {
+        cart[productId] = { ...product, qty: 1 };
+      } else {
+        cart[productId].qty += 1;
+      }
+      updateCartUI();
+      showToast(`${product.name} added to cart!`);
+    }
+
+    function updateQuantity(productId, delta) {
+      if (!cart[productId]) return;
+      cart[productId].qty += delta;
+      if (cart[productId].qty <= 0) {
+        delete cart[productId];
+        showToast('Item removed from cart');
+      }
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const totalItems = Object.values(cart).reduce((sum, item) => sum + item.qty, 0);
+      document.getElementById('cartCountBadge').innerText = totalItems;
+      document.getElementById('cartCountTitle').innerText = totalItems;
+
+      const cartList = document.getElementById('cartItemsList');
+      const checkoutBtn = document.getElementById('checkoutBtn');
+
+      if (totalItems === 0) {
+        cartList.innerHTML = `<div style="text-align:center; padding:50px 20px; color:#64748b;">
+          <i class="fa-solid fa-basket-shopping" style="font-size:3rem; color:#cbd5e1; margin-bottom:10px;"></i>
+          <h4>Your cart is empty</h4>
+        </div>`;
+        checkoutBtn.disabled = true;
+        document.getElementById('cartGrandTotal').innerText = '₹0';
+      } else {
+        let totalAmount = 0;
+        cartList.innerHTML = '';
+        Object.values(cart).forEach(item => {
+          const itemTotal = Number(item.price) * item.qty;
+          totalAmount += itemTotal;
+          cartList.innerHTML += `
+            <div class="cart-item">
+              <img src="${item.img}" alt="${item.name}" class="cart-item-img" onerror="this.src='https://images.unsplash.com/photo-1531415074868-036b107e775a?q=80&w=600&auto=format&fit=crop'" />
+              <div class="cart-item-details">
+                <div class="cart-item-title">${item.name}</div>
+                <div style="font-size:0.75rem; color:#64748b;">₹${Number(item.price).toLocaleString('en-IN')} each</div>
+                <div class="cart-item-price">₹${itemTotal.toLocaleString('en-IN')}</div>
+              </div>
+              <div class="qty-control-inline">
+                <button class="qty-btn" onclick="updateQuantity('${item.id}', -1)">-</button>
+                <span class="qty-number">${item.qty}</span>
+                <button class="qty-btn" onclick="updateQuantity('${item.id}', 1)">+</button>
+              </div>
+            </div>
+          `;
+        });
+        document.getElementById('cartGrandTotal').innerText = `₹${totalAmount.toLocaleString('en-IN')}`;
+        checkoutBtn.disabled = false;
+      }
+
+      products.forEach(p => {
+        const btnContainer = document.getElementById(`btn-container-${p.id}`);
+        if (!btnContainer) return;
+        const currentQty = cart[p.id] ? cart[p.id].qty : 0;
+        const isAvailable = p.inStock !== false;
+
+        if (!isAvailable) {
+          btnContainer.innerHTML = `<button class="btn-out-of-stock" disabled><i class="fa-solid fa-ban"></i> Sold Out</button>`;
+        } else if (currentQty === 0) {
+          btnContainer.innerHTML = `<button class="btn-add-cart" onclick="addToCart('${p.id}')"><i class="fa-solid fa-cart-plus"></i> Add</button>`;
+        } else {
+          btnContainer.innerHTML = `
+            <div class="qty-control-inline">
+              <button class="qty-btn" onclick="updateQuantity('${p.id}', -1)">-</button>
+              <span class="qty-number">${currentQty}</span>
+              <button class="qty-btn" onclick="updateQuantity('${p.id}', 1)">+</button>
+            </div>
+          `;
+        }
+      });
+    }
+
+    function toggleCartDrawer() {
+      document.getElementById('cartOverlay').classList.toggle('active');
+      document.getElementById('cartDrawer').classList.toggle('active');
+    }
+
+    function openCheckoutModal() {
+      toggleCartDrawer();
+      document.getElementById('checkoutModalTotal').innerText = document.getElementById('cartGrandTotal').innerText;
+      document.getElementById('checkoutModal').classList.add('active');
+    }
+
+    function closeCheckoutModal() {
+      document.getElementById('checkoutModal').classList.remove('active');
+    }
+
+    function toggleFaq(el) {
+      el.parentElement.classList.toggle('active');
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('appToast');
+      document.getElementById('toastMsg').innerText = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2500);
+    }
+
+    /* HANDLE ORDER PLACEMENT */
+    function handlePlaceOrder(e) {
+      e.preventDefault();
+      const name = document.getElementById('custName').value;
+      const email = document.getElementById('custEmail').value;
+      const phone = document.getElementById('custPhone').value;
+      const address = document.getElementById('custAddress').value;
+      const utr = document.getElementById('custUtr').value;
+      const totalAmount = document.getElementById('cartGrandTotal').innerText;
+
+      const rawNum = Number(totalAmount.replace(/[^0-9]/g, '')) || 0;
+
+      const orderData = {
+        orderId: 'F2-' + Math.floor(100000 + Math.random() * 900000),
+        date: new Date().toLocaleString(),
+        customer: { name, email, phone, address },
+        utr,
+        items: Object.values(cart),
+        totalAmount,
+        numericAmount: rawNum,
+        status: 'Order Placed'
+      };
+
+      orders.unshift(orderData);
+      saveOrders();
+
+      alert(`🎉 Thank you, ${name}! Your order #${orderData.orderId} has been placed. You will receive dispatch updates via email.`);
+      
+      cart = {};
+      updateCartUI();
+      closeCheckoutModal();
+      document.getElementById('orderForm').reset();
+      
+      updateAdminDashboard();
+    }
+
+    function handleSuggestionSubmit(e) {
+      e.preventDefault();
+      alert('Thank you for your valuable suggestion! The F2 Sports bat crafting team will review it.');
+      e.target.reset();
+    }
+
+    /* ================= MAIN PAGE ADMIN LOGIC ================= */
+    function handleMainAdminLogin(e) {
+      e.preventDefault();
+      const user = document.getElementById('mainAdminUser').value;
+      const pass = document.getElementById('mainAdminPass').value;
+
+      if (user === 'admin' && pass === 'f2sports2026') {
+        sessionStorage.setItem('f2_main_admin_auth', 'true');
+        showToast('Admin logged in successfully!');
+        checkAdminAuthStatus();
+      } else {
+        alert('Invalid Admin credentials! Use default: admin / f2sports2026');
+      }
+    }
+
+    function handleMainAdminLogout() {
+      sessionStorage.removeItem('f2_main_admin_auth');
+      showToast('Logged out from Admin Dashboard');
+      checkAdminAuthStatus();
+    }
+
+    function checkAdminAuthStatus() {
+      const isAuth = sessionStorage.getItem('f2_main_admin_auth');
+      const authBox = document.getElementById('adminAuthBox');
+      const workspace = document.getElementById('adminWorkspace');
+
+      if (isAuth) {
+        authBox.style.display = 'none';
+        workspace.style.display = 'block';
+        updateAdminDashboard();
+      } else {
+        authBox.style.display = 'block';
+        workspace.style.display = 'none';
+      }
+    }
+
+    function switchAdminTab(tabName) {
+      const tabs = document.querySelectorAll('.admin-tab-btn');
+      const panes = document.querySelectorAll('.admin-tab-pane');
+
+      tabs.forEach(t => t.classList.remove('active'));
+      panes.forEach(p => p.classList.remove('active'));
+
+      if (tabName === 'orders') {
+        tabs[0].classList.add('active');
+        document.getElementById('adminPaneOrders').classList.add('active');
+      } else if (tabName === 'products') {
+        tabs[1].classList.add('active');
+        document.getElementById('adminPaneProducts').classList.add('active');
+      } else if (tabName === 'add-product') {
+        tabs[2].classList.add('active');
+        document.getElementById('adminPaneAddProduct').classList.add('active');
+      }
+    }
+
+    function updateAdminDashboard() {
+      const totalRev = orders.reduce((sum, o) => sum + (o.numericAmount || 0), 0);
+      document.getElementById('statRevenue').innerText = `₹${totalRev.toLocaleString('en-IN')}`;
+      document.getElementById('statOrders').innerText = orders.length;
+      document.getElementById('statProducts').innerText = products.length;
+      document.getElementById('adminOrdersTabCount').innerText = orders.length;
+      document.getElementById('adminProdsTabCount').innerText = products.length;
+
+      renderAdminOrdersList();
+      renderAdminProductsTable();
+    }
+
+    function renderAdminOrdersList() {
+      const container = document.getElementById('mainAdminOrdersList');
+      if (orders.length === 0) {
+        container.innerHTML = '<div style="text-align:center; color:#94a3b8; padding:30px; background:#1e293b; border-radius:10px;">No customer orders placed yet.</div>';
+        return;
+      }
+
+      container.innerHTML = '';
+      orders.forEach((order, index) => {
+        const itemsListStr = order.items.map(i => `${i.name} (x${i.qty})`).join(', ');
+        container.innerHTML += `
+          <div style="background:#1e293b; border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:20px; margin-bottom:16px;">
+            <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px; margin-bottom:12px; font-weight:800; font-size:1.05rem;">
+              <span>Order #${order.orderId}</span>
+              <span style="color:var(--gold);">${order.totalAmount}</span>
+            </div>
+            <div style="font-size:0.88rem; line-height:1.6; color:#cbd5e1;">
+              <p><b>Date:</b> ${order.date}</p>
+              <p><b>Customer:</b> ${order.customer.name} | <b>Email:</b> ${order.customer.email} | <b>Phone:</b> ${order.customer.phone}</p>
+              <p><b>Address:</b> ${order.customer.address}</p>
+              <p><b>Bats Ordered:</b> ${itemsListStr}</p>
+              <p><b>UPI UTR Number:</b> <code style="background:#0f172a; padding:2px 8px; border-radius:4px; color:#38bdf8;">${order.utr}</code></p>
+              <p><b>Current Status:</b> <span style="font-weight:700; color:#34d399;">${order.status}</span></p>
+            </div>
+            <div style="margin-top:14px; padding-top:12px; border-top:1px dashed rgba(255,255,255,0.1); display:flex; gap:10px; flex-wrap:wrap;">
+              <button class="admin-action-btn" style="background:#0284c7; color:#fff;" onclick="sendOrderPlacedEmail(${index})">
+                <i class="fa-solid fa-envelope"></i> Send Order Placed Email
+              </button>
+              <button class="admin-action-btn" style="background:#059669; color:#fff;" onclick="sendDispatchedEmail(${index})">
+                <i class="fa-solid fa-truck-fast"></i> Email Dispatched + Tracking
+              </button>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function renderAdminProductsTable() {
+      const tbody = document.getElementById('adminProductsTableBody');
+      tbody.innerHTML = '';
+
+      products.forEach(p => {
+        const isAvailable = p.inStock !== false;
+        const saleBadgeStr = p.saleBadge ? `<span style="background:#ef4444; color:#fff; padding:2px 6px; border-radius:4px; font-weight:700; font-size:0.75rem;">${p.saleBadge}</span>` : '<span style="color:#64748b;">None</span>';
+        
+        tbody.innerHTML += `
+          <tr>
+            <td>
+              <div style="display:flex; align-items:center; gap:10px;">
+                <img src="${p.img}" alt="${p.name}" style="width:36px; height:36px; object-fit:contain; background:#fff; border-radius:4px; padding:2px;" onerror="this.src='https://images.unsplash.com/photo-1531415074868-036b107e775a?q=80&w=600&auto=format&fit=crop'" />
+                <b>${p.name}</b>
+              </div>
+            </td>
+            <td style="text-transform:capitalize;">${p.category} Willow</td>
+            <td>${p.catName}</td>
+            <td>₹${Number(p.price).toLocaleString('en-IN')}</td>
+            <td>
+              <div>${saleBadgeStr}</div>
+              ${p.saleDesc ? `<div style="font-size:0.75rem; color:#94a3b8;">${p.saleDesc}</div>` : ''}
+            </td>
+            <td>
+              <span class="stock-badge ${isAvailable ? 'stock-available' : 'stock-out'}" style="position:static; display:inline-block;">
+                ${isAvailable ? 'In Stock' : 'Out of Stock'}
+              </span>
+            </td>
+            <td>
+              <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                <button class="admin-action-btn btn-edit-prod" onclick="openEditModal('${p.id}')">
+                  <i class="fa-solid fa-pen-to-square"></i> Edit
+                </button>
+                <button class="admin-action-btn btn-toggle-stock" onclick="toggleProductStock('${p.id}')">
+                  <i class="fa-solid fa-arrows-rotate"></i> Stock
+                </button>
+                <button class="admin-action-btn btn-delete-prod" onclick="deleteProduct('${p.id}')">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+      });
+    }
+
+    /* ================= EDIT PRODUCT DETAILS & OFFERS ================= */
+    function openEditModal(productId) {
+      const prod = products.find(p => p.id === productId);
+      if (!prod) return;
+
+      document.getElementById('editProdId').value = prod.id;
+      document.getElementById('editProdCategory').value = prod.category;
+      document.getElementById('editProdCatName').value = prod.catName;
+      document.getElementById('editProdName').value = prod.name;
+      document.getElementById('editProdPrice').value = prod.price;
+      document.getElementById('editProdTag').value = prod.tag;
+      document.getElementById('editProdImg').value = prod.img;
+      document.getElementById('editProdSaleBadge').value = prod.saleBadge || '';
+      document.getElementById('editProdSaleDesc').value = prod.saleDesc || '';
+      document.getElementById('editProdFeatures').value = (prod.features || []).join(', ');
+      document.getElementById('editProdStock').value = prod.inStock !== false ? 'true' : 'false';
+
+      document.getElementById('editProductModal').classList.add('active');
+    }
+
+    function closeEditModal() {
+      document.getElementById('editProductModal').classList.remove('active');
+    }
+
+    function handleSaveEditedProduct(e) {
+      e.preventDefault();
+      const id = document.getElementById('editProdId').value;
+      const index = products.findIndex(p => p.id === id);
+      if (index === -1) return;
+
+      const featuresStr = document.getElementById('editProdFeatures').value;
+      const features = featuresStr.split(',').map(f => f.trim()).filter(f => f.length > 0);
+
+      products[index] = {
+        ...products[index],
+        category: document.getElementById('editProdCategory').value,
+        catName: document.getElementById('editProdCatName').value,
+        name: document.getElementById('editProdName').value,
+        price: Number(document.getElementById('editProdPrice').value),
+        tag: document.getElementById('editProdTag').value,
+        img: document.getElementById('editProdImg').value,
+        saleBadge: document.getElementById('editProdSaleBadge').value.trim(),
+        saleDesc: document.getElementById('editProdSaleDesc').value.trim(),
+        features: features.length ? features : ['Tournament Quality', 'Handcrafted Willow'],
+        inStock: document.getElementById('editProdStock').value === 'true'
+      };
+
+      saveProducts();
+      renderProducts();
+      updateAdminDashboard();
+      closeEditModal();
+      showToast(`Updated details & offers for "${products[index].name}"!`);
+    }
+
+    /* ADD NEW PRODUCT */
+    function handleAdminAddNewProduct(e) {
+      e.preventDefault();
+      const category = document.getElementById('newProdCategory').value;
+      const catName = document.getElementById('newProdCatName').value;
+      const name = document.getElementById('newProdName').value;
+      const price = Number(document.getElementById('newProdPrice').value);
+      const tag = document.getElementById('newProdTag').value;
+      const img = document.getElementById('newProdImg').value;
+      const saleBadge = document.getElementById('newProdSaleBadge').value.trim();
+      const saleDesc = document.getElementById('newProdSaleDesc').value.trim();
+      const featuresStr = document.getElementById('newProdFeatures').value;
+      const inStock = document.getElementById('newProdStock').value === 'true';
+
+      const features = featuresStr.split(',').map(f => f.trim()).filter(f => f.length > 0);
+
+      const newProduct = {
+        id: 'PROD-' + Date.now(),
+        category,
+        catName,
+        name,
+        price,
+        tag,
+        img,
+        saleBadge,
+        saleDesc,
+        inStock,
+        features: features.length ? features : ['Tournament Quality', 'Handmade Willow']
+      };
+
+      products.unshift(newProduct);
+      saveProducts();
+      renderProducts();
+      updateAdminDashboard();
+      
+      showToast(`${name} added to catalog!`);
+      e.target.reset();
+      switchAdminTab('products');
+    }
+
+    function toggleProductStock(productId) {
+      const prod = products.find(p => p.id === productId);
+      if (prod) {
+        prod.inStock = (prod.inStock === false) ? true : false;
+        saveProducts();
+        renderProducts();
+        updateCartUI();
+        updateAdminDashboard();
+        showToast(`${prod.name} stock updated!`);
+      }
+    }
+
+    function deleteProduct(productId) {
+      const prod = products.find(p => p.id === productId);
+      if (confirm(`Are you sure you want to delete "${prod.name}" from your store?`)) {
+        products = products.filter(p => p.id !== productId);
+        saveProducts();
+        renderProducts();
+        updateCartUI();
+        updateAdminDashboard();
+        showToast('Product removed from store.');
+      }
+    }
+
+    /* EMAIL NOTIFICATIONS */
+    function sendOrderPlacedEmail(index) {
+      const order = orders[index];
+      const itemsList = order.items.map(i => `- ${i.name} (Qty: ${i.qty}) - ₹${(Number(i.price) * i.qty).toLocaleString('en-IN')}`).join('%0D%0A');
+      
+      const subject = encodeURIComponent(`Order Confirmation - #${order.orderId} | F2 Sports™`);
+      const body = encodeURIComponent(
+        `Dear ${order.customer.name},\n\n` +
+        `Thank you for choosing F2 Sports! Your order #${order.orderId} has been confirmed and is being processed by our bat crafting team.\n\n` +
+        `Order Details:\n` +
+        `Order ID: #${order.orderId}\n` +
+        `Total Amount: ${order.totalAmount}\n` +
+        `UPI Reference ID: ${order.utr}\n\n` +
+        `Items in your Order:\n`
+      ) + itemsList + encodeURIComponent(
+        `\n\nDelivery Address:\n${order.customer.address}\n\n` +
+        `We will notify you with the courier tracking details as soon as your bats are dispatched.\n\n` +
+        `Warm regards,\n` +
+        `Sajid & F2 Sports Team\n` +
+        `support@f2sports.com`
+      );
+
+      window.location.href = `mailto:${order.customer.email}?subject=${subject}&body=${body}`;
+    }
+
+    function sendDispatchedEmail(index) {
+      const order = orders[index];
+      const trackingNo = prompt(`Enter Courier Tracking / AWB Number for Order #${order.orderId}:`, 'DTDC' + Math.floor(100000000 + Math.random() * 900000000));
+      if (!trackingNo) return;
+
+      const courierName = prompt('Enter Courier Name (e.g. BlueDart, DTDC, Delhivery):', 'BlueDart Express');
+      if (!courierName) return;
+
+      order.status = `Dispatched via ${courierName} (AWB: ${trackingNo})`;
+      saveOrders();
+      updateAdminDashboard();
+
+      const subject = encodeURIComponent(`Your Bat Has Dispatched! - #${order.orderId} | F2 Sports™`);
+      const body = encodeURIComponent(
+        `Dear ${order.customer.name},\n\n` +
+        `Great news! Your F2 Sports bat order #${order.orderId} has been securely packed and dispatched.\n\n` +
+        `Shipment Tracking Information:\n` +
+        `Courier Partner: ${courierName}\n` +
+        `Tracking / AWB Number: ${trackingNo}\n` +
+        `Delivery Destination: ${order.customer.address}\n\n` +
+        `You can track your package on the ${courierName} website. Expected delivery within 3-5 working days.\n\n` +
+        `Thank you for trusting F2 Sports™ - Engineered For Champions!\n\n` +
+        `Best regards,\n` +
+        `F2 Sports Dispatch & Fulfillment Team\n` +
+        `support@f2sports.com`
+      );
+
+      window.location.href = `mailto:${order.customer.email}?subject=${subject}&body=${body}`;
+    }
+
+    function clearAllOrders() {
+      if (confirm('Are you sure you want to delete all order history?')) {
+        orders = [];
+        saveOrders();
+        updateAdminDashboard();
+        showToast('Orders log cleared.');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderProducts();
+      updateCartUI();
+      checkAdminAuthStatus();
+    });
+  </script>
+</body>
+</html>
