@@ -549,7 +549,7 @@
       font-size: 0.9rem;
     }
 
-    /* HIDDEN ADMIN SECTION */
+    /* ADMIN DASHBOARD */
     .admin-main-section {
       display: none;
       background: #0b1329;
@@ -1232,13 +1232,14 @@
       <div class="product-grid" id="tennisProductsGrid"></div>
     </section>
 
+    <!-- BULK ORDER SECTION -->
     <section class="container" id="bulk-order" style="padding-top: 0;">
       <div class="bulk-section">
         <div class="bulk-content">
           <div class="bulk-text">
             <span style="color:var(--gold); font-weight:800; font-size:0.85rem; text-transform:uppercase; letter-spacing:1px;">Academy &amp; Club Wholesaler</span>
             <h3>Bulk Orders &amp; Custom Team Inquiries</h3>
-            <p>Planning bulk bat procurement for your academy, cricket club, corporate team, or tournament sponsor? Contact our sales desk for custom pricing and handle branding.</p>
+            <p>Planning bulk bat procurement for your academy, cricket club, corporate team, or tournament sponsor? Contact our manufacturing desk for wholesale rates and custom player specifications.</p>
           </div>
           <div class="bulk-actions">
             <a href="https://wa.me/918493977654?text=Hi%20F2%20Sports,%20I%20want%20to%20inquire%20about%20a%20bulk%20order%20of%20cricket%20bats." target="_blank" class="btn-bulk-whatsapp">
@@ -1252,13 +1253,13 @@
       </div>
     </section>
 
-    <!-- ADMIN WORKSPACE (HIDDEN INITIALLY) -->
+    <!-- ADMIN WORKSPACE -->
     <section class="admin-main-section" id="admin-section">
       <div class="container" style="padding-top:0; padding-bottom:0;">
         <div class="section-header" style="margin-bottom:30px;">
-          <span class="section-subtitle" style="color:var(--gold);">Store Management</span>
+          <span class="section-subtitle" style="color:var(--gold);">Cloud Store Management</span>
           <h2 class="section-title" style="color:#ffffff;">F2 Sports Admin Control Center</h2>
-          <p class="section-desc" style="color:#94a3b8;">Edit existing products, manage sales &amp; discounts, track customer orders, and update catalog inventory.</p>
+          <p class="section-desc" style="color:#94a3b8;">Real-time Supabase Database, Multi-Photo Storage &amp; Catalog Management.</p>
         </div>
 
         <div class="admin-workspace" id="adminWorkspace">
@@ -1274,7 +1275,7 @@
               <div class="stat-icon" style="background:rgba(59, 130, 246, 0.15); color:#60a5fa;"><i class="fa-solid fa-truck-fast"></i></div>
               <div>
                 <div class="stat-num" id="statOrders">0</div>
-                <div class="stat-label">Total Orders</div>
+                <div class="stat-label">Total Cloud Orders</div>
               </div>
             </div>
             <div class="stat-box">
@@ -1308,8 +1309,7 @@
 
           <div class="admin-tab-pane active" id="adminPaneOrders">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; flex-wrap:wrap; gap:10px;">
-              <h4 style="font-size:1.1rem; color:#fff;">Received Orders Log</h4>
-              <button class="admin-action-btn" style="background:#475569; color:#fff;" onclick="clearAllOrders()"><i class="fa-solid fa-trash"></i> Clear Order History</button>
+              <h4 style="font-size:1.1rem; color:#fff;">Cloud Orders Record (Booking to Dispatch)</h4>
             </div>
             <div id="mainAdminOrdersList"></div>
           </div>
@@ -1378,9 +1378,9 @@
                   </div>
                 </div>
 
-                <!-- SUPABASE CLOUD MULTI-IMAGE UPLOADER FOR NEW PRODUCT -->
+                <!-- SUPABASE CLOUD MULTI-IMAGE UPLOADER -->
                 <div class="form-group" style="background:rgba(59, 130, 246, 0.1); padding:14px; border-radius:8px; border:1px dashed #3b82f6;">
-                  <label class="form-label" style="color:#93c5fd;"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Multiple Photos (Front, Back, Side) to Cloud Storage</label>
+                  <label class="form-label" style="color:#93c5fd;"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Photos (Front, Back, Side) - Auto Cloud Hosting</label>
                   <input type="file" id="newProdFileInput" class="form-input" accept="image/*" multiple onchange="uploadPhotosToSupabase(this, 'newProdImg', 'newProdUploadStatus')" />
                   <div id="newProdUploadStatus" style="font-size:0.8rem; color:#38bdf8; margin-top:6px; font-weight:600;"></div>
                 </div>
@@ -1523,7 +1523,6 @@
     </div>
   </div>
 
-  <!-- POPUP ADMIN LOGIN MODAL -->
   <div class="modal-overlay" id="adminLoginModal">
     <div class="modal-box" style="background:#1e293b; color:#fff;">
       <div class="modal-header" style="background:#0f172a;">
@@ -1597,9 +1596,9 @@
             </div>
           </div>
 
-          <!-- SUPABASE MULTI-PHOTO UPLOADER FOR EDIT -->
+          <!-- SUPABASE MULTI-PHOTO UPLOADER -->
           <div class="form-group" style="background:rgba(59, 130, 246, 0.1); padding:14px; border-radius:8px; border:1px dashed #3b82f6;">
-            <label class="form-label" style="color:#93c5fd;"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Multiple Photos (Front, Back, Side) to Supabase Storage</label>
+            <label class="form-label" style="color:#93c5fd;"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Photos (Front, Back, Side) - Auto Cloud Hosting</label>
             <input type="file" id="editProdFileInput" class="form-input" accept="image/*" multiple onchange="uploadPhotosToSupabase(this, 'editProdImg', 'editProdUploadStatus')" />
             <div id="editProdUploadStatus" style="font-size:0.8rem; color:#38bdf8; margin-top:6px; font-weight:600;"></div>
           </div>
@@ -1628,7 +1627,7 @@
             </select>
           </div>
 
-          <button type="submit" class="btn-submit-order" style="background:var(--gold); color:#0f172a;">
+          <button type="submit" id="saveEditBtn" class="btn-submit-order" style="background:var(--gold); color:#0f172a;">
             <i class="fa-solid fa-floppy-disk"></i> Save &amp; Update Product
           </button>
         </form>
@@ -1636,6 +1635,7 @@
     </div>
   </div>
 
+  <!-- FOOTER SECTION -->
   <footer id="contact">
     <div class="footer-grid">
       <div class="footer-col">
@@ -1695,7 +1695,6 @@
     const fallbackImage = 'https://images.unsplash.com/photo-1531415074868-036b107e775a?q=80&w=800&auto=format&fit=crop';
     const WEB3FORMS_ACCESS_KEY = "bbabe700-fc35-4a93-8f7c-244ec811d041";
 
-    // SUPABASE CREDENTIALS
     const supabaseUrl = 'https://pgfibpfvlxcllpqbekum.supabase.co';
     const supabaseKey = 'sb_publishable_PJIkuydJjYiyPrg4ldF75A__zUloN_A';
     
@@ -1705,10 +1704,9 @@
         supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
       }
     } catch (e) {
-      console.warn("Supabase init notice:", e);
+      console.warn("Supabase init error:", e);
     }
 
-    // MULTI-IMAGE UPLOADER DIRECT TO SUPABASE STORAGE BUCKET
     async function uploadPhotosToSupabase(fileInputElement, targetUrlInputId, statusDisplayId) {
       const files = Array.from(fileInputElement.files);
       if (!files.length) return;
@@ -1734,7 +1732,7 @@
             .upload(filePath, file);
 
           if (uploadError) {
-            console.error("Supabase storage error:", uploadError);
+            console.error("Supabase storage upload error:", uploadError);
             continue;
           }
 
@@ -1752,7 +1750,7 @@
           if (statusEl) statusEl.innerHTML = `<span style="color:#10b981;"><i class="fa-solid fa-check-circle"></i> ${uploadedUrls.length} photo(s) hosted on Supabase!</span>`;
           showToast(`${uploadedUrls.length} photos uploaded to Supabase!`);
         } else {
-          if (statusEl) statusEl.innerHTML = `<span style="color:#ef4444;">Upload error. Ensure 'bat-images' bucket is Public in Supabase.</span>`;
+          if (statusEl) statusEl.innerHTML = `<span style="color:#ef4444;">Upload failed. Ensure the 'bat-images' bucket is set to Public in Supabase Storage.</span>`;
         }
       } catch (err) {
         console.error("Supabase upload exception:", err);
@@ -1952,7 +1950,7 @@
         try {
           await supabase.from('catalog').upsert({ id: 'current', data: products });
         } catch (e) {
-          console.warn("Supabase catalog save notice:", e);
+          console.warn("Supabase catalog save error:", e);
         }
       }
     }
@@ -1984,12 +1982,12 @@
           updateAdminDashboard();
         }
       } catch (e) {
-        console.log("Supabase catalog fallback");
+        console.log("Supabase catalog local fallback");
       }
 
       try {
-        const { data: ordersData } = await supabase.from('orders').select('*').order('created_at', { ascending: false });
-        if (ordersData && Array.isArray(ordersData)) {
+        const { data: ordersData, error: ordersErr } = await supabase.from('orders').select('*').order('id', { ascending: false });
+        if (ordersData && Array.isArray(ordersData) && !ordersErr) {
           orders = ordersData.map(o => ({
             dbId: o.id,
             orderId: o.order_id,
@@ -2005,7 +2003,7 @@
           updateAdminDashboard();
         }
       } catch (e) {
-        console.log("Supabase orders fallback");
+        console.log("Supabase orders local fallback");
       }
     }
 
@@ -2243,7 +2241,7 @@
       const originalBtnText = submitBtn ? submitBtn.innerHTML : '';
       if (submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing Order...';
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Saving Order in Supabase...';
       }
 
       const name = document.getElementById('custName').value.trim();
@@ -2272,18 +2270,27 @@
 
       if (supabase) {
         try {
-          await supabase.from('orders').insert([{
-            order_id: orderId,
-            customer: { name, email, phone, address },
-            items: itemsList,
-            total_amount: totalAmount,
-            numeric_amount: rawNum,
-            utr: utr,
-            status: 'Order Booked',
-            date: currentDateStr
-          }]);
+          const { data: insertedData, error: dbError } = await supabase
+            .from('orders')
+            .insert([{
+              order_id: orderId,
+              customer: { name, email, phone, address },
+              items: itemsList,
+              total_amount: totalAmount,
+              numeric_amount: rawNum,
+              utr: utr,
+              status: 'Order Booked',
+              date: currentDateStr
+            }])
+            .select();
+
+          if (dbError) {
+            console.error("Supabase insert error:", dbError);
+          } else if (insertedData && insertedData.length > 0) {
+            orderData.dbId = insertedData[0].id;
+          }
         } catch (err) {
-          console.error("Supabase database insert error:", err);
+          console.error("Supabase exception:", err);
         }
       }
 
@@ -2313,7 +2320,7 @@
           })
         });
       } catch (err) {
-        console.error("Web3Forms transmission error:", err);
+        console.error("Web3Forms transmission notice:", err);
       }
 
       alert(`🎉 Thank you, ${name}!\nYour order #${orderId} has been successfully placed.`);
@@ -2335,7 +2342,6 @@
       e.target.reset();
     }
 
-    /* ADMIN TRIGGER LOGIC */
     function triggerAdminModal() {
       const isAuth = sessionStorage.getItem('f2_main_admin_auth');
       if (isAuth) {
@@ -2437,14 +2443,14 @@
               <p><b>Address:</b> ${order.customer?.address}</p>
               <p><b>Bats Ordered:</b> ${itemsListStr}</p>
               <p><b>UPI UTR Number:</b> <code style="background:#0f172a; padding:2px 8px; border-radius:4px; color:#38bdf8;">${order.utr}</code></p>
-              <p><b>Current Status:</b> <span style="font-weight:700; color:#34d399;">${order.status}</span></p>
+              <p><b>Current Stage:</b> <span style="font-weight:700; color:#34d399;">${order.status}</span></p>
             </div>
             <div style="margin-top:14px; padding-top:12px; border-top:1px dashed rgba(255,255,255,0.1); display:flex; gap:10px; flex-wrap:wrap;">
               <button class="admin-action-btn" style="background:#0284c7; color:#fff;" onclick="sendOrderPlacedEmail(${index})">
-                <i class="fa-solid fa-envelope"></i> Send Order Placed Email
+                <i class="fa-solid fa-envelope"></i> Send Confirmation Email
               </button>
               <button class="admin-action-btn" style="background:#059669; color:#fff;" onclick="markOrderDispatched(${index})">
-                <i class="fa-solid fa-truck-fast"></i> Email Dispatched + Tracking
+                <i class="fa-solid fa-truck-fast"></i> Update Dispatch &amp; Email Tracking
               </button>
             </div>
           </div>
@@ -2648,7 +2654,7 @@
         `Items in your Order:\n`
       ) + itemsList + encodeURIComponent(
         `\n\nDelivery Address:\n${order.customer.address}\n\n` +
-        `We will notify you with the courier tracking details as soon as your bats are dispatched.\n\n` +
+        `We will notify you with courier tracking details once your package is dispatched.\n\n` +
         `Warm regards,\n` +
         `Sajid & F2 Sports Team\n` +
         `f2sportsstore@gmail.com | Zeesajid55@gmail.com`
@@ -2694,15 +2700,6 @@
       );
 
       window.location.href = `mailto:${order.customer.email}?cc=f2sportsstore@gmail.com,Zeesajid55@gmail.com&subject=${subject}&body=${body}`;
-    }
-
-    function clearAllOrders() {
-      if (confirm('Are you sure you want to delete all order history?')) {
-        orders = [];
-        saveOrders();
-        updateAdminDashboard();
-        showToast('Orders log cleared.');
-      }
     }
 
     document.addEventListener('DOMContentLoaded', () => {
