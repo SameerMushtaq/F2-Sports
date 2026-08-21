@@ -249,14 +249,14 @@
       justify-content: center;
     }
 
-    /* CONTAINER 2: HERO SECTION WITH BLACK OUTLINE ON FALCON 2 */
+    /* CONTAINER 2: HERO SECTION WITH ENLARGED MULTI-COLOR FALCON 2 */
     .hero-sports-wrapper {
       background: var(--hero-radial);
       border-bottom: 2px solid var(--border-theme);
       position: relative;
       overflow: hidden;
       padding: 0 20px;
-      height: 260px;
+      height: 280px;
       display: flex;
       align-items: center;
     }
@@ -321,24 +321,22 @@
     }
 
     .hero-title-main {
-      font-size: 3.8rem;
+      font-size: 4.6rem; /* Increased size significantly */
       font-weight: 900;
       display: block;
       line-height: 1;
       margin: 2px 0;
       letter-spacing: -1px;
-      /* Black outline / stroke */
-      -webkit-text-stroke: 2px #000000;
-      text-shadow: 3px 3px 0px #000000, -1px -1px 0px #000000, 1px -1px 0px #000000, -1px 1px 0px #000000, 1px 1px 0px #000000;
     }
 
     .hero-title-suffix {
-      font-size: 1.35rem;
+      font-size: 1.45rem;
       font-weight: 700;
       color: var(--accent-secondary);
       display: block;
       line-height: 1.1;
       letter-spacing: 0.5px;
+      margin-top: 4px;
     }
 
     .hero-center-content p {
@@ -1174,6 +1172,25 @@
       background: var(--accent-primary-hover);
     }
 
+    /* CUSTOM SUCCESS MODAL CONTAINER */
+    .success-modal-content {
+      text-align: center;
+      padding: 20px 10px;
+    }
+
+    .success-modal-icon {
+      font-size: 3.5rem;
+      color: #10b981;
+      margin-bottom: 16px;
+      animation: bounceIn 0.5s ease;
+    }
+
+    @keyframes bounceIn {
+      0% { transform: scale(0); opacity: 0; }
+      60% { transform: scale(1.15); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
     /* DEDICATED BULK ORDER PAGE VIEW */
     .bulk-standalone-view {
       display: none;
@@ -1537,7 +1554,7 @@
       </div>
     </header>
 
-    <!-- CONTAINER 2: HERO SECTION WITH FULL-HEIGHT VERTICAL PNG PHOTOS & OUTLINED MULTI-COLOR FALCON 2 -->
+    <!-- CONTAINER 2: HERO SECTION WITH FULL-HEIGHT VERTICAL PNG PHOTOS & MULTI-COLOR FALCON 2 (NO STROKE) -->
     <section class="hero-sports-wrapper" id="home">
       <div class="hero-grid-showcase">
         <!-- LEFT 2 TRANSPARENT PNG PHOTOS -->
@@ -1550,7 +1567,7 @@
           </div>
         </div>
 
-        <!-- CENTER TEXT WITH MULTI-COLOR OUTLINED FALCON 2 -->
+        <!-- CENTER TEXT WITH MULTI-COLOR FALCON 2 -->
         <div class="hero-center-content">
           <h1>
             <span class="hero-title-prefix">Power Your Game With</span>
@@ -3120,7 +3137,7 @@
         }
       }
       orders.splice(index, 1);
-      saveOrders(); // Persist changes so orders do not come back on refresh
+      saveOrders(); // Persist changes locally so refreshed sessions don't restore deleted orders
       updateAdminDashboard();
       closeDeleteOrderModal();
       showToast(`Order #${order.orderId} deleted successfully.`);
