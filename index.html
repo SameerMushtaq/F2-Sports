@@ -7,29 +7,51 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <!-- Supabase Cloud SDK -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
-    :root {
-      --neon-cyan: #00f0ff;
-      --neon-blue: #0088ff;
-      --neon-yellow: #ffe600;
-      --neon-gold: #ffd000;
-      --dark-bg: #040914;
-      --dark-surface: #0a1326;
-      --dark-card: #0f1c38;
-      --border-neon: rgba(0, 240, 255, 0.25);
-      --border-glow: rgba(0, 240, 255, 0.5);
-      --text-main: #f0fdf4;
-      --text-muted: #8ba2c7;
+    /* THEME 1: COMPLETE DARK RED (DEFAULT) */
+    :root, [data-theme="dark-red"] {
+      --bg-main: #060102;
+      --bg-surface: #0f0305;
+      --bg-card: #170508;
+      --bg-glass: rgba(15, 3, 5, 0.94);
+      --accent-primary: #e11d48;
+      --accent-primary-hover: #be123c;
+      --accent-secondary: #fb7185;
+      --accent-gold: #fbbf24;
+      --border-theme: rgba(225, 29, 72, 0.35);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --text-main: #ffffff;
+      --text-muted: #fda4af;
+      --shadow-accent: 0 10px 25px -5px rgba(225, 29, 72, 0.45);
+      --hero-radial: radial-gradient(circle at center, rgba(225, 29, 72, 0.22) 0%, rgba(6, 1, 2, 0.98) 85%);
+      --ticker-bg: linear-gradient(90deg, #881337, #e11d48, #9f1239, #881337);
       --radius: 12px;
-      --shadow-neon: 0 0 20px rgba(0, 240, 255, 0.25);
-      --shadow-yellow: 0 0 20px rgba(255, 230, 0, 0.3);
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* THEME 2: LIGHT GREEN BLUE */
+    [data-theme="light-green-blue"] {
+      --bg-main: #f0fdf4;
+      --bg-surface: #ffffff;
+      --bg-card: #ffffff;
+      --bg-glass: rgba(255, 255, 255, 0.95);
+      --accent-primary: #059669;
+      --accent-primary-hover: #047857;
+      --accent-secondary: #0284c7;
+      --accent-gold: #0d9488;
+      --border-theme: rgba(5, 150, 105, 0.3);
+      --border-subtle: rgba(5, 150, 105, 0.15);
+      --text-main: #064e3b;
+      --text-muted: #475569;
+      --shadow-accent: 0 10px 25px -5px rgba(5, 150, 105, 0.25);
+      --hero-radial: radial-gradient(circle at center, rgba(2, 132, 199, 0.12) 0%, rgba(240, 253, 244, 0.98) 85%);
+      --ticker-bg: linear-gradient(90deg, #065f46, #059669, #0284c7, #065f46);
     }
 
     * {
@@ -41,36 +63,37 @@
 
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: var(--dark-bg);
+      background-color: var(--bg-main);
       color: var(--text-main);
       line-height: 1.5;
       overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
-    h1, h2, h3, h4, .brand-font {
+    h1, h2, h3, h4, .smooth-heading {
       font-family: 'Outfit', sans-serif;
       font-weight: 700;
+      letter-spacing: -0.5px;
     }
 
     header {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(4, 9, 20, 0.94);
+      background: var(--bg-glass);
       backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border-neon);
-      box-shadow: 0 4px 25px rgba(0, 240, 255, 0.1);
+      border-bottom: 2px solid var(--border-theme);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
       width: 100%;
     }
 
-    /* FULL EDGE-TO-EDGE NAVBAR WITH ABSOLUTE CORNER ELEMENTS */
     .navbar {
       width: 100%;
       max-width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 16px;
+      padding: 10px 20px;
       position: relative;
     }
 
@@ -83,49 +106,64 @@
     }
 
     .logo-img {
-      height: 44px;
+      height: 46px;
       width: auto;
       object-fit: contain;
-      filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.5));
     }
 
     .logo-fallback {
-      background: linear-gradient(135deg, var(--neon-cyan), var(--neon-blue));
-      color: #040914;
-      font-weight: 900;
+      background: var(--accent-primary);
+      color: #ffffff;
+      font-weight: 800;
       font-size: 1.3rem;
       width: 40px;
       height: 40px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 8px;
-      box-shadow: var(--shadow-neon);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-accent);
+    }
+
+    /* CLICKABLE F2 SPORTS ADMIN PORTAL TRIGGER */
+    .admin-text-trigger {
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+      transition: var(--transition);
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+
+    .admin-text-trigger:hover {
+      background: rgba(225, 29, 72, 0.12);
+    }
+
+    .admin-text-trigger:hover .logo-title span {
+      text-decoration: underline;
     }
 
     .logo-title {
       font-size: 1.25rem;
       font-weight: 800;
-      color: #ffffff;
+      color: var(--text-main);
       line-height: 1.1;
-      letter-spacing: 0.5px;
     }
 
     .logo-title span {
-      color: var(--neon-yellow);
-      text-shadow: 0 0 10px rgba(255, 230, 0, 0.5);
+      color: var(--accent-primary);
     }
 
     .logo-tagline {
-      font-size: 0.62rem;
-      color: var(--neon-cyan);
+      font-size: 0.65rem;
+      color: var(--accent-secondary);
       text-transform: uppercase;
-      letter-spacing: 1.6px;
+      letter-spacing: 1.5px;
       display: block;
-      font-weight: 600;
+      font-weight: 700;
     }
 
-    /* CENTERED NAV LINKS */
     .nav-links {
       display: flex;
       list-style: none;
@@ -139,8 +177,8 @@
     .nav-links a {
       color: var(--text-main);
       text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 700;
+      font-size: 0.92rem;
+      font-weight: 600;
       transition: var(--transition);
       display: flex;
       align-items: center;
@@ -148,11 +186,9 @@
     }
 
     .nav-links a:hover {
-      color: var(--neon-cyan);
-      text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+      color: var(--accent-primary);
     }
 
-    /* RIGHT CORNER ACTIONS */
     .nav-actions {
       display: flex;
       align-items: center;
@@ -160,10 +196,11 @@
       flex-shrink: 0;
     }
 
-    .btn-admin-portal-link {
-      background: rgba(255, 230, 0, 0.08);
-      border: 1px solid var(--neon-yellow);
-      color: var(--neon-yellow);
+    /* THEME SWITCHER BUTTON */
+    .theme-toggle-btn {
+      background: var(--bg-surface);
+      border: 1.5px solid var(--border-theme);
+      color: var(--text-main);
       padding: 7px 14px;
       border-radius: 50px;
       cursor: pointer;
@@ -173,41 +210,39 @@
       align-items: center;
       gap: 6px;
       transition: var(--transition);
-      text-decoration: none;
     }
 
-    .btn-admin-portal-link:hover {
-      background: var(--neon-yellow);
-      color: var(--dark-bg);
-      box-shadow: var(--shadow-yellow);
+    .theme-toggle-btn:hover {
+      border-color: var(--accent-primary);
+      color: var(--accent-primary);
     }
 
     .cart-btn-trigger {
-      background: rgba(0, 240, 255, 0.1);
+      background: var(--accent-primary);
       color: #fff;
-      border: 1px solid var(--neon-cyan);
-      padding: 7px 16px;
+      border: none;
+      padding: 8px 18px;
       border-radius: 50px;
       cursor: pointer;
       font-weight: 700;
+      font-size: 0.85rem;
       display: flex;
       align-items: center;
       gap: 8px;
       transition: var(--transition);
-      box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+      box-shadow: var(--shadow-accent);
     }
 
     .cart-btn-trigger:hover {
-      background: var(--neon-cyan);
-      color: var(--dark-bg);
-      box-shadow: var(--shadow-neon);
+      background: var(--accent-primary-hover);
+      transform: translateY(-2px);
     }
 
     .cart-badge-count {
-      background: var(--neon-yellow);
-      color: #040914;
+      background: #ffffff;
+      color: #0f172a;
       font-size: 0.72rem;
-      font-weight: 900;
+      font-weight: 800;
       border-radius: 50%;
       width: 20px;
       height: 20px;
@@ -216,64 +251,114 @@
       justify-content: center;
     }
 
-    /* COMPACTED 2ND CONTAINER (HERO/BRAND SECTION) */
-    .hero {
-      background: radial-gradient(circle at center, rgba(0, 136, 255, 0.18) 0%, rgba(4, 9, 20, 0.98) 75%), 
-                  url('https://images.unsplash.com/photo-1531415074868-036b107e775a?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
-      color: white;
-      padding: 42px 20px 38px;
-      text-align: center;
+    /* CONTAINER 2: HERO SECTION WITH FULL-HEIGHT VERTICAL PNG PHOTOS */
+    .hero-sports-wrapper {
+      background: var(--hero-radial);
+      border-bottom: 2px solid var(--border-theme);
       position: relative;
-      border-bottom: 1px solid var(--border-neon);
+      overflow: hidden;
+      padding: 0 20px;
+      height: 260px;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-grid-showcase {
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 280px 1fr 280px;
+      align-items: stretch;
+      height: 100%;
+      gap: 20px;
+    }
+
+    .hero-side-column {
+      display: flex;
+      justify-content: space-around;
+      align-items: stretch;
+      gap: 15px;
+      height: 100%;
+    }
+
+    .hero-png-item {
+      width: 130px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-png-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.4));
+      transition: transform 0.4s ease;
+    }
+
+    .hero-png-item:hover .hero-png-img {
+      transform: scale(1.06);
+    }
+
+    .hero-center-content {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 10px;
     }
 
     .hero-title-prefix {
       font-size: 1.15rem;
       font-weight: 600;
-      color: #cbd5e1;
+      color: var(--text-muted);
       display: block;
-      letter-spacing: 1.2px;
+      letter-spacing: 1px;
       margin-bottom: 2px;
       text-transform: uppercase;
     }
 
     .hero-title-main {
-      font-size: 5rem;
+      font-size: 3.8rem;
       font-weight: 900;
-      color: var(--neon-cyan);
-      text-shadow: 0 0 30px rgba(0, 240, 255, 0.8), 0 0 60px rgba(0, 240, 255, 0.35);
+      color: var(--accent-primary);
       display: block;
-      line-height: 1.08;
-      letter-spacing: -0.5px;
+      line-height: 1;
+      margin: 2px 0;
+      letter-spacing: -1px;
     }
 
     .hero-title-suffix {
-      font-size: 1.25rem;
+      font-size: 1.35rem;
       font-weight: 700;
-      color: var(--neon-yellow);
-      text-shadow: 0 0 15px rgba(255, 230, 0, 0.5);
+      color: var(--accent-secondary);
       display: block;
-      margin-top: 4px;
+      line-height: 1.1;
       letter-spacing: 0.5px;
     }
 
-    .hero p {
-      font-size: 0.92rem;
+    .hero-center-content p {
+      font-size: 0.9rem;
       color: var(--text-muted);
-      max-width: 620px;
-      margin: 10px auto 0;
+      max-width: 540px;
+      margin: 8px auto 0;
       line-height: 1.4;
+      font-weight: 500;
     }
 
-    /* CONTINUOUS FLOATING RED STRIP ABOVE PRODUCTS */
+    /* FLOATING TICKER STRIP */
     .floating-ticker-wrapper {
-      background: linear-gradient(90deg, #991b1b, #dc2626, #b91c1c, #991b1b);
+      background: var(--ticker-bg);
       border-top: 1px solid rgba(255, 255, 255, 0.2);
       border-bottom: 1px solid rgba(255, 255, 255, 0.2);
       overflow: hidden;
       white-space: nowrap;
-      padding: 7px 0;
-      box-shadow: 0 0 15px rgba(220, 38, 38, 0.5);
+      padding: 8px 0;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     }
 
     .floating-ticker-track {
@@ -294,7 +379,7 @@
     }
 
     .ticker-item i {
-      color: var(--neon-yellow);
+      color: #ffffff;
     }
 
     @keyframes marqueeScroll {
@@ -303,9 +388,9 @@
     }
 
     .container {
-      max-width: 1280px;
+      max-width: 1320px;
       margin: 0 auto;
-      padding: 40px 20px;
+      padding: 45px 20px;
     }
 
     .section-header {
@@ -314,21 +399,20 @@
     }
 
     .section-subtitle {
-      color: var(--neon-yellow);
-      font-size: 0.82rem;
+      color: var(--accent-primary);
+      font-size: 0.85rem;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 2px;
       display: block;
       margin-bottom: 4px;
-      text-shadow: 0 0 8px rgba(255, 230, 0, 0.4);
     }
 
     .section-title {
-      font-size: 2rem;
-      color: #ffffff;
+      font-size: 2.2rem;
+      color: var(--text-main);
       margin-bottom: 6px;
-      text-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+      letter-spacing: -0.5px;
     }
 
     .section-desc {
@@ -340,17 +424,16 @@
 
     .product-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 22px;
+      grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
+      gap: 24px;
     }
 
-    /* NEON THEMED PRODUCT CARD */
     .product-card {
-      background: var(--dark-card);
+      background: var(--bg-card);
       border-radius: var(--radius);
-      border: 1px solid var(--border-neon);
+      border: 1px solid var(--border-subtle);
       overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
       display: flex;
       flex-direction: column;
       transition: var(--transition);
@@ -359,8 +442,8 @@
 
     .product-card:hover {
       transform: translateY(-6px);
-      border-color: var(--neon-cyan);
-      box-shadow: var(--shadow-neon);
+      border-color: var(--accent-primary);
+      box-shadow: var(--shadow-accent);
     }
 
     .product-card.out-of-stock {
@@ -372,7 +455,7 @@
       top: 12px;
       right: 12px;
       padding: 4px 10px;
-      border-radius: 20px;
+      border-radius: 50px;
       font-size: 0.7rem;
       font-weight: 800;
       text-transform: uppercase;
@@ -381,39 +464,36 @@
     }
 
     .stock-available {
-      background: rgba(0, 240, 255, 0.15);
-      color: var(--neon-cyan);
-      border: 1px solid var(--neon-cyan);
-      box-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
+      background: #10b981;
+      color: #fff;
     }
 
     .stock-out {
-      background: rgba(239, 68, 68, 0.15);
-      color: #f87171;
-      border: 1px solid #ef4444;
+      background: #ef4444;
+      color: #fff;
     }
 
     .sale-badge {
       position: absolute;
-      top: 44px;
+      top: 42px;
       right: 12px;
-      background: linear-gradient(135deg, var(--neon-yellow), #f59e0b);
-      color: #040914;
-      padding: 4px 10px;
-      border-radius: 20px;
+      background: var(--accent-primary);
+      color: #ffffff;
+      padding: 3px 8px;
+      border-radius: 50px;
       font-size: 0.7rem;
-      font-weight: 900;
+      font-weight: 800;
       z-index: 5;
-      box-shadow: var(--shadow-yellow);
+      box-shadow: var(--shadow-accent);
       display: flex;
       align-items: center;
       gap: 4px;
     }
 
     .product-img-wrapper {
-      height: 360px;
+      height: 380px;
       width: 100%;
-      background: #060d1d;
+      background: var(--bg-surface);
       position: relative;
       overflow: hidden;
       cursor: zoom-in;
@@ -444,44 +524,44 @@
     }
 
     .product-thumb-item {
-      width: 32px;
-      height: 32px;
+      width: 34px;
+      height: 34px;
       object-fit: cover;
-      border: 1.5px solid var(--neon-cyan);
-      border-radius: 4px;
-      background: #040914;
+      border: 1.5px solid var(--accent-primary);
+      border-radius: 6px;
+      background: var(--bg-card);
       cursor: pointer;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
       transition: var(--transition);
     }
 
     .product-thumb-item:hover {
-      border-color: var(--neon-yellow);
+      border-color: #fff;
       transform: scale(1.1);
     }
 
     .product-body {
-      padding: 14px 16px;
+      padding: 16px;
       display: flex;
       flex-direction: column;
       flex-grow: 1;
-      background: var(--dark-surface);
+      background: var(--bg-surface);
     }
 
     .product-title {
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 6px;
-      line-height: 1.3;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      line-height: 1.25;
     }
 
     .sale-promo-strip {
-      background: rgba(255, 230, 0, 0.08);
-      border-left: 3px solid var(--neon-yellow);
-      color: var(--neon-yellow);
+      background: rgba(225, 29, 72, 0.08);
+      border-left: 3px solid var(--accent-primary);
+      color: var(--accent-primary);
       padding: 4px 8px;
-      font-size: 0.74rem;
+      font-size: 0.76rem;
       font-weight: 700;
       margin-bottom: 8px;
       border-radius: 4px;
@@ -493,7 +573,7 @@
     .product-features {
       list-style: none;
       margin-bottom: 12px;
-      font-size: 0.8rem;
+      font-size: 0.82rem;
       color: var(--text-muted);
     }
 
@@ -505,9 +585,8 @@
     }
 
     .product-features li i {
-      color: var(--neon-cyan);
-      font-size: 0.7rem;
-      text-shadow: 0 0 6px rgba(0, 240, 255, 0.6);
+      color: var(--accent-primary);
+      font-size: 0.72rem;
     }
 
     .product-footer {
@@ -515,45 +594,43 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding-top: 10px;
-      border-top: 1px solid rgba(0, 240, 255, 0.15);
+      padding-top: 12px;
+      border-top: 1px solid var(--border-subtle);
     }
 
     .price-value {
-      font-size: 1.3rem;
+      font-size: 1.35rem;
       font-weight: 800;
-      color: var(--neon-yellow);
-      text-shadow: 0 0 10px rgba(255, 230, 0, 0.4);
+      color: var(--text-main);
     }
 
     .btn-add-cart {
-      background: linear-gradient(135deg, var(--neon-cyan), var(--neon-blue));
-      color: #040914;
+      background: var(--accent-primary);
+      color: #fff;
       border: none;
       padding: 8px 16px;
-      border-radius: 8px;
-      font-weight: 800;
+      border-radius: 50px;
+      font-weight: 700;
       font-size: 0.85rem;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 6px;
       transition: var(--transition);
-      box-shadow: var(--shadow-neon);
+      box-shadow: var(--shadow-accent);
     }
 
     .btn-add-cart:hover {
-      background: linear-gradient(135deg, var(--neon-yellow), #f59e0b);
-      box-shadow: var(--shadow-yellow);
-      transform: scale(1.03);
+      background: var(--accent-primary-hover);
+      transform: scale(1.02);
     }
 
     .btn-out-of-stock {
-      background: #334155;
-      color: #94a3b8;
+      background: #94a3b8;
+      color: #fff;
       border: none;
       padding: 8px 12px;
-      border-radius: 8px;
+      border-radius: 50px;
       font-weight: 700;
       font-size: 0.82rem;
       cursor: not-allowed;
@@ -565,19 +642,19 @@
     .qty-control-inline {
       display: flex;
       align-items: center;
-      background: #060d1d;
-      border-radius: 6px;
-      border: 1px solid var(--border-neon);
+      background: var(--bg-surface);
+      border-radius: 50px;
+      border: 1px solid var(--border-theme);
       padding: 2px;
     }
 
     .qty-btn {
-      background: var(--dark-card);
-      border: 1px solid var(--border-neon);
-      color: var(--neon-cyan);
-      width: 24px;
-      height: 24px;
-      border-radius: 4px;
+      background: var(--bg-card);
+      border: none;
+      color: var(--text-main);
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
       font-weight: bold;
       cursor: pointer;
       display: flex;
@@ -586,22 +663,22 @@
     }
 
     .qty-btn:hover {
-      background: var(--neon-cyan);
-      color: var(--dark-bg);
+      background: var(--accent-primary);
+      color: #fff;
     }
 
     .qty-number {
       padding: 0 8px;
       font-weight: 800;
-      font-size: 0.85rem;
-      color: var(--neon-yellow);
+      font-size: 0.9rem;
+      color: var(--text-main);
     }
 
     /* FULLSCREEN LIGHTBOX */
     .lightbox-modal {
       position: fixed;
       inset: 0;
-      background: rgba(4, 9, 20, 0.96);
+      background: rgba(0, 0, 0, 0.92);
       backdrop-filter: blur(12px);
       z-index: 3000;
       display: flex;
@@ -623,17 +700,17 @@
       max-height: 92vh;
       object-fit: contain;
       border-radius: 8px;
-      border: 1px solid var(--border-neon);
-      box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
+      border: 1px solid var(--border-theme);
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
     }
 
     .lightbox-close-btn {
       position: absolute;
       top: 24px;
       right: 24px;
-      background: rgba(0, 240, 255, 0.15);
-      border: 1px solid var(--neon-cyan);
-      color: var(--neon-cyan);
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      color: #fff;
       font-size: 1.4rem;
       width: 44px;
       height: 44px;
@@ -646,21 +723,19 @@
     }
 
     .lightbox-close-btn:hover {
-      background: var(--neon-cyan);
-      color: var(--dark-bg);
-      box-shadow: var(--shadow-neon);
+      background: var(--accent-primary);
     }
 
     /* BULK SECTION */
     .bulk-section {
-      background: linear-gradient(135deg, var(--dark-surface), var(--dark-card));
-      color: white;
-      border-radius: 16px;
+      background: var(--bg-surface);
+      color: var(--text-main);
+      border-radius: var(--radius);
       padding: 35px 25px;
       margin: 35px auto 10px;
       max-width: 1230px;
-      box-shadow: var(--shadow-neon);
-      border: 1px solid var(--border-neon);
+      box-shadow: var(--shadow-accent);
+      border: 1px solid var(--border-theme);
     }
 
     .bulk-content {
@@ -672,9 +747,9 @@
     }
 
     .bulk-text h3 {
-      font-size: 1.65rem;
-      color: #fff;
-      margin-bottom: 6px;
+      font-size: 2rem;
+      color: var(--text-main);
+      margin-bottom: 4px;
     }
 
     .bulk-text p {
@@ -692,7 +767,7 @@
     .btn-bulk-whatsapp {
       background: #25d366;
       color: white;
-      padding: 11px 22px;
+      padding: 10px 22px;
       border-radius: 50px;
       text-decoration: none;
       font-weight: 700;
@@ -701,14 +776,14 @@
       align-items: center;
       gap: 8px;
       transition: var(--transition);
-      box-shadow: 0 0 15px rgba(37, 211, 102, 0.4);
+      box-shadow: 0 0 15px rgba(37, 211, 102, 0.3);
     }
 
     .btn-bulk-call {
-      background: rgba(0, 240, 255, 0.1);
-      color: var(--neon-cyan);
-      border: 1px solid var(--neon-cyan);
-      padding: 11px 22px;
+      background: var(--bg-card);
+      color: var(--text-main);
+      border: 1px solid var(--border-theme);
+      padding: 10px 22px;
       border-radius: 50px;
       text-decoration: none;
       font-weight: 700;
@@ -720,16 +795,15 @@
     }
 
     .btn-bulk-call:hover {
-      background: var(--neon-cyan);
-      color: var(--dark-bg);
-      box-shadow: var(--shadow-neon);
+      background: var(--accent-primary);
+      color: #fff;
     }
 
-    /* CART DRAWER & CHECKOUT */
+    /* CART DRAWER */
     .cart-drawer-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(4, 9, 20, 0.8);
+      background: rgba(0, 0, 0, 0.7);
       backdrop-filter: blur(6px);
       z-index: 999;
       opacity: 0;
@@ -749,9 +823,9 @@
       width: 100%;
       max-width: 440px;
       height: 100%;
-      background: var(--dark-surface);
-      border-left: 1px solid var(--border-neon);
-      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.7);
+      background: var(--bg-surface);
+      border-left: 2px solid var(--border-theme);
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.4);
       z-index: 1000;
       transition: right 0.35s ease;
       display: flex;
@@ -764,18 +838,18 @@
 
     .cart-header {
       padding: 18px 22px;
-      background: var(--dark-card);
-      border-bottom: 1px solid var(--border-neon);
-      color: white;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--text-main);
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
     .close-cart-btn {
-      background: rgba(0, 240, 255, 0.1);
-      border: 1px solid var(--border-neon);
-      color: var(--neon-cyan);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-theme);
+      color: var(--text-main);
       width: 32px;
       height: 32px;
       border-radius: 50%;
@@ -795,9 +869,9 @@
       display: flex;
       gap: 12px;
       padding: 10px;
-      background: var(--dark-card);
-      border: 1px solid var(--border-neon);
-      border-radius: 8px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius);
       align-items: center;
     }
 
@@ -805,10 +879,10 @@
       width: 55px;
       height: 55px;
       object-fit: cover;
-      background: #040914;
+      background: var(--bg-surface);
       border-radius: 6px;
       padding: 2px;
-      border: 1px solid var(--border-neon);
+      border: 1px solid var(--border-theme);
     }
 
     .cart-item-details {
@@ -818,19 +892,19 @@
     .cart-item-title {
       font-size: 0.9rem;
       font-weight: 700;
-      color: #fff;
+      color: var(--text-main);
     }
 
     .cart-item-price {
       font-weight: 800;
-      color: var(--neon-yellow);
+      color: var(--accent-primary);
       font-size: 0.9rem;
     }
 
     .cart-footer {
       padding: 18px 22px;
-      border-top: 1px solid var(--border-neon);
-      background: var(--dark-card);
+      border-top: 1px solid var(--border-subtle);
+      background: var(--bg-card);
     }
 
     .cart-total-row {
@@ -839,33 +913,32 @@
       font-size: 1.15rem;
       font-weight: 800;
       margin-bottom: 14px;
-      color: #fff;
+      color: var(--text-main);
     }
 
     .btn-checkout {
       width: 100%;
-      background: linear-gradient(135deg, var(--neon-yellow), #f59e0b);
-      color: #040914;
+      background: var(--accent-primary);
+      color: #fff;
       border: none;
       padding: 13px;
-      border-radius: 8px;
+      border-radius: 50px;
       font-size: 0.95rem;
-      font-weight: 800;
+      font-weight: 700;
       cursor: pointer;
       transition: var(--transition);
       margin-bottom: 8px;
-      box-shadow: var(--shadow-yellow);
+      box-shadow: var(--shadow-accent);
     }
 
     .btn-checkout:hover {
-      transform: scale(1.02);
-      box-shadow: 0 0 25px rgba(255, 230, 0, 0.5);
+      background: var(--accent-primary-hover);
     }
 
     .modal-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(4, 9, 20, 0.85);
+      background: rgba(0, 0, 0, 0.8);
       backdrop-filter: blur(6px);
       z-index: 1050;
       display: flex;
@@ -883,19 +956,19 @@
     }
 
     .modal-box {
-      background: var(--dark-surface);
-      border: 1px solid var(--border-neon);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-theme);
       width: 100%;
-      max-width: 520px;
-      border-radius: 14px;
+      max-width: 540px;
+      border-radius: var(--radius);
       overflow: hidden;
-      box-shadow: var(--shadow-neon);
+      box-shadow: var(--shadow-accent);
     }
 
     .modal-header {
-      background: var(--dark-card);
-      border-bottom: 1px solid var(--border-neon);
-      color: white;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border-theme);
+      color: var(--text-main);
       padding: 16px 20px;
       display: flex;
       justify-content: space-between;
@@ -909,9 +982,9 @@
     }
 
     .qr-container {
-      background: var(--dark-card);
-      border: 2px dashed var(--neon-cyan);
-      border-radius: 10px;
+      background: var(--bg-card);
+      border: 2px dashed var(--border-theme);
+      border-radius: var(--radius);
       padding: 16px;
       text-align: center;
       margin-bottom: 18px;
@@ -935,17 +1008,18 @@
     .form-label {
       display: block;
       font-size: 0.83rem;
-      font-weight: 600;
+      font-weight: 700;
       margin-bottom: 4px;
-      color: var(--neon-cyan);
+      color: var(--text-main);
+      letter-spacing: 0.3px;
     }
 
     .form-input, .form-textarea, .form-select {
       width: 100%;
       padding: 10px 14px;
-      background: #060d1d;
-      border: 1px solid var(--border-neon);
-      color: #fff;
+      background: var(--bg-main);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
       border-radius: 6px;
       font-size: 0.9rem;
       font-family: inherit;
@@ -953,35 +1027,33 @@
 
     .form-input:focus, .form-textarea:focus, .form-select:focus {
       outline: none;
-      border-color: var(--neon-yellow);
-      box-shadow: 0 0 8px rgba(255, 230, 0, 0.4);
+      border-color: var(--accent-primary);
     }
 
     .btn-submit-order {
       width: 100%;
-      background: linear-gradient(135deg, var(--neon-cyan), var(--neon-blue));
-      color: #040914;
+      background: var(--accent-primary);
+      color: #ffffff;
       border: none;
       padding: 12px;
-      border-radius: 6px;
+      border-radius: 50px;
       font-size: 0.95rem;
-      font-weight: 800;
+      font-weight: 700;
       cursor: pointer;
       margin-top: 10px;
       transition: var(--transition);
-      box-shadow: var(--shadow-neon);
+      box-shadow: var(--shadow-accent);
     }
 
     .btn-submit-order:hover {
-      background: linear-gradient(135deg, var(--neon-yellow), #f59e0b);
-      box-shadow: var(--shadow-yellow);
+      background: var(--accent-primary-hover);
     }
 
-    /* DEDICATED ADMIN PORTAL PAGE VIEW */
+    /* DEDICATED ADMIN PORTAL VIEW */
     .admin-standalone-view {
       display: none;
       min-height: 100vh;
-      background: var(--dark-bg);
+      background: var(--bg-main);
       padding: 30px 20px;
     }
 
@@ -993,10 +1065,10 @@
     }
 
     .stat-box {
-      background: var(--dark-card);
-      border: 1px solid var(--border-neon);
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
       padding: 20px;
-      border-radius: 12px;
+      border-radius: var(--radius);
       display: flex;
       align-items: center;
       gap: 16px;
@@ -1013,9 +1085,9 @@
     }
 
     .stat-num {
-      font-size: 1.6rem;
+      font-size: 1.8rem;
       font-weight: 800;
-      color: #fff;
+      color: var(--text-main);
     }
 
     .stat-label {
@@ -1028,7 +1100,7 @@
     .admin-tabs-nav {
       display: flex;
       gap: 10px;
-      border-bottom: 1px solid var(--border-neon);
+      border-bottom: 2px solid var(--border-theme);
       margin-bottom: 25px;
       flex-wrap: wrap;
     }
@@ -1049,9 +1121,9 @@
     }
 
     .admin-tab-btn.active {
-      color: var(--neon-cyan);
-      border-bottom-color: var(--neon-cyan);
-      background: rgba(0, 240, 255, 0.05);
+      color: var(--accent-primary);
+      border-bottom-color: var(--accent-primary);
+      background: rgba(225, 29, 72, 0.08);
       border-radius: 8px 8px 0 0;
     }
 
@@ -1064,10 +1136,10 @@
     }
 
     .admin-table-wrapper {
-      background: var(--dark-card);
-      border-radius: 12px;
+      background: var(--bg-card);
+      border-radius: var(--radius);
       overflow-x: auto;
-      border: 1px solid var(--border-neon);
+      border: 1px solid var(--border-subtle);
     }
 
     .admin-table {
@@ -1078,17 +1150,17 @@
     }
 
     .admin-table th {
-      background: #060d1d;
+      background: var(--bg-surface);
       padding: 14px 18px;
-      color: var(--neon-cyan);
+      color: var(--text-main);
       font-weight: 700;
-      border-bottom: 1px solid var(--border-neon);
+      border-bottom: 1px solid var(--border-theme);
     }
 
     .admin-table td {
       padding: 14px 18px;
-      border-bottom: 1px solid rgba(0, 240, 255, 0.1);
-      color: #e2e8f0;
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--text-main);
       vertical-align: middle;
     }
 
@@ -1106,13 +1178,13 @@
     }
 
     .btn-edit-prod {
-      background: var(--neon-yellow);
-      color: #040914;
+      background: var(--accent-primary);
+      color: #ffffff;
     }
 
     .btn-toggle-stock {
-      background: var(--neon-cyan);
-      color: #040914;
+      background: var(--accent-secondary);
+      color: #ffffff;
     }
 
     .btn-delete-prod {
@@ -1121,10 +1193,10 @@
     }
 
     .admin-form-box {
-      background: var(--dark-card);
+      background: var(--bg-card);
       padding: 26px;
-      border-radius: 12px;
-      border: 1px solid var(--border-neon);
+      border-radius: var(--radius);
+      border: 1px solid var(--border-theme);
     }
 
     .form-grid-2 {
@@ -1138,10 +1210,10 @@
       flex-wrap: wrap;
       gap: 10px;
       margin-top: 10px;
-      background: #060d1d;
+      background: var(--bg-main);
       padding: 10px;
       border-radius: 8px;
-      border: 1px solid var(--border-neon);
+      border: 1px solid var(--border-subtle);
     }
 
     .photo-thumb-wrapper {
@@ -1150,8 +1222,8 @@
       height: 60px;
       border-radius: 6px;
       overflow: hidden;
-      border: 1px solid var(--border-neon);
-      background: #040914;
+      border: 1px solid var(--border-theme);
+      background: var(--bg-surface);
     }
 
     .photo-thumb-img {
@@ -1177,10 +1249,40 @@
       justify-content: center;
     }
 
+    .hero-editor-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .hero-slot-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-theme);
+      border-radius: var(--radius);
+      padding: 16px;
+      text-align: center;
+    }
+
+    .hero-slot-preview {
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      background: var(--bg-card);
+      border-radius: 8px;
+    }
+
+    .hero-slot-preview img {
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+    }
+
     .info-section {
-      background: var(--dark-surface);
-      border-top: 1px solid var(--border-neon);
-      border-bottom: 1px solid var(--border-neon);
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
       padding: 45px 20px;
     }
 
@@ -1191,24 +1293,24 @@
     }
 
     .info-card {
-      background: var(--dark-card);
+      background: var(--bg-card);
       padding: 22px;
-      border-radius: 10px;
-      border: 1px solid var(--border-neon);
+      border-radius: var(--radius);
+      border: 1px solid var(--border-subtle);
     }
 
     .info-card h3 {
-      margin-bottom: 14px;
-      font-size: 1.2rem;
+      margin-bottom: 10px;
+      font-size: 1.3rem;
       display: flex;
       align-items: center;
       gap: 8px;
-      color: #fff;
+      color: var(--text-main);
     }
 
     .faq-item {
       margin-bottom: 10px;
-      border-bottom: 1px solid rgba(0, 240, 255, 0.15);
+      border-bottom: 1px solid var(--border-subtle);
       padding-bottom: 8px;
     }
 
@@ -1219,7 +1321,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      color: var(--neon-cyan);
+      color: var(--text-main);
     }
 
     .faq-answer {
@@ -1234,11 +1336,11 @@
     }
 
     footer {
-      background: #02060f;
+      background: var(--bg-surface);
       color: var(--text-muted);
       padding: 45px 20px 20px;
       font-size: 0.88rem;
-      border-top: 1px solid var(--border-neon);
+      border-top: 2px solid var(--border-theme);
     }
 
     .footer-grid {
@@ -1250,9 +1352,9 @@
     }
 
     .footer-col h4 {
-      color: #ffffff;
-      font-size: 1.05rem;
-      margin-bottom: 12px;
+      color: var(--text-main);
+      font-size: 1.1rem;
+      margin-bottom: 10px;
     }
 
     .footer-links {
@@ -1260,7 +1362,7 @@
     }
 
     .footer-links li {
-      margin-bottom: 7px;
+      margin-bottom: 6px;
     }
 
     .footer-links a {
@@ -1270,14 +1372,14 @@
     }
 
     .footer-links a:hover {
-      color: var(--neon-cyan);
+      color: var(--accent-primary);
     }
 
     .trademark-bar {
       max-width: 1280px;
       margin: 0 auto;
       padding-top: 18px;
-      border-top: 1px solid rgba(0, 240, 255, 0.15);
+      border-top: 1px solid var(--border-subtle);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -1290,13 +1392,13 @@
       position: fixed;
       bottom: 24px;
       right: 24px;
-      background: var(--dark-card);
-      color: white;
+      background: var(--bg-card);
+      color: var(--text-main);
       padding: 12px 20px;
       border-radius: 8px;
-      box-shadow: var(--shadow-neon);
-      border-left: 4px solid var(--neon-cyan);
-      border: 1px solid var(--border-neon);
+      box-shadow: var(--shadow-accent);
+      border-left: 4px solid var(--accent-primary);
+      border: 1px solid var(--border-theme);
       z-index: 2000;
       transform: translateY(100px);
       opacity: 0;
@@ -1304,7 +1406,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .toast.show {
@@ -1316,44 +1418,48 @@
       .nav-links {
         display: none;
       }
+      .hero-sports-wrapper {
+        height: auto;
+        padding: 30px 20px;
+      }
+      .hero-grid-showcase {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .hero-side-column {
+        justify-content: center;
+        gap: 20px;
+        height: 180px;
+      }
     }
 
     @media (max-width: 992px) {
       .footer-grid {
         grid-template-columns: 1fr 1fr;
       }
-      .navbar {
-        padding: 10px 14px;
-      }
       .hero-title-main {
-        font-size: 2.8rem;
-      }
-      .hero-title-prefix {
-        font-size: 1rem;
-      }
-      .hero-title-suffix {
-        font-size: 1.1rem;
+        font-size: 3rem;
       }
     }
   </style>
 </head>
-<body>
+<body data-theme="dark-red">
 
-  <!-- STOREFRONT SINGLE PAGE VIEW -->
+  <!-- STOREFRONT VIEW -->
   <div id="storefrontView">
     <header>
       <div class="navbar">
-        <!-- LOGO AT LEFT CORNER USING logo.png -->
-        <a href="#home" class="logo-container">
+        <!-- LOGO AT LEFT CORNER WITH CLICKABLE TEXT TO OPEN ADMIN LOGIN -->
+        <div class="logo-container">
           <img src="logo.png" alt="F2 Sports Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
           <div class="logo-fallback" style="display:none;">F2</div>
-          <div>
+          <div class="admin-text-trigger" onclick="openAdminPortalPage()" title="Click to open Admin Portal">
             <span class="logo-title">F2 <span>SPORTS</span></span>
             <span class="logo-tagline">Engineered For Champions</span>
           </div>
-        </a>
+        </div>
 
-        <!-- CENTERED TOP BAR NAVIGATION -->
+        <!-- CENTERED NAVIGATION -->
         <ul class="nav-links">
           <li><a href="#home"><i class="fa-solid fa-house"></i> Home</a></li>
           <li><a href="#english-section"><i class="fa-solid fa-award"></i> English Willow</a></li>
@@ -1361,11 +1467,11 @@
           <li><a href="#tennis-section"><i class="fa-solid fa-baseball-bat-ball"></i> Tennis</a></li>
         </ul>
 
-        <!-- ADMIN & CART BUTTONS AT RIGHT CORNER -->
+        <!-- RIGHT CORNER: THEME TOGGLE & CART (ADMIN BUTTON REMOVED) -->
         <div class="nav-actions">
-          <a href="javascript:void(0)" onclick="openAdminPortalPage()" class="btn-admin-portal-link">
-            <i class="fa-solid fa-user-shield"></i> <span>Admin Portal</span>
-          </a>
+          <button class="theme-toggle-btn" onclick="toggleColorTheme()" title="Toggle Color Theme">
+            <i class="fa-solid fa-circle-half-stroke"></i> <span id="themeToggleLabel">Green Mode</span>
+          </button>
           <button class="cart-btn-trigger" onclick="toggleCartDrawer()">
             <i class="fa-solid fa-basket-shopping"></i>
             <span>Cart</span>
@@ -1375,17 +1481,42 @@
       </div>
     </header>
 
-    <!-- COMPACT 2ND BRAND CONTAINER -->
-    <section class="hero" id="home">
-      <h1>
-        <span class="hero-title-prefix">Power Your Game With</span>
-        <span class="hero-title-main">Falcon 2</span>
-        <span class="hero-title-suffix">Sports Mastercraft Bats</span>
-      </h1>
-      <p>Professional Cricket Bats handpicked for extraordinary ping, perfect balance, and monstrous power hitting across all formats.</p>
+    <!-- CONTAINER 2: HERO SECTION WITH FULL-HEIGHT VERTICAL PNG PHOTOS -->
+    <section class="hero-sports-wrapper" id="home">
+      <div class="hero-grid-showcase">
+        <!-- LEFT 2 TRANSPARENT PNG PHOTOS (FULL VERTICAL HEIGHT) -->
+        <div class="hero-side-column">
+          <div class="hero-png-item">
+            <img src="./hero_bat_1.png" id="heroPhotoImg1" class="hero-png-img" alt="Cricket Bat Slot 1" onerror="handleImgError(this)" />
+          </div>
+          <div class="hero-png-item">
+            <img src="./hero_bat_2.png" id="heroPhotoImg2" class="hero-png-img" alt="Cricket Bat Slot 2" onerror="handleImgError(this)" />
+          </div>
+        </div>
+
+        <!-- CENTER SMOOTH TEXT -->
+        <div class="hero-center-content">
+          <h1>
+            <span class="hero-title-prefix">Power Your Game With</span>
+            <span class="hero-title-main">Falcon 2</span>
+            <span class="hero-title-suffix">Sports Mastercraft Bats</span>
+          </h1>
+          <p>Hand-crafted for extraordinary rebound ping, razor-sharp balance, and monster power hitting across all formats.</p>
+        </div>
+
+        <!-- RIGHT 2 TRANSPARENT PNG PHOTOS (FULL VERTICAL HEIGHT) -->
+        <div class="hero-side-column">
+          <div class="hero-png-item">
+            <img src="./hero_bat_3.png" id="heroPhotoImg3" class="hero-png-img" alt="Cricket Bat Slot 3" onerror="handleImgError(this)" />
+          </div>
+          <div class="hero-png-item">
+            <img src="./hero_bat_4.png" id="heroPhotoImg4" class="hero-png-img" alt="Cricket Bat Slot 4" onerror="handleImgError(this)" />
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- CONTINUOUS FLOATING RED STRIP ABOVE PRODUCT CONTAINER -->
+    <!-- CONTINUOUS FLOATING TICKER STRIP -->
     <div class="floating-ticker-wrapper">
       <div class="floating-ticker-track">
         <span class="ticker-item"><i class="fa-solid fa-truck-fast"></i> Pan-India Express Courier Delivery</span>
@@ -1399,7 +1530,7 @@
       </div>
     </div>
 
-    <!-- PRODUCT CATALOG SECTIONS -->
+    <!-- PRODUCT CATALOG -->
     <main>
       <!-- 1. ENGLISH WILLOW CATEGORY -->
       <section class="container" id="english-section">
@@ -1436,7 +1567,7 @@
         <div class="bulk-section">
           <div class="bulk-content">
             <div class="bulk-text">
-              <span style="color:var(--neon-yellow); font-weight:800; font-size:0.85rem; text-transform:uppercase; letter-spacing:1px;">Academy &amp; Club Wholesaler</span>
+              <span style="color:var(--accent-primary); font-weight:800; font-size:0.85rem; text-transform:uppercase; letter-spacing:1px;">Academy &amp; Club Wholesaler</span>
               <h3>Bulk Orders &amp; Custom Team Inquiries</h3>
               <p>Planning bulk bat procurement for your academy, cricket club, corporate team, or tournament sponsor? Contact our manufacturing desk for wholesale rates and custom player specifications.</p>
             </div>
@@ -1462,7 +1593,7 @@
 
           <div class="info-grid">
             <div class="info-card">
-              <h3><i class="fa-solid fa-circle-question" style="color:var(--neon-cyan);"></i> FAQs &amp; Bat Care</h3>
+              <h3><i class="fa-solid fa-circle-question" style="color:var(--accent-primary);"></i> FAQs &amp; Bat Care</h3>
               <div class="faq-item active">
                 <div class="faq-question" onclick="toggleFaq(this)">
                   <span>What is the difference between Grade A &amp; Grade B Willow?</span>
@@ -1480,7 +1611,7 @@
             </div>
 
             <div class="info-card">
-              <h3><i class="fa-solid fa-lightbulb" style="color:var(--neon-yellow);"></i> Custom Suggestions</h3>
+              <h3><i class="fa-solid fa-lightbulb" style="color:var(--accent-primary);"></i> Custom Suggestions</h3>
               <form onsubmit="handleSuggestionSubmit(event)">
                 <div class="form-group">
                   <label class="form-label">Your Name</label>
@@ -1502,7 +1633,7 @@
     <footer id="contact">
       <div class="footer-grid">
         <div class="footer-col">
-          <h4 style="font-size: 1.2rem;">F2 <span style="color:var(--neon-yellow);">SPORTS</span></h4>
+          <h4 style="font-size: 1.25rem;">F2 <span>SPORTS</span></h4>
           <p>Precision handcrafted cricket bats designed for boundary power, premium aesthetics, and long-lasting match durability.</p>
         </div>
         <div class="footer-col">
@@ -1530,34 +1661,37 @@
         </div>
         <div class="footer-col">
           <h4>Contact &amp; Bulk Desk</h4>
-          <p><i class="fa-solid fa-phone" style="color:var(--neon-cyan);"></i> <a href="tel:+918493977654" style="color:inherit; text-decoration:none;">+91 84939 77654</a></p>
+          <p><i class="fa-solid fa-phone" style="color:var(--accent-primary);"></i> <a href="tel:+918493977654" style="color:inherit; text-decoration:none;">+91 84939 77654</a></p>
           <p><i class="fa-brands fa-whatsapp" style="color:#25d366;"></i> <a href="https://wa.me/918493977654" target="_blank" style="color:inherit; text-decoration:none;">+91 84939 77654</a></p>
-          <p><i class="fa-solid fa-envelope" style="color:var(--neon-yellow);"></i> <a href="mailto:f2sportsstore@gmail.com" style="color:inherit; text-decoration:none;">f2sportsstore@gmail.com</a></p>
-          <p><i class="fa-solid fa-envelope-open-text" style="color:var(--neon-yellow);"></i> <a href="mailto:Zeesajid55@gmail.com" style="color:inherit; text-decoration:none;">Zeesajid55@gmail.com</a></p>
-          <p><i class="fa-solid fa-location-dot" style="color:var(--neon-cyan);"></i> Panchpora Sangam, Halmullah Dadoo Road Near Sub-Station Punchpora Marhama - 192124</p>
+          <p><i class="fa-solid fa-envelope" style="color:var(--accent-primary);"></i> <a href="mailto:f2sportsstore@gmail.com" style="color:inherit; text-decoration:none;">f2sportsstore@gmail.com</a></p>
+          <p><i class="fa-solid fa-envelope-open-text" style="color:var(--accent-primary);"></i> <a href="mailto:Zeesajid55@gmail.com" style="color:inherit; text-decoration:none;">Zeesajid55@gmail.com</a></p>
+          <p><i class="fa-solid fa-location-dot" style="color:var(--accent-primary);"></i> Panchpora Sangam, Halmullah Dadoo Road Near Sub-Station Punchpora Marhama - 192124</p>
         </div>
       </div>
 
       <div class="trademark-bar">
         <div>&copy; 2026 <strong>F2 Sports</strong>. All Rights Reserved.</div>
-        <div><i class="fa-solid fa-trademark" style="color:var(--neon-yellow);"></i> F2 SPORTS is a Registered Trademark</div>
+        <div><i class="fa-solid fa-trademark"></i> F2 SPORTS is a Registered Trademark</div>
       </div>
     </footer>
   </div>
 
-  <!-- SEPARATE DEDICATED ADMIN PORTAL & DASHBOARD PAGE VIEW -->
+  <!-- SEPARATE ADMIN PORTAL & DASHBOARD VIEW -->
   <div class="admin-standalone-view" id="adminStandaloneView">
     <div style="max-width:1280px; margin:0 auto;">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px; border-bottom:1px solid var(--border-neon); padding-bottom:18px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px; border-bottom:2px solid var(--border-theme); padding-bottom:18px; flex-wrap:wrap; gap:12px;">
         <div style="display:flex; align-items:center; gap:14px;">
-          <img src="logo.png" alt="F2 Logo" style="height:42px;" onerror="this.style.display='none'" />
+          <img src="logo.png" alt="F2 Logo" style="height:44px;" onerror="this.style.display='none'" />
           <div>
-            <h2 style="color:#fff; font-size:1.6rem;">F2 Sports <span style="color:var(--neon-yellow);">Cloud Admin Portal</span></h2>
-            <p style="color:var(--neon-cyan); font-size:0.8rem; letter-spacing:1px; text-transform:uppercase;">Master Control Center</p>
+            <h2 style="color:var(--text-main); font-size:1.8rem;">F2 Sports <span style="color:var(--accent-primary);">Admin Portal</span></h2>
+            <p style="color:var(--text-muted); font-size:0.8rem; letter-spacing:1px; text-transform:uppercase; font-weight:700;" id="activeAdminHeaderLabel">Active Admin: Sajid Mushtaq</p>
           </div>
         </div>
-        <div style="display:flex; gap:12px;">
-          <button onclick="returnToStorefront()" class="admin-action-btn" style="background:rgba(0,240,255,0.15); color:var(--neon-cyan); border:1px solid var(--neon-cyan); padding:8px 16px;">
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <button onclick="openChangePasswordModal()" class="admin-action-btn" style="background:var(--bg-surface); color:var(--text-main); border:1px solid var(--border-theme); padding:8px 16px;">
+            <i class="fa-solid fa-key"></i> Change Password
+          </button>
+          <button onclick="returnToStorefront()" class="admin-action-btn" style="background:var(--bg-surface); color:var(--text-main); border:1px solid var(--border-theme); padding:8px 16px;">
             <i class="fa-solid fa-store"></i> Return to Storefront
           </button>
           <button onclick="handleMainAdminLogout()" class="admin-action-btn" style="background:#ef4444; color:#fff; padding:8px 16px;">
@@ -1568,30 +1702,30 @@
 
       <div class="admin-stats-grid">
         <div class="stat-box">
-          <div class="stat-icon" style="background:rgba(255, 230, 0, 0.15); color:var(--neon-yellow);"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+          <div class="stat-icon" style="background:rgba(225, 29, 72, 0.15); color:var(--accent-primary);"><i class="fa-solid fa-indian-rupee-sign"></i></div>
           <div>
             <div class="stat-num" id="statRevenue">Rs. 0</div>
             <div class="stat-label">Total Revenue</div>
           </div>
         </div>
         <div class="stat-box">
-          <div class="stat-icon" style="background:rgba(0, 240, 255, 0.15); color:var(--neon-cyan);"><i class="fa-solid fa-truck-fast"></i></div>
+          <div class="stat-icon" style="background:rgba(2, 132, 199, 0.15); color:var(--accent-secondary);"><i class="fa-solid fa-truck-fast"></i></div>
           <div>
             <div class="stat-num" id="statOrders">0</div>
             <div class="stat-label">Total Cloud Orders</div>
           </div>
         </div>
         <div class="stat-box">
-          <div class="stat-icon" style="background:rgba(0, 136, 255, 0.15); color:var(--neon-blue);"><i class="fa-solid fa-baseball-bat-ball"></i></div>
+          <div class="stat-icon" style="background:rgba(16, 185, 129, 0.15); color:#10b981;"><i class="fa-solid fa-baseball-bat-ball"></i></div>
           <div>
             <div class="stat-num" id="statProducts">0</div>
             <div class="stat-label">Live Bats Catalog</div>
           </div>
         </div>
         <div class="stat-box">
-          <div class="stat-icon" style="background:rgba(16, 185, 129, 0.15); color:#34d399;"><i class="fa-solid fa-user-check"></i></div>
+          <div class="stat-icon" style="background:rgba(251, 191, 36, 0.15); color:var(--accent-gold);"><i class="fa-solid fa-user-check"></i></div>
           <div>
-            <div style="font-size:1.1rem; font-weight:800; color:#fff;">Sajid (Owner)</div>
+            <div style="font-size:1.1rem; font-weight:800; color:var(--text-main);" id="activeAdminUserDisplay">Sajid Mushtaq</div>
             <div class="stat-label">Authorized Access</div>
           </div>
         </div>
@@ -1599,21 +1733,24 @@
 
       <div class="admin-tabs-nav">
         <button class="admin-tab-btn active" onclick="switchAdminTab('orders')"><i class="fa-solid fa-clipboard-list"></i> Customer Orders (<span id="adminOrdersTabCount">0</span>)</button>
-        <button class="admin-tab-btn" onclick="switchAdminTab('products')"><i class="fa-solid fa-boxes-packing"></i> Manage &amp; Edit Catalog (<span id="adminProdsTabCount">0</span>)</button>
-        <button class="admin-tab-btn" onclick="switchAdminTab('add-product')"><i class="fa-solid fa-plus-circle"></i> Add New Cricket Bat</button>
+        <button class="admin-tab-btn" onclick="switchAdminTab('products')"><i class="fa-solid fa-boxes-packing"></i> Manage Catalog (<span id="adminProdsTabCount">0</span>)</button>
+        <button class="admin-tab-btn" onclick="switchAdminTab('add-product')"><i class="fa-solid fa-plus-circle"></i> Add New Bat</button>
+        <button class="admin-tab-btn" onclick="switchAdminTab('hero-photos')"><i class="fa-solid fa-images"></i> Manage Header 4 Photos</button>
       </div>
 
+      <!-- TAB 1: ORDERS -->
       <div class="admin-tab-pane active" id="adminPaneOrders">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; flex-wrap:wrap; gap:10px;">
-          <h4 style="font-size:1.1rem; color:#fff;">Cloud Orders Record (Booking to Dispatch)</h4>
+          <h4 style="font-size:1.2rem; color:var(--text-main);">Cloud Orders Record (Booking to Dispatch)</h4>
         </div>
         <div id="mainAdminOrdersList"></div>
       </div>
 
+      <!-- TAB 2: PRODUCTS -->
       <div class="admin-tab-pane" id="adminPaneProducts">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-          <h4 style="font-size:1.1rem; color:#fff;">Active Bat Products List</h4>
-          <button class="admin-action-btn" style="background:var(--neon-yellow); color:#040914;" onclick="switchAdminTab('add-product')"><i class="fa-solid fa-plus"></i> Add Another Bat</button>
+          <h4 style="font-size:1.2rem; color:var(--text-main);">Active Bat Products List</h4>
+          <button class="admin-action-btn" style="background:var(--accent-primary); color:#fff;" onclick="switchAdminTab('add-product')"><i class="fa-solid fa-plus"></i> Add Another Bat</button>
         </div>
         <div class="admin-table-wrapper">
           <table class="admin-table">
@@ -1632,9 +1769,10 @@
         </div>
       </div>
 
+      <!-- TAB 3: ADD PRODUCT -->
       <div class="admin-tab-pane" id="adminPaneAddProduct">
         <div class="admin-form-box">
-          <h4 style="font-size:1.15rem; color:#fff; margin-bottom:18px;"><i class="fa-solid fa-circle-plus" style="color:var(--neon-cyan);"></i> Add New Bat to Catalog</h4>
+          <h4 style="font-size:1.2rem; color:var(--text-main); margin-bottom:18px;"><i class="fa-solid fa-circle-plus" style="color:var(--accent-primary);"></i> Add New Bat to Catalog</h4>
           <form id="addNewProductForm" onsubmit="handleAdminAddNewProduct(event)">
             <div class="form-grid-2">
               <div class="form-group">
@@ -1686,10 +1824,57 @@
               </select>
             </div>
 
-            <button type="submit" class="btn-submit-order" style="background:linear-gradient(135deg, var(--neon-cyan), var(--neon-blue)); color:#040914; max-width:260px;">
+            <button type="submit" class="btn-submit-order" style="max-width:260px;">
               <i class="fa-solid fa-plus-circle"></i> Publish Product
             </button>
           </form>
+        </div>
+      </div>
+
+      <!-- TAB 4: HEADER 4 PHOTOS MANAGER -->
+      <div class="admin-tab-pane" id="adminPaneHeroPhotos">
+        <div class="admin-form-box">
+          <h4 style="font-size:1.2rem; color:var(--text-main); margin-bottom:8px;"><i class="fa-solid fa-images" style="color:var(--accent-primary);"></i> Change 2nd Container Header Photos (4 Transparent PNGs)</h4>
+          <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:20px;">Upload transparent background .png photos for the left and right showcase slots in the 2nd container.</p>
+
+          <div class="hero-editor-grid">
+            <!-- SLOT 1 -->
+            <div class="hero-slot-card">
+              <span class="form-label">Left Slot 1</span>
+              <div class="hero-slot-preview">
+                <img src="./hero_bat_1.png" id="slotPreviewImg1" alt="Slot 1 Preview" onerror="handleImgError(this)" />
+              </div>
+              <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 0)" class="form-input" style="font-size:0.75rem;" />
+            </div>
+
+            <!-- SLOT 2 -->
+            <div class="hero-slot-card">
+              <span class="form-label">Left Slot 2</span>
+              <div class="hero-slot-preview">
+                <img src="./hero_bat_2.png" id="slotPreviewImg2" alt="Slot 2 Preview" onerror="handleImgError(this)" />
+              </div>
+              <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 1)" class="form-input" style="font-size:0.75rem;" />
+            </div>
+
+            <!-- SLOT 3 -->
+            <div class="hero-slot-card">
+              <span class="form-label">Right Slot 1</span>
+              <div class="hero-slot-preview">
+                <img src="./hero_bat_3.png" id="slotPreviewImg3" alt="Slot 3 Preview" onerror="handleImgError(this)" />
+              </div>
+              <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 2)" class="form-input" style="font-size:0.75rem;" />
+            </div>
+
+            <!-- SLOT 4 -->
+            <div class="hero-slot-card">
+              <span class="form-label">Right Slot 2</span>
+              <div class="hero-slot-preview">
+                <img src="./hero_bat_4.png" id="slotPreviewImg4" alt="Slot 4 Preview" onerror="handleImgError(this)" />
+              </div>
+              <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 3)" class="form-input" style="font-size:0.75rem;" />
+            </div>
+          </div>
+          <div id="heroPhotoUploadStatus" style="color:var(--accent-primary); font-size:0.85rem; font-weight:700; margin-top:14px; display:none;"></div>
         </div>
       </div>
     </div>
@@ -1705,14 +1890,14 @@
   <div class="cart-drawer-overlay" id="cartOverlay" onclick="toggleCartDrawer()"></div>
   <div class="cart-drawer" id="cartDrawer">
     <div class="cart-header">
-      <h3><i class="fa-solid fa-basket-shopping" style="color:var(--neon-cyan);"></i> Your Cart (<span id="cartCountTitle">0</span>)</h3>
+      <h3 style="font-size:1.2rem;"><i class="fa-solid fa-basket-shopping" style="color:var(--accent-primary);"></i> Your Cart (<span id="cartCountTitle">0</span>)</h3>
       <button class="close-cart-btn" onclick="toggleCartDrawer()"><i class="fa-solid fa-xmark"></i></button>
     </div>
     <div class="cart-items-container" id="cartItemsList"></div>
     <div class="cart-footer">
       <div class="cart-total-row">
         <span>Grand Total:</span>
-        <span id="cartGrandTotal" style="color:var(--neon-yellow);">Rs. 0</span>
+        <span id="cartGrandTotal" style="color:var(--accent-primary);">Rs. 0</span>
       </div>
       <button class="btn-checkout" id="checkoutBtn" onclick="openCheckoutModal()" disabled>
         <i class="fa-solid fa-lock"></i> Proceed to QR / UPI Checkout
@@ -1724,15 +1909,15 @@
   <div class="modal-overlay" id="checkoutModal">
     <div class="modal-box">
       <div class="modal-header">
-        <h3><i class="fa-solid fa-qrcode" style="color:var(--neon-cyan);"></i> Scan &amp; Pay (UPI / QR)</h3>
+        <h3 style="font-size:1.2rem;"><i class="fa-solid fa-qrcode" style="color:var(--accent-primary);"></i> Scan &amp; Pay (UPI / QR)</h3>
         <button class="close-cart-btn" onclick="closeCheckoutModal()"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div class="modal-body">
         <div class="qr-container">
-          <p style="font-size:0.85rem; margin-bottom:8px; font-weight:600; color:#cbd5e1;">Scan with GPay, PhonePe, Paytm, or BHIM</p>
+          <p style="font-size:0.85rem; margin-bottom:8px; font-weight:600; color:var(--text-muted);">Scan with GPay, PhonePe, Paytm, or BHIM</p>
           <img src="https://api.qrserver.com/v1/create-qr-code/?size=170x170&amp;data=upi://pay?pa=f2sports@upi%26pn=F2%20Sports%20Official%26mc=5945" alt="F2 Sports QR Scanner" class="qr-image" />
-          <p style="font-family:monospace; font-weight:700; font-size:0.95rem; color:var(--neon-cyan);">UPI ID: f2sports@upi</p>
-          <p style="font-size:0.85rem; margin-top:6px;">Payable Amount: <b style="color:var(--neon-yellow);" id="checkoutModalTotal">Rs. 0</b></p>
+          <p style="font-family:monospace; font-weight:700; font-size:0.95rem; color:var(--accent-primary);">UPI ID: f2sports@upi</p>
+          <p style="font-size:0.85rem; margin-top:6px;">Payable Amount: <b style="color:var(--accent-primary);" id="checkoutModalTotal">Rs. 0</b></p>
         </div>
 
         <form id="orderForm" onsubmit="handlePlaceOrder(event)">
@@ -1762,26 +1947,94 @@
     </div>
   </div>
 
-  <!-- ADMIN LOGIN MODAL -->
+  <!-- ADMIN LOGIN MODAL WITH 2 ADMIN ACCESS AND FORGOT PASSWORD -->
   <div class="modal-overlay" id="adminLoginModal">
     <div class="modal-box">
       <div class="modal-header">
-        <h3><i class="fa-solid fa-shield-halved" style="color:var(--neon-yellow);"></i> Admin Portal Login</h3>
+        <h3 style="font-size:1.2rem;"><i class="fa-solid fa-shield-halved" style="color:var(--accent-primary);"></i> Admin Portal Login</h3>
         <button class="close-cart-btn" onclick="closeAdminLoginModal()"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div class="modal-body">
         <form onsubmit="handleModalAdminLogin(event)">
           <div class="form-group">
-            <label class="form-label">Admin Username</label>
-            <input type="text" id="modalAdminUser" class="form-input" placeholder="admin" required />
+            <label class="form-label">Select Admin User</label>
+            <select id="modalAdminUser" class="form-select" required>
+              <option value="Sajid Mushtaq">Sajid Mushtaq</option>
+              <option value="Sameer Mushtaq">Sameer Mushtaq</option>
+            </select>
           </div>
           <div class="form-group">
-            <label class="form-label">Admin Password</label>
+            <label class="form-label">Password</label>
             <input type="password" id="modalAdminPass" class="form-input" placeholder="••••••••" required />
           </div>
-          <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:12px;">Default credentials: <b>admin</b> / <b>f2sports2026</b></p>
-          <button type="submit" class="btn-submit-order" style="background:linear-gradient(135deg, var(--neon-yellow), #f59e0b); color:#040914;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+            <a href="javascript:void(0)" onclick="openForgotPasswordModal()" style="color:var(--accent-primary); font-size:0.8rem; font-weight:700; text-decoration:none;">
+              <i class="fa-solid fa-question-circle"></i> Forgot Password?
+            </a>
+          </div>
+          <button type="submit" class="btn-submit-order">
             <i class="fa-solid fa-right-to-bracket"></i> Login to Workspace
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORGOT PASSWORD MODAL -->
+  <div class="modal-overlay" id="forgotPasswordModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 style="font-size:1.2rem;"><i class="fa-solid fa-unlock-keyhole" style="color:var(--accent-primary);"></i> Reset Admin Password</h3>
+        <button class="close-cart-btn" onclick="closeForgotPasswordModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <form onsubmit="handleForgotPasswordSubmit(event)">
+          <div class="form-group">
+            <label class="form-label">Select Admin</label>
+            <select id="forgotAdminUser" class="form-select" required>
+              <option value="Sajid Mushtaq">Sajid Mushtaq</option>
+              <option value="Sameer Mushtaq">Sameer Mushtaq</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Master Recovery Key</label>
+            <input type="password" id="forgotMasterKey" class="form-input" placeholder="Enter recovery key (f2sportsmaster)" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">New Password</label>
+            <input type="password" id="forgotNewPass" class="form-input" placeholder="Enter new password" required />
+          </div>
+          <button type="submit" class="btn-submit-order">
+            <i class="fa-solid fa-rotate"></i> Reset Password
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHANGE PASSWORD MODAL (INSIDE ADMIN DASHBOARD) -->
+  <div class="modal-overlay" id="changePasswordModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 style="font-size:1.2rem;"><i class="fa-solid fa-key" style="color:var(--accent-primary);"></i> Change Admin Password</h3>
+        <button class="close-cart-btn" onclick="closeChangePasswordModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <form onsubmit="handleChangePasswordSubmit(event)">
+          <div class="form-group">
+            <label class="form-label">Active Admin</label>
+            <input type="text" id="changePassAdminUser" class="form-input" readonly />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Current Password</label>
+            <input type="password" id="changePassOld" class="form-input" placeholder="Enter current password" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">New Password</label>
+            <input type="password" id="changePassNew" class="form-input" placeholder="Enter new password" required />
+          </div>
+          <button type="submit" class="btn-submit-order">
+            <i class="fa-solid fa-check"></i> Update Password
           </button>
         </form>
       </div>
@@ -1792,7 +2045,7 @@
   <div class="modal-overlay" id="editProductModal">
     <div class="modal-box" style="max-width:640px;">
       <div class="modal-header">
-        <h3><i class="fa-solid fa-pen-to-square" style="color:var(--neon-cyan);"></i> Edit Bat Details &amp; Photos</h3>
+        <h3 style="font-size:1.2rem;"><i class="fa-solid fa-pen-to-square" style="color:var(--accent-primary);"></i> Edit Bat Details &amp; Photos</h3>
         <button class="close-cart-btn" onclick="closeEditModal()"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div class="modal-body">
@@ -1826,22 +2079,22 @@
           </div>
 
           <!-- MULTIPLE PHOTO UPLOAD SECTION TO SUPABASE -->
-          <div class="form-group" style="background:rgba(0, 240, 255, 0.05); padding:14px; border-radius:8px; border:1px dashed var(--neon-cyan);">
-            <label class="form-label" style="color:var(--neon-cyan); font-weight:700;">
+          <div class="form-group" style="background:rgba(225, 29, 72, 0.05); padding:14px; border-radius:8px; border:1px dashed var(--border-theme);">
+            <label class="form-label">
               <i class="fa-solid fa-cloud-arrow-up"></i> Upload Bat Photos to Supabase Storage (Multi-Select)
             </label>
             <input type="file" id="editProdMultiFiles" class="form-input" multiple accept="image/*" onchange="handleMultiplePhotosUpload(event)" />
-            <div id="uploadStatusNotice" style="font-size:0.78rem; color:var(--neon-cyan); margin-top:6px; display:none;"></div>
+            <div id="uploadStatusNotice" style="font-size:0.78rem; color:var(--accent-primary); margin-top:6px; display:none;"></div>
             <div class="photos-preview-gallery" id="editPhotosPreviewList"></div>
           </div>
 
-          <div class="form-grid-2" style="background:rgba(255, 230, 0, 0.05); padding:12px; border-radius:8px; border:1px dashed var(--neon-yellow); margin-bottom:14px;">
+          <div class="form-grid-2" style="background:rgba(225, 29, 72, 0.05); padding:12px; border-radius:8px; border:1px dashed var(--border-theme); margin-bottom:14px;">
             <div class="form-group" style="margin-bottom:0;">
-              <label class="form-label" style="color:var(--neon-yellow);"><i class="fa-solid fa-tag"></i> Sale Label (e.g. 15% OFF)</label>
+              <label class="form-label"><i class="fa-solid fa-tag"></i> Sale Label (e.g. 15% OFF)</label>
               <input type="text" id="editProdSaleBadge" class="form-input" placeholder="Leave empty if no sale" />
             </div>
             <div class="form-group" style="margin-bottom:0;">
-              <label class="form-label" style="color:var(--neon-yellow);"><i class="fa-solid fa-gift"></i> Sale Description (e.g. Eid Offer)</label>
+              <label class="form-label"><i class="fa-solid fa-gift"></i> Sale Description (e.g. Eid Offer)</label>
               <input type="text" id="editProdSaleDesc" class="form-input" placeholder="e.g. Eid Special Discount" />
             </div>
           </div>
@@ -1859,7 +2112,7 @@
             </select>
           </div>
 
-          <button type="submit" class="btn-submit-order" style="background:linear-gradient(135deg, var(--neon-yellow), #f59e0b); color:#040914;" id="btnSaveEditedProd">
+          <button type="submit" class="btn-submit-order" id="btnSaveEditedProd">
             <i class="fa-solid fa-floppy-disk"></i> Save &amp; Update Product
           </button>
         </form>
@@ -1868,7 +2121,7 @@
   </div>
 
   <div class="toast" id="appToast">
-    <i class="fa-solid fa-circle-check" style="color:var(--neon-cyan);"></i>
+    <i class="fa-solid fa-circle-check" style="color:var(--accent-primary);"></i>
     <span id="toastMsg">Added to cart</span>
   </div>
 
@@ -1890,6 +2143,46 @@
     } catch (e) {
       console.warn("Supabase initialization notice:", e);
     }
+
+    /* ADMIN CREDENTIALS & MULTI-USER MANAGEMENT */
+    const defaultAdminAccounts = {
+      "Sajid Mushtaq": "Sajid@123",
+      "Sameer Mushtaq": "S@m33r1921"
+    };
+
+    let adminAccounts = JSON.parse(localStorage.getItem('f2_admin_accounts')) || defaultAdminAccounts;
+    const MASTER_RECOVERY_KEY = "f2sportsmaster";
+
+    function saveAdminAccounts() {
+      localStorage.setItem('f2_admin_accounts', JSON.stringify(adminAccounts));
+    }
+
+    // Color Theme Switcher Logic
+    let currentTheme = localStorage.getItem('f2_theme') || 'dark-red';
+    function applyColorTheme(theme) {
+      document.body.setAttribute('data-theme', theme);
+      const label = document.getElementById('themeToggleLabel');
+      if (label) {
+        label.innerText = theme === 'dark-red' ? 'Green Mode' : 'Dark Red Mode';
+      }
+      localStorage.setItem('f2_theme', theme);
+    }
+
+    function toggleColorTheme() {
+      currentTheme = currentTheme === 'dark-red' ? 'light-green-blue' : 'dark-red';
+      applyColorTheme(currentTheme);
+      showToast(`Switched to ${currentTheme === 'dark-red' ? 'Complete Dark Red' : 'Light Green Blue'} Mode`);
+    }
+
+    // Default 4 Header Showcase Transparent PNGs
+    const defaultHeroPhotos = [
+      './hero_bat_1.png',
+      './hero_bat_2.png',
+      './hero_bat_3.png',
+      './hero_bat_4.png'
+    ];
+
+    let heroPhotos = JSON.parse(localStorage.getItem('f2_hero_photos')) || defaultHeroPhotos;
 
     const initialProducts = [
       {
@@ -2061,6 +2354,59 @@
 
     function saveOrders() {
       localStorage.setItem('f2_orders', JSON.stringify(orders));
+    }
+
+    function saveHeroPhotos() {
+      localStorage.setItem('f2_hero_photos', JSON.stringify(heroPhotos));
+    }
+
+    function applyHeroPhotos() {
+      for (let i = 0; i < 4; i++) {
+        const heroElem = document.getElementById(`heroPhotoImg${i + 1}`);
+        const slotElem = document.getElementById(`slotPreviewImg${i + 1}`);
+        if (heroElem && heroPhotos[i]) heroElem.src = heroPhotos[i];
+        if (slotElem && heroPhotos[i]) slotElem.src = heroPhotos[i];
+      }
+    }
+
+    async function uploadHeroSlotPhoto(e, slotIndex) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const statusElem = document.getElementById('heroPhotoUploadStatus');
+      statusElem.style.display = 'block';
+      statusElem.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Uploading transparent PNG to Supabase...`;
+
+      if (supabaseClient) {
+        try {
+          const fileExt = file.name.split('.').pop();
+          const fileName = `hero_slot_${slotIndex + 1}_${Date.now()}.${fileExt}`;
+          const { error } = await supabaseClient.storage.from('product-images').upload(fileName, file, { upsert: true });
+
+          if (!error) {
+            const { data } = supabaseClient.storage.from('product-images').getPublicUrl(fileName);
+            if (data && data.publicUrl) {
+              heroPhotos[slotIndex] = data.publicUrl;
+            }
+          }
+        } catch (err) {
+          console.error("Hero upload error:", err);
+        }
+      } else {
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          heroPhotos[slotIndex] = ev.target.result;
+          saveHeroPhotos();
+          applyHeroPhotos();
+        };
+        reader.readAsDataURL(file);
+      }
+
+      saveHeroPhotos();
+      applyHeroPhotos();
+      statusElem.innerHTML = `<i class="fa-solid fa-check"></i> Slot ${slotIndex + 1} photo updated!`;
+      setTimeout(() => statusElem.style.display = 'none', 3500);
+      showToast(`Header Slot ${slotIndex + 1} updated!`);
     }
 
     async function loadCloudOrders() {
@@ -2254,7 +2600,7 @@
 
       if (totalItems === 0) {
         cartList.innerHTML = `<div style="text-align:center; padding:50px 20px; color:var(--text-muted);">
-          <i class="fa-solid fa-basket-shopping" style="font-size:3rem; color:#334155; margin-bottom:10px;"></i>
+          <i class="fa-solid fa-basket-shopping" style="font-size:3rem; margin-bottom:10px;"></i>
           <h4>Your cart is empty</h4>
         </div>`;
         checkoutBtn.disabled = true;
@@ -2437,11 +2783,11 @@
       e.target.reset();
     }
 
-    /* SEPARATE FULL-PAGE ADMIN PORTAL */
+    /* AUTHENTICATION & MULTI-ADMIN ROUTING */
     function openAdminPortalPage() {
-      const isAuth = sessionStorage.getItem('f2_main_admin_auth');
-      if (isAuth) {
-        showAdminPageView();
+      const activeAdmin = sessionStorage.getItem('f2_active_admin_user');
+      if (activeAdmin) {
+        showAdminPageView(activeAdmin);
       } else {
         document.getElementById('adminLoginModal').classList.add('active');
       }
@@ -2456,19 +2802,22 @@
       const user = document.getElementById('modalAdminUser').value;
       const pass = document.getElementById('modalAdminPass').value;
 
-      if (user === 'admin' && pass === 'f2sports2026') {
-        sessionStorage.setItem('f2_main_admin_auth', 'true');
+      if (adminAccounts[user] && adminAccounts[user] === pass) {
+        sessionStorage.setItem('f2_active_admin_user', user);
         closeAdminLoginModal();
-        showToast('Admin logged in successfully!');
-        showAdminPageView();
+        showToast(`Welcome ${user}!`);
+        showAdminPageView(user);
       } else {
-        alert('Invalid Admin credentials! Default: admin / f2sports2026');
+        alert('Invalid password for ' + user + '! Please verify credentials.');
       }
     }
 
-    function showAdminPageView() {
+    function showAdminPageView(adminName) {
       document.getElementById('storefrontView').style.display = 'none';
       document.getElementById('adminStandaloneView').style.display = 'block';
+      document.getElementById('activeAdminHeaderLabel').innerText = `Active Admin: ${adminName}`;
+      document.getElementById('activeAdminUserDisplay').innerText = adminName;
+      applyHeroPhotos();
       updateAdminDashboard();
       window.scrollTo(0, 0);
     }
@@ -2480,9 +2829,65 @@
     }
 
     function handleMainAdminLogout() {
-      sessionStorage.removeItem('f2_main_admin_auth');
+      sessionStorage.removeItem('f2_active_admin_user');
       showToast('Logged out from Admin Dashboard');
       returnToStorefront();
+    }
+
+    /* FORGOT PASSWORD LOGIC */
+    function openForgotPasswordModal() {
+      closeAdminLoginModal();
+      document.getElementById('forgotPasswordModal').classList.add('active');
+    }
+
+    function closeForgotPasswordModal() {
+      document.getElementById('forgotPasswordModal').classList.remove('active');
+    }
+
+    function handleForgotPasswordSubmit(e) {
+      e.preventDefault();
+      const user = document.getElementById('forgotAdminUser').value;
+      const key = document.getElementById('forgotMasterKey').value;
+      const newPass = document.getElementById('forgotNewPass').value;
+
+      if (key === MASTER_RECOVERY_KEY) {
+        adminAccounts[user] = newPass;
+        saveAdminAccounts();
+        closeForgotPasswordModal();
+        alert(`Password for ${user} has been successfully reset!`);
+        openAdminPortalPage();
+      } else {
+        alert('Incorrect Master Recovery Key! Default recovery key is: f2sportsmaster');
+      }
+    }
+
+    /* CHANGE PASSWORD LOGIC INSIDE DASHBOARD */
+    function openChangePasswordModal() {
+      const activeAdmin = sessionStorage.getItem('f2_active_admin_user') || 'Sajid Mushtaq';
+      document.getElementById('changePassAdminUser').value = activeAdmin;
+      document.getElementById('changePasswordModal').classList.add('active');
+    }
+
+    function closeChangePasswordModal() {
+      document.getElementById('changePasswordModal').classList.remove('active');
+    }
+
+    function handleChangePasswordSubmit(e) {
+      e.preventDefault();
+      const user = document.getElementById('changePassAdminUser').value;
+      const oldPass = document.getElementById('changePassOld').value;
+      const newPass = document.getElementById('changePassNew').value;
+
+      if (adminAccounts[user] === oldPass) {
+        adminAccounts[user] = newPass;
+        saveAdminAccounts();
+        closeChangePasswordModal();
+        showToast(`Password updated for ${user}!`);
+        document.getElementById('changePassOld').value = '';
+        document.getElementById('changePassNew').value = '';
+      } else {
+        alert('Current password does not match!');
+      }
     }
 
     function switchAdminTab(tabName) {
@@ -2501,6 +2906,9 @@
       } else if (tabName === 'add-product') {
         tabs[2].classList.add('active');
         document.getElementById('adminPaneAddProduct').classList.add('active');
+      } else if (tabName === 'hero-photos') {
+        tabs[3].classList.add('active');
+        document.getElementById('adminPaneHeroPhotos').classList.add('active');
       }
     }
 
@@ -2525,7 +2933,7 @@
       if (!container) return;
 
       if (orders.length === 0) {
-        container.innerHTML = '<div style="text-align:center; color:var(--text-muted); padding:30px; background:var(--dark-card); border-radius:10px;">No customer orders placed yet.</div>';
+        container.innerHTML = '<div style="text-align:center; color:var(--text-muted); padding:30px; background:var(--bg-card); border-radius:6px;">No customer orders placed yet.</div>';
         return;
       }
 
@@ -2533,21 +2941,21 @@
       orders.forEach((order, index) => {
         const itemsListStr = order.items.map(i => `${i.name} (x${i.qty})`).join(', ');
         container.innerHTML += `
-          <div style="background:var(--dark-card); border:1px solid var(--border-neon); border-radius:12px; padding:20px; margin-bottom:16px;">
-            <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(0, 240, 255, 0.1); padding-bottom:10px; margin-bottom:12px; font-weight:800; font-size:1.05rem;">
+          <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:8px; padding:20px; margin-bottom:16px;">
+            <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border-subtle); padding-bottom:10px; margin-bottom:12px; font-weight:800; font-size:1.15rem;">
               <span>Order #${order.orderId}</span>
-              <span style="color:var(--neon-yellow);">${order.totalAmount}</span>
+              <span style="color:var(--accent-primary);">${order.totalAmount}</span>
             </div>
-            <div style="font-size:0.88rem; line-height:1.6; color:#cbd5e1;">
+            <div style="font-size:0.88rem; line-height:1.6; color:var(--text-muted);">
               <p><b>Date:</b> ${order.date}</p>
               <p><b>Customer:</b> ${order.customer.name} | <b>Email:</b> ${order.customer.email} | <b>Phone:</b> ${order.customer.phone}</p>
               <p><b>Address:</b> ${order.customer.address}</p>
               <p><b>Bats Ordered:</b> ${itemsListStr}</p>
-              <p><b>UPI UTR Number:</b> <code style="background:#060d1d; padding:2px 8px; border-radius:4px; color:var(--neon-cyan);">${order.utr}</code></p>
-              <p><b>Current Stage:</b> <span style="font-weight:700; color:var(--neon-cyan);">${order.status}</span></p>
+              <p><b>UPI UTR Number:</b> <code style="background:var(--bg-surface); padding:2px 8px; border-radius:4px; color:var(--accent-primary); font-weight:700;">${order.utr}</code></p>
+              <p><b>Current Stage:</b> <span style="font-weight:700; color:#10b981;">${order.status}</span></p>
             </div>
-            <div style="margin-top:14px; padding-top:12px; border-top:1px dashed rgba(0, 240, 255, 0.15); display:flex; gap:10px; flex-wrap:wrap;">
-              <button class="admin-action-btn" style="background:var(--neon-blue); color:#fff;" onclick="sendOrderPlacedEmail(${index})">
+            <div style="margin-top:14px; padding-top:12px; border-top:1px dashed var(--border-subtle); display:flex; gap:10px; flex-wrap:wrap;">
+              <button class="admin-action-btn" style="background:#0284c7; color:#fff;" onclick="sendOrderPlacedEmail(${index})">
                 <i class="fa-solid fa-envelope"></i> Send Confirmation Email
               </button>
               <button class="admin-action-btn" style="background:#059669; color:#fff;" onclick="markOrderDispatched(${index})">
@@ -2567,25 +2975,25 @@
 
       products.forEach(p => {
         const isAvailable = p.inStock !== false;
-        const saleBadgeStr = p.saleBadge ? `<span style="background:var(--neon-yellow); color:#040914; padding:2px 6px; border-radius:4px; font-weight:800; font-size:0.75rem;">${p.saleBadge}</span>` : '<span style="color:var(--text-muted);">None</span>';
+        const saleBadgeStr = p.saleBadge ? `<span style="background:var(--accent-primary); color:#fff; padding:2px 6px; border-radius:3px; font-weight:800; font-size:0.75rem;">${p.saleBadge}</span>` : '<span style="color:var(--text-muted);">None</span>';
         const imgCount = (p.images && p.images.length) ? p.images.length : 1;
 
         tbody.innerHTML += `
           <tr>
             <td>
               <div style="display:flex; align-items:center; gap:10px;">
-                <img src="${p.img}" alt="${p.name}" style="width:36px; height:36px; object-fit:cover; background:#040914; border-radius:4px; padding:2px; border:1px solid var(--border-neon);" onerror="handleImgError(this)" />
+                <img src="${p.img}" alt="${p.name}" style="width:36px; height:36px; object-fit:cover; background:var(--bg-surface); border-radius:4px; padding:2px; border:1px solid var(--border-subtle);" onerror="handleImgError(this)" />
                 <div>
                   <b>${p.name}</b>
                   <div style="font-size:0.72rem; color:var(--text-muted);"><i class="fa-solid fa-images"></i> ${imgCount} photo(s)</div>
                 </div>
               </div>
             </td>
-            <td style="text-transform:capitalize; color:var(--neon-cyan);">${p.category}</td>
-            <td>Rs. ${Number(p.price).toLocaleString('en-IN')}</td>
+            <td style="text-transform:capitalize; color:var(--accent-primary); font-weight:700;">${p.category}</td>
+            <td style="font-weight:700;">Rs. ${Number(p.price).toLocaleString('en-IN')}</td>
             <td>
               <div>${saleBadgeStr}</div>
-              ${p.saleDesc ? `<div style="font-size:0.75rem; color:var(--neon-cyan);">${p.saleDesc}</div>` : ''}
+              ${p.saleDesc ? `<div style="font-size:0.75rem; color:var(--text-muted);">${p.saleDesc}</div>` : ''}
             </td>
             <td>
               <span class="stock-badge ${isAvailable ? 'stock-available' : 'stock-out'}" style="position:static; display:inline-block;">
@@ -2676,7 +3084,7 @@
         const filePath = `${fileName}`;
 
         try {
-          const { data, error } = await supabaseClient.storage
+          const { error } = await supabaseClient.storage
             .from('product-images')
             .upload(filePath, file, { cacheControl: '3600', upsert: false });
 
@@ -2701,7 +3109,7 @@
       }
 
       renderEditPhotosGallery();
-      notice.innerHTML = `<i class="fa-solid fa-circle-check" style="color:var(--neon-cyan);"></i> Uploaded ${files.length} photo(s) successfully!`;
+      notice.innerHTML = `<i class="fa-solid fa-circle-check" style="color:var(--accent-primary);"></i> Uploaded ${files.length} photo(s) successfully!`;
       saveBtn.disabled = false;
       e.target.value = '';
       setTimeout(() => { notice.style.display = 'none'; }, 4000);
@@ -2868,11 +3276,14 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
+      applyColorTheme(currentTheme);
+      applyHeroPhotos();
       renderProducts();
       updateCartUI();
       listenToCloudOrders();
-      if (sessionStorage.getItem('f2_main_admin_auth')) {
-        showAdminPageView();
+      const activeAdmin = sessionStorage.getItem('f2_active_admin_user');
+      if (activeAdmin) {
+        showAdminPageView(activeAdmin);
       }
     });
   </script>
