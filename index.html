@@ -10,9 +10,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- Firebase Cloud Database SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <!-- Supabase Cloud SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
     :root {
@@ -1641,23 +1640,19 @@
     // Web3Forms API Key registered for f2sportsstore@gmail.com
     const WEB3FORMS_ACCESS_KEY = "bbabe700-fc35-4a93-8f7c-244ec811d041";
 
-    // Firebase Firestore Cloud Configuration
-    const firebaseConfig = {
-      apiKey: "AIzaSyC_i6-PRaMMs2dLu8q8MC63Iy8p0dyKmF8",
-      authDomain: "f2-sports-store.firebaseapp.com",
-      projectId: "f2-sports-store",
-      storageBucket: "f2-sports-store.firebasestorage.app",
-      messagingSenderId: "76855377821",
-      appId: "1:76855377821:web:7d5835e372caee9c9eb974",
-      measurementId: "G-SCPRHC0L1P"
-    };
+    // Supabase Configuration
+    // Paste your project URL from Supabase Settings -> API -> Project URL
+    const SUPABASE_URL = "https://YOUR_PROJECT_ID.supabase.co";
+    // Replace with your full publishable key from the dashboard
+    const SUPABASE_ANON_KEY = "sb_publishable_PJikuyddJjYiyPRg4ldF75A__zUlo...";
 
-    let db = null;
+    let supabaseClient = null;
     try {
-      firebase.initializeApp(firebaseConfig);
-      db = firebase.firestore();
+      if (typeof supabase !== 'undefined' && SUPABASE_URL.startsWith("http")) {
+        supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      }
     } catch (e) {
-      console.warn("Firebase initialization notice:", e);
+      console.warn("Supabase initialization notice:", e);
     }
 
     const initialProducts = [
@@ -1844,13 +1839,45 @@
       localStorage.setItem('f2_orders', JSON.stringify(orders));
     }
 
+    async function loadCloudOrders() {
+      if (!supabaseClient) return;
+      try {
+        const { data, error } = await supabaseClient
+          .from('orders')
+          .select('*')
+          .order('created_at', { ascending: false });
+
+        if (!error && data) {
+          orders = data.map(o => ({
+            docId: o.id,
+            orderId: o.order_id,
+            date: o.date,
+            createdAt: o.created_at,
+            customer: o.customer,
+            utr: o.utr,
+            items: o.items,
+            totalAmount: o.total_amount,
+            numericAmount: o.numeric_amount,
+            status: o.status
+          }));
+          saveOrders();
+          updateAdminDashboard();
+        }
+      } catch (err) {
+        console.warn("Supabase fetch notice:", err);
+      }
+    }
+
     function listenToCloudOrders() {
-      if (!db) return;
-      db.collection("orders").orderBy("createdAt", "desc").onSnapshot(snapshot => {
-        orders = snapshot.docs.map(doc => ({ docId: doc.id, ...doc.data() }));
-        saveOrders();
-        updateAdminDashboard();
-      }, err => console.log("Firestore sync notice:", err));
+      loadCloudOrders();
+      if (!supabaseClient) return;
+
+      supabaseClient
+        .channel('public:orders')
+        .on('postgres_changes', { event: '*', schema: 'public', table: 'orders' }, () => {
+          loadCloudOrders();
+        })
+        .subscribe();
     }
 
     function handleImgError(imgElement) {
@@ -2086,11 +2113,24 @@
         status: 'Order Booked'
       };
 
-      if (db) {
+      if (supabaseClient) {
         try {
-          await db.collection("orders").add(orderData);
+          const { data, error } = await supabaseClient.from("orders").insert([{
+            order_id: orderId,
+            date: orderData.date,
+            customer: orderData.customer,
+            utr: orderData.utr,
+            items: orderData.items,
+            total_amount: orderData.totalAmount,
+            numeric_amount: orderData.numericAmount,
+            status: orderData.status
+          }]).select();
+
+          if (data && data[0]) {
+            orderData.docId = data[0].id;
+          }
         } catch (err) {
-          console.error("Firestore database write error:", err);
+          console.error("Supabase database write error:", err);
         }
       }
 
@@ -2456,13 +2496,14 @@
 
       order.status = `Dispatched via ${courierName} (AWB: ${trackingNo})`;
 
-      if (db && order.docId) {
+      if (supabaseClient && order.docId) {
         try {
-          await db.collection("orders").doc(order.docId).update({
-            status: order.status
-          });
+          await supabaseClient
+            .from('orders')
+            .update({ status: order.status })
+            .eq('id', order.docId);
         } catch (e) {
-          console.error("Cloud status update error:", e);
+          console.error("Supabase status update error:", e);
         }
       }
 
