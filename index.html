@@ -249,7 +249,7 @@
       justify-content: center;
     }
 
-    /* CONTAINER 2: HERO SECTION WITH ENLARGED MULTI-COLOR FALCON 2 */
+    /* CONTAINER 2: HERO SECTION (ENLARGED FALCON 2 WITHOUT STROKE) */
     .hero-sports-wrapper {
       background: var(--hero-radial);
       border-bottom: 2px solid var(--border-theme);
@@ -321,7 +321,7 @@
     }
 
     .hero-title-main {
-      font-size: 4.6rem; /* Increased size significantly */
+      font-size: 4.6rem;
       font-weight: 900;
       display: block;
       line-height: 1;
@@ -1507,7 +1507,7 @@
         text-align: center;
       }
       .hero-title-main {
-        font-size: 3rem;
+        font-size: 3.5rem;
       }
       .falcon-brand-banner-title {
         font-size: 2.3rem;
@@ -1571,8 +1571,8 @@
         <div class="hero-center-content">
           <h1>
             <span class="hero-title-prefix">Power Your Game With</span>
-            <span class="hero-title-main multi-color-text">Falcon 2</span>
-            <span class="hero-title-suffix">Sports Mastercraft Bats</span>
+            <span class="hero-title-main multi-color-text">FALCON 2 SPORTS</span>
+            <span class="hero-title-suffix">Mastercraft Bats</span>
           </h1>
           <p>Hand-crafted for extraordinary rebound ping, razor-sharp balance, and monster power hitting across all formats.</p>
         </div>
@@ -1731,7 +1731,7 @@
       <div class="falcon-brand-banner-tag">Mastercraft Cricket Blades &amp; High Velocity Dominators</div>
     </div>
 
-    <!-- MINIMAL CLEAN FOOTER (TRADEMARKS ON TWO CORNERS, LOCATION IN MIDDLE) -->
+    <!-- MINIMAL CLEAN FOOTER -->
     <footer>
       <div class="footer-bar-clean">
         <div><i class="fa-solid fa-trademark" style="color:var(--accent-primary);"></i> F2 SPORTS is a Registered Trademark</div>
@@ -3112,7 +3112,7 @@
       renderAdminProductsTable();
     }
 
-    /* PROMPT POPUP CONFIRMATION FOR ORDER DELETION & PERSISTENT SAVE */
+    /* PROMPT POPUP CONFIRMATION FOR ORDER DELETION & SUPABASE SYNC */
     function promptDeleteOrder(index) {
       const order = orders[index];
       document.getElementById('pendingDeleteOrderIndex').value = index;
@@ -3129,15 +3129,21 @@
       const order = orders[index];
       if (!order) return;
 
-      if (supabaseClient && order.docId) {
+      if (supabaseClient) {
         try {
-          await supabaseClient.from('orders').delete().eq('id', order.docId);
+          // Delete by Supabase primary key ID if available, otherwise fallback to order_id
+          if (order.docId) {
+            await supabaseClient.from('orders').delete().eq('id', order.docId);
+          } else {
+            await supabaseClient.from('orders').delete().eq('order_id', order.orderId);
+          }
         } catch (e) {
           console.error("Supabase order deletion error:", e);
         }
       }
+      
       orders.splice(index, 1);
-      saveOrders(); // Persist changes locally so refreshed sessions don't restore deleted orders
+      saveOrders(); // Persist local array updates so refreshed sessions don't restore deleted orders
       updateAdminDashboard();
       closeDeleteOrderModal();
       showToast(`Order #${order.orderId} deleted successfully.`);
