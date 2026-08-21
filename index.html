@@ -271,17 +271,17 @@
       position: relative;
       overflow: hidden;
       padding: 10px 20px;
-      min-height: 280px;
+      min-height: 310px;
       display: flex;
       align-items: center;
     }
 
     .hero-grid-showcase {
-      max-width: 1450px;
+      max-width: 1500px;
       width: 100%;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 340px 1fr 340px;
+      grid-template-columns: 380px 1fr 380px;
       align-items: stretch;
       gap: 20px;
     }
@@ -289,12 +289,12 @@
     .hero-side-column {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
+      gap: 12px;
       align-items: center;
     }
 
     .hero-png-item {
-      height: 220px;
+      height: 240px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -858,7 +858,7 @@
       box-shadow: 0 0 10px rgba(225, 29, 72, 0.3);
     }
 
-    /* MULTI-COLOR PROMINENT BRAND BANNER (+10PX LARGER WITH LOGO ICON) */
+    /* MULTI-COLOR PROMINENT BRAND BANNER */
     .falcon-brand-banner {
       background: var(--bg-surface);
       padding: 36px 20px 24px;
@@ -1494,7 +1494,7 @@
       object-fit: contain;
     }
 
-    @media (max-width: 1024px) {
+    @media (max-width: 1100px) {
       .nav-links {
         display: none;
       }
@@ -1508,8 +1508,8 @@
       }
       .hero-side-column {
         justify-content: center;
-        gap: 20px;
-        height: 180px;
+        grid-template-columns: repeat(4, 1fr);
+        height: 140px;
       }
     }
 
@@ -1570,17 +1570,15 @@
       </div>
     </header>
 
-    <!-- CONTAINER 2: HERO SECTION WITH 4+4 (TOTAL 8) PICTURES SHOWCASE -->
+    <!-- CONTAINER 2: HERO SECTION WITH 4+4 (TOTAL 8) PICTURES SHOWCASE (4 ON LEFT, 4 ON RIGHT) -->
     <section class="hero-sports-wrapper" id="home">
       <div class="hero-grid-showcase">
-        <!-- LEFT 4 TRANSPARENT PNG PHOTOS (2x2 GRID) -->
+        <!-- LEFT 4 PICTURES (2x2 GRID) -->
         <div class="hero-side-column">
-          <div class="hero-png-item">
-            <img src="./hero_bat_1.png" id="heroPhotoImg1" class="hero-png-img" alt="Cricket Bat Slot 1" onerror="handleImgError(this)" />
-          </div>
-          <div class="hero-png-item">
-            <img src="./hero_bat_2.png" id="heroPhotoImg2" class="hero-png-img" alt="Cricket Bat Slot 2" onerror="handleImgError(this)" />
-          </div>
+          <div class="hero-png-item"><img src="./hero_bat_1.png" id="heroPhotoImg1" class="hero-png-img" alt="Bat 1" onerror="handleImgError(this)" /></div>
+          <div class="hero-png-item"><img src="./hero_bat_2.png" id="heroPhotoImg2" class="hero-png-img" alt="Bat 2" onerror="handleImgError(this)" /></div>
+          <div class="hero-png-item"><img src="./hero_bat_1.png" id="heroPhotoImg5" class="hero-png-img" alt="Bat 5" onerror="handleImgError(this)" /></div>
+          <div class="hero-png-item"><img src="./hero_bat_2.png" id="heroPhotoImg6" class="hero-png-img" alt="Bat 6" onerror="handleImgError(this)" /></div>
         </div>
 
         <!-- CENTER TEXT WITH MULTI-COLOR FALCON 2 -->
@@ -1593,14 +1591,12 @@
           <p>Hand-crafted for extraordinary rebound ping, razor-sharp balance, and monster power hitting across all formats.</p>
         </div>
 
-        <!-- RIGHT 4 TRANSPARENT PNG PHOTOS (2x2 GRID) -->
+        <!-- RIGHT 4 PICTURES (2x2 GRID) -->
         <div class="hero-side-column">
-          <div class="hero-png-item">
-            <img src="./hero_bat_3.png" id="heroPhotoImg3" class="hero-png-img" alt="Cricket Bat Slot 3" onerror="handleImgError(this)" />
-          </div>
-          <div class="hero-png-item">
-            <img src="./hero_bat_4.png" id="heroPhotoImg4" class="hero-png-img" alt="Cricket Bat Slot 4" onerror="handleImgError(this)" />
-          </div>
+          <div class="hero-png-item"><img src="./hero_bat_3.png" id="heroPhotoImg3" class="hero-png-img" alt="Bat 3" onerror="handleImgError(this)" /></div>
+          <div class="hero-png-item"><img src="./hero_bat_4.png" id="heroPhotoImg4" class="hero-png-img" alt="Bat 4" onerror="handleImgError(this)" /></div>
+          <div class="hero-png-item"><img src="./hero_bat_3.png" id="heroPhotoImg7" class="hero-png-img" alt="Bat 7" onerror="handleImgError(this)" /></div>
+          <div class="hero-png-item"><img src="./hero_bat_4.png" id="heroPhotoImg8" class="hero-png-img" alt="Bat 8" onerror="handleImgError(this)" /></div>
         </div>
       </div>
     </section>
@@ -1747,7 +1743,7 @@
       <div class="falcon-brand-banner-tag">Mastercraft Cricket Blades &amp; High Velocity Dominators</div>
     </div>
 
-    <!-- MINIMAL CLEAN FOOTER -->
+    <!-- MINIMAL CLEAN FOOTER (NO EXTRA TEXT AT BOTTOM, TRADEMARKS + LOCATION ONLY) -->
     <footer>
       <div class="footer-bar-clean">
         <div><i class="fa-solid fa-trademark" style="color:var(--accent-primary);"></i> F2 SPORTS is a Registered Trademark</div>
@@ -2338,8 +2334,12 @@
       showToast(`Switched to ${currentTheme === 'dark-red' ? 'Complete Dark Red' : 'Light Green Blue'} Mode`);
     }
 
-    // Default 4 Header Showcase Transparent PNGs
+    // Default 8 Header Showcase Transparent PNGs (4 left, 4 right)
     const defaultHeroPhotos = [
+      './hero_bat_1.png',
+      './hero_bat_2.png',
+      './hero_bat_3.png',
+      './hero_bat_4.png',
       './hero_bat_1.png',
       './hero_bat_2.png',
       './hero_bat_3.png',
@@ -2525,7 +2525,7 @@
     }
 
     function applyHeroPhotos() {
-      for (let i = 0; i < 4; i++) {
+      for (let i = 0; i < 8; i++) {
         const heroElem = document.getElementById(`heroPhotoImg${i + 1}`);
         const slotElem = document.getElementById(`slotPreviewImg${i + 1}`);
         if (heroElem && heroPhotos[i]) heroElem.src = heroPhotos[i];
@@ -3016,7 +3016,6 @@
       document.getElementById('activeAdminHeaderLabel').innerText = `Active Admin: ${adminName}`;
       document.getElementById('activeAdminUserDisplay').innerText = adminName;
       
-      // Update welcome banner on top bar
       const badge = document.getElementById('adminWelcomeBadge');
       const text = document.getElementById('adminWelcomeText');
       if (badge && text) {
@@ -3034,7 +3033,6 @@
       document.getElementById('bulkStandaloneView').style.display = 'none';
       document.getElementById('storefrontView').style.display = 'block';
       
-      // Keep welcome badge visible on storefront header if logged in
       const activeAdmin = sessionStorage.getItem('f2_active_admin_user');
       const badge = document.getElementById('adminWelcomeBadge');
       const text = document.getElementById('adminWelcomeText');
