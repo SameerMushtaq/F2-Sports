@@ -835,29 +835,62 @@
       display: block;
     }
 
-    /* BRAND PROMINENT BANNER ABOVE FOOTER */
+    /* HARMONIZED CUSTOM REQUEST FORM */
+    .custom-req-input, .custom-req-textarea {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid var(--border-theme);
+      color: var(--text-main);
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 0.85rem;
+      padding: 8px 12px;
+      transition: var(--transition);
+    }
+
+    .custom-req-input::placeholder, .custom-req-textarea::placeholder {
+      color: var(--text-muted);
+      opacity: 0.7;
+    }
+
+    .custom-req-input:focus, .custom-req-textarea:focus {
+      outline: none;
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 10px rgba(225, 29, 72, 0.3);
+    }
+
+    /* MULTI-COLOR PROMINENT BRAND BANNER (+10PX FONT SIZE & LOGO ICON) */
     .falcon-brand-banner {
       background: var(--bg-surface);
-      padding: 30px 20px 20px;
+      padding: 36px 20px 24px;
       text-align: center;
       border-top: 2px solid var(--border-theme);
     }
 
     .falcon-brand-banner-title {
-      font-size: 2.4rem;
+      font-size: 3.1rem; /* Increased size by 10px from 2.4rem */
       font-weight: 900;
-      color: var(--text-main);
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
+      gap: 14px;
       letter-spacing: -0.5px;
       line-height: 1.1;
     }
 
-    .falcon-brand-banner-title i {
-      color: var(--accent-primary);
-      font-size: 2rem;
+    /* Multi-color gradient font on Falcon 2 Sports */
+    .multi-color-text {
+      background: linear-gradient(135deg, #00f0ff 0%, #38bdf8 30%, #fbbf24 60%, #e11d48 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 2px 10px rgba(225, 29, 72, 0.3));
+    }
+
+    .falcon-banner-logo-img {
+      height: 54px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 0 10px rgba(225, 29, 72, 0.5));
     }
 
     .falcon-brand-banner-tag {
@@ -866,10 +899,10 @@
       letter-spacing: 2px;
       text-transform: uppercase;
       font-weight: 700;
-      margin-top: 4px;
+      margin-top: 6px;
     }
 
-    /* MINIMAL CLEAN FOOTER */
+    /* CLEAN MINIMAL FOOTER */
     footer {
       background: var(--bg-main);
       color: var(--text-muted);
@@ -1239,12 +1272,15 @@
     }
 
     @media (max-width: 992px) {
-      .hero-title-main {
-        font-size: 3rem;
-      }
       .footer-bar-clean {
         flex-direction: column;
         text-align: center;
+      }
+      .hero-title-main {
+        font-size: 3rem;
+      }
+      .falcon-brand-banner-title {
+        font-size: 2.3rem;
       }
     }
   </style>
@@ -1369,7 +1405,7 @@
         <div class="product-grid" id="tennisProductsGrid"></div>
       </section>
 
-      <!-- FOLLOW US ON SOCIAL MEDIA STRIP (BEFORE SUPPORT DESK) -->
+      <!-- FOLLOW US ON SOCIAL MEDIA STRIP -->
       <section class="social-follow-strip">
         <div class="social-follow-wrapper">
           <span class="social-follow-title"><i class="fa-solid fa-hashtag" style="color:var(--accent-primary);"></i> Follow Us:</span>
@@ -1382,7 +1418,7 @@
         </div>
       </section>
 
-      <!-- COMPACT PLAYER SUPPORT CONTAINER -->
+      <!-- COMPACT PLAYER SUPPORT CONTAINER (DARK RED THEMED REQUEST BOX) -->
       <section class="info-section" id="help-suggestions">
         <div class="container" style="padding: 0;">
           <div class="section-header" style="margin-bottom: 16px;">
@@ -1438,13 +1474,13 @@
             <div class="info-card">
               <h3><i class="fa-solid fa-lightbulb" style="color:var(--accent-primary);"></i> Custom Request</h3>
               <form onsubmit="handleSuggestionSubmit(event)">
-                <div class="form-group" style="margin-bottom: 8px;">
-                  <input type="text" class="form-input" style="padding: 6px 10px; font-size: 0.8rem;" placeholder="Your Name" required>
+                <div class="form-group" style="margin-bottom: 10px;">
+                  <input type="text" class="custom-req-input" placeholder="Player Name / Contact" required>
                 </div>
-                <div class="form-group" style="margin-bottom: 8px;">
-                  <textarea class="form-textarea" rows="3" style="padding: 6px 10px; font-size: 0.8rem;" placeholder="Preferred weight, handle shape or custom specifications..." required></textarea>
+                <div class="form-group" style="margin-bottom: 10px;">
+                  <textarea class="custom-req-textarea" rows="3" placeholder="Tell us your preferred weight, handle shape or custom specifications..." required></textarea>
                 </div>
-                <button type="submit" class="btn-submit-order" style="padding: 8px; font-size: 0.8rem; margin-top: 0;">Submit Request</button>
+                <button type="submit" class="btn-submit-order" style="padding: 10px; font-size: 0.85rem; margin-top: 0;">Submit Request</button>
               </form>
             </div>
           </div>
@@ -1452,11 +1488,11 @@
       </section>
     </main>
 
-    <!-- PROMINENT BRAND BANNER ABOVE FOOTER -->
+    <!-- PROMINENT MULTI-COLOR BRAND BANNER (+10PX LARGER WITH LOGO ICON) -->
     <div class="falcon-brand-banner">
       <div class="falcon-brand-banner-title">
-        <i class="fa-solid fa-feather-pointed"></i>
-        <span>Falcon 2 Sports</span>
+        <img src="logo.png" alt="F2 Logo" class="falcon-banner-logo-img" onerror="this.style.display='none'" />
+        <span class="multi-color-text">Falcon 2 Sports</span>
       </div>
       <div class="falcon-brand-banner-tag">Mastercraft Cricket Blades &amp; High Velocity Dominators</div>
     </div>
@@ -1493,30 +1529,25 @@
         Connect directly with our master manufacturing team for customized cleft selection, team logo engraving, wholesale price tiers, and priority tournament shipping. Choose your preferred contact channel below:
       </p>
 
-      <!-- 4 BULK CONTACT CHANNELS -->
       <div class="bulk-channel-grid">
-        <!-- 1. WHATSAPP -->
         <a href="https://wa.me/918493977654?text=Hi%20F2%20Sports,%20I%20want%20to%20inquire%20about%20a%20bulk%20order%20of%20cricket%20bats." target="_blank" class="bulk-channel-card">
           <i class="fa-brands fa-whatsapp" style="color:#25d366;"></i>
           <span>WhatsApp Desk</span>
           <small>Instant chat &amp; catalog</small>
         </a>
 
-        <!-- 2. EMAIL -->
         <a href="mailto:f2sportsstore@gmail.com?cc=Zeesajid55@gmail.com&subject=Bulk%20Order%20Inquiry%20-%20F2%20Sports" class="bulk-channel-card">
           <i class="fa-solid fa-envelope" style="color:var(--accent-primary);"></i>
           <span>Official Email</span>
           <small>Quotations &amp; specs</small>
         </a>
 
-        <!-- 3. INSTAGRAM -->
         <a href="https://www.instagram.com/f2sports__?igsi=ZDNlZDc0MzIxNw==" target="_blank" class="bulk-channel-card">
           <i class="fa-brands fa-instagram" style="color:#e1306c;"></i>
           <span>Instagram DM</span>
           <small>Live bat videos &amp; ping test</small>
         </a>
 
-        <!-- 4. DIRECT CALL -->
         <a href="tel:+918493977654" class="bulk-channel-card">
           <i class="fa-solid fa-phone" style="color:#38bdf8;"></i>
           <span>Direct Phone</span>
@@ -1732,7 +1763,7 @@
     <img src="" alt="Enlarged Product View" class="lightbox-content" id="lightboxImg" onclick="event.stopPropagation()" />
   </div>
 
-  <!-- CART DRAWER -->
+  <!-- FIXED OVERLAY CART DRAWER -->
   <div class="cart-drawer-overlay" id="cartOverlay" onclick="toggleCartDrawer()"></div>
   <div class="cart-drawer" id="cartDrawer">
     <div class="cart-header">
