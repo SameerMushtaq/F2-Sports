@@ -10,9 +10,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- Free Firebase Firestore SDK -->
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <!-- 100% Free Supabase Client SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
     :root {
@@ -139,6 +138,12 @@
 
     .nav-links a:hover {
       color: var(--gold);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
     .cart-btn-trigger {
@@ -391,7 +396,6 @@
       transform: scale(1.06);
     }
 
-    /* MULTI-IMAGE THUMBNAIL PREVIEWS */
     .gallery-thumbs-row {
       display: flex;
       justify-content: center;
@@ -399,11 +403,12 @@
       padding: 6px 12px;
       background: #f1f5f9;
       border-bottom: 1px solid #e2e8f0;
+      overflow-x: auto;
     }
 
     .thumb-btn {
-      width: 32px;
-      height: 32px;
+      width: 34px;
+      height: 34px;
       border-radius: 4px;
       border: 2px solid transparent;
       padding: 2px;
@@ -413,6 +418,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
       transition: var(--transition);
     }
 
@@ -543,7 +549,7 @@
       font-size: 0.9rem;
     }
 
-    /* ADMIN DASHBOARD SECTION */
+    /* ADMIN DASHBOARD */
     .admin-main-section {
       display: none;
       background: #0b1329;
@@ -1253,7 +1259,7 @@
         <div class="section-header" style="margin-bottom:30px;">
           <span class="section-subtitle" style="color:var(--gold);">Cloud Store Management</span>
           <h2 class="section-title" style="color:#ffffff;">F2 Sports Admin Control Center</h2>
-          <p class="section-desc" style="color:#94a3b8;">Real-time Cloud Database, Multi-Photo Uploads &amp; Catalog Management.</p>
+          <p class="section-desc" style="color:#94a3b8;">Real-time Supabase Database, Multi-Photo Storage &amp; Catalog Management.</p>
         </div>
 
         <div class="admin-workspace" id="adminWorkspace">
@@ -1284,9 +1290,14 @@
                 <div style="font-size:0.85rem; font-weight:700; color:#fff;">Admin Active</div>
                 <div style="font-size:0.75rem; color:#94a3b8;">Owner: Sajid | F2 Sports</div>
               </div>
-              <button onclick="handleMainAdminLogout()" class="admin-action-btn" style="background:#ef4444; color:#fff; padding:8px 14px;">
-                <i class="fa-solid fa-power-off"></i> Logout
-              </button>
+              <div style="display:flex; gap:8px;">
+                <button onclick="resetCatalogToDefault()" class="admin-action-btn" style="background:#475569; color:#fff;">
+                  <i class="fa-solid fa-rotate-left"></i> Reset Catalog
+                </button>
+                <button onclick="handleMainAdminLogout()" class="admin-action-btn" style="background:#ef4444; color:#fff;">
+                  <i class="fa-solid fa-power-off"></i> Logout
+                </button>
+              </div>
             </div>
           </div>
 
@@ -1362,15 +1373,15 @@
                     <input type="text" id="newProdTag" class="form-input" placeholder="e.g. Grade 1 English Willow / Reserve Cleft" required />
                   </div>
                   <div class="form-group">
-                    <label class="form-label">Main Image URL / Path (or enter multiple separated by commas)</label>
-                    <input type="text" id="newProdImg" class="form-input" placeholder="e.g. ./front.jpg, ./back.jpg, ./side.jpg" required />
+                    <label class="form-label">Image URLs (comma separated)</label>
+                    <input type="text" id="newProdImg" class="form-input" placeholder="e.g. ./front.jpg, ./back.jpg" required />
                   </div>
                 </div>
 
-                <!-- MULTI-FILE UPLOADER -->
+                <!-- SUPABASE CLOUD MULTI-IMAGE UPLOADER -->
                 <div class="form-group" style="background:rgba(59, 130, 246, 0.1); padding:14px; border-radius:8px; border:1px dashed #3b82f6;">
-                  <label class="form-label" style="color:#93c5fd;"><i class="fa-solid fa-images"></i> Upload Multiple Bat Photos (Front, Back, Side, Profile)</label>
-                  <input type="file" id="newProdFileInput" class="form-input" accept="image/*" multiple onchange="processMultiplePhotos(this, 'newProdImg', 'newProdUploadStatus')" />
+                  <label class="form-label" style="color:#93c5fd;"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Photos (Front, Back, Side) - Auto Cloud Hosting</label>
+                  <input type="file" id="newProdFileInput" class="form-input" accept="image/*" multiple onchange="uploadPhotosToSupabase(this, 'newProdImg', 'newProdUploadStatus')" />
                   <div id="newProdUploadStatus" style="font-size:0.8rem; color:#38bdf8; margin-top:6px; font-weight:600;"></div>
                 </div>
 
@@ -1537,7 +1548,7 @@
     </div>
   </div>
 
-  <!-- EDIT PRODUCT MODAL WITH MULTI-IMAGE UPLOADER -->
+  <!-- EDIT PRODUCT MODAL WITH SUPABASE MULTI-IMAGE UPLOADER -->
   <div class="modal-overlay" id="editProductModal">
     <div class="modal-box" style="background:#1e293b; color:#fff; max-width:600px;">
       <div class="modal-header" style="background:#0f172a;">
@@ -1580,15 +1591,15 @@
               <input type="text" id="editProdTag" class="form-input" required />
             </div>
             <div class="form-group">
-              <label class="form-label">Image URLs (comma separated for multiple)</label>
+              <label class="form-label">Image URLs (comma separated)</label>
               <input type="text" id="editProdImg" class="form-input" required />
             </div>
           </div>
 
-          <!-- MULTI-PHOTO UPLOADER -->
+          <!-- SUPABASE MULTI-PHOTO UPLOADER -->
           <div class="form-group" style="background:rgba(59, 130, 246, 0.1); padding:14px; border-radius:8px; border:1px dashed #3b82f6;">
-            <label class="form-label" style="color:#93c5fd;"><i class="fa-solid fa-images"></i> Upload Multiple Photos from Device (Front, Back, Side)</label>
-            <input type="file" id="editProdFileInput" class="form-input" accept="image/*" multiple onchange="processMultiplePhotos(this, 'editProdImg', 'editProdUploadStatus')" />
+            <label class="form-label" style="color:#93c5fd;"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Photos (Front, Back, Side) - Auto Cloud Hosting</label>
+            <input type="file" id="editProdFileInput" class="form-input" accept="image/*" multiple onchange="uploadPhotosToSupabase(this, 'editProdImg', 'editProdUploadStatus')" />
             <div id="editProdUploadStatus" style="font-size:0.8rem; color:#38bdf8; margin-top:6px; font-weight:600;"></div>
           </div>
 
@@ -1680,86 +1691,70 @@
     <span id="toastMsg">Added to cart</span>
   </div>
 
-<script>
+  <script>
     const fallbackImage = 'https://images.unsplash.com/photo-1531415074868-036b107e775a?q=80&w=800&auto=format&fit=crop';
-    
-    // Web3Forms Key registered for f2sportsstore@gmail.com
     const WEB3FORMS_ACCESS_KEY = "bbabe700-fc35-4a93-8f7c-244ec811d041";
 
-    // Firebase Firestore Cloud Config
-    const firebaseConfig = {
-      apiKey: "AIzaSyC_i6-PRaMMs2dLu8q8MC63Iy8p0dyKmF8",
-      authDomain: "f2-sports-store.firebaseapp.com",
-      projectId: "f2-sports-store",
-      storageBucket: "f2-sports-store.firebasestorage.app",
-      messagingSenderId: "76855377821",
-      appId: "1:76855377821:web:7d5835e372caee9c9eb974",
-      measurementId: "G-SCPRHC0L1P"
-    };
-
-    let db = null;
+    // SUPABASE CREDENTIALS
+    const supabaseUrl = 'https://pgfibpfvlxcllpqbekum.supabase.co';
+    const supabaseKey = 'sb_publishable_PJIkuydJjYiyPrg4ldF75A__zUloN_A';
+    
+    let supabase = null;
     try {
-      firebase.initializeApp(firebaseConfig);
-      db = firebase.firestore();
+      supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
     } catch (e) {
-      console.warn("Firebase notice:", e);
+      console.warn("Supabase initialization error:", e);
     }
 
-    // MULTI-IMAGE COMPRESSOR & PROCESSOR
-    function compressImageFile(file) {
-      return new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          const img = new Image();
-          img.onload = function() {
-            const canvas = document.createElement('canvas');
-            const maxDim = 800;
-            let width = img.width;
-            let height = img.height;
-
-            if (width > height) {
-              if (width > maxDim) {
-                height *= maxDim / width;
-                width = maxDim;
-              }
-            } else {
-              if (height > maxDim) {
-                width *= maxDim / height;
-                height = maxDim;
-              }
-            }
-
-            canvas.width = width;
-            canvas.height = height;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(img, 0, 0, width, height);
-            resolve(canvas.toDataURL('image/jpeg', 0.82));
-          };
-          img.src = e.target.result;
-        };
-        reader.readAsDataURL(file);
-      });
-    }
-
-    async function processMultiplePhotos(fileInputElement, targetUrlInputId, statusDisplayId) {
+    // MULTI-IMAGE DIRECT UPLOAD TO SUPABASE STORAGE
+    async function uploadPhotosToSupabase(fileInputElement, targetUrlInputId, statusDisplayId) {
       const files = Array.from(fileInputElement.files);
       if (!files.length) return;
 
       const statusEl = document.getElementById(statusDisplayId);
-      if (statusEl) statusEl.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Compressing ${files.length} images...`;
+      if (statusEl) statusEl.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Uploading ${files.length} images to Supabase...`;
+
+      if (!supabase) {
+        if (statusEl) statusEl.innerHTML = `<span style="color:#ef4444;">Supabase client not initialized.</span>`;
+        return;
+      }
+
+      const uploadedUrls = [];
 
       try {
-        const base64List = await Promise.all(files.map(f => compressImageFile(f)));
-        const combined = base64List.join(' , ');
-        document.getElementById(targetUrlInputId).value = combined;
-        if (statusEl) statusEl.innerHTML = `<span style="color:#10b981;"><i class="fa-solid fa-check-circle"></i> ${files.length} photos ready for gallery!</span>`;
-        showToast(`${files.length} photos processed!`);
+        for (const file of files) {
+          const fileExt = file.name.split('.').pop();
+          const fileName = `${Date.now()}_${Math.random().toString(36).substring(2, 8)}.${fileExt}`;
+          const filePath = `bats/${fileName}`;
+
+          const { error: uploadError } = await supabase.storage
+            .from('bat-images')
+            .upload(filePath, file);
+
+          if (uploadError) {
+            console.error("Supabase upload error:", uploadError);
+            continue;
+          }
+
+          const { data: publicUrlData } = supabase.storage
+            .from('bat-images')
+            .getPublicUrl(filePath);
+
+          if (publicUrlData && publicUrlData.publicUrl) {
+            uploadedUrls.push(publicUrlData.publicUrl);
+          }
+        }
+
+        if (uploadedUrls.length) {
+          document.getElementById(targetUrlInputId).value = uploadedUrls.join(' , ');
+          if (statusEl) statusEl.innerHTML = `<span style="color:#10b981;"><i class="fa-solid fa-check-circle"></i> ${uploadedUrls.length} photo(s) hosted on Supabase!</span>`;
+          showToast(`${uploadedUrls.length} photos uploaded to Supabase!`);
+        }
       } catch (err) {
-        console.error("Multi-image upload error:", err);
+        console.error("Supabase upload exception:", err);
+        if (statusEl) statusEl.innerHTML = `<span style="color:#ef4444;">Upload failed. Check Storage bucket name.</span>`;
       }
     }
-
-    const defaultBatImage = 'https://images.unsplash.com/photo-1531415074868-036b107e775a?q=80&w=800&auto=format&fit=crop';
 
     const initialProducts = [
       {
@@ -1960,13 +1955,13 @@
       return list.length ? list : [fallbackImage];
     }
 
-    function saveProducts() {
+    async function saveProducts() {
       localStorage.setItem('f2_products', JSON.stringify(products));
-      if (db) {
+      if (supabase) {
         try {
-          db.collection("catalog").doc("current").set({ products: products });
+          await supabase.from('catalog').upsert({ id: 'current', data: products });
         } catch (e) {
-          console.warn("Catalog sync error:", e);
+          console.warn("Supabase catalog sync error:", e);
         }
       }
     }
@@ -1976,7 +1971,7 @@
     }
 
     function resetCatalogToDefault() {
-      if (confirm("Reset the catalog to default product photos & list? This will remove corrupted images.")) {
+      if (confirm("Reset catalog to original presets? This will clear corrupted image references.")) {
         products = JSON.parse(JSON.stringify(initialProducts));
         saveProducts();
         renderProducts();
@@ -1985,23 +1980,43 @@
       }
     }
 
-    function listenToCloudOrders() {
-      if (!db) return;
-      
-      db.collection("catalog").doc("current").onSnapshot(doc => {
-        if (doc.exists && doc.data().products) {
-          products = doc.data().products;
+    async function loadCloudData() {
+      if (!supabase) return;
+
+      // Load Catalog from Supabase
+      try {
+        const { data: catData } = await supabase.from('catalog').select('data').eq('id', 'current').single();
+        if (catData && catData.data) {
+          products = catData.data;
           localStorage.setItem('f2_products', JSON.stringify(products));
           renderProducts();
           updateAdminDashboard();
         }
-      }, err => console.log("Catalog listener active"));
+      } catch (e) {
+        console.log("Supabase catalog fetch fallback");
+      }
 
-      db.collection("orders").orderBy("createdAt", "desc").onSnapshot(snapshot => {
-        orders = snapshot.docs.map(doc => ({ docId: doc.id, ...doc.data() }));
-        saveOrders();
-        updateAdminDashboard();
-      }, err => console.log("Orders listener active"));
+      // Load Orders from Supabase
+      try {
+        const { data: ordersData } = await supabase.from('orders').select('*').order('created_at', { ascending: false });
+        if (ordersData) {
+          orders = ordersData.map(o => ({
+            dbId: o.id,
+            orderId: o.order_id,
+            date: o.date,
+            customer: o.customer,
+            items: o.items,
+            totalAmount: o.total_amount,
+            numericAmount: Number(o.numeric_amount) || 0,
+            utr: o.utr,
+            status: o.status
+          }));
+          saveOrders();
+          updateAdminDashboard();
+        }
+      } catch (e) {
+        console.log("Supabase orders fetch fallback");
+      }
     }
 
     function handleImgError(imgElement) {
@@ -2250,13 +2265,13 @@
       const rawNum = Number(totalAmount.replace(/[^0-9]/g, '')) || 0;
 
       const orderId = 'F2-' + Math.floor(100000 + Math.random() * 900000);
+      const currentDateStr = new Date().toLocaleString('en-IN');
       const itemsList = Object.values(cart);
       const itemsSummary = itemsList.map(i => `${i.name} (Qty: ${i.qty}) - Rs. ${(Number(i.price) * i.qty).toLocaleString('en-IN')}`).join('\n');
 
       const orderData = {
         orderId: orderId,
-        date: new Date().toLocaleString('en-IN'),
-        createdAt: Date.now(),
+        date: currentDateStr,
         customer: { name, email, phone, address },
         utr: utr,
         items: itemsList,
@@ -2265,18 +2280,30 @@
         status: 'Order Booked'
       };
 
-      if (db) {
+      // 1. Save to Supabase Cloud Database
+      if (supabase) {
         try {
-          await db.collection("orders").add(orderData);
+          await supabase.from('orders').insert([{
+            order_id: orderId,
+            customer: { name, email, phone, address },
+            items: itemsList,
+            total_amount: totalAmount,
+            numeric_amount: rawNum,
+            utr: utr,
+            status: 'Order Booked',
+            date: currentDateStr
+          }]);
         } catch (err) {
-          console.error("Firestore database write error:", err);
+          console.error("Supabase Database write error:", err);
         }
       }
 
+      // 2. Local State update
       orders.unshift(orderData);
       saveOrders();
       updateAdminDashboard();
 
+      // 3. Automated Web3Forms Alert
       try {
         await fetch("https://api.web3forms.com/submit", {
           method: "POST",
@@ -2654,13 +2681,12 @@
 
       order.status = `Dispatched via ${courierName} (AWB: ${trackingNo})`;
 
-      if (db && order.docId) {
+      // Update Supabase record
+      if (supabase && order.dbId) {
         try {
-          await db.collection("orders").doc(order.docId).update({
-            status: order.status
-          });
+          await supabase.from('orders').update({ status: order.status }).eq('id', order.dbId);
         } catch (e) {
-          console.error("Cloud status update error:", e);
+          console.error("Supabase status update error:", e);
         }
       }
 
@@ -2688,7 +2714,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       renderProducts();
       updateCartUI();
-      listenToCloudOrders();
+      loadCloudData();
       if (sessionStorage.getItem('f2_main_admin_auth')) {
         document.getElementById('admin-section').style.display = 'block';
         updateAdminDashboard();
