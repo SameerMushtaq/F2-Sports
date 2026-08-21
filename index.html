@@ -323,7 +323,6 @@
     .hero-title-main {
       font-size: 3.8rem;
       font-weight: 900;
-      color: var(--accent-primary);
       display: block;
       line-height: 1;
       margin: 2px 0;
@@ -822,7 +821,7 @@
       display: block;
     }
 
-    /* HARMONIZED CUSTOM REQUEST FORM */
+    /* CUSTOM REQUEST FORM */
     .custom-req-input, .custom-req-textarea {
       width: 100%;
       background: rgba(0, 0, 0, 0.25);
@@ -1554,7 +1553,7 @@
       </div>
     </header>
 
-    <!-- CONTAINER 2: HERO SECTION WITH FULL-HEIGHT VERTICAL PNG PHOTOS -->
+    <!-- CONTAINER 2: HERO SECTION WITH FULL-HEIGHT VERTICAL PNG PHOTOS & MULTI-COLOR FALCON 2 -->
     <section class="hero-sports-wrapper" id="home">
       <div class="hero-grid-showcase">
         <!-- LEFT 2 TRANSPARENT PNG PHOTOS -->
@@ -1567,11 +1566,11 @@
           </div>
         </div>
 
-        <!-- CENTER TEXT -->
+        <!-- CENTER TEXT WITH MULTI-COLOR FALCON 2 -->
         <div class="hero-center-content">
           <h1>
             <span class="hero-title-prefix">Power Your Game With</span>
-            <span class="hero-title-main">Falcon 2</span>
+            <span class="hero-title-main multi-color-text">Falcon 2</span>
             <span class="hero-title-suffix">Sports Mastercraft Bats</span>
           </h1>
           <p>Hand-crafted for extraordinary rebound ping, razor-sharp balance, and monster power hitting across all formats.</p>
@@ -1722,7 +1721,7 @@
       </section>
     </main>
 
-    <!-- PROMINENT MULTI-COLOR BRAND BANNER (INCREASED SIZE BY 10PX & LOGO ICON) -->
+    <!-- PROMINENT MULTI-COLOR BRAND BANNER -->
     <div class="falcon-brand-banner">
       <div class="falcon-brand-banner-title">
         <img src="logo.png" alt="F2 Logo" class="falcon-banner-logo-img" onerror="this.style.display='none'" />
@@ -2058,25 +2057,6 @@
     </div>
   </div>
 
-  <!-- ORDER SUCCESS / THANK YOU MODAL CONTAINER -->
-  <div class="modal-overlay" id="orderSuccessModal" onclick="closeOrderSuccessModal()">
-    <div class="modal-box" onclick="event.stopPropagation()" style="max-width: 440px;">
-      <div class="modal-header">
-        <h3 style="font-size:1.2rem;"><i class="fa-solid fa-circle-check" style="color:#10b981;"></i> Order Successful</h3>
-        <button class="close-cart-btn" onclick="closeOrderSuccessModal()"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <div class="modal-body success-modal-content">
-        <div class="success-modal-icon">
-          <i class="fa-solid fa-circle-check"></i>
-        </div>
-        <h3 class="multi-color-text" style="font-size: 1.8rem; font-weight: 800; margin-bottom: 8px;" id="successModalTitle">Falcon 2</h3>
-        <p style="font-size: 1rem; font-weight: 700; color: var(--text-main); margin-bottom: 6px;" id="successCustomerHeading">Thank you, Valued Player!</p>
-        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px;" id="successOrderIdText">Your order has been successfully recorded and sent to fulfillment.</p>
-        <button onclick="closeOrderSuccessModal()" class="btn-submit-order">Continue Shopping</button>
-      </div>
-    </div>
-  </div>
-
   <!-- ADMIN LOGIN MODAL -->
   <div class="modal-overlay" id="adminLoginModal" onclick="closeAdminLoginModal()">
     <div class="modal-box" onclick="event.stopPropagation()">
@@ -2167,6 +2147,43 @@
             <i class="fa-solid fa-check"></i> Update Password
           </button>
         </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ORDER DELETE CONFIRMATION POPUP MODAL -->
+  <div class="modal-overlay" id="deleteOrderConfirmModal" onclick="closeDeleteOrderModal()">
+    <div class="modal-box" onclick="event.stopPropagation()" style="max-width: 400px; text-align: center;">
+      <div class="modal-header" style="background: #b91c1c;">
+        <h3 style="font-size:1.2rem; color: #fff;"><i class="fa-solid fa-triangle-exclamation"></i> Confirm Order Deletion</h3>
+        <button class="close-cart-btn" onclick="closeDeleteOrderModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body" style="padding: 24px;">
+        <p style="font-size: 0.95rem; color: var(--text-main); margin-bottom: 20px;" id="deleteOrderConfirmText">Are you sure you want to delete this order for foul play?</p>
+        <input type="hidden" id="pendingDeleteOrderIndex" />
+        <div style="display: flex; gap: 12px; justify-content: center;">
+          <button onclick="closeDeleteOrderModal()" class="admin-action-btn" style="background: #475569; color: #fff; padding: 10px 20px; font-size: 0.9rem;">Cancel</button>
+          <button onclick="confirmDeleteOrderAction()" class="admin-action-btn" style="background: #ef4444; color: #fff; padding: 10px 20px; font-size: 0.9rem;">Yes, Delete Order</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ORDER SUCCESS / THANK YOU MODAL CONTAINER -->
+  <div class="modal-overlay" id="orderSuccessModal" onclick="closeOrderSuccessModal()">
+    <div class="modal-box" onclick="event.stopPropagation()" style="max-width: 440px;">
+      <div class="modal-header">
+        <h3 style="font-size:1.2rem;"><i class="fa-solid fa-circle-check" style="color:#10b981;"></i> Order Successful</h3>
+        <button class="close-cart-btn" onclick="closeOrderSuccessModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body success-modal-content">
+        <div class="success-modal-icon">
+          <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <h3 class="multi-color-text" style="font-size: 1.8rem; font-weight: 800; margin-bottom: 8px;">Falcon 2</h3>
+        <p style="font-size: 1rem; font-weight: 700; color: var(--text-main); margin-bottom: 6px;" id="successCustomerHeading">Thank you, Valued Player!</p>
+        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px;" id="successOrderIdText">Your order has been successfully recorded and sent to fulfillment.</p>
+        <button onclick="closeOrderSuccessModal()" class="btn-submit-order">Continue Shopping</button>
       </div>
     </div>
   </div>
@@ -3094,22 +3111,35 @@
       renderAdminProductsTable();
     }
 
-    /* DELETE ORDER FUNCTIONALITY (FOR FOUL PLAY / TEST ORDERS) */
-    async function deleteOrder(index) {
+    /* PROMPT POPUP CONFIRMATION FOR ORDER DELETION */
+    function promptDeleteOrder(index) {
       const order = orders[index];
-      if (confirm(`Are you sure you want to delete Order #${order.orderId}?`)) {
-        if (supabaseClient && order.docId) {
-          try {
-            await supabaseClient.from('orders').delete().eq('id', order.docId);
-          } catch (e) {
-            console.error("Supabase order deletion error:", e);
-          }
+      document.getElementById('pendingDeleteOrderIndex').value = index;
+      document.getElementById('deleteOrderConfirmText').innerText = `Are you sure you want to delete Order #${order.orderId} for foul play?`;
+      document.getElementById('deleteOrderConfirmModal').classList.add('active');
+    }
+
+    function closeDeleteOrderModal() {
+      document.getElementById('deleteOrderConfirmModal').classList.remove('active');
+    }
+
+    async function confirmDeleteOrderAction() {
+      const index = parseInt(document.getElementById('pendingDeleteOrderIndex').value);
+      const order = orders[index];
+      if (!order) return;
+
+      if (supabaseClient && order.docId) {
+        try {
+          await supabaseClient.from('orders').delete().eq('id', order.docId);
+        } catch (e) {
+          console.error("Supabase order deletion error:", e);
         }
-        orders.splice(index, 1);
-        saveOrders();
-        updateAdminDashboard();
-        showToast(`Order #${order.orderId} deleted successfully.`);
       }
+      orders.splice(index, 1);
+      saveOrders();
+      updateAdminDashboard();
+      closeDeleteOrderModal();
+      showToast(`Order #${order.orderId} deleted successfully.`);
     }
 
     function renderAdminOrdersList() {
@@ -3125,8 +3155,15 @@
       orders.forEach((order, index) => {
         const itemsListStr = order.items.map(i => `${i.name} (x${i.qty})`).join(', ');
         container.innerHTML += `
-          <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:8px; padding:20px; margin-bottom:16px;">
-            <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border-subtle); padding-bottom:10px; margin-bottom:12px; font-weight:800; font-size:1.15rem;">
+          <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:8px; padding:20px; margin-bottom:16px; position:relative;">
+            <!-- DELETE BUTTON PLACED ON THE OTHER CORNER (TOP RIGHT) -->
+            <div style="position: absolute; top: 16px; right: 16px;">
+              <button class="admin-action-btn" style="background:#ef4444; color:#fff; padding: 6px 12px; font-weight: 700;" onclick="promptDeleteOrder(${index})">
+                <i class="fa-solid fa-trash"></i> Delete Order
+              </button>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border-subtle); padding-bottom:10px; margin-bottom:12px; font-weight:800; font-size:1.15rem; padding-right: 120px;">
               <span>Order #${order.orderId}</span>
               <span style="color:var(--accent-primary);">${order.totalAmount}</span>
             </div>
@@ -3144,9 +3181,6 @@
               </button>
               <button class="admin-action-btn" style="background:#059669; color:#fff;" onclick="markOrderDispatched(${index})">
                 <i class="fa-solid fa-truck-fast"></i> Update Dispatch &amp; Email Tracking
-              </button>
-              <button class="admin-action-btn" style="background:#ef4444; color:#fff;" onclick="deleteOrder(${index})">
-                <i class="fa-solid fa-trash"></i> Delete Order (Foul Play)
               </button>
             </div>
           </div>
