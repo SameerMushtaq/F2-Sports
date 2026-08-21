@@ -7,7 +7,7 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <!-- Supabase Cloud SDK -->
@@ -15,20 +15,21 @@
 
   <style>
     :root {
-      --neon-cyan: #00f0ff;
-      --neon-blue: #0088ff;
-      --neon-yellow: #ffe600;
-      --neon-gold: #ffd000;
-      --dark-bg: #040914;
-      --dark-surface: #0a1326;
-      --dark-card: #0f1c38;
-      --border-neon: rgba(0, 240, 255, 0.25);
-      --border-glow: rgba(0, 240, 255, 0.5);
-      --text-main: #f0fdf4;
-      --text-muted: #8ba2c7;
-      --radius: 12px;
-      --shadow-neon: 0 0 20px rgba(0, 240, 255, 0.25);
-      --shadow-yellow: 0 0 20px rgba(255, 230, 0, 0.3);
+      /* Premium Athletic Carbon & Crimson Sports Colorway */
+      --sports-red: #e11d48;
+      --sports-red-hover: #be123c;
+      --sports-gold: #fbbf24;
+      --sports-gold-glow: #f59e0b;
+      --carbon-black: #080b11;
+      --carbon-surface: #0f172a;
+      --carbon-card: #17223b;
+      --sports-border: rgba(225, 29, 72, 0.35);
+      --sports-border-gold: rgba(251, 191, 36, 0.4);
+      --text-white: #ffffff;
+      --text-muted: #94a3b8;
+      --radius: 10px;
+      --shadow-sports: 0 10px 25px -5px rgba(225, 29, 72, 0.3);
+      --shadow-gold: 0 0 20px rgba(251, 191, 36, 0.35);
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -41,55 +42,57 @@
 
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: var(--dark-bg);
-      color: var(--text-main);
+      background-color: var(--carbon-black);
+      color: var(--text-white);
       line-height: 1.5;
       overflow-x: hidden;
     }
 
-    h1, h2, h3, h4, .brand-font {
-      font-family: 'Outfit', sans-serif;
-      font-weight: 700;
+    .brand-font, h1, h2, h3, h4, .sports-heading {
+      font-family: 'Teko', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     header {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(4, 9, 20, 0.94);
+      background: rgba(8, 11, 17, 0.96);
       backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border-neon);
-      box-shadow: 0 4px 25px rgba(0, 240, 255, 0.1);
+      border-bottom: 2px solid var(--sports-red);
+      box-shadow: 0 4px 20px rgba(225, 29, 72, 0.2);
+      width: 100%;
     }
 
     .navbar {
-      max-width: 1380px;
-      margin: 0 auto;
+      width: 100%;
+      max-width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 12px 24px;
-      gap: 16px;
+      padding: 10px 20px;
+      position: relative;
     }
 
     .logo-container {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       text-decoration: none;
       flex-shrink: 0;
     }
 
     .logo-img {
-      height: 46px;
+      height: 48px;
       width: auto;
       object-fit: contain;
-      filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.4));
+      filter: drop-shadow(0 0 10px rgba(225, 29, 72, 0.6));
     }
 
     .logo-fallback {
-      background: linear-gradient(135deg, var(--neon-cyan), var(--neon-blue));
-      color: #040914;
+      background: linear-gradient(135deg, var(--sports-red), #991b1b);
+      color: #ffffff;
       font-weight: 900;
       font-size: 1.4rem;
       width: 44px;
@@ -97,53 +100,56 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 10px;
-      box-shadow: var(--shadow-neon);
+      border-radius: 8px;
+      box-shadow: var(--shadow-sports);
     }
 
     .logo-title {
-      font-size: 1.35rem;
+      font-size: 1.4rem;
       font-weight: 800;
       color: #ffffff;
       line-height: 1.1;
-      letter-spacing: 0.5px;
     }
 
     .logo-title span {
-      color: var(--neon-yellow);
-      text-shadow: 0 0 10px rgba(255, 230, 0, 0.5);
+      color: var(--sports-gold);
+      text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
     }
 
     .logo-tagline {
-      font-size: 0.68rem;
-      color: var(--neon-cyan);
+      font-size: 0.65rem;
+      color: var(--sports-red);
       text-transform: uppercase;
-      letter-spacing: 1.8px;
+      letter-spacing: 2px;
       display: block;
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .nav-links {
       display: flex;
       list-style: none;
-      gap: 20px;
+      gap: 24px;
       align-items: center;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
     }
 
     .nav-links a {
-      color: var(--text-main);
+      color: var(--text-white);
       text-decoration: none;
-      font-size: 0.92rem;
+      font-size: 0.95rem;
       font-weight: 700;
       transition: var(--transition);
       display: flex;
       align-items: center;
       gap: 6px;
+      letter-spacing: 0.5px;
     }
 
     .nav-links a:hover {
-      color: var(--neon-cyan);
-      text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+      color: var(--sports-gold);
+      text-shadow: 0 0 10px rgba(251, 191, 36, 0.6);
     }
 
     .nav-actions {
@@ -154,118 +160,166 @@
     }
 
     .btn-admin-portal-link {
-      background: rgba(255, 230, 0, 0.08);
-      border: 1px solid var(--neon-yellow);
-      color: var(--neon-yellow);
-      padding: 8px 16px;
-      border-radius: 50px;
+      background: rgba(251, 191, 36, 0.1);
+      border: 1.5px solid var(--sports-gold);
+      color: var(--sports-gold);
+      padding: 7px 16px;
+      border-radius: 4px;
       cursor: pointer;
-      font-weight: 700;
+      font-weight: 800;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .btn-admin-portal-link:hover {
+      background: var(--sports-gold);
+      color: var(--carbon-black);
+      box-shadow: var(--shadow-gold);
+    }
+
+    .cart-btn-trigger {
+      background: var(--sports-red);
+      color: #fff;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 800;
       font-size: 0.85rem;
       display: flex;
       align-items: center;
       gap: 8px;
       transition: var(--transition);
-      text-decoration: none;
-    }
-
-    .btn-admin-portal-link:hover {
-      background: var(--neon-yellow);
-      color: var(--dark-bg);
-      box-shadow: var(--shadow-yellow);
-    }
-
-    .cart-btn-trigger {
-      background: rgba(0, 240, 255, 0.1);
-      color: #fff;
-      border: 1px solid var(--neon-cyan);
-      padding: 8px 20px;
-      border-radius: 50px;
-      cursor: pointer;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      transition: var(--transition);
-      box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+      box-shadow: var(--shadow-sports);
+      text-transform: uppercase;
     }
 
     .cart-btn-trigger:hover {
-      background: var(--neon-cyan);
-      color: var(--dark-bg);
-      box-shadow: var(--shadow-neon);
+      background: var(--sports-red-hover);
+      transform: translateY(-2px);
     }
 
     .cart-badge-count {
-      background: var(--neon-yellow);
-      color: #040914;
+      background: var(--sports-gold);
+      color: var(--carbon-black);
       font-size: 0.75rem;
       font-weight: 900;
       border-radius: 50%;
-      width: 22px;
-      height: 22px;
+      width: 20px;
+      height: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    /* NEON HERO SECTION WITH PROPORTIONAL TYPOGRAPHY */
-    .hero {
-      background: radial-gradient(circle at center, rgba(0, 136, 255, 0.22) 0%, rgba(4, 9, 20, 0.98) 75%), 
-                  url('https://images.unsplash.com/photo-1531415074868-036b107e775a?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
-      color: white;
-      padding: 80px 24px 70px;
-      text-align: center;
+    /* ATHLETIC HERO SECTION WITH 4 TRANSPARENT PNG SLOTS */
+    .hero-sports-wrapper {
+      background: radial-gradient(circle at center, rgba(225, 29, 72, 0.15) 0%, rgba(8, 11, 17, 0.98) 80%),
+                  repeating-linear-gradient(45deg, rgba(255,255,255,0.015) 0, rgba(255,255,255,0.015) 1px, transparent 0, transparent 20px);
+      border-bottom: 2px solid var(--sports-border);
       position: relative;
-      border-bottom: 1px solid var(--border-neon);
+      overflow: hidden;
+      padding: 30px 20px;
+    }
+
+    .hero-grid-showcase {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 260px 1fr 260px;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .hero-side-column {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      gap: 15px;
+      height: 100%;
+    }
+
+    .hero-png-item {
+      width: 120px;
+      height: 190px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .hero-png-img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 10px rgba(225, 29, 72, 0.3));
+      transition: transform 0.4s ease;
+    }
+
+    .hero-png-item:hover .hero-png-img {
+      transform: scale(1.1) translateY(-6px);
+      filter: drop-shadow(0 15px 20px rgba(251, 191, 36, 0.4));
+    }
+
+    .hero-center-content {
+      text-align: center;
+      padding: 0 15px;
     }
 
     .hero-title-prefix {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       font-weight: 600;
-      color: #cbd5e1;
+      color: #e2e8f0;
       display: block;
-      letter-spacing: 1px;
-      margin-bottom: 4px;
-      text-transform: uppercase;
+      letter-spacing: 2px;
+      line-height: 1;
     }
 
     .hero-title-main {
-      font-size: 4.6rem;
-      font-weight: 900;
-      color: var(--neon-cyan);
-      text-shadow: 0 0 35px rgba(0, 240, 255, 0.8), 0 0 70px rgba(0, 240, 255, 0.4);
+      font-size: 5rem;
+      font-weight: 800;
+      color: var(--sports-gold);
+      text-shadow: 0 0 25px rgba(251, 191, 36, 0.6);
       display: block;
-      line-height: 1.05;
-      letter-spacing: -1px;
+      line-height: 0.9;
+      margin: 4px 0;
+      letter-spacing: 1px;
     }
 
     .hero-title-suffix {
-      font-size: 1.65rem;
+      font-size: 2.2rem;
       font-weight: 700;
-      color: var(--neon-yellow);
-      text-shadow: 0 0 20px rgba(255, 230, 0, 0.6);
+      color: var(--sports-red);
+      text-shadow: 0 0 20px rgba(225, 29, 72, 0.6);
       display: block;
-      margin-top: 6px;
-      letter-spacing: 0.5px;
+      line-height: 1;
+      letter-spacing: 1.5px;
     }
 
-    .hero p {
-      font-size: 1.08rem;
+    .hero-center-content p {
+      font-size: 0.95rem;
       color: var(--text-muted);
-      max-width: 680px;
-      margin: 18px auto 0;
+      max-width: 580px;
+      margin: 12px auto 0;
+      line-height: 1.4;
+      font-weight: 500;
     }
 
-    /* CONTINUOUS FLOATING MARQUEE STRIP ABOVE PRODUCTS */
+    /* FLOATING TICKER STRIP */
     .floating-ticker-wrapper {
-      background: linear-gradient(90deg, #991b1b, #dc2626, #b91c1c, #991b1b);
+      background: linear-gradient(90deg, #991b1b, #e11d48, #b91c1c, #991b1b);
       border-top: 1px solid rgba(255, 255, 255, 0.2);
       border-bottom: 1px solid rgba(255, 255, 255, 0.2);
       overflow: hidden;
       white-space: nowrap;
-      padding: 9px 0;
-      box-shadow: 0 0 15px rgba(220, 38, 38, 0.5);
+      padding: 8px 0;
+      box-shadow: 0 0 20px rgba(225, 29, 72, 0.4);
     }
 
     .floating-ticker-track {
@@ -275,18 +329,18 @@
 
     .ticker-item {
       color: #ffffff;
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       font-weight: 800;
       letter-spacing: 1px;
       text-transform: uppercase;
-      padding: 0 40px;
+      padding: 0 35px;
       display: inline-flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
 
     .ticker-item i {
-      color: var(--neon-yellow);
+      color: var(--sports-gold);
     }
 
     @keyframes marqueeScroll {
@@ -295,54 +349,52 @@
     }
 
     .container {
-      max-width: 1280px;
+      max-width: 1320px;
       margin: 0 auto;
       padding: 45px 20px;
     }
 
     .section-header {
       text-align: center;
-      margin-bottom: 35px;
+      margin-bottom: 30px;
     }
 
     .section-subtitle {
-      color: var(--neon-yellow);
-      font-size: 0.85rem;
-      font-weight: 800;
-      text-transform: uppercase;
+      color: var(--sports-gold);
+      font-size: 1.1rem;
+      font-weight: 700;
       letter-spacing: 2px;
       display: block;
-      margin-bottom: 6px;
-      text-shadow: 0 0 8px rgba(255, 230, 0, 0.4);
+      margin-bottom: 0px;
     }
 
     .section-title {
-      font-size: 2.2rem;
+      font-size: 3rem;
       color: #ffffff;
-      margin-bottom: 8px;
-      text-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+      margin-bottom: 4px;
+      line-height: 1;
+      letter-spacing: 1px;
     }
 
     .section-desc {
       color: var(--text-muted);
-      max-width: 600px;
+      max-width: 620px;
       margin: 0 auto;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
     }
 
     .product-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
       gap: 24px;
     }
 
-    /* NEON THEMED PRODUCT CARD */
     .product-card {
-      background: var(--dark-card);
+      background: var(--carbon-card);
       border-radius: var(--radius);
-      border: 1px solid var(--border-neon);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
       display: flex;
       flex-direction: column;
       transition: var(--transition);
@@ -351,8 +403,8 @@
 
     .product-card:hover {
       transform: translateY(-6px);
-      border-color: var(--neon-cyan);
-      box-shadow: var(--shadow-neon);
+      border-color: var(--sports-red);
+      box-shadow: var(--shadow-sports);
     }
 
     .product-card.out-of-stock {
@@ -364,7 +416,7 @@
       top: 12px;
       right: 12px;
       padding: 4px 10px;
-      border-radius: 20px;
+      border-radius: 4px;
       font-size: 0.7rem;
       font-weight: 800;
       text-transform: uppercase;
@@ -373,30 +425,27 @@
     }
 
     .stock-available {
-      background: rgba(0, 240, 255, 0.15);
-      color: var(--neon-cyan);
-      border: 1px solid var(--neon-cyan);
-      box-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
+      background: #15803d;
+      color: #fff;
     }
 
     .stock-out {
-      background: rgba(239, 68, 68, 0.15);
-      color: #f87171;
-      border: 1px solid #ef4444;
+      background: #b91c1c;
+      color: #fff;
     }
 
     .sale-badge {
       position: absolute;
-      top: 44px;
+      top: 42px;
       right: 12px;
-      background: linear-gradient(135deg, var(--neon-yellow), #f59e0b);
-      color: #040914;
-      padding: 4px 10px;
-      border-radius: 20px;
+      background: linear-gradient(135deg, var(--sports-gold), var(--sports-gold-glow));
+      color: var(--carbon-black);
+      padding: 3px 8px;
+      border-radius: 4px;
       font-size: 0.7rem;
       font-weight: 900;
       z-index: 5;
-      box-shadow: var(--shadow-yellow);
+      box-shadow: var(--shadow-gold);
       display: flex;
       align-items: center;
       gap: 4px;
@@ -405,7 +454,7 @@
     .product-img-wrapper {
       height: 380px;
       width: 100%;
-      background: #060d1d;
+      background: #0b111e;
       position: relative;
       overflow: hidden;
       cursor: zoom-in;
@@ -439,25 +488,25 @@
       width: 34px;
       height: 34px;
       object-fit: cover;
-      border: 1.5px solid var(--neon-cyan);
+      border: 1.5px solid var(--sports-gold);
       border-radius: 4px;
-      background: #040914;
+      background: #080b11;
       cursor: pointer;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.8);
       transition: var(--transition);
     }
 
     .product-thumb-item:hover {
-      border-color: var(--neon-yellow);
+      border-color: #fff;
       transform: scale(1.1);
     }
 
     .product-body {
-      padding: 16px 18px;
+      padding: 16px;
       display: flex;
       flex-direction: column;
       flex-grow: 1;
-      background: var(--dark-surface);
+      background: var(--carbon-surface);
     }
 
     .product-title {
@@ -465,18 +514,18 @@
       font-weight: 700;
       color: #ffffff;
       margin-bottom: 8px;
-      line-height: 1.3;
+      line-height: 1.25;
     }
 
     .sale-promo-strip {
-      background: rgba(255, 230, 0, 0.08);
-      border-left: 3px solid var(--neon-yellow);
-      color: var(--neon-yellow);
+      background: rgba(251, 191, 36, 0.1);
+      border-left: 3px solid var(--sports-gold);
+      color: var(--sports-gold);
       padding: 4px 8px;
       font-size: 0.76rem;
       font-weight: 700;
-      margin-bottom: 10px;
-      border-radius: 4px;
+      margin-bottom: 8px;
+      border-radius: 2px;
       display: flex;
       align-items: center;
       gap: 6px;
@@ -484,22 +533,21 @@
 
     .product-features {
       list-style: none;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       font-size: 0.82rem;
       color: var(--text-muted);
     }
 
     .product-features li {
-      margin-bottom: 4px;
+      margin-bottom: 3px;
       display: flex;
       align-items: center;
       gap: 6px;
     }
 
     .product-features li i {
-      color: var(--neon-cyan);
+      color: var(--sports-gold);
       font-size: 0.72rem;
-      text-shadow: 0 0 6px rgba(0, 240, 255, 0.6);
     }
 
     .product-footer {
@@ -508,68 +556,70 @@
       align-items: center;
       justify-content: space-between;
       padding-top: 12px;
-      border-top: 1px solid rgba(0, 240, 255, 0.15);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .price-value {
-      font-size: 1.35rem;
+      font-size: 1.45rem;
       font-weight: 800;
-      color: var(--neon-yellow);
-      text-shadow: 0 0 10px rgba(255, 230, 0, 0.4);
+      color: var(--sports-gold);
+      font-family: 'Teko', sans-serif;
+      letter-spacing: 0.5px;
     }
 
     .btn-add-cart {
-      background: linear-gradient(135deg, var(--neon-cyan), var(--neon-blue));
-      color: #040914;
+      background: var(--sports-red);
+      color: #fff;
       border: none;
-      padding: 9px 18px;
-      border-radius: 8px;
+      padding: 8px 16px;
+      border-radius: 4px;
       font-weight: 800;
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 6px;
       transition: var(--transition);
-      box-shadow: var(--shadow-neon);
+      text-transform: uppercase;
     }
 
     .btn-add-cart:hover {
-      background: linear-gradient(135deg, var(--neon-yellow), #f59e0b);
-      box-shadow: var(--shadow-yellow);
-      transform: scale(1.03);
+      background: var(--sports-red-hover);
+      box-shadow: var(--shadow-sports);
+      transform: scale(1.02);
     }
 
     .btn-out-of-stock {
       background: #334155;
       color: #94a3b8;
       border: none;
-      padding: 9px 14px;
-      border-radius: 8px;
+      padding: 8px 12px;
+      border-radius: 4px;
       font-weight: 700;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       cursor: not-allowed;
       display: inline-flex;
       align-items: center;
       gap: 5px;
+      text-transform: uppercase;
     }
 
     .qty-control-inline {
       display: flex;
       align-items: center;
-      background: #060d1d;
-      border-radius: 6px;
-      border: 1px solid var(--border-neon);
+      background: #080b11;
+      border-radius: 4px;
+      border: 1px solid var(--sports-border);
       padding: 2px;
     }
 
     .qty-btn {
-      background: var(--dark-card);
-      border: 1px solid var(--border-neon);
-      color: var(--neon-cyan);
+      background: var(--carbon-card);
+      border: none;
+      color: var(--sports-gold);
       width: 26px;
       height: 26px;
-      border-radius: 4px;
+      border-radius: 2px;
       font-weight: bold;
       cursor: pointer;
       display: flex;
@@ -578,22 +628,22 @@
     }
 
     .qty-btn:hover {
-      background: var(--neon-cyan);
-      color: var(--dark-bg);
+      background: var(--sports-gold);
+      color: var(--carbon-black);
     }
 
     .qty-number {
-      padding: 0 10px;
+      padding: 0 8px;
       font-weight: 800;
       font-size: 0.9rem;
-      color: var(--neon-yellow);
+      color: #fff;
     }
 
     /* FULLSCREEN LIGHTBOX */
     .lightbox-modal {
       position: fixed;
       inset: 0;
-      background: rgba(4, 9, 20, 0.96);
+      background: rgba(8, 11, 17, 0.96);
       backdrop-filter: blur(12px);
       z-index: 3000;
       display: flex;
@@ -615,17 +665,17 @@
       max-height: 92vh;
       object-fit: contain;
       border-radius: 8px;
-      border: 1px solid var(--border-neon);
-      box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
+      border: 1px solid var(--sports-border);
+      box-shadow: 0 0 30px rgba(225, 29, 72, 0.4);
     }
 
     .lightbox-close-btn {
       position: absolute;
       top: 24px;
       right: 24px;
-      background: rgba(0, 240, 255, 0.15);
-      border: 1px solid var(--neon-cyan);
-      color: var(--neon-cyan);
+      background: rgba(225, 29, 72, 0.2);
+      border: 1px solid var(--sports-red);
+      color: #fff;
       font-size: 1.4rem;
       width: 44px;
       height: 44px;
@@ -638,21 +688,19 @@
     }
 
     .lightbox-close-btn:hover {
-      background: var(--neon-cyan);
-      color: var(--dark-bg);
-      box-shadow: var(--shadow-neon);
+      background: var(--sports-red);
     }
 
     /* BULK SECTION */
     .bulk-section {
-      background: linear-gradient(135deg, var(--dark-surface), var(--dark-card));
+      background: linear-gradient(135deg, var(--carbon-surface), var(--carbon-card));
       color: white;
-      border-radius: 16px;
-      padding: 40px 30px;
-      margin: 40px auto 10px;
+      border-radius: 12px;
+      padding: 35px 25px;
+      margin: 35px auto 10px;
       max-width: 1230px;
-      box-shadow: var(--shadow-neon);
-      border: 1px solid var(--border-neon);
+      box-shadow: var(--shadow-sports);
+      border: 1px solid var(--sports-border);
     }
 
     .bulk-content {
@@ -660,68 +708,70 @@
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 25px;
+      gap: 20px;
     }
 
     .bulk-text h3 {
-      font-size: 1.8rem;
+      font-size: 2.2rem;
       color: #fff;
-      margin-bottom: 6px;
+      margin-bottom: 2px;
+      line-height: 1;
     }
 
     .bulk-text p {
       color: var(--text-muted);
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       max-width: 600px;
     }
 
     .bulk-actions {
       display: flex;
-      gap: 14px;
+      gap: 12px;
       flex-wrap: wrap;
     }
 
     .btn-bulk-whatsapp {
       background: #25d366;
       color: white;
-      padding: 12px 24px;
-      border-radius: 50px;
+      padding: 10px 22px;
+      border-radius: 4px;
       text-decoration: none;
-      font-weight: 700;
-      font-size: 0.95rem;
+      font-weight: 800;
+      font-size: 0.92rem;
       display: inline-flex;
       align-items: center;
       gap: 8px;
       transition: var(--transition);
       box-shadow: 0 0 15px rgba(37, 211, 102, 0.4);
+      text-transform: uppercase;
     }
 
     .btn-bulk-call {
-      background: rgba(0, 240, 255, 0.1);
-      color: var(--neon-cyan);
-      border: 1px solid var(--neon-cyan);
-      padding: 12px 24px;
-      border-radius: 50px;
+      background: rgba(251, 191, 36, 0.1);
+      color: var(--sports-gold);
+      border: 1px solid var(--sports-gold);
+      padding: 10px 22px;
+      border-radius: 4px;
       text-decoration: none;
-      font-weight: 700;
-      font-size: 0.95rem;
+      font-weight: 800;
+      font-size: 0.92rem;
       display: inline-flex;
       align-items: center;
       gap: 8px;
       transition: var(--transition);
+      text-transform: uppercase;
     }
 
     .btn-bulk-call:hover {
-      background: var(--neon-cyan);
-      color: var(--dark-bg);
-      box-shadow: var(--shadow-neon);
+      background: var(--sports-gold);
+      color: var(--carbon-black);
     }
 
-    /* CART DRAWER & CHECKOUT */
+    /* CART DRAWER */
     .cart-drawer-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(4, 9, 20, 0.8);
+      background: rgba(8, 11, 17, 0.85);
       backdrop-filter: blur(6px);
       z-index: 999;
       opacity: 0;
@@ -741,9 +791,9 @@
       width: 100%;
       max-width: 440px;
       height: 100%;
-      background: var(--dark-surface);
-      border-left: 1px solid var(--border-neon);
-      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.7);
+      background: var(--carbon-surface);
+      border-left: 2px solid var(--sports-red);
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.8);
       z-index: 1000;
       transition: right 0.35s ease;
       display: flex;
@@ -756,8 +806,8 @@
 
     .cart-header {
       padding: 18px 22px;
-      background: var(--dark-card);
-      border-bottom: 1px solid var(--border-neon);
+      background: var(--carbon-card);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       color: white;
       display: flex;
       justify-content: space-between;
@@ -765,12 +815,12 @@
     }
 
     .close-cart-btn {
-      background: rgba(0, 240, 255, 0.1);
-      border: 1px solid var(--border-neon);
-      color: var(--neon-cyan);
+      background: rgba(225, 29, 72, 0.1);
+      border: 1px solid var(--sports-border);
+      color: #fff;
       width: 32px;
       height: 32px;
-      border-radius: 50%;
+      border-radius: 4px;
       cursor: pointer;
     }
 
@@ -787,9 +837,9 @@
       display: flex;
       gap: 12px;
       padding: 10px;
-      background: var(--dark-card);
-      border: 1px solid var(--border-neon);
-      border-radius: 8px;
+      background: var(--carbon-card);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 6px;
       align-items: center;
     }
 
@@ -797,10 +847,10 @@
       width: 55px;
       height: 55px;
       object-fit: cover;
-      background: #040914;
-      border-radius: 6px;
+      background: #080b11;
+      border-radius: 4px;
       padding: 2px;
-      border: 1px solid var(--border-neon);
+      border: 1px solid var(--sports-border);
     }
 
     .cart-item-details {
@@ -815,14 +865,14 @@
 
     .cart-item-price {
       font-weight: 800;
-      color: var(--neon-yellow);
+      color: var(--sports-gold);
       font-size: 0.9rem;
     }
 
     .cart-footer {
       padding: 18px 22px;
-      border-top: 1px solid var(--border-neon);
-      background: var(--dark-card);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      background: var(--carbon-card);
     }
 
     .cart-total-row {
@@ -836,28 +886,28 @@
 
     .btn-checkout {
       width: 100%;
-      background: linear-gradient(135deg, var(--neon-yellow), #f59e0b);
-      color: #040914;
+      background: var(--sports-red);
+      color: #fff;
       border: none;
       padding: 13px;
-      border-radius: 8px;
+      border-radius: 4px;
       font-size: 0.95rem;
       font-weight: 800;
       cursor: pointer;
       transition: var(--transition);
       margin-bottom: 8px;
-      box-shadow: var(--shadow-yellow);
+      text-transform: uppercase;
+      box-shadow: var(--shadow-sports);
     }
 
     .btn-checkout:hover {
-      transform: scale(1.02);
-      box-shadow: 0 0 25px rgba(255, 230, 0, 0.5);
+      background: var(--sports-red-hover);
     }
 
     .modal-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(4, 9, 20, 0.85);
+      background: rgba(8, 11, 17, 0.9);
       backdrop-filter: blur(6px);
       z-index: 1050;
       display: flex;
@@ -875,18 +925,18 @@
     }
 
     .modal-box {
-      background: var(--dark-surface);
-      border: 1px solid var(--border-neon);
+      background: var(--carbon-surface);
+      border: 1px solid var(--sports-border);
       width: 100%;
-      max-width: 520px;
-      border-radius: 14px;
+      max-width: 540px;
+      border-radius: 8px;
       overflow: hidden;
-      box-shadow: var(--shadow-neon);
+      box-shadow: var(--shadow-sports);
     }
 
     .modal-header {
-      background: var(--dark-card);
-      border-bottom: 1px solid var(--border-neon);
+      background: var(--carbon-card);
+      border-bottom: 1px solid var(--sports-border);
       color: white;
       padding: 16px 20px;
       display: flex;
@@ -901,9 +951,9 @@
     }
 
     .qr-container {
-      background: var(--dark-card);
-      border: 2px dashed var(--neon-cyan);
-      border-radius: 10px;
+      background: var(--carbon-card);
+      border: 2px dashed var(--sports-gold);
+      border-radius: 6px;
       padding: 16px;
       text-align: center;
       margin-bottom: 18px;
@@ -916,7 +966,7 @@
       display: block;
       background: white;
       padding: 8px;
-      border-radius: 6px;
+      border-radius: 4px;
     }
 
     .form-group {
@@ -927,54 +977,57 @@
     .form-label {
       display: block;
       font-size: 0.83rem;
-      font-weight: 600;
+      font-weight: 700;
       margin-bottom: 4px;
-      color: var(--neon-cyan);
+      color: var(--sports-gold);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     .form-input, .form-textarea, .form-select {
       width: 100%;
       padding: 10px 14px;
-      background: #060d1d;
-      border: 1px solid var(--border-neon);
+      background: #080b11;
+      border: 1px solid rgba(255, 255, 255, 0.15);
       color: #fff;
-      border-radius: 6px;
+      border-radius: 4px;
       font-size: 0.9rem;
       font-family: inherit;
     }
 
     .form-input:focus, .form-textarea:focus, .form-select:focus {
       outline: none;
-      border-color: var(--neon-yellow);
-      box-shadow: 0 0 8px rgba(255, 230, 0, 0.4);
+      border-color: var(--sports-red);
+      box-shadow: 0 0 10px rgba(225, 29, 72, 0.4);
     }
 
     .btn-submit-order {
       width: 100%;
-      background: linear-gradient(135deg, var(--neon-cyan), var(--neon-blue));
-      color: #040914;
+      background: var(--sports-red);
+      color: #ffffff;
       border: none;
       padding: 12px;
-      border-radius: 6px;
+      border-radius: 4px;
       font-size: 0.95rem;
       font-weight: 800;
       cursor: pointer;
       margin-top: 10px;
       transition: var(--transition);
-      box-shadow: var(--shadow-neon);
+      box-shadow: var(--shadow-sports);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
 
     .btn-submit-order:hover {
-      background: linear-gradient(135deg, var(--neon-yellow), #f59e0b);
-      box-shadow: var(--shadow-yellow);
+      background: var(--sports-red-hover);
     }
 
-    /* DEDICATED ADMIN PORTAL PAGE VIEW */
+    /* DEDICATED ADMIN PORTAL VIEW */
     .admin-standalone-view {
       display: none;
       min-height: 100vh;
-      background: var(--dark-bg);
-      padding: 40px 24px;
+      background: var(--carbon-black);
+      padding: 30px 20px;
     }
 
     .admin-stats-grid {
@@ -985,10 +1038,10 @@
     }
 
     .stat-box {
-      background: var(--dark-card);
-      border: 1px solid var(--border-neon);
+      background: var(--carbon-card);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       padding: 20px;
-      border-radius: 12px;
+      border-radius: 6px;
       display: flex;
       align-items: center;
       gap: 16px;
@@ -997,7 +1050,7 @@
     .stat-icon {
       width: 50px;
       height: 50px;
-      border-radius: 10px;
+      border-radius: 6px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1005,9 +1058,10 @@
     }
 
     .stat-num {
-      font-size: 1.6rem;
+      font-size: 2rem;
       font-weight: 800;
       color: #fff;
+      font-family: 'Teko', sans-serif;
     }
 
     .stat-label {
@@ -1020,7 +1074,7 @@
     .admin-tabs-nav {
       display: flex;
       gap: 10px;
-      border-bottom: 1px solid var(--border-neon);
+      border-bottom: 2px solid var(--sports-border);
       margin-bottom: 25px;
       flex-wrap: wrap;
     }
@@ -1029,7 +1083,7 @@
       background: transparent;
       border: none;
       color: var(--text-muted);
-      font-weight: 700;
+      font-weight: 800;
       font-size: 0.95rem;
       padding: 12px 20px;
       cursor: pointer;
@@ -1038,13 +1092,14 @@
       align-items: center;
       gap: 8px;
       transition: var(--transition);
+      text-transform: uppercase;
     }
 
     .admin-tab-btn.active {
-      color: var(--neon-cyan);
-      border-bottom-color: var(--neon-cyan);
-      background: rgba(0, 240, 255, 0.05);
-      border-radius: 8px 8px 0 0;
+      color: var(--sports-gold);
+      border-bottom-color: var(--sports-gold);
+      background: rgba(251, 191, 36, 0.08);
+      border-radius: 4px 4px 0 0;
     }
 
     .admin-tab-pane {
@@ -1056,10 +1111,10 @@
     }
 
     .admin-table-wrapper {
-      background: var(--dark-card);
-      border-radius: 12px;
+      background: var(--carbon-card);
+      border-radius: 6px;
       overflow-x: auto;
-      border: 1px solid var(--border-neon);
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .admin-table {
@@ -1070,41 +1125,43 @@
     }
 
     .admin-table th {
-      background: #060d1d;
+      background: #080b11;
       padding: 14px 18px;
-      color: var(--neon-cyan);
-      font-weight: 700;
-      border-bottom: 1px solid var(--border-neon);
+      color: var(--sports-gold);
+      font-weight: 800;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--sports-border);
     }
 
     .admin-table td {
       padding: 14px 18px;
-      border-bottom: 1px solid rgba(0, 240, 255, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       color: #e2e8f0;
       vertical-align: middle;
     }
 
     .admin-action-btn {
       padding: 6px 12px;
-      border-radius: 6px;
+      border-radius: 4px;
       border: none;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 0.78rem;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 5px;
       transition: var(--transition);
+      text-transform: uppercase;
     }
 
     .btn-edit-prod {
-      background: var(--neon-yellow);
-      color: #040914;
+      background: var(--sports-gold);
+      color: var(--carbon-black);
     }
 
     .btn-toggle-stock {
-      background: var(--neon-cyan);
-      color: #040914;
+      background: var(--sports-red);
+      color: #ffffff;
     }
 
     .btn-delete-prod {
@@ -1113,10 +1170,10 @@
     }
 
     .admin-form-box {
-      background: var(--dark-card);
+      background: var(--carbon-card);
       padding: 26px;
-      border-radius: 12px;
-      border: 1px solid var(--border-neon);
+      border-radius: 6px;
+      border: 1px solid var(--sports-border);
     }
 
     .form-grid-2 {
@@ -1130,20 +1187,20 @@
       flex-wrap: wrap;
       gap: 10px;
       margin-top: 10px;
-      background: #060d1d;
+      background: #080b11;
       padding: 10px;
-      border-radius: 8px;
-      border: 1px solid var(--border-neon);
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .photo-thumb-wrapper {
       position: relative;
       width: 60px;
       height: 60px;
-      border-radius: 6px;
+      border-radius: 4px;
       overflow: hidden;
-      border: 1px solid var(--border-neon);
-      background: #040914;
+      border: 1px solid var(--sports-border);
+      background: #080b11;
     }
 
     .photo-thumb-img {
@@ -1169,29 +1226,58 @@
       justify-content: center;
     }
 
+    .hero-editor-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .hero-slot-card {
+      background: #080b11;
+      border: 1px solid var(--sports-border);
+      border-radius: 6px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .hero-slot-preview {
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      background: radial-gradient(circle, rgba(225,29,72,0.1) 0%, transparent 70%);
+    }
+
+    .hero-slot-preview img {
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+    }
+
     .info-section {
-      background: var(--dark-surface);
-      border-top: 1px solid var(--border-neon);
-      border-bottom: 1px solid var(--border-neon);
-      padding: 50px 24px;
+      background: var(--carbon-surface);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 45px 20px;
     }
 
     .info-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 28px;
+      gap: 24px;
     }
 
     .info-card {
-      background: var(--dark-card);
-      padding: 24px;
-      border-radius: 10px;
-      border: 1px solid var(--border-neon);
+      background: var(--carbon-card);
+      padding: 22px;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .info-card h3 {
-      margin-bottom: 14px;
-      font-size: 1.25rem;
+      margin-bottom: 10px;
+      font-size: 1.6rem;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -1200,18 +1286,18 @@
 
     .faq-item {
       margin-bottom: 10px;
-      border-bottom: 1px solid rgba(0, 240, 255, 0.15);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       padding-bottom: 8px;
     }
 
     .faq-question {
       font-weight: 600;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      color: var(--neon-cyan);
+      color: #fff;
     }
 
     .faq-answer {
@@ -1226,25 +1312,25 @@
     }
 
     footer {
-      background: #02060f;
+      background: #04070d;
       color: var(--text-muted);
-      padding: 50px 24px 20px;
+      padding: 45px 20px 20px;
       font-size: 0.88rem;
-      border-top: 1px solid var(--border-neon);
+      border-top: 2px solid var(--sports-red);
     }
 
     .footer-grid {
       max-width: 1280px;
-      margin: 0 auto 35px;
+      margin: 0 auto 30px;
       display: grid;
       grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr;
-      gap: 30px;
+      gap: 25px;
     }
 
     .footer-col h4 {
       color: #ffffff;
-      font-size: 1.05rem;
-      margin-bottom: 14px;
+      font-size: 1.4rem;
+      margin-bottom: 8px;
     }
 
     .footer-links {
@@ -1252,7 +1338,7 @@
     }
 
     .footer-links li {
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .footer-links a {
@@ -1262,14 +1348,14 @@
     }
 
     .footer-links a:hover {
-      color: var(--neon-cyan);
+      color: var(--sports-gold);
     }
 
     .trademark-bar {
       max-width: 1280px;
       margin: 0 auto;
-      padding-top: 20px;
-      border-top: 1px solid rgba(0, 240, 255, 0.15);
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -1282,13 +1368,13 @@
       position: fixed;
       bottom: 24px;
       right: 24px;
-      background: var(--dark-card);
+      background: var(--carbon-card);
       color: white;
       padding: 12px 20px;
-      border-radius: 8px;
-      box-shadow: var(--shadow-neon);
-      border-left: 4px solid var(--neon-cyan);
-      border: 1px solid var(--border-neon);
+      border-radius: 4px;
+      box-shadow: var(--shadow-sports);
+      border-left: 4px solid var(--sports-gold);
+      border: 1px solid var(--sports-border);
       z-index: 2000;
       transform: translateY(100px);
       opacity: 0;
@@ -1296,7 +1382,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .toast.show {
@@ -1308,23 +1394,22 @@
       .nav-links {
         display: none;
       }
+      .hero-grid-showcase {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+      .hero-side-column {
+        justify-content: center;
+        gap: 20px;
+      }
     }
 
     @media (max-width: 992px) {
       .footer-grid {
         grid-template-columns: 1fr 1fr;
       }
-      .navbar {
-        padding: 12px 18px;
-      }
       .hero-title-main {
-        font-size: 3.2rem;
-      }
-      .hero-title-prefix {
-        font-size: 1.2rem;
-      }
-      .hero-title-suffix {
-        font-size: 1.3rem;
+        font-size: 3.8rem;
       }
     }
   </style>
@@ -1340,12 +1425,12 @@
           <img src="logo.png" alt="F2 Sports Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
           <div class="logo-fallback" style="display:none;">F2</div>
           <div>
-            <span class="logo-title">F2 <span>SPORTS</span></span>
+            <span class="logo-title brand-font">F2 <span>SPORTS</span></span>
             <span class="logo-tagline">Engineered For Champions</span>
           </div>
         </a>
 
-        <!-- RESTORED TOP BAR NAV LINKS -->
+        <!-- CENTERED NAVIGATION -->
         <ul class="nav-links">
           <li><a href="#home"><i class="fa-solid fa-house"></i> Home</a></li>
           <li><a href="#english-section"><i class="fa-solid fa-award"></i> English Willow</a></li>
@@ -1353,7 +1438,7 @@
           <li><a href="#tennis-section"><i class="fa-solid fa-baseball-bat-ball"></i> Tennis</a></li>
         </ul>
 
-        <!-- ADMIN & CART AT RIGHT CORNER -->
+        <!-- RIGHT CORNER ADMIN & CART -->
         <div class="nav-actions">
           <a href="javascript:void(0)" onclick="openAdminPortalPage()" class="btn-admin-portal-link">
             <i class="fa-solid fa-user-shield"></i> <span>Admin Portal</span>
@@ -1367,17 +1452,42 @@
       </div>
     </header>
 
-    <!-- NEON HERO WITH RESIZED PROPORTIONAL HEADINGS -->
-    <section class="hero" id="home">
-      <h1>
-        <span class="hero-title-prefix">Power Your Game With</span>
-        <span class="hero-title-main">Falcon 2</span>
-        <span class="hero-title-suffix">Sports Mastercraft Bats</span>
-      </h1>
-      <p>Professional Cricket Bats handpicked for extraordinary ping, perfect balance, and monstrous power hitting across all formats.</p>
+    <!-- ATHLETIC 2ND HERO CONTAINER WITH 4 PNG PHOTOS (2 LEFT, 2 RIGHT) -->
+    <section class="hero-sports-wrapper" id="home">
+      <div class="hero-grid-showcase">
+        <!-- LEFT 2 TRANSPARENT PNG PHOTOS -->
+        <div class="hero-side-column">
+          <div class="hero-png-item">
+            <img src="./hero_bat_1.png" id="heroPhotoImg1" class="hero-png-img" alt="Pro Cricket Bat 1" onerror="handleImgError(this)" />
+          </div>
+          <div class="hero-png-item">
+            <img src="./hero_bat_2.png" id="heroPhotoImg2" class="hero-png-img" alt="Pro Cricket Bat 2" onerror="handleImgError(this)" />
+          </div>
+        </div>
+
+        <!-- CENTER TEXT SHOWCASE -->
+        <div class="hero-center-content">
+          <h1>
+            <span class="hero-title-prefix sports-heading">Power Your Game With</span>
+            <span class="hero-title-main sports-heading">Falcon 2</span>
+            <span class="hero-title-suffix sports-heading">Sports Mastercraft Bats</span>
+          </h1>
+          <p>Hand-crafted for extraordinary rebound ping, razor-sharp balance, and monster power hitting across all formats.</p>
+        </div>
+
+        <!-- RIGHT 2 TRANSPARENT PNG PHOTOS -->
+        <div class="hero-side-column">
+          <div class="hero-png-item">
+            <img src="./hero_bat_3.png" id="heroPhotoImg3" class="hero-png-img" alt="Pro Cricket Bat 3" onerror="handleImgError(this)" />
+          </div>
+          <div class="hero-png-item">
+            <img src="./hero_bat_4.png" id="heroPhotoImg4" class="hero-png-img" alt="Pro Cricket Bat 4" onerror="handleImgError(this)" />
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- CONTINUOUS FLOATING RED STRIP ABOVE PRODUCT CONTAINER -->
+    <!-- CONTINUOUS FLOATING TICKER STRIP -->
     <div class="floating-ticker-wrapper">
       <div class="floating-ticker-track">
         <span class="ticker-item"><i class="fa-solid fa-truck-fast"></i> Pan-India Express Courier Delivery</span>
@@ -1391,13 +1501,13 @@
       </div>
     </div>
 
-    <!-- PRODUCT CATALOG SECTIONS WITH ALL CATEGORIES -->
+    <!-- PRODUCT CATALOG -->
     <main>
       <!-- 1. ENGLISH WILLOW CATEGORY -->
       <section class="container" id="english-section">
         <div class="section-header">
-          <span class="section-subtitle">International Standard</span>
-          <h2 class="section-title">English Willow Bats Collection</h2>
+          <span class="section-subtitle sports-heading">International Standard</span>
+          <h2 class="section-title sports-heading">English Willow Bats Collection</h2>
           <p class="section-desc">Hand-crafted from genuine imported English Willow clefts for maximum rebound velocity and feather-light pickup.</p>
         </div>
         <div class="product-grid" id="englishProductsGrid"></div>
@@ -1406,8 +1516,8 @@
       <!-- 2. KASHMIR WILLOW CATEGORY -->
       <section class="container" id="kashmir-section" style="padding-top: 0;">
         <div class="section-header">
-          <span class="section-subtitle">Traditional Power</span>
-          <h2 class="section-title">Kashmir Willow Leather Bats Collection</h2>
+          <span class="section-subtitle sports-heading">Traditional Power</span>
+          <h2 class="section-title sports-heading">Kashmir Willow Leather Bats Collection</h2>
           <p class="section-desc">Selected Grade Kashmir Willow leather ball bats crafted with heavy spines and thick edges for tournament performance.</p>
         </div>
         <div class="product-grid" id="kashmirProductsGrid"></div>
@@ -1416,8 +1526,8 @@
       <!-- 3. TENNIS CRICKET CATEGORY -->
       <section class="container" id="tennis-section" style="padding-top: 0;">
         <div class="section-header">
-          <span class="section-subtitle">Hard &amp; Soft Tennis Dominators</span>
-          <h2 class="section-title">Tennis Cricket Bats Collection</h2>
+          <span class="section-subtitle sports-heading">Hard &amp; Soft Tennis Dominators</span>
+          <h2 class="section-title sports-heading">Tennis Cricket Bats Collection</h2>
           <p class="section-desc">Engineered specifically for tennis ball cricket with scoop and power-blade dynamics for 360-degree boundary clearing.</p>
         </div>
         <div class="product-grid" id="tennisProductsGrid"></div>
@@ -1428,8 +1538,8 @@
         <div class="bulk-section">
           <div class="bulk-content">
             <div class="bulk-text">
-              <span style="color:var(--neon-yellow); font-weight:800; font-size:0.85rem; text-transform:uppercase; letter-spacing:1px;">Academy &amp; Club Wholesaler</span>
-              <h3>Bulk Orders &amp; Custom Team Inquiries</h3>
+              <span style="color:var(--sports-gold); font-weight:800; font-size:0.85rem; text-transform:uppercase; letter-spacing:1px;">Academy &amp; Club Wholesaler</span>
+              <h3 class="sports-heading">Bulk Orders &amp; Custom Team Inquiries</h3>
               <p>Planning bulk bat procurement for your academy, cricket club, corporate team, or tournament sponsor? Contact our manufacturing desk for wholesale rates and custom player specifications.</p>
             </div>
             <div class="bulk-actions">
@@ -1448,13 +1558,13 @@
       <section class="info-section" id="help-suggestions">
         <div class="container" style="padding: 0;">
           <div class="section-header">
-            <span class="section-subtitle">Player Support</span>
-            <h2 class="section-title">Help, Inquiries &amp; Suggestions</h2>
+            <span class="section-subtitle sports-heading">Player Support</span>
+            <h2 class="section-title sports-heading">Help, Inquiries &amp; Suggestions</h2>
           </div>
 
           <div class="info-grid">
             <div class="info-card">
-              <h3><i class="fa-solid fa-circle-question" style="color:var(--neon-cyan);"></i> FAQs &amp; Bat Care</h3>
+              <h3 class="sports-heading"><i class="fa-solid fa-circle-question" style="color:var(--sports-red);"></i> FAQs &amp; Bat Care</h3>
               <div class="faq-item active">
                 <div class="faq-question" onclick="toggleFaq(this)">
                   <span>What is the difference between Grade A &amp; Grade B Willow?</span>
@@ -1472,7 +1582,7 @@
             </div>
 
             <div class="info-card">
-              <h3><i class="fa-solid fa-lightbulb" style="color:var(--neon-yellow);"></i> Custom Suggestions</h3>
+              <h3 class="sports-heading"><i class="fa-solid fa-lightbulb" style="color:var(--sports-gold);"></i> Custom Suggestions</h3>
               <form onsubmit="handleSuggestionSubmit(event)">
                 <div class="form-group">
                   <label class="form-label">Your Name</label>
@@ -1494,18 +1604,18 @@
     <footer id="contact">
       <div class="footer-grid">
         <div class="footer-col">
-          <h4 style="font-size: 1.2rem;">F2 <span style="color:var(--neon-yellow);">SPORTS</span></h4>
+          <h4 class="sports-heading" style="font-size: 1.6rem;">F2 <span style="color:var(--sports-gold);">SPORTS</span></h4>
           <p>Precision handcrafted cricket bats designed for boundary power, premium aesthetics, and long-lasting match durability.</p>
         </div>
         <div class="footer-col">
-          <h4>English Willow</h4>
+          <h4 class="sports-heading">English Willow</h4>
           <ul class="footer-links">
             <li><a href="#english-section">Grade A English Willow</a></li>
             <li><a href="#english-section">Grade B English Willow</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h4>Kashmir Willow</h4>
+          <h4 class="sports-heading">Kashmir Willow</h4>
           <ul class="footer-links">
             <li><a href="#kashmir-section">Players Edition</a></li>
             <li><a href="#kashmir-section">Platinum</a></li>
@@ -1513,7 +1623,7 @@
           </ul>
         </div>
         <div class="footer-col">
-          <h4>Tennis Series</h4>
+          <h4 class="sports-heading">Tennis Series</h4>
           <ul class="footer-links">
             <li><a href="#tennis-section">Designed</a></li>
             <li><a href="#tennis-section">Without Design</a></li>
@@ -1521,18 +1631,18 @@
           </ul>
         </div>
         <div class="footer-col">
-          <h4>Contact &amp; Bulk Desk</h4>
-          <p><i class="fa-solid fa-phone" style="color:var(--neon-cyan);"></i> <a href="tel:+918493977654" style="color:inherit; text-decoration:none;">+91 84939 77654</a></p>
+          <h4 class="sports-heading">Contact &amp; Bulk Desk</h4>
+          <p><i class="fa-solid fa-phone" style="color:var(--sports-gold);"></i> <a href="tel:+918493977654" style="color:inherit; text-decoration:none;">+91 84939 77654</a></p>
           <p><i class="fa-brands fa-whatsapp" style="color:#25d366;"></i> <a href="https://wa.me/918493977654" target="_blank" style="color:inherit; text-decoration:none;">+91 84939 77654</a></p>
-          <p><i class="fa-solid fa-envelope" style="color:var(--neon-yellow);"></i> <a href="mailto:f2sportsstore@gmail.com" style="color:inherit; text-decoration:none;">f2sportsstore@gmail.com</a></p>
-          <p><i class="fa-solid fa-envelope-open-text" style="color:var(--neon-yellow);"></i> <a href="mailto:Zeesajid55@gmail.com" style="color:inherit; text-decoration:none;">Zeesajid55@gmail.com</a></p>
-          <p><i class="fa-solid fa-location-dot" style="color:var(--neon-cyan);"></i> Panchpora Sangam, Halmullah Dadoo Road Near Sub-Station Punchpora Marhama - 192124</p>
+          <p><i class="fa-solid fa-envelope" style="color:var(--sports-gold);"></i> <a href="mailto:f2sportsstore@gmail.com" style="color:inherit; text-decoration:none;">f2sportsstore@gmail.com</a></p>
+          <p><i class="fa-solid fa-envelope-open-text" style="color:var(--sports-gold);"></i> <a href="mailto:Zeesajid55@gmail.com" style="color:inherit; text-decoration:none;">Zeesajid55@gmail.com</a></p>
+          <p><i class="fa-solid fa-location-dot" style="color:var(--sports-red);"></i> Panchpora Sangam, Halmullah Dadoo Road Near Sub-Station Punchpora Marhama - 192124</p>
         </div>
       </div>
 
       <div class="trademark-bar">
         <div>&copy; 2026 <strong>F2 Sports</strong>. All Rights Reserved.</div>
-        <div><i class="fa-solid fa-trademark" style="color:var(--neon-yellow);"></i> F2 SPORTS is a Registered Trademark</div>
+        <div><i class="fa-solid fa-trademark" style="color:var(--sports-gold);"></i> F2 SPORTS is a Registered Trademark</div>
       </div>
     </footer>
   </div>
@@ -1540,19 +1650,19 @@
   <!-- SEPARATE DEDICATED ADMIN PORTAL & DASHBOARD PAGE VIEW -->
   <div class="admin-standalone-view" id="adminStandaloneView">
     <div style="max-width:1280px; margin:0 auto;">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px; border-bottom:1px solid var(--border-neon); padding-bottom:18px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px; border-bottom:2px solid var(--sports-border); padding-bottom:18px;">
         <div style="display:flex; align-items:center; gap:14px;">
-          <img src="logo.png" alt="F2 Logo" style="height:42px;" onerror="this.style.display='none'" />
+          <img src="logo.png" alt="F2 Logo" style="height:46px;" onerror="this.style.display='none'" />
           <div>
-            <h2 style="color:#fff; font-size:1.6rem;">F2 Sports <span style="color:var(--neon-yellow);">Cloud Admin Portal</span></h2>
-            <p style="color:var(--neon-cyan); font-size:0.8rem; letter-spacing:1px; text-transform:uppercase;">Master Control Center</p>
+            <h2 style="color:#fff; font-size:2rem;" class="sports-heading">F2 Sports <span style="color:var(--sports-gold);">Cloud Admin Portal</span></h2>
+            <p style="color:var(--sports-red); font-size:0.8rem; letter-spacing:1.5px; text-transform:uppercase; font-weight:800;">Master Control Center</p>
           </div>
         </div>
         <div style="display:flex; gap:12px;">
-          <button onclick="returnToStorefront()" class="admin-action-btn" style="background:rgba(0,240,255,0.15); color:var(--neon-cyan); border:1px solid var(--neon-cyan); padding:8px 16px;">
+          <button onclick="returnToStorefront()" class="admin-action-btn" style="background:rgba(251,191,36,0.15); color:var(--sports-gold); border:1px solid var(--sports-gold); padding:8px 16px;">
             <i class="fa-solid fa-store"></i> Return to Storefront
           </button>
-          <button onclick="handleMainAdminLogout()" class="admin-action-btn" style="background:#ef4444; color:#fff; padding:8px 16px;">
+          <button onclick="handleMainAdminLogout()" class="admin-action-btn" style="background:var(--sports-red); color:#fff; padding:8px 16px;">
             <i class="fa-solid fa-power-off"></i> Logout
           </button>
         </div>
@@ -1560,21 +1670,21 @@
 
       <div class="admin-stats-grid">
         <div class="stat-box">
-          <div class="stat-icon" style="background:rgba(255, 230, 0, 0.15); color:var(--neon-yellow);"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+          <div class="stat-icon" style="background:rgba(251, 191, 36, 0.15); color:var(--sports-gold);"><i class="fa-solid fa-indian-rupee-sign"></i></div>
           <div>
             <div class="stat-num" id="statRevenue">Rs. 0</div>
             <div class="stat-label">Total Revenue</div>
           </div>
         </div>
         <div class="stat-box">
-          <div class="stat-icon" style="background:rgba(0, 240, 255, 0.15); color:var(--neon-cyan);"><i class="fa-solid fa-truck-fast"></i></div>
+          <div class="stat-icon" style="background:rgba(225, 29, 72, 0.15); color:var(--sports-red);"><i class="fa-solid fa-truck-fast"></i></div>
           <div>
             <div class="stat-num" id="statOrders">0</div>
             <div class="stat-label">Total Cloud Orders</div>
           </div>
         </div>
         <div class="stat-box">
-          <div class="stat-icon" style="background:rgba(0, 136, 255, 0.15); color:var(--neon-blue);"><i class="fa-solid fa-baseball-bat-ball"></i></div>
+          <div class="stat-icon" style="background:rgba(59, 130, 246, 0.15); color:#60a5fa;"><i class="fa-solid fa-baseball-bat-ball"></i></div>
           <div>
             <div class="stat-num" id="statProducts">0</div>
             <div class="stat-label">Live Bats Catalog</div>
@@ -1583,7 +1693,7 @@
         <div class="stat-box">
           <div class="stat-icon" style="background:rgba(16, 185, 129, 0.15); color:#34d399;"><i class="fa-solid fa-user-check"></i></div>
           <div>
-            <div style="font-size:1.1rem; font-weight:800; color:#fff;">Sajid (Owner)</div>
+            <div style="font-size:1.3rem; font-weight:800; color:#fff;" class="sports-heading">Sajid (Owner)</div>
             <div class="stat-label">Authorized Access</div>
           </div>
         </div>
@@ -1593,19 +1703,22 @@
         <button class="admin-tab-btn active" onclick="switchAdminTab('orders')"><i class="fa-solid fa-clipboard-list"></i> Customer Orders (<span id="adminOrdersTabCount">0</span>)</button>
         <button class="admin-tab-btn" onclick="switchAdminTab('products')"><i class="fa-solid fa-boxes-packing"></i> Manage &amp; Edit Catalog (<span id="adminProdsTabCount">0</span>)</button>
         <button class="admin-tab-btn" onclick="switchAdminTab('add-product')"><i class="fa-solid fa-plus-circle"></i> Add New Cricket Bat</button>
+        <button class="admin-tab-btn" onclick="switchAdminTab('hero-photos')"><i class="fa-solid fa-images"></i> Manage Header 4 Photos</button>
       </div>
 
+      <!-- TAB 1: ORDERS -->
       <div class="admin-tab-pane active" id="adminPaneOrders">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; flex-wrap:wrap; gap:10px;">
-          <h4 style="font-size:1.1rem; color:#fff;">Cloud Orders Record (Booking to Dispatch)</h4>
+          <h4 style="font-size:1.4rem; color:#fff;" class="sports-heading">Cloud Orders Record (Booking to Dispatch)</h4>
         </div>
         <div id="mainAdminOrdersList"></div>
       </div>
 
+      <!-- TAB 2: PRODUCTS -->
       <div class="admin-tab-pane" id="adminPaneProducts">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-          <h4 style="font-size:1.1rem; color:#fff;">Active Bat Products List</h4>
-          <button class="admin-action-btn" style="background:var(--neon-yellow); color:#040914;" onclick="switchAdminTab('add-product')"><i class="fa-solid fa-plus"></i> Add Another Bat</button>
+          <h4 style="font-size:1.4rem; color:#fff;" class="sports-heading">Active Bat Products List</h4>
+          <button class="admin-action-btn" style="background:var(--sports-gold); color:var(--carbon-black);" onclick="switchAdminTab('add-product')"><i class="fa-solid fa-plus"></i> Add Another Bat</button>
         </div>
         <div class="admin-table-wrapper">
           <table class="admin-table">
@@ -1624,9 +1737,10 @@
         </div>
       </div>
 
+      <!-- TAB 3: ADD PRODUCT -->
       <div class="admin-tab-pane" id="adminPaneAddProduct">
         <div class="admin-form-box">
-          <h4 style="font-size:1.15rem; color:#fff; margin-bottom:18px;"><i class="fa-solid fa-circle-plus" style="color:var(--neon-cyan);"></i> Add New Bat to Catalog</h4>
+          <h4 style="font-size:1.4rem; color:#fff; margin-bottom:18px;" class="sports-heading"><i class="fa-solid fa-circle-plus" style="color:var(--sports-gold);"></i> Add New Bat to Catalog</h4>
           <form id="addNewProductForm" onsubmit="handleAdminAddNewProduct(event)">
             <div class="form-grid-2">
               <div class="form-group">
@@ -1678,10 +1792,57 @@
               </select>
             </div>
 
-            <button type="submit" class="btn-submit-order" style="background:linear-gradient(135deg, var(--neon-cyan), var(--neon-blue)); color:#040914; max-width:260px;">
+            <button type="submit" class="btn-submit-order" style="max-width:260px;">
               <i class="fa-solid fa-plus-circle"></i> Publish Product
             </button>
           </form>
+        </div>
+      </div>
+
+      <!-- TAB 4: HEADER 4 PHOTOS MANAGER (NO DETAILS, ONLY CHANGE PHOTO) -->
+      <div class="admin-tab-pane" id="adminPaneHeroPhotos">
+        <div class="admin-form-box">
+          <h4 style="font-size:1.4rem; color:#fff; margin-bottom:8px;" class="sports-heading"><i class="fa-solid fa-images" style="color:var(--sports-gold);"></i> Change 2nd Container Header Photos (4 Transparent PNGs)</h4>
+          <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:20px;">Upload transparent background .png photos for the left and right showcase slots in the 2nd container.</p>
+
+          <div class="hero-editor-grid">
+            <!-- SLOT 1 -->
+            <div class="hero-slot-card">
+              <span class="form-label">Left Slot 1</span>
+              <div class="hero-slot-preview">
+                <img src="./hero_bat_1.png" id="slotPreviewImg1" alt="Slot 1 Preview" onerror="handleImgError(this)" />
+              </div>
+              <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 0)" class="form-input" style="font-size:0.75rem;" />
+            </div>
+
+            <!-- SLOT 2 -->
+            <div class="hero-slot-card">
+              <span class="form-label">Left Slot 2</span>
+              <div class="hero-slot-preview">
+                <img src="./hero_bat_2.png" id="slotPreviewImg2" alt="Slot 2 Preview" onerror="handleImgError(this)" />
+              </div>
+              <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 1)" class="form-input" style="font-size:0.75rem;" />
+            </div>
+
+            <!-- SLOT 3 -->
+            <div class="hero-slot-card">
+              <span class="form-label">Right Slot 1</span>
+              <div class="hero-slot-preview">
+                <img src="./hero_bat_3.png" id="slotPreviewImg3" alt="Slot 3 Preview" onerror="handleImgError(this)" />
+              </div>
+              <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 2)" class="form-input" style="font-size:0.75rem;" />
+            </div>
+
+            <!-- SLOT 4 -->
+            <div class="hero-slot-card">
+              <span class="form-label">Right Slot 2</span>
+              <div class="hero-slot-preview">
+                <img src="./hero_bat_4.png" id="slotPreviewImg4" alt="Slot 4 Preview" onerror="handleImgError(this)" />
+              </div>
+              <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 3)" class="form-input" style="font-size:0.75rem;" />
+            </div>
+          </div>
+          <div id="heroPhotoUploadStatus" style="color:var(--sports-gold); font-size:0.85rem; font-weight:700; margin-top:14px; display:none;"></div>
         </div>
       </div>
     </div>
@@ -1697,14 +1858,14 @@
   <div class="cart-drawer-overlay" id="cartOverlay" onclick="toggleCartDrawer()"></div>
   <div class="cart-drawer" id="cartDrawer">
     <div class="cart-header">
-      <h3><i class="fa-solid fa-basket-shopping" style="color:var(--neon-cyan);"></i> Your Cart (<span id="cartCountTitle">0</span>)</h3>
+      <h3 class="sports-heading" style="font-size:1.4rem;"><i class="fa-solid fa-basket-shopping" style="color:var(--sports-gold);"></i> Your Cart (<span id="cartCountTitle">0</span>)</h3>
       <button class="close-cart-btn" onclick="toggleCartDrawer()"><i class="fa-solid fa-xmark"></i></button>
     </div>
     <div class="cart-items-container" id="cartItemsList"></div>
     <div class="cart-footer">
       <div class="cart-total-row">
         <span>Grand Total:</span>
-        <span id="cartGrandTotal" style="color:var(--neon-yellow);">Rs. 0</span>
+        <span id="cartGrandTotal" style="color:var(--sports-gold); font-family:'Teko', sans-serif; font-size:1.6rem;">Rs. 0</span>
       </div>
       <button class="btn-checkout" id="checkoutBtn" onclick="openCheckoutModal()" disabled>
         <i class="fa-solid fa-lock"></i> Proceed to QR / UPI Checkout
@@ -1716,15 +1877,15 @@
   <div class="modal-overlay" id="checkoutModal">
     <div class="modal-box">
       <div class="modal-header">
-        <h3><i class="fa-solid fa-qrcode" style="color:var(--neon-cyan);"></i> Scan &amp; Pay (UPI / QR)</h3>
+        <h3 class="sports-heading" style="font-size:1.4rem;"><i class="fa-solid fa-qrcode" style="color:var(--sports-gold);"></i> Scan &amp; Pay (UPI / QR)</h3>
         <button class="close-cart-btn" onclick="closeCheckoutModal()"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div class="modal-body">
         <div class="qr-container">
           <p style="font-size:0.85rem; margin-bottom:8px; font-weight:600; color:#cbd5e1;">Scan with GPay, PhonePe, Paytm, or BHIM</p>
           <img src="https://api.qrserver.com/v1/create-qr-code/?size=170x170&amp;data=upi://pay?pa=f2sports@upi%26pn=F2%20Sports%20Official%26mc=5945" alt="F2 Sports QR Scanner" class="qr-image" />
-          <p style="font-family:monospace; font-weight:700; font-size:0.95rem; color:var(--neon-cyan);">UPI ID: f2sports@upi</p>
-          <p style="font-size:0.85rem; margin-top:6px;">Payable Amount: <b style="color:var(--neon-yellow);" id="checkoutModalTotal">Rs. 0</b></p>
+          <p style="font-family:monospace; font-weight:700; font-size:0.95rem; color:var(--sports-gold);">UPI ID: f2sports@upi</p>
+          <p style="font-size:0.85rem; margin-top:6px;">Payable Amount: <b style="color:var(--sports-gold);" id="checkoutModalTotal">Rs. 0</b></p>
         </div>
 
         <form id="orderForm" onsubmit="handlePlaceOrder(event)">
@@ -1758,7 +1919,7 @@
   <div class="modal-overlay" id="adminLoginModal">
     <div class="modal-box">
       <div class="modal-header">
-        <h3><i class="fa-solid fa-shield-halved" style="color:var(--neon-yellow);"></i> Admin Portal Login</h3>
+        <h3 class="sports-heading" style="font-size:1.4rem;"><i class="fa-solid fa-shield-halved" style="color:var(--sports-gold);"></i> Admin Portal Login</h3>
         <button class="close-cart-btn" onclick="closeAdminLoginModal()"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div class="modal-body">
@@ -1772,7 +1933,7 @@
             <input type="password" id="modalAdminPass" class="form-input" placeholder="••••••••" required />
           </div>
           <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:12px;">Default credentials: <b>admin</b> / <b>f2sports2026</b></p>
-          <button type="submit" class="btn-submit-order" style="background:linear-gradient(135deg, var(--neon-yellow), #f59e0b); color:#040914;">
+          <button type="submit" class="btn-submit-order">
             <i class="fa-solid fa-right-to-bracket"></i> Login to Workspace
           </button>
         </form>
@@ -1784,7 +1945,7 @@
   <div class="modal-overlay" id="editProductModal">
     <div class="modal-box" style="max-width:640px;">
       <div class="modal-header">
-        <h3><i class="fa-solid fa-pen-to-square" style="color:var(--neon-cyan);"></i> Edit Bat Details &amp; Photos</h3>
+        <h3 class="sports-heading" style="font-size:1.4rem;"><i class="fa-solid fa-pen-to-square" style="color:var(--sports-gold);"></i> Edit Bat Details &amp; Photos</h3>
         <button class="close-cart-btn" onclick="closeEditModal()"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div class="modal-body">
@@ -1818,22 +1979,22 @@
           </div>
 
           <!-- MULTIPLE PHOTO UPLOAD SECTION TO SUPABASE -->
-          <div class="form-group" style="background:rgba(0, 240, 255, 0.05); padding:14px; border-radius:8px; border:1px dashed var(--neon-cyan);">
-            <label class="form-label" style="color:var(--neon-cyan); font-weight:700;">
+          <div class="form-group" style="background:rgba(251, 191, 36, 0.05); padding:14px; border-radius:4px; border:1px dashed var(--sports-gold);">
+            <label class="form-label">
               <i class="fa-solid fa-cloud-arrow-up"></i> Upload Bat Photos to Supabase Storage (Multi-Select)
             </label>
             <input type="file" id="editProdMultiFiles" class="form-input" multiple accept="image/*" onchange="handleMultiplePhotosUpload(event)" />
-            <div id="uploadStatusNotice" style="font-size:0.78rem; color:var(--neon-cyan); margin-top:6px; display:none;"></div>
+            <div id="uploadStatusNotice" style="font-size:0.78rem; color:var(--sports-gold); margin-top:6px; display:none;"></div>
             <div class="photos-preview-gallery" id="editPhotosPreviewList"></div>
           </div>
 
-          <div class="form-grid-2" style="background:rgba(255, 230, 0, 0.05); padding:12px; border-radius:8px; border:1px dashed var(--neon-yellow); margin-bottom:14px;">
+          <div class="form-grid-2" style="background:rgba(225, 29, 72, 0.05); padding:12px; border-radius:4px; border:1px dashed var(--sports-red); margin-bottom:14px;">
             <div class="form-group" style="margin-bottom:0;">
-              <label class="form-label" style="color:var(--neon-yellow);"><i class="fa-solid fa-tag"></i> Sale Label (e.g. 15% OFF)</label>
+              <label class="form-label" style="color:var(--sports-red);"><i class="fa-solid fa-tag"></i> Sale Label (e.g. 15% OFF)</label>
               <input type="text" id="editProdSaleBadge" class="form-input" placeholder="Leave empty if no sale" />
             </div>
             <div class="form-group" style="margin-bottom:0;">
-              <label class="form-label" style="color:var(--neon-yellow);"><i class="fa-solid fa-gift"></i> Sale Description (e.g. Eid Offer)</label>
+              <label class="form-label" style="color:var(--sports-red);"><i class="fa-solid fa-gift"></i> Sale Description (e.g. Eid Offer)</label>
               <input type="text" id="editProdSaleDesc" class="form-input" placeholder="e.g. Eid Special Discount" />
             </div>
           </div>
@@ -1851,7 +2012,7 @@
             </select>
           </div>
 
-          <button type="submit" class="btn-submit-order" style="background:linear-gradient(135deg, var(--neon-yellow), #f59e0b); color:#040914;" id="btnSaveEditedProd">
+          <button type="submit" class="btn-submit-order" id="btnSaveEditedProd">
             <i class="fa-solid fa-floppy-disk"></i> Save &amp; Update Product
           </button>
         </form>
@@ -1860,7 +2021,7 @@
   </div>
 
   <div class="toast" id="appToast">
-    <i class="fa-solid fa-circle-check" style="color:var(--neon-cyan);"></i>
+    <i class="fa-solid fa-circle-check" style="color:var(--sports-gold);"></i>
     <span id="toastMsg">Added to cart</span>
   </div>
 
@@ -1882,6 +2043,16 @@
     } catch (e) {
       console.warn("Supabase initialization notice:", e);
     }
+
+    // Default 4 Header Showcase Transparent PNGs
+    const defaultHeroPhotos = [
+      './hero_bat_1.png',
+      './hero_bat_2.png',
+      './hero_bat_3.png',
+      './hero_bat_4.png'
+    ];
+
+    let heroPhotos = JSON.parse(localStorage.getItem('f2_hero_photos')) || defaultHeroPhotos;
 
     const initialProducts = [
       {
@@ -2055,6 +2226,59 @@
       localStorage.setItem('f2_orders', JSON.stringify(orders));
     }
 
+    function saveHeroPhotos() {
+      localStorage.setItem('f2_hero_photos', JSON.stringify(heroPhotos));
+    }
+
+    function applyHeroPhotos() {
+      for (let i = 0; i < 4; i++) {
+        const heroElem = document.getElementById(`heroPhotoImg${i + 1}`);
+        const slotElem = document.getElementById(`slotPreviewImg${i + 1}`);
+        if (heroElem && heroPhotos[i]) heroElem.src = heroPhotos[i];
+        if (slotElem && heroPhotos[i]) slotElem.src = heroPhotos[i];
+      }
+    }
+
+    async function uploadHeroSlotPhoto(e, slotIndex) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const statusElem = document.getElementById('heroPhotoUploadStatus');
+      statusElem.style.display = 'block';
+      statusElem.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Uploading transparent PNG to Supabase...`;
+
+      if (supabaseClient) {
+        try {
+          const fileExt = file.name.split('.').pop();
+          const fileName = `hero_slot_${slotIndex + 1}_${Date.now()}.${fileExt}`;
+          const { error } = await supabaseClient.storage.from('product-images').upload(fileName, file, { upsert: true });
+
+          if (!error) {
+            const { data } = supabaseClient.storage.from('product-images').getPublicUrl(fileName);
+            if (data && data.publicUrl) {
+              heroPhotos[slotIndex] = data.publicUrl;
+            }
+          }
+        } catch (err) {
+          console.error("Hero upload err:", err);
+        }
+      } else {
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          heroPhotos[slotIndex] = ev.target.result;
+          saveHeroPhotos();
+          applyHeroPhotos();
+        };
+        reader.readAsDataURL(file);
+      }
+
+      saveHeroPhotos();
+      applyHeroPhotos();
+      statusElem.innerHTML = `<i class="fa-solid fa-check"></i> Slot ${slotIndex + 1} photo updated!`;
+      setTimeout(() => statusElem.style.display = 'none', 3500);
+      showToast(`Header Slot ${slotIndex + 1} updated!`);
+    }
+
     async function loadCloudOrders() {
       if (!supabaseClient) return;
       try {
@@ -2178,7 +2402,7 @@
               ` : ''}
 
               <ul class="product-features">
-                ${product.features.map(f => `<li><i class="fa-solid fa-circle-check"></i> ${f}</li>`).join('')}
+                ${product.features.map(f => `<li><i class="fa-solid fa-check"></i> ${f}</li>`).join('')}
               </ul>
 
               <div class="product-footer">
@@ -2429,7 +2653,7 @@
       e.target.reset();
     }
 
-    /* SEPARATE PAGE ROUTING FOR ADMIN DASHBOARD */
+    /* ADMIN DASHBOARD VIEW */
     function openAdminPortalPage() {
       const isAuth = sessionStorage.getItem('f2_main_admin_auth');
       if (isAuth) {
@@ -2461,6 +2685,7 @@
     function showAdminPageView() {
       document.getElementById('storefrontView').style.display = 'none';
       document.getElementById('adminStandaloneView').style.display = 'block';
+      applyHeroPhotos();
       updateAdminDashboard();
       window.scrollTo(0, 0);
     }
@@ -2493,6 +2718,9 @@
       } else if (tabName === 'add-product') {
         tabs[2].classList.add('active');
         document.getElementById('adminPaneAddProduct').classList.add('active');
+      } else if (tabName === 'hero-photos') {
+        tabs[3].classList.add('active');
+        document.getElementById('adminPaneHeroPhotos').classList.add('active');
       }
     }
 
@@ -2517,7 +2745,7 @@
       if (!container) return;
 
       if (orders.length === 0) {
-        container.innerHTML = '<div style="text-align:center; color:var(--text-muted); padding:30px; background:var(--dark-card); border-radius:10px;">No customer orders placed yet.</div>';
+        container.innerHTML = '<div style="text-align:center; color:var(--text-muted); padding:30px; background:var(--carbon-card); border-radius:6px;">No customer orders placed yet.</div>';
         return;
       }
 
@@ -2525,21 +2753,21 @@
       orders.forEach((order, index) => {
         const itemsListStr = order.items.map(i => `${i.name} (x${i.qty})`).join(', ');
         container.innerHTML += `
-          <div style="background:var(--dark-card); border:1px solid var(--border-neon); border-radius:12px; padding:20px; margin-bottom:16px;">
-            <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(0, 240, 255, 0.1); padding-bottom:10px; margin-bottom:12px; font-weight:800; font-size:1.05rem;">
+          <div style="background:var(--carbon-card); border:1px solid rgba(255,255,255,0.08); border-radius:6px; padding:20px; margin-bottom:16px;">
+            <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:10px; margin-bottom:12px; font-weight:800; font-size:1.15rem;" class="sports-heading">
               <span>Order #${order.orderId}</span>
-              <span style="color:var(--neon-yellow);">${order.totalAmount}</span>
+              <span style="color:var(--sports-gold);">${order.totalAmount}</span>
             </div>
             <div style="font-size:0.88rem; line-height:1.6; color:#cbd5e1;">
               <p><b>Date:</b> ${order.date}</p>
               <p><b>Customer:</b> ${order.customer.name} | <b>Email:</b> ${order.customer.email} | <b>Phone:</b> ${order.customer.phone}</p>
               <p><b>Address:</b> ${order.customer.address}</p>
               <p><b>Bats Ordered:</b> ${itemsListStr}</p>
-              <p><b>UPI UTR Number:</b> <code style="background:#060d1d; padding:2px 8px; border-radius:4px; color:var(--neon-cyan);">${order.utr}</code></p>
-              <p><b>Current Stage:</b> <span style="font-weight:700; color:var(--neon-cyan);">${order.status}</span></p>
+              <p><b>UPI UTR Number:</b> <code style="background:#080b11; padding:2px 8px; border-radius:4px; color:var(--sports-gold); font-weight:700;">${order.utr}</code></p>
+              <p><b>Current Stage:</b> <span style="font-weight:700; color:#34d399;">${order.status}</span></p>
             </div>
-            <div style="margin-top:14px; padding-top:12px; border-top:1px dashed rgba(0, 240, 255, 0.15); display:flex; gap:10px; flex-wrap:wrap;">
-              <button class="admin-action-btn" style="background:var(--neon-blue); color:#fff;" onclick="sendOrderPlacedEmail(${index})">
+            <div style="margin-top:14px; padding-top:12px; border-top:1px dashed rgba(255,255,255,0.08); display:flex; gap:10px; flex-wrap:wrap;">
+              <button class="admin-action-btn" style="background:#0284c7; color:#fff;" onclick="sendOrderPlacedEmail(${index})">
                 <i class="fa-solid fa-envelope"></i> Send Confirmation Email
               </button>
               <button class="admin-action-btn" style="background:#059669; color:#fff;" onclick="markOrderDispatched(${index})">
@@ -2559,25 +2787,25 @@
 
       products.forEach(p => {
         const isAvailable = p.inStock !== false;
-        const saleBadgeStr = p.saleBadge ? `<span style="background:var(--neon-yellow); color:#040914; padding:2px 6px; border-radius:4px; font-weight:800; font-size:0.75rem;">${p.saleBadge}</span>` : '<span style="color:var(--text-muted);">None</span>';
+        const saleBadgeStr = p.saleBadge ? `<span style="background:var(--sports-gold); color:var(--carbon-black); padding:2px 6px; border-radius:3px; font-weight:800; font-size:0.75rem;">${p.saleBadge}</span>` : '<span style="color:var(--text-muted);">None</span>';
         const imgCount = (p.images && p.images.length) ? p.images.length : 1;
 
         tbody.innerHTML += `
           <tr>
             <td>
               <div style="display:flex; align-items:center; gap:10px;">
-                <img src="${p.img}" alt="${p.name}" style="width:36px; height:36px; object-fit:cover; background:#040914; border-radius:4px; padding:2px; border:1px solid var(--border-neon);" onerror="handleImgError(this)" />
+                <img src="${p.img}" alt="${p.name}" style="width:36px; height:36px; object-fit:cover; background:#080b11; border-radius:4px; padding:2px; border:1px solid rgba(255,255,255,0.1);" onerror="handleImgError(this)" />
                 <div>
                   <b>${p.name}</b>
                   <div style="font-size:0.72rem; color:var(--text-muted);"><i class="fa-solid fa-images"></i> ${imgCount} photo(s)</div>
                 </div>
               </div>
             </td>
-            <td style="text-transform:capitalize; color:var(--neon-cyan);">${p.category}</td>
-            <td>Rs. ${Number(p.price).toLocaleString('en-IN')}</td>
+            <td style="text-transform:capitalize; color:var(--sports-gold); font-weight:700;">${p.category}</td>
+            <td style="font-weight:700;">Rs. ${Number(p.price).toLocaleString('en-IN')}</td>
             <td>
               <div>${saleBadgeStr}</div>
-              ${p.saleDesc ? `<div style="font-size:0.75rem; color:var(--neon-cyan);">${p.saleDesc}</div>` : ''}
+              ${p.saleDesc ? `<div style="font-size:0.75rem; color:var(--text-muted);">${p.saleDesc}</div>` : ''}
             </td>
             <td>
               <span class="stock-badge ${isAvailable ? 'stock-available' : 'stock-out'}" style="position:static; display:inline-block;">
@@ -2668,7 +2896,7 @@
         const filePath = `${fileName}`;
 
         try {
-          const { data, error } = await supabaseClient.storage
+          const { error } = await supabaseClient.storage
             .from('product-images')
             .upload(filePath, file, { cacheControl: '3600', upsert: false });
 
@@ -2693,7 +2921,7 @@
       }
 
       renderEditPhotosGallery();
-      notice.innerHTML = `<i class="fa-solid fa-circle-check" style="color:var(--neon-cyan);"></i> Uploaded ${files.length} photo(s) successfully!`;
+      notice.innerHTML = `<i class="fa-solid fa-circle-check" style="color:var(--sports-gold);"></i> Uploaded ${files.length} photo(s) successfully!`;
       saveBtn.disabled = false;
       e.target.value = '';
       setTimeout(() => { notice.style.display = 'none'; }, 4000);
@@ -2860,11 +3088,12 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
+      applyHeroPhotos();
       renderProducts();
       updateCartUI();
       listenToCloudOrders();
       if (sessionStorage.getItem('f2_main_admin_auth')) {
-        updateAdminDashboard();
+        showAdminPageView();
       }
     });
   </script>
