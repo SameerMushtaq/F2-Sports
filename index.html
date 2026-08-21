@@ -378,21 +378,47 @@
       height: 230px;
       background: #f8fafc;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 16px;
-      overflow: hidden;
+      position: relative;
     }
 
     .product-img {
-      max-height: 100%;
+      max-height: 190px;
       max-width: 100%;
       object-fit: contain;
       transition: transform 0.4s ease;
     }
 
     .product-card:hover .product-img {
-      transform: scale(1.06);
+      transform: scale(1.04);
+    }
+
+    .product-thumbs-strip {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      max-width: 100%;
+      padding: 4px;
+      margin-top: 4px;
+      z-index: 3;
+    }
+
+    .product-thumb-item {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      background: white;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+
+    .product-thumb-item:hover {
+      border-color: var(--primary);
     }
 
     .product-body {
@@ -981,6 +1007,50 @@
       background: var(--primary-dark);
     }
 
+    .photos-preview-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+      background: #0f172a;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #334155;
+    }
+
+    .photo-thumb-wrapper {
+      position: relative;
+      width: 60px;
+      height: 60px;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid #475569;
+      background: white;
+    }
+
+    .photo-thumb-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .photo-remove-btn {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      background: #ef4444;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 16px;
+      height: 16px;
+      font-size: 0.6rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     .info-section {
       background: #ffffff;
       border-top: 1px solid #e2e8f0;
@@ -1331,7 +1401,7 @@
                     <input type="text" id="newProdTag" class="form-input" placeholder="e.g. Grade 1 English Willow / Reserve Cleft" required />
                   </div>
                   <div class="form-group">
-                    <label class="form-label">Image Filename / URL</label>
+                    <label class="form-label">Image Filename / Main URL</label>
                     <input type="text" id="newProdImg" class="form-input" placeholder="e.g. ./custom_bat.jpg" required />
                   </div>
                 </div>
@@ -1499,10 +1569,11 @@
     </div>
   </div>
 
+  <!-- EDIT PRODUCT MODAL WITH MULTI-IMAGE SUPABASE UPLOADER -->
   <div class="modal-overlay" id="editProductModal">
-    <div class="modal-box" style="background:#1e293b; color:#fff; max-width:600px;">
+    <div class="modal-box" style="background:#1e293b; color:#fff; max-width:640px;">
       <div class="modal-header" style="background:#0f172a;">
-        <h3><i class="fa-solid fa-pen-to-square" style="color:var(--gold);"></i> Edit Bat Details &amp; Sale Offers</h3>
+        <h3><i class="fa-solid fa-pen-to-square" style="color:var(--gold);"></i> Edit Bat Details &amp; Photos</h3>
         <button class="close-cart-btn" onclick="closeEditModal()"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div class="modal-body">
@@ -1541,9 +1612,19 @@
               <input type="text" id="editProdTag" class="form-input" required />
             </div>
             <div class="form-group">
-              <label class="form-label">Image Path / URL</label>
+              <label class="form-label">Main Image URL / Path</label>
               <input type="text" id="editProdImg" class="form-input" required />
             </div>
+          </div>
+
+          <!-- MULTIPLE PHOTO UPLOAD SECTION TO SUPABASE -->
+          <div class="form-group" style="background:rgba(212, 175, 55, 0.08); padding:14px; border-radius:8px; border:1px dashed var(--gold);">
+            <label class="form-label" style="color:var(--gold); font-weight:700;">
+              <i class="fa-solid fa-cloud-arrow-up"></i> Upload Bat Photos to Supabase Storage (Multi-Select)
+            </label>
+            <input type="file" id="editProdMultiFiles" class="form-input" multiple accept="image/*" onchange="handleMultiplePhotosUpload(event)" />
+            <div id="uploadStatusNotice" style="font-size:0.78rem; color:#38bdf8; margin-top:6px; display:none;"></div>
+            <div class="photos-preview-gallery" id="editPhotosPreviewList"></div>
           </div>
 
           <div class="form-grid-2" style="background:rgba(239, 68, 68, 0.1); padding:12px; border-radius:8px; border:1px dashed #ef4444; margin-bottom:14px;">
@@ -1570,7 +1651,7 @@
             </select>
           </div>
 
-          <button type="submit" class="btn-submit-order" style="background:var(--gold); color:#0f172a;">
+          <button type="submit" class="btn-submit-order" style="background:var(--gold); color:#0f172a;" id="btnSaveEditedProd">
             <i class="fa-solid fa-floppy-disk"></i> Save &amp; Update Product
           </button>
         </form>
@@ -1662,6 +1743,7 @@
         price: 24999,
         tag: 'Grade A Cleft',
         img: './grade_a_english.jpg',
+        images: ['./grade_a_english.jpg'],
         inStock: true,
         saleBadge: '15% OFF',
         saleDesc: 'Eid Special Offer',
@@ -1675,6 +1757,7 @@
         price: 16999,
         tag: 'Grade B Cleft',
         img: './grade_b_english.jpg',
+        images: ['./grade_b_english.jpg'],
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -1688,6 +1771,7 @@
         price: 7999,
         tag: 'Top Reserve KW',
         img: './Players_edition.jpg',
+        images: ['./Players_edition.jpg'],
         inStock: true,
         saleBadge: '20% OFF',
         saleDesc: 'Eid Mubarak Festival Deal',
@@ -1701,6 +1785,7 @@
         price: 6499,
         tag: 'Platinum Reserve',
         img: './platinum.jpg',
+        images: ['./platinum.jpg'],
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -1714,6 +1799,7 @@
         price: 5199,
         tag: 'Diamond Series',
         img: './diamond.jpg',
+        images: ['./diamond.jpg'],
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -1727,6 +1813,7 @@
         price: 4199,
         tag: 'Gold Standard',
         img: './gold.jpg',
+        images: ['./gold.jpg'],
         inStock: false,
         saleBadge: '',
         saleDesc: '',
@@ -1740,6 +1827,7 @@
         price: 3299,
         tag: 'Silver Club',
         img: './silver.jpg',
+        images: ['./silver.jpg'],
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -1753,6 +1841,7 @@
         price: 2499,
         tag: 'UV 3D Graphics',
         img: './designed.jpg',
+        images: ['./designed.jpg'],
         inStock: true,
         saleBadge: '10% OFF',
         saleDesc: 'Turf Special',
@@ -1766,6 +1855,7 @@
         price: 1999,
         tag: 'Raw Natural Polish',
         img: './without_design.jpg',
+        images: ['./without_design.jpg'],
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -1779,6 +1869,7 @@
         price: 1799,
         tag: 'Top Turf Seller',
         img: './popular.jpg',
+        images: ['./popular.jpg'],
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -1792,6 +1883,7 @@
         price: 2899,
         tag: '9-Piece Cane Handle',
         img: './cane.jpg',
+        images: ['./cane.jpg'],
         inStock: false,
         saleBadge: '',
         saleDesc: '',
@@ -1805,6 +1897,7 @@
         price: 2299,
         tag: 'Heavy Punch Willow',
         img: './kissan_tennis.jpg',
+        images: ['./kissan_tennis.jpg'],
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -1818,6 +1911,7 @@
         price: 2999,
         tag: '36-Inch Long Blade',
         img: './36inch.jpg',
+        images: ['./36inch.jpg'],
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -1828,6 +1922,7 @@
     let products = JSON.parse(localStorage.getItem('f2_products')) || initialProducts;
     let orders = JSON.parse(localStorage.getItem('f2_orders')) || [];
     let cart = {};
+    let tempEditImages = [];
 
     function saveProducts() {
       localStorage.setItem('f2_products', JSON.stringify(products));
@@ -1883,6 +1978,13 @@
       imgElement.src = fallbackImage;
     }
 
+    function switchProductImage(productId, newSrc) {
+      const imgElem = document.getElementById(`main-img-${productId}`);
+      if (imgElem) {
+        imgElem.src = newSrc;
+      }
+    }
+
     function renderProducts() {
       const englishContainer = document.getElementById('englishProductsGrid');
       const kashmirContainer = document.getElementById('kashmirProductsGrid');
@@ -1898,6 +2000,15 @@
         const qty = cart[product.id] ? cart[product.id].qty : 0;
         const isAvailable = product.inStock !== false;
         const hasSale = Boolean(product.saleBadge && product.saleBadge.trim() !== '');
+        const imagesList = product.images && product.images.length > 0 ? product.images : [product.img];
+
+        const thumbsHtml = imagesList.length > 1 ? `
+          <div class="product-thumbs-strip">
+            ${imagesList.map(imgUrl => `
+              <img src="${imgUrl}" class="product-thumb-item" onclick="switchProductImage('${product.id}', '${imgUrl}')" onerror="handleImgError(this)" />
+            `).join('')}
+          </div>
+        ` : '';
 
         const cardHtml = `
           <div class="product-card ${!isAvailable ? 'out-of-stock' : ''}" id="card-${product.id}">
@@ -1915,7 +2026,8 @@
             ` : ''}
 
             <div class="product-img-wrapper">
-              <img src="${product.img}" alt="${product.name}" class="product-img" loading="lazy" onerror="handleImgError(this)" />
+              <img src="${product.img}" alt="${product.name}" id="main-img-${product.id}" class="product-img" loading="lazy" onerror="handleImgError(this)" />
+              ${thumbsHtml}
             </div>
 
             <div class="product-body">
@@ -2305,13 +2417,17 @@
       products.forEach(p => {
         const isAvailable = p.inStock !== false;
         const saleBadgeStr = p.saleBadge ? `<span style="background:#ef4444; color:#fff; padding:2px 6px; border-radius:4px; font-weight:700; font-size:0.75rem;">${p.saleBadge}</span>` : '<span style="color:#64748b;">None</span>';
-        
+        const imgCount = (p.images && p.images.length) ? p.images.length : 1;
+
         tbody.innerHTML += `
           <tr>
             <td>
               <div style="display:flex; align-items:center; gap:10px;">
                 <img src="${p.img}" alt="${p.name}" style="width:36px; height:36px; object-fit:contain; background:#fff; border-radius:4px; padding:2px;" onerror="handleImgError(this)" />
-                <b>${p.name}</b>
+                <div>
+                  <b>${p.name}</b>
+                  <div style="font-size:0.72rem; color:#94a3b8;"><i class="fa-solid fa-images"></i> ${imgCount} photo(s)</div>
+                </div>
               </div>
             </td>
             <td style="text-transform:capitalize;">${p.category} Willow</td>
@@ -2360,7 +2476,88 @@
       document.getElementById('editProdFeatures').value = (prod.features || []).join(', ');
       document.getElementById('editProdStock').value = prod.inStock !== false ? 'true' : 'false';
 
+      // Load existing images array
+      tempEditImages = prod.images && prod.images.length ? [...prod.images] : [prod.img];
+      renderEditPhotosGallery();
+
       document.getElementById('editProductModal').classList.add('active');
+    }
+
+    function renderEditPhotosGallery() {
+      const container = document.getElementById('editPhotosPreviewList');
+      if (!container) return;
+      container.innerHTML = '';
+
+      tempEditImages.forEach((imgUrl, idx) => {
+        container.innerHTML += `
+          <div class="photo-thumb-wrapper">
+            <img src="${imgUrl}" class="photo-thumb-img" onerror="handleImgError(this)" />
+            <button type="button" class="photo-remove-btn" onclick="removePhotoFromEdit(${idx})"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+        `;
+      });
+    }
+
+    function removePhotoFromEdit(index) {
+      tempEditImages.splice(index, 1);
+      if (tempEditImages.length > 0) {
+        document.getElementById('editProdImg').value = tempEditImages[0];
+      }
+      renderEditPhotosGallery();
+    }
+
+    async function handleMultiplePhotosUpload(e) {
+      const files = Array.from(e.target.files);
+      if (!files.length) return;
+
+      if (!supabaseClient) {
+        alert("Supabase client is not initialized.");
+        return;
+      }
+
+      const notice = document.getElementById('uploadStatusNotice');
+      const saveBtn = document.getElementById('btnSaveEditedProd');
+      notice.style.display = 'block';
+      saveBtn.disabled = true;
+
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        notice.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Uploading photo ${i + 1} of ${files.length} to Supabase...`;
+        
+        const fileExt = file.name.split('.').pop();
+        const fileName = `bat_${Date.now()}_${Math.random().toString(36).substring(2, 8)}.${fileExt}`;
+        const filePath = `${fileName}`;
+
+        try {
+          const { data, error } = await supabaseClient.storage
+            .from('product-images')
+            .upload(filePath, file, { cacheControl: '3600', upsert: false });
+
+          if (error) {
+            console.error("Upload error for file:", file.name, error);
+            continue;
+          }
+
+          const { data: publicUrlData } = supabaseClient.storage
+            .from('product-images')
+            .getPublicUrl(filePath);
+
+          if (publicUrlData && publicUrlData.publicUrl) {
+            tempEditImages.push(publicUrlData.publicUrl);
+            if (!document.getElementById('editProdImg').value || document.getElementById('editProdImg').value.startsWith('./')) {
+              document.getElementById('editProdImg').value = publicUrlData.publicUrl;
+            }
+          }
+        } catch (err) {
+          console.error("Supabase Storage upload error:", err);
+        }
+      }
+
+      renderEditPhotosGallery();
+      notice.innerHTML = `<i class="fa-solid fa-circle-check" style="color:#10b981;"></i> Uploaded ${files.length} photo(s) successfully!`;
+      saveBtn.disabled = false;
+      e.target.value = '';
+      setTimeout(() => { notice.style.display = 'none'; }, 4000);
     }
 
     function closeEditModal() {
@@ -2375,6 +2572,7 @@
 
       const featuresStr = document.getElementById('editProdFeatures').value;
       const features = featuresStr.split(',').map(f => f.trim()).filter(f => f.length > 0);
+      const mainImg = tempEditImages.length > 0 ? tempEditImages[0] : document.getElementById('editProdImg').value;
 
       products[index] = {
         ...products[index],
@@ -2383,7 +2581,8 @@
         name: document.getElementById('editProdName').value,
         price: Number(document.getElementById('editProdPrice').value),
         tag: document.getElementById('editProdTag').value,
-        img: document.getElementById('editProdImg').value,
+        img: mainImg,
+        images: tempEditImages.length > 0 ? tempEditImages : [mainImg],
         saleBadge: document.getElementById('editProdSaleBadge').value.trim(),
         saleDesc: document.getElementById('editProdSaleDesc').value.trim(),
         features: features.length ? features : ['Tournament Quality', 'Handcrafted Willow'],
@@ -2420,6 +2619,7 @@
         price,
         tag,
         img,
+        images: [img],
         saleBadge,
         saleDesc,
         inStock,
