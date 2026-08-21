@@ -100,7 +100,7 @@
     .logo-container {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       text-decoration: none;
       flex-shrink: 0;
     }
@@ -163,6 +163,22 @@
       font-weight: 700;
     }
 
+    /* TOP BAR ADMIN WELCOME BADGE */
+    .admin-welcome-top-badge {
+      display: none;
+      align-items: center;
+      gap: 6px;
+      background: rgba(251, 191, 36, 0.12);
+      border: 1px solid var(--accent-gold);
+      color: var(--accent-gold);
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-left: 14px;
+      box-shadow: 0 0 10px rgba(251, 191, 36, 0.2);
+    }
+
     .nav-links {
       display: flex;
       list-style: none;
@@ -193,19 +209,6 @@
       align-items: center;
       gap: 10px;
       flex-shrink: 0;
-    }
-
-    .admin-welcome-badge {
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: var(--accent-gold);
-      background: rgba(251, 191, 36, 0.1);
-      padding: 6px 12px;
-      border-radius: 50px;
-      border: 1px solid rgba(251, 191, 36, 0.3);
-      display: none;
-      align-items: center;
-      gap: 6px;
     }
 
     .theme-toggle-btn {
@@ -1534,13 +1537,17 @@
   <div id="storefrontView">
     <header>
       <div class="navbar">
-        <!-- LOGO AT LEFT CORNER WITH DOUBLE-CLICK TRIGGER TO OPEN ADMIN LOGIN -->
+        <!-- LOGO AT LEFT CORNER WITH DOUBLE-CLICK TRIGGER TO OPEN ADMIN LOGIN & ACTIVE ADMIN WELCOME BADGE -->
         <div class="logo-container">
           <img src="logo.png" alt="F2 Sports Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
           <div class="logo-fallback" style="display:none;">F2</div>
           <div class="admin-text-trigger" ondblclick="openAdminPortalPage()" title="Double-click to open Admin Portal">
             <span class="logo-title">F2 <span>SPORTS</span></span>
             <span class="logo-tagline">Engineered For Champions</span>
+          </div>
+          <!-- Welcome Admin badge placed right after logo on top bar -->
+          <div class="admin-welcome-top-badge" id="adminWelcomeBadge">
+            <i class="fa-solid fa-user-shield"></i> <span id="adminWelcomeText">Welcome</span>
           </div>
         </div>
 
@@ -1553,11 +1560,8 @@
           <li><a href="javascript:void(0)" onclick="openBulkOrderPage()"><i class="fa-solid fa-truck-ramp-box"></i> Bulk Order</a></li>
         </ul>
 
-        <!-- RIGHT CORNER: WELCOME ADMIN BADGE, THEME TOGGLE & CART -->
+        <!-- RIGHT CORNER: THEME TOGGLE & CART -->
         <div class="nav-actions">
-          <div class="admin-welcome-badge" id="adminWelcomeBadge">
-            <i class="fa-solid fa-user-shield"></i> <span id="adminWelcomeText">Welcome</span>
-          </div>
           <button class="theme-toggle-btn" onclick="toggleColorTheme()" title="Toggle Color Theme">
             <i class="fa-solid fa-circle-half-stroke"></i> <span id="themeToggleLabel">Green Mode</span>
           </button>
@@ -1587,8 +1591,8 @@
         <div class="hero-center-content">
           <h1>
             <span class="hero-title-prefix">Power Your Game With</span>
-            <span class="hero-title-main multi-color-text">FALCON 2 SPORTS</span>
-            <span class="hero-title-suffix">Mastercraft Bats</span>
+            <span class="hero-title-main multi-color-text">Falcon 2</span>
+            <span class="hero-title-suffix">Sports Mastercraft Bats</span>
           </h1>
           <p>Hand-crafted for extraordinary rebound ping, razor-sharp balance, and monster power hitting across all formats.</p>
         </div>
@@ -3016,7 +3020,7 @@
       document.getElementById('activeAdminHeaderLabel').innerText = `Active Admin: ${adminName}`;
       document.getElementById('activeAdminUserDisplay').innerText = adminName;
       
-      // Update welcome banner on top bar if active
+      // Update top bar welcome badge
       const badge = document.getElementById('adminWelcomeBadge');
       const text = document.getElementById('adminWelcomeText');
       if (badge && text) {
