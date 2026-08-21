@@ -10,8 +10,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- Supabase Cloud SDK -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- Firebase Cloud Database SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
   <style>
     :root {
@@ -382,7 +383,6 @@
       justify-content: center;
       padding: 16px;
       overflow: hidden;
-      position: relative;
     }
 
     .product-img {
@@ -394,42 +394,6 @@
 
     .product-card:hover .product-img {
       transform: scale(1.06);
-    }
-
-    .gallery-thumbs-row {
-      display: flex;
-      justify-content: center;
-      gap: 6px;
-      padding: 6px 12px;
-      background: #f1f5f9;
-      border-bottom: 1px solid #e2e8f0;
-      overflow-x: auto;
-    }
-
-    .thumb-btn {
-      width: 34px;
-      height: 34px;
-      border-radius: 4px;
-      border: 2px solid transparent;
-      padding: 2px;
-      background: #fff;
-      cursor: pointer;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      transition: var(--transition);
-    }
-
-    .thumb-btn.active {
-      border-color: var(--primary);
-    }
-
-    .thumb-btn img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
     }
 
     .product-body {
@@ -549,7 +513,7 @@
       font-size: 0.9rem;
     }
 
-    /* ADMIN DASHBOARD */
+    /* ADMIN DASHBOARD SECTION */
     .admin-main-section {
       display: none;
       background: #0b1329;
@@ -1259,7 +1223,7 @@
         <div class="section-header" style="margin-bottom:30px;">
           <span class="section-subtitle" style="color:var(--gold);">Cloud Store Management</span>
           <h2 class="section-title" style="color:#ffffff;">F2 Sports Admin Control Center</h2>
-          <p class="section-desc" style="color:#94a3b8;">Real-time Supabase Database, Multi-Photo Storage &amp; Catalog Management.</p>
+          <p class="section-desc" style="color:#94a3b8;">Real-time Cloud Database, Order Status Tracking &amp; Catalog Management.</p>
         </div>
 
         <div class="admin-workspace" id="adminWorkspace">
@@ -1290,14 +1254,9 @@
                 <div style="font-size:0.85rem; font-weight:700; color:#fff;">Admin Active</div>
                 <div style="font-size:0.75rem; color:#94a3b8;">Owner: Sajid | F2 Sports</div>
               </div>
-              <div style="display:flex; gap:8px;">
-                <button onclick="resetCatalogToDefault()" class="admin-action-btn" style="background:#475569; color:#fff;">
-                  <i class="fa-solid fa-rotate-left"></i> Reset Catalog
-                </button>
-                <button onclick="handleMainAdminLogout()" class="admin-action-btn" style="background:#ef4444; color:#fff;">
-                  <i class="fa-solid fa-power-off"></i> Logout
-                </button>
-              </div>
+              <button onclick="handleMainAdminLogout()" class="admin-action-btn" style="background:#ef4444; color:#fff; padding:8px 14px;">
+                <i class="fa-solid fa-power-off"></i> Logout
+              </button>
             </div>
           </div>
 
@@ -1373,16 +1332,9 @@
                     <input type="text" id="newProdTag" class="form-input" placeholder="e.g. Grade 1 English Willow / Reserve Cleft" required />
                   </div>
                   <div class="form-group">
-                    <label class="form-label">Image URLs (comma separated)</label>
-                    <input type="text" id="newProdImg" class="form-input" placeholder="e.g. ./grade_a_english.jpg" required />
+                    <label class="form-label">Image Filename / URL</label>
+                    <input type="text" id="newProdImg" class="form-input" placeholder="e.g. ./custom_bat.jpg" required />
                   </div>
-                </div>
-
-                <!-- SUPABASE CLOUD MULTI-IMAGE UPLOADER -->
-                <div class="form-group" style="background:rgba(59, 130, 246, 0.1); padding:14px; border-radius:8px; border:1px dashed #3b82f6;">
-                  <label class="form-label" style="color:#93c5fd;"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Photos (Front, Back, Side) - Auto Cloud Hosting</label>
-                  <input type="file" id="newProdFileInput" class="form-input" accept="image/*" multiple onchange="uploadPhotosToSupabase(this, 'newProdImg', 'newProdUploadStatus')" />
-                  <div id="newProdUploadStatus" style="font-size:0.8rem; color:#38bdf8; margin-top:6px; font-weight:600;"></div>
                 </div>
 
                 <div class="form-grid-2">
@@ -1548,11 +1500,10 @@
     </div>
   </div>
 
-  <!-- EDIT PRODUCT MODAL WITH SUPABASE MULTI-IMAGE UPLOADER -->
   <div class="modal-overlay" id="editProductModal">
     <div class="modal-box" style="background:#1e293b; color:#fff; max-width:600px;">
       <div class="modal-header" style="background:#0f172a;">
-        <h3><i class="fa-solid fa-pen-to-square" style="color:var(--gold);"></i> Edit Bat Details &amp; Photos</h3>
+        <h3><i class="fa-solid fa-pen-to-square" style="color:var(--gold);"></i> Edit Bat Details &amp; Sale Offers</h3>
         <button class="close-cart-btn" onclick="closeEditModal()"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div class="modal-body">
@@ -1591,16 +1542,9 @@
               <input type="text" id="editProdTag" class="form-input" required />
             </div>
             <div class="form-group">
-              <label class="form-label">Image URLs (comma separated)</label>
+              <label class="form-label">Image Path / URL</label>
               <input type="text" id="editProdImg" class="form-input" required />
             </div>
-          </div>
-
-          <!-- SUPABASE MULTI-PHOTO UPLOADER -->
-          <div class="form-group" style="background:rgba(59, 130, 246, 0.1); padding:14px; border-radius:8px; border:1px dashed #3b82f6;">
-            <label class="form-label" style="color:#93c5fd;"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Photos (Front, Back, Side) - Auto Cloud Hosting</label>
-            <input type="file" id="editProdFileInput" class="form-input" accept="image/*" multiple onchange="uploadPhotosToSupabase(this, 'editProdImg', 'editProdUploadStatus')" />
-            <div id="editProdUploadStatus" style="font-size:0.8rem; color:#38bdf8; margin-top:6px; font-weight:600;"></div>
           </div>
 
           <div class="form-grid-2" style="background:rgba(239, 68, 68, 0.1); padding:12px; border-radius:8px; border:1px dashed #ef4444; margin-bottom:14px;">
@@ -1627,7 +1571,7 @@
             </select>
           </div>
 
-          <button type="submit" id="saveEditBtn" class="btn-submit-order" style="background:var(--gold); color:#0f172a;">
+          <button type="submit" class="btn-submit-order" style="background:var(--gold); color:#0f172a;">
             <i class="fa-solid fa-floppy-disk"></i> Save &amp; Update Product
           </button>
         </form>
@@ -1692,70 +1636,28 @@
   </div>
 
   <script>
-    const fallbackImage = 'https://images.unsplash.com/photo-1531415074868-036b107e775a?q=80&w=800&auto=format&fit=crop';
+    const fallbackImage = 'https://images.unsplash.com/photo-1531415074868-036b107e775a?q=80&w=600&auto=format&fit=crop';
+    
+    // Web3Forms API Key registered for f2sportsstore@gmail.com
     const WEB3FORMS_ACCESS_KEY = "bbabe700-fc35-4a93-8f7c-244ec811d041";
 
-    const supabaseUrl = 'https://pgfibpfvlxcllpqbekum.supabase.co';
-    const supabaseKey = 'sb_publishable_PJIkuydJjYiyPrg4ldF75A__zUloN_A';
-    
-    let supabase = null;
+    // Firebase Firestore Cloud Configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyC_i6-PRaMMs2dLu8q8MC63Iy8p0dyKmF8",
+      authDomain: "f2-sports-store.firebaseapp.com",
+      projectId: "f2-sports-store",
+      storageBucket: "f2-sports-store.firebasestorage.app",
+      messagingSenderId: "76855377821",
+      appId: "1:76855377821:web:7d5835e372caee9c9eb974",
+      measurementId: "G-SCPRHC0L1P"
+    };
+
+    let db = null;
     try {
-      if (window.supabase) {
-        supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-      }
+      firebase.initializeApp(firebaseConfig);
+      db = firebase.firestore();
     } catch (e) {
-      console.warn("Supabase init error:", e);
-    }
-
-    async function uploadPhotosToSupabase(fileInputElement, targetUrlInputId, statusDisplayId) {
-      const files = Array.from(fileInputElement.files);
-      if (!files.length) return;
-
-      const statusEl = document.getElementById(statusDisplayId);
-      if (statusEl) statusEl.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Uploading ${files.length} images to Supabase...`;
-
-      if (!supabase) {
-        if (statusEl) statusEl.innerHTML = `<span style="color:#ef4444;">Supabase client not initialized.</span>`;
-        return;
-      }
-
-      const uploadedUrls = [];
-
-      try {
-        for (const file of files) {
-          const fileExt = file.name.split('.').pop();
-          const cleanName = file.name.replace(/[^a-zA-Z0-9]/g, '_');
-          const filePath = `${Date.now()}_${cleanName}.${fileExt}`;
-
-          const { error: uploadError } = await supabase.storage
-            .from('bat-images')
-            .upload(filePath, file);
-
-          if (uploadError) {
-            console.error("Supabase storage upload error:", uploadError);
-            continue;
-          }
-
-          const { data: publicUrlData } = supabase.storage
-            .from('bat-images')
-            .getPublicUrl(filePath);
-
-          if (publicUrlData && publicUrlData.publicUrl) {
-            uploadedUrls.push(publicUrlData.publicUrl);
-          }
-        }
-
-        if (uploadedUrls.length) {
-          document.getElementById(targetUrlInputId).value = uploadedUrls.join(' , ');
-          if (statusEl) statusEl.innerHTML = `<span style="color:#10b981;"><i class="fa-solid fa-check-circle"></i> ${uploadedUrls.length} photo(s) hosted on Supabase!</span>`;
-          showToast(`${uploadedUrls.length} photos uploaded to Supabase!`);
-        } else {
-          if (statusEl) statusEl.innerHTML = `<span style="color:#ef4444;">Upload failed. Ensure the 'bat-images' bucket is set to Public in Supabase Storage.</span>`;
-        }
-      } catch (err) {
-        console.error("Supabase upload exception:", err);
-        if (statusEl) statusEl.innerHTML = `<span style="color:#ef4444;">Upload failed. Check connection.</span>`;
-      }
+      console.warn("Firebase initialization notice:", e);
     }
 
     const initialProducts = [
@@ -1766,7 +1668,7 @@
         name: 'F2 Pro Grade A English Willow Bat',
         price: 24999,
         tag: 'Grade A Cleft',
-        images: ['./grade_a_english.jpg'],
+        img: './grade_a_english.jpg',
         inStock: true,
         saleBadge: '15% OFF',
         saleDesc: 'Eid Special Offer',
@@ -1779,7 +1681,7 @@
         name: 'F2 Match Grade B English Willow Bat',
         price: 16999,
         tag: 'Grade B Cleft',
-        images: ['./grade_b_english.jpg'],
+        img: './grade_b_english.jpg',
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -1792,7 +1694,7 @@
         name: 'F2 Players Edition Kashmir Leather Bat',
         price: 7999,
         tag: 'Top Reserve KW',
-        images: ['./Players_edition.jpg'],
+        img: './Players_edition.jpg',
         inStock: true,
         saleBadge: '20% OFF',
         saleDesc: 'Eid Mubarak Festival Deal',
@@ -1805,7 +1707,7 @@
         name: 'F2 Platinum Leather Bat',
         price: 6499,
         tag: 'Platinum Reserve',
-        images: ['./platinum.jpg'],
+        img: './platinum.jpg',
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -1818,7 +1720,7 @@
         name: 'F2 Diamond Leather Bat',
         price: 5199,
         tag: 'Diamond Series',
-        images: ['./diamond.jpg'],
+        img: './diamond.jpg',
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -1831,7 +1733,7 @@
         name: 'F2 Gold Reserve Leather Bat',
         price: 4199,
         tag: 'Gold Standard',
-        images: ['./gold.jpg'],
+        img: './gold.jpg',
         inStock: false,
         saleBadge: '',
         saleDesc: '',
@@ -1844,7 +1746,7 @@
         name: 'F2 Silver Club Leather Bat',
         price: 3299,
         tag: 'Silver Club',
-        images: ['./silver.jpg'],
+        img: './silver.jpg',
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -1857,7 +1759,7 @@
         name: 'F2 Laser-Designed Hard Tennis Bat',
         price: 2499,
         tag: 'UV 3D Graphics',
-        images: ['./designed.jpg'],
+        img: './designed.jpg',
         inStock: true,
         saleBadge: '10% OFF',
         saleDesc: 'Turf Special',
@@ -1870,7 +1772,7 @@
         name: 'F2 Classic Raw (Without Design) Tennis Bat',
         price: 1999,
         tag: 'Raw Natural Polish',
-        images: ['./without_design.jpg'],
+        img: './without_design.jpg',
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -1883,7 +1785,7 @@
         name: 'F2 Popular Turf Dominator Tennis Bat',
         price: 1799,
         tag: 'Top Turf Seller',
-        images: ['./popular.jpg'],
+        img: './popular.jpg',
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -1896,7 +1798,7 @@
         name: 'F2 Full Cane Handle Tennis Bat',
         price: 2899,
         tag: '9-Piece Cane Handle',
-        images: ['./cane.jpg'],
+        img: './cane.jpg',
         inStock: false,
         saleBadge: '',
         saleDesc: '',
@@ -1909,7 +1811,7 @@
         name: 'F2 Kissan Tennis Heavy Punch Bat',
         price: 2299,
         tag: 'Heavy Punch Willow',
-        images: ['./kissan_tennis.jpg'],
+        img: './kissan_tennis.jpg',
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -1922,7 +1824,7 @@
         name: 'F2 36-Inch Long Blade Monster Tennis Bat',
         price: 2999,
         tag: '36-Inch Long Blade',
-        images: ['./36inch.jpg'],
+        img: './36inch.jpg',
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -1934,93 +1836,26 @@
     let orders = JSON.parse(localStorage.getItem('f2_orders')) || [];
     let cart = {};
 
-    function sanitizeImageList(prod) {
-      let list = [];
-      if (Array.isArray(prod.images) && prod.images.length) {
-        list = prod.images.filter(url => typeof url === 'string' && url.trim().length > 2);
-      } else if (typeof prod.img === 'string') {
-        list = prod.img.split(',').map(s => s.trim()).filter(url => url.length > 2);
-      }
-      return list.length ? list : [fallbackImage];
-    }
-
-    async function saveProducts() {
+    function saveProducts() {
       localStorage.setItem('f2_products', JSON.stringify(products));
-      if (supabase) {
-        try {
-          await supabase.from('catalog').upsert({ id: 'current', data: products });
-        } catch (e) {
-          console.warn("Supabase catalog save error:", e);
-        }
-      }
     }
 
     function saveOrders() {
       localStorage.setItem('f2_orders', JSON.stringify(orders));
     }
 
-    function resetCatalogToDefault() {
-      if (confirm("Reset catalog to default presets? This will refresh all products.")) {
-        localStorage.removeItem('f2_products');
-        products = JSON.parse(JSON.stringify(initialProducts));
-        saveProducts();
-        renderProducts();
+    function listenToCloudOrders() {
+      if (!db) return;
+      db.collection("orders").orderBy("createdAt", "desc").onSnapshot(snapshot => {
+        orders = snapshot.docs.map(doc => ({ docId: doc.id, ...doc.data() }));
+        saveOrders();
         updateAdminDashboard();
-        showToast("Catalog reset successfully!");
-      }
-    }
-
-    async function loadCloudData() {
-      if (!supabase) return;
-
-      try {
-        const { data: catData } = await supabase.from('catalog').select('data').eq('id', 'current').single();
-        if (catData && Array.isArray(catData.data) && catData.data.length > 0) {
-          products = catData.data;
-          localStorage.setItem('f2_products', JSON.stringify(products));
-          renderProducts();
-          updateAdminDashboard();
-        }
-      } catch (e) {
-        console.log("Supabase catalog local fallback");
-      }
-
-      try {
-        const { data: ordersData, error: ordersErr } = await supabase.from('orders').select('*').order('id', { ascending: false });
-        if (ordersData && Array.isArray(ordersData) && !ordersErr) {
-          orders = ordersData.map(o => ({
-            dbId: o.id,
-            orderId: o.order_id,
-            date: o.date,
-            customer: o.customer,
-            items: o.items,
-            totalAmount: o.total_amount,
-            numericAmount: Number(o.numeric_amount) || 0,
-            utr: o.utr,
-            status: o.status
-          }));
-          saveOrders();
-          updateAdminDashboard();
-        }
-      } catch (e) {
-        console.log("Supabase orders local fallback");
-      }
+      }, err => console.log("Firestore sync notice:", err));
     }
 
     function handleImgError(imgElement) {
       imgElement.onerror = null;
       imgElement.src = fallbackImage;
-    }
-
-    function switchProductImage(productId, imgUrl, btnElement) {
-      const mainImg = document.getElementById(`main-img-${productId}`);
-      if (mainImg) mainImg.src = imgUrl;
-
-      const parent = btnElement.parentElement;
-      if (parent) {
-        parent.querySelectorAll('.thumb-btn').forEach(b => b.classList.remove('active'));
-        btnElement.classList.add('active');
-      }
     }
 
     function renderProducts() {
@@ -2039,19 +1874,6 @@
         const isAvailable = product.inStock !== false;
         const hasSale = Boolean(product.saleBadge && product.saleBadge.trim() !== '');
 
-        const imgList = sanitizeImageList(product);
-        const mainSrc = imgList[0];
-
-        const thumbsHtml = imgList.length > 1 ? `
-          <div class="gallery-thumbs-row">
-            ${imgList.map((im, idx) => `
-              <button type="button" class="thumb-btn ${idx === 0 ? 'active' : ''}" onclick="switchProductImage('${product.id}', '${im.replace(/'/g, "\\'")}', this)">
-                <img src="${im}" onerror="handleImgError(this)" />
-              </button>
-            `).join('')}
-          </div>
-        ` : '';
-
         const cardHtml = `
           <div class="product-card ${!isAvailable ? 'out-of-stock' : ''}" id="card-${product.id}">
             <span class="product-tag ${product.category === 'english' ? 'gold-tag' : ''}">${product.tag}</span>
@@ -2068,10 +1890,8 @@
             ` : ''}
 
             <div class="product-img-wrapper">
-              <img id="main-img-${product.id}" src="${mainSrc}" alt="${product.name}" class="product-img" loading="lazy" onerror="handleImgError(this)" />
+              <img src="${product.img}" alt="${product.name}" class="product-img" loading="lazy" onerror="handleImgError(this)" />
             </div>
-
-            ${thumbsHtml}
 
             <div class="product-body">
               <span class="product-cat-name">${product.catName}</span>
@@ -2084,7 +1904,7 @@
               ` : ''}
 
               <ul class="product-features">
-                ${(product.features || []).map(f => `<li><i class="fa-solid fa-check"></i> ${f}</li>`).join('')}
+                ${product.features.map(f => `<li><i class="fa-solid fa-check"></i> ${f}</li>`).join('')}
               </ul>
 
               <div class="product-footer">
@@ -2123,10 +1943,8 @@
       const product = products.find(p => p.id === productId);
       if (!product || product.inStock === false) return;
 
-      const imgList = sanitizeImageList(product);
-
       if (!cart[productId]) {
-        cart[productId] = { ...product, img: imgList[0], qty: 1 };
+        cart[productId] = { ...product, qty: 1 };
       } else {
         cart[productId].qty += 1;
       }
@@ -2241,7 +2059,7 @@
       const originalBtnText = submitBtn ? submitBtn.innerHTML : '';
       if (submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Saving Order in Supabase...';
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing Order...';
       }
 
       const name = document.getElementById('custName').value.trim();
@@ -2253,13 +2071,13 @@
       const rawNum = Number(totalAmount.replace(/[^0-9]/g, '')) || 0;
 
       const orderId = 'F2-' + Math.floor(100000 + Math.random() * 900000);
-      const currentDateStr = new Date().toLocaleString('en-IN');
       const itemsList = Object.values(cart);
       const itemsSummary = itemsList.map(i => `${i.name} (Qty: ${i.qty}) - Rs. ${(Number(i.price) * i.qty).toLocaleString('en-IN')}`).join('\n');
 
       const orderData = {
         orderId: orderId,
-        date: currentDateStr,
+        date: new Date().toLocaleString('en-IN'),
+        createdAt: Date.now(),
         customer: { name, email, phone, address },
         utr: utr,
         items: itemsList,
@@ -2268,29 +2086,11 @@
         status: 'Order Booked'
       };
 
-      if (supabase) {
+      if (db) {
         try {
-          const { data: insertedData, error: dbError } = await supabase
-            .from('orders')
-            .insert([{
-              order_id: orderId,
-              customer: { name, email, phone, address },
-              items: itemsList,
-              total_amount: totalAmount,
-              numeric_amount: rawNum,
-              utr: utr,
-              status: 'Order Booked',
-              date: currentDateStr
-            }])
-            .select();
-
-          if (dbError) {
-            console.error("Supabase insert error:", dbError);
-          } else if (insertedData && insertedData.length > 0) {
-            orderData.dbId = insertedData[0].id;
-          }
+          await db.collection("orders").add(orderData);
         } catch (err) {
-          console.error("Supabase exception:", err);
+          console.error("Firestore database write error:", err);
         }
       }
 
@@ -2323,7 +2123,7 @@
         console.error("Web3Forms transmission notice:", err);
       }
 
-      alert(`🎉 Thank you, ${name}!\nYour order #${orderId} has been successfully placed.`);
+      alert(`🎉 Thank you, ${name}!\nYour order #${orderId} has been successfully recorded.`);
 
       if (submitBtn) {
         submitBtn.disabled = false;
@@ -2430,7 +2230,7 @@
 
       container.innerHTML = '';
       orders.forEach((order, index) => {
-        const itemsListStr = (order.items || []).map(i => `${i.name} (x${i.qty})`).join(', ');
+        const itemsListStr = order.items.map(i => `${i.name} (x${i.qty})`).join(', ');
         container.innerHTML += `
           <div style="background:#1e293b; border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:20px; margin-bottom:16px;">
             <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px; margin-bottom:12px; font-weight:800; font-size:1.05rem;">
@@ -2439,8 +2239,8 @@
             </div>
             <div style="font-size:0.88rem; line-height:1.6; color:#cbd5e1;">
               <p><b>Date:</b> ${order.date}</p>
-              <p><b>Customer:</b> ${order.customer?.name} | <b>Email:</b> ${order.customer?.email} | <b>Phone:</b> ${order.customer?.phone}</p>
-              <p><b>Address:</b> ${order.customer?.address}</p>
+              <p><b>Customer:</b> ${order.customer.name} | <b>Email:</b> ${order.customer.email} | <b>Phone:</b> ${order.customer.phone}</p>
+              <p><b>Address:</b> ${order.customer.address}</p>
               <p><b>Bats Ordered:</b> ${itemsListStr}</p>
               <p><b>UPI UTR Number:</b> <code style="background:#0f172a; padding:2px 8px; border-radius:4px; color:#38bdf8;">${order.utr}</code></p>
               <p><b>Current Stage:</b> <span style="font-weight:700; color:#34d399;">${order.status}</span></p>
@@ -2468,17 +2268,12 @@
         const isAvailable = p.inStock !== false;
         const saleBadgeStr = p.saleBadge ? `<span style="background:#ef4444; color:#fff; padding:2px 6px; border-radius:4px; font-weight:700; font-size:0.75rem;">${p.saleBadge}</span>` : '<span style="color:#64748b;">None</span>';
         
-        const imgList = sanitizeImageList(p);
-
         tbody.innerHTML += `
           <tr>
             <td>
               <div style="display:flex; align-items:center; gap:10px;">
-                <img src="${imgList[0]}" alt="${p.name}" style="width:36px; height:36px; object-fit:contain; background:#fff; border-radius:4px; padding:2px;" onerror="handleImgError(this)" />
-                <div>
-                  <b>${p.name}</b>
-                  <div style="font-size:0.75rem; color:#94a3b8;">${imgList.length} photo(s)</div>
-                </div>
+                <img src="${p.img}" alt="${p.name}" style="width:36px; height:36px; object-fit:contain; background:#fff; border-radius:4px; padding:2px;" onerror="handleImgError(this)" />
+                <b>${p.name}</b>
               </div>
             </td>
             <td style="text-transform:capitalize;">${p.category} Willow</td>
@@ -2515,24 +2310,17 @@
       const prod = products.find(p => p.id === productId);
       if (!prod) return;
 
-      const imgList = sanitizeImageList(prod);
-
       document.getElementById('editProdId').value = prod.id;
       document.getElementById('editProdCategory').value = prod.category;
       document.getElementById('editProdCatName').value = prod.catName;
       document.getElementById('editProdName').value = prod.name;
       document.getElementById('editProdPrice').value = prod.price;
       document.getElementById('editProdTag').value = prod.tag;
-      document.getElementById('editProdImg').value = imgList.join(' , ');
+      document.getElementById('editProdImg').value = prod.img;
       document.getElementById('editProdSaleBadge').value = prod.saleBadge || '';
       document.getElementById('editProdSaleDesc').value = prod.saleDesc || '';
       document.getElementById('editProdFeatures').value = (prod.features || []).join(', ');
       document.getElementById('editProdStock').value = prod.inStock !== false ? 'true' : 'false';
-      
-      const statusEl = document.getElementById('editProdUploadStatus');
-      if (statusEl) statusEl.innerText = '';
-      const fileInput = document.getElementById('editProdFileInput');
-      if (fileInput) fileInput.value = '';
 
       document.getElementById('editProductModal').classList.add('active');
     }
@@ -2550,9 +2338,6 @@
       const featuresStr = document.getElementById('editProdFeatures').value;
       const features = featuresStr.split(',').map(f => f.trim()).filter(f => f.length > 0);
 
-      const rawImgs = document.getElementById('editProdImg').value;
-      const imagesArr = rawImgs.split(',').map(s => s.trim()).filter(s => s.length > 2);
-
       products[index] = {
         ...products[index],
         category: document.getElementById('editProdCategory').value,
@@ -2560,7 +2345,7 @@
         name: document.getElementById('editProdName').value,
         price: Number(document.getElementById('editProdPrice').value),
         tag: document.getElementById('editProdTag').value,
-        images: imagesArr.length ? imagesArr : [fallbackImage],
+        img: document.getElementById('editProdImg').value,
         saleBadge: document.getElementById('editProdSaleBadge').value.trim(),
         saleDesc: document.getElementById('editProdSaleDesc').value.trim(),
         features: features.length ? features : ['Tournament Quality', 'Handcrafted Willow'],
@@ -2581,9 +2366,7 @@
       const name = document.getElementById('newProdName').value;
       const price = Number(document.getElementById('newProdPrice').value);
       const tag = document.getElementById('newProdTag').value;
-      const rawImgs = document.getElementById('newProdImg').value;
-      const imagesArr = rawImgs.split(',').map(s => s.trim()).filter(s => s.length > 2);
-
+      const img = document.getElementById('newProdImg').value;
       const saleBadge = document.getElementById('newProdSaleBadge').value.trim();
       const saleDesc = document.getElementById('newProdSaleDesc').value.trim();
       const featuresStr = document.getElementById('newProdFeatures').value;
@@ -2598,7 +2381,7 @@
         name,
         price,
         tag,
-        images: imagesArr.length ? imagesArr : [fallbackImage],
+        img,
         saleBadge,
         saleDesc,
         inStock,
@@ -2641,7 +2424,7 @@
 
     function sendOrderPlacedEmail(index) {
       const order = orders[index];
-      const itemsList = (order.items || []).map(i => `- ${i.name} (Qty: ${i.qty}) - Rs. ${(Number(i.price) * i.qty).toLocaleString('en-IN')}`).join('%0D%0A');
+      const itemsList = order.items.map(i => `- ${i.name} (Qty: ${i.qty}) - Rs. ${(Number(i.price) * i.qty).toLocaleString('en-IN')}`).join('%0D%0A');
       
       const subject = encodeURIComponent(`Order Confirmation - #${order.orderId} | F2 Sports`);
       const body = encodeURIComponent(
@@ -2673,11 +2456,13 @@
 
       order.status = `Dispatched via ${courierName} (AWB: ${trackingNo})`;
 
-      if (supabase && order.dbId) {
+      if (db && order.docId) {
         try {
-          await supabase.from('orders').update({ status: order.status }).eq('id', order.dbId);
+          await db.collection("orders").doc(order.docId).update({
+            status: order.status
+          });
         } catch (e) {
-          console.error("Supabase status update error:", e);
+          console.error("Cloud status update error:", e);
         }
       }
 
@@ -2705,7 +2490,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       renderProducts();
       updateCartUI();
-      loadCloudData();
+      listenToCloudOrders();
       if (sessionStorage.getItem('f2_main_admin_auth')) {
         document.getElementById('admin-section').style.display = 'block';
         updateAdminDashboard();
