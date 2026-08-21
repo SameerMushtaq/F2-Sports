@@ -42,7 +42,7 @@
       font-family: 'Plus Jakarta Sans', sans-serif;
       background-color: #f1f5f9;
       color: var(--text-main);
-      line-height: 1.6;
+      line-height: 1.5;
     }
 
     h1, h2, h3, h4, .brand-font {
@@ -242,12 +242,12 @@
     .container {
       max-width: 1280px;
       margin: 0 auto;
-      padding: 50px 24px;
+      padding: 40px 20px;
     }
 
     .section-header {
       text-align: center;
-      margin-bottom: 35px;
+      margin-bottom: 30px;
     }
 
     .section-subtitle {
@@ -275,10 +275,11 @@
 
     .product-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-      gap: 26px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 22px;
     }
 
+    /* PRODUCT CARD & EXPANDED PHOTO CONTAINER */
     .product-card {
       background: #ffffff;
       border-radius: var(--radius);
@@ -292,30 +293,12 @@
     }
 
     .product-card:hover {
-      transform: translateY(-6px);
+      transform: translateY(-4px);
       box-shadow: var(--shadow-md);
     }
 
     .product-card.out-of-stock {
       opacity: 0.82;
-    }
-
-    .product-tag {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      background: rgba(15, 23, 42, 0.88);
-      color: #fff;
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 0.72rem;
-      font-weight: 700;
-      z-index: 2;
-    }
-
-    .product-tag.gold-tag {
-      background: linear-gradient(135deg, #d4af37, #997819);
-      color: #0f172a;
     }
 
     .stock-badge {
@@ -328,7 +311,7 @@
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      z-index: 2;
+      z-index: 5;
     }
 
     .stock-available {
@@ -345,51 +328,36 @@
 
     .sale-badge {
       position: absolute;
-      top: 44px;
+      top: 42px;
       right: 12px;
       background: linear-gradient(135deg, #ef4444, #b91c1c);
       color: #ffffff;
-      padding: 3px 9px;
+      padding: 4px 9px;
       border-radius: 20px;
       font-size: 0.72rem;
       font-weight: 800;
-      z-index: 2;
+      z-index: 5;
       box-shadow: 0 2px 6px rgba(239, 68, 68, 0.4);
       display: flex;
       align-items: center;
       gap: 4px;
     }
 
-    .sale-promo-strip {
-      background: #fef2f2;
-      border-left: 3px solid #ef4444;
-      color: #991b1b;
-      padding: 4px 8px;
-      font-size: 0.76rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
     .product-img-wrapper {
-      height: 230px;
-      background: #f8fafc;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
+      height: 380px;
+      width: 100%;
+      background: #0f172a;
       position: relative;
+      overflow: hidden;
+      cursor: zoom-in;
     }
 
     .product-img {
-      max-height: 190px;
-      max-width: 100%;
-      object-fit: contain;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       transition: transform 0.4s ease;
+      display: block;
     }
 
     .product-card:hover .product-img {
@@ -397,56 +365,66 @@
     }
 
     .product-thumbs-strip {
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      right: 0;
       display: flex;
+      justify-content: center;
       gap: 6px;
-      overflow-x: auto;
-      max-width: 100%;
-      padding: 4px;
-      margin-top: 4px;
-      z-index: 3;
+      padding: 0 8px;
+      z-index: 4;
     }
 
     .product-thumb-item {
       width: 32px;
       height: 32px;
-      object-fit: contain;
-      border: 1px solid #cbd5e1;
+      object-fit: cover;
+      border: 1.5px solid #ffffff;
       border-radius: 4px;
       background: white;
       cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.4);
       transition: border-color 0.2s;
     }
 
     .product-thumb-item:hover {
-      border-color: var(--primary);
+      border-color: var(--gold);
     }
 
     .product-body {
-      padding: 20px;
+      padding: 14px 16px;
       display: flex;
       flex-direction: column;
       flex-grow: 1;
     }
 
-    .product-cat-name {
-      font-size: 0.78rem;
-      font-weight: 800;
-      color: var(--primary);
-      text-transform: uppercase;
-      margin-bottom: 4px;
-    }
-
     .product-title {
-      font-size: 1.18rem;
+      font-size: 1.1rem;
       font-weight: 700;
       color: #0f172a;
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .sale-promo-strip {
+      background: #fef2f2;
+      border-left: 3px solid #ef4444;
+      color: #991b1b;
+      padding: 4px 8px;
+      font-size: 0.74rem;
+      font-weight: 700;
       margin-bottom: 8px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .product-features {
       list-style: none;
-      margin-bottom: 16px;
-      font-size: 0.83rem;
+      margin-bottom: 12px;
+      font-size: 0.8rem;
       color: var(--text-muted);
     }
 
@@ -459,7 +437,7 @@
 
     .product-features li i {
       color: #10b981;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
     }
 
     .product-footer {
@@ -467,12 +445,12 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding-top: 12px;
+      padding-top: 10px;
       border-top: 1px solid #f1f5f9;
     }
 
     .price-value {
-      font-size: 1.35rem;
+      font-size: 1.28rem;
       font-weight: 800;
       color: #0f172a;
     }
@@ -481,8 +459,8 @@
       background: var(--primary);
       color: #fff;
       border: none;
-      padding: 9px 16px;
-      border-radius: 8px;
+      padding: 8px 16px;
+      border-radius: 7px;
       font-weight: 700;
       font-size: 0.85rem;
       cursor: pointer;
@@ -500,31 +478,31 @@
       background: #94a3b8;
       color: #fff;
       border: none;
-      padding: 9px 14px;
-      border-radius: 8px;
+      padding: 8px 12px;
+      border-radius: 7px;
       font-weight: 700;
       font-size: 0.85rem;
       cursor: not-allowed;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
     }
 
     .qty-control-inline {
       display: flex;
       align-items: center;
       background: #f1f5f9;
-      border-radius: 8px;
+      border-radius: 6px;
       border: 1px solid #cbd5e1;
-      padding: 2px;
+      padding: 1px;
     }
 
     .qty-btn {
       background: white;
       border: 1px solid #cbd5e1;
-      width: 28px;
-      height: 28px;
-      border-radius: 6px;
+      width: 26px;
+      height: 26px;
+      border-radius: 4px;
       font-weight: bold;
       cursor: pointer;
       display: flex;
@@ -533,9 +511,60 @@
     }
 
     .qty-number {
-      padding: 0 10px;
+      padding: 0 8px;
       font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
+    }
+
+    /* FULL SCREEN IMAGE LIGHTBOX */
+    .lightbox-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 3000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      padding: 20px;
+    }
+
+    .lightbox-modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .lightbox-content {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+
+    .lightbox-close-btn {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .lightbox-close-btn:hover {
+      background: var(--primary);
     }
 
     /* ADMIN DASHBOARD SECTION */
@@ -846,7 +875,7 @@
     .cart-item-img {
       width: 55px;
       height: 55px;
-      object-fit: contain;
+      object-fit: cover;
       background: white;
       border-radius: 6px;
       padding: 2px;
@@ -1031,7 +1060,7 @@
     .photo-thumb-img {
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
     }
 
     .photo-remove-btn {
@@ -1397,7 +1426,7 @@
 
                 <div class="form-grid-2">
                   <div class="form-group">
-                    <label class="form-label">Badge / Willow Tag</label>
+                    <label class="form-label">Willow Tag</label>
                     <input type="text" id="newProdTag" class="form-input" placeholder="e.g. Grade 1 English Willow / Reserve Cleft" required />
                   </div>
                   <div class="form-group">
@@ -1418,8 +1447,8 @@
                 </div>
 
                 <div class="form-group">
-                  <label class="form-label">Key Specifications &amp; Features (comma separated)</label>
-                  <input type="text" id="newProdFeatures" class="form-input" placeholder="e.g. 40mm Edges, 9-10 Straight Grains, 1170g Light Pickup" required />
+                  <label class="form-label">Key Specifications (comma separated)</label>
+                  <input type="text" id="newProdFeatures" class="form-input" placeholder="e.g. 8-11 Straight Grains, 40mm Monster Edges, Full Concave (1160-1180g)" required />
                 </div>
 
                 <div class="form-group">
@@ -1484,6 +1513,12 @@
       </div>
     </section>
   </main>
+
+  <!-- FULLSCREEN LIGHTBOX -->
+  <div class="lightbox-modal" id="imageLightbox" onclick="closeLightbox()">
+    <button class="lightbox-close-btn" onclick="closeLightbox()"><i class="fa-solid fa-xmark"></i></button>
+    <img src="" alt="Enlarged Product View" class="lightbox-content" id="lightboxImg" onclick="event.stopPropagation()" />
+  </div>
 
   <div class="cart-drawer-overlay" id="cartOverlay" onclick="toggleCartDrawer()"></div>
   <div class="cart-drawer" id="cartDrawer">
@@ -1569,7 +1604,7 @@
     </div>
   </div>
 
-  <!-- EDIT PRODUCT MODAL WITH MULTI-IMAGE SUPABASE UPLOADER -->
+  <!-- EDIT PRODUCT MODAL -->
   <div class="modal-overlay" id="editProductModal">
     <div class="modal-box" style="background:#1e293b; color:#fff; max-width:640px;">
       <div class="modal-header" style="background:#0f172a;">
@@ -1608,7 +1643,7 @@
 
           <div class="form-grid-2">
             <div class="form-group">
-              <label class="form-label">Badge / Willow Tag</label>
+              <label class="form-label">Willow Tag</label>
               <input type="text" id="editProdTag" class="form-input" required />
             </div>
             <div class="form-group">
@@ -1639,7 +1674,7 @@
           </div>
 
           <div class="form-group">
-            <label class="form-label">Features (comma separated)</label>
+            <label class="form-label">Features &amp; Specifications (comma separated)</label>
             <input type="text" id="editProdFeatures" class="form-input" required />
           </div>
 
@@ -1740,14 +1775,14 @@
         category: 'english',
         catName: 'Grade A',
         name: 'F2 Pro Grade A English Willow Bat',
-        price: 24999,
+        price: 17499,
         tag: 'Grade A Cleft',
         img: './grade_a_english.jpg',
         images: ['./grade_a_english.jpg'],
         inStock: true,
         saleBadge: '15% OFF',
         saleDesc: 'Eid Special Offer',
-        features: ['8-11 Straight Defined Grains', '40mm Monster Edges', 'Full Concave Profile (1160-1180g)']
+        features: ['8–11 Straight Defined Grains', '40mm Monster Edges', 'Full Concave Profile (1160–1180g)']
       },
       {
         id: 'EW2',
@@ -1761,7 +1796,7 @@
         inStock: true,
         saleBadge: '',
         saleDesc: '',
-        features: ['6-8 Grains with Natural Character', 'Superb Rebound Ping', 'Semi-Oval Cane Handle']
+        features: ['6–8 Straight Defined Grains', '38mm Power Edges', 'Mid-to-Low Profile (1170–1190g)']
       },
       {
         id: 'KW1',
@@ -1775,7 +1810,7 @@
         inStock: true,
         saleBadge: '20% OFF',
         saleDesc: 'Eid Mubarak Festival Deal',
-        features: ['Dense Grain Selected Kashmir Willow', 'Massive Sweet Spot', 'Pre-knocked with 10k strikes']
+        features: ['Selected Kashmir Willow Grains', '40mm Heavy Edges', 'Full Spine Profile (1190–1210g)']
       },
       {
         id: 'KW2',
@@ -1789,7 +1824,7 @@
         inStock: true,
         saleBadge: '',
         saleDesc: '',
-        features: ['Curved Blade for Maximum Elevation', 'Fitted Toe Guard', 'Excellent Pickup & Balance']
+        features: ['Natural Wood Dense Grains', '38mm Thick Edges', 'Curved Power Profile (1180–1200g)']
       },
       {
         id: 'KW3',
@@ -1803,7 +1838,7 @@
         inStock: true,
         saleBadge: '',
         saleDesc: '',
-        features: ['38mm Thick Edge Profile', 'Hard Pressed Willow Face', 'Comfort Chevron Grip']
+        features: ['Hard-Pressed Willow Face', '38mm Robust Edges', 'Balanced Pickup Profile (1180g)']
       },
       {
         id: 'KW4',
@@ -1817,7 +1852,7 @@
         inStock: false,
         saleBadge: '',
         saleDesc: '',
-        features: ['Clean Natural Face', 'Full Spine Swell', 'Ideal for League Matches']
+        features: ['Clean Natural Face', '36mm Match Edges', 'Full Spine Swell (1190g)']
       },
       {
         id: 'KW5',
@@ -1831,7 +1866,7 @@
         inStock: true,
         saleBadge: '',
         saleDesc: '',
-        features: ['Durable Kashmir Willow Blade', 'Even Weight Distribution', 'Great Entry-level League Bat']
+        features: ['Durable Seasoned Grains', '35mm Edges', 'Light Swing Weight (1170g)']
       },
       {
         id: 'TN1',
@@ -1845,7 +1880,7 @@
         inStock: true,
         saleBadge: '10% OFF',
         saleDesc: 'Turf Special',
-        features: ['High-Gloss Designer Decal', 'Thick Bottom for Turf Hitting', 'Lightweight 1030g']
+        features: ['High-Gloss UV Graphics', '50mm Monster Blade', 'Featherlight Pickup (1030g)']
       },
       {
         id: 'TN2',
@@ -1859,7 +1894,7 @@
         inStock: true,
         saleBadge: '',
         saleDesc: '',
-        features: ['Natural Wood Polish Finish', 'Clean Minimal Blade', 'Massive Center Meat Profile']
+        features: ['Natural Wood Polish Grains', 'Thick Center Meat Profile', 'Even Balance (1040g)']
       },
       {
         id: 'TN3',
@@ -1873,7 +1908,7 @@
         inStock: true,
         saleBadge: '',
         saleDesc: '',
-        features: ['Duckbill Toe for Super Fast Swing', 'Suited for Soft & Light Tennis', 'Explosive Lofting Power']
+        features: ['Duckbill Toe Dynamic', 'Soft & Light Tennis Spec', 'Fast Aero Swing (1010g)']
       },
       {
         id: 'TN4',
@@ -1887,7 +1922,7 @@
         inStock: false,
         saleBadge: '',
         saleDesc: '',
-        features: ['Full Singapore Cane Handle', 'Zero Shock Vibration on Hard Ball', 'Unbreakable Build']
+        features: ['9-Piece Cane Shock Absorber', 'Extra Thick Edges', 'Heavy Hard Ball Punch (1060g)']
       },
       {
         id: 'TN5',
@@ -1901,7 +1936,7 @@
         inStock: true,
         saleBadge: '',
         saleDesc: '',
-        features: ['Specially Seasoned Hard Willow', '4.5 Inch Extra Broad Blade', 'Suited for Heavy Red Tennis Balls']
+        features: ['4.5-Inch Broad Blade', 'Hard Seasoned Willow', 'Heavy Red Ball Power (1080g)']
       },
       {
         id: 'TN6',
@@ -1915,7 +1950,7 @@
         inStock: true,
         saleBadge: '',
         saleDesc: '',
-        features: ['Extended 36-Inch Leverage', 'Extra Reach on Wide Deliveries', 'Massive Boundary Trajectory']
+        features: ['Extended 36-Inch Leverage', 'Extra Reach Wide Profile', 'Monstrous Leverage (1070g)']
       }
     ];
 
@@ -1978,10 +2013,27 @@
       imgElement.src = fallbackImage;
     }
 
-    function switchProductImage(productId, newSrc) {
+    function switchProductImage(productId, newSrc, e) {
+      if (e) e.stopPropagation();
       const imgElem = document.getElementById(`main-img-${productId}`);
       if (imgElem) {
         imgElem.src = newSrc;
+      }
+    }
+
+    function openLightbox(imgSrc) {
+      const modal = document.getElementById('imageLightbox');
+      const img = document.getElementById('lightboxImg');
+      if (modal && img) {
+        img.src = imgSrc;
+        modal.classList.add('active');
+      }
+    }
+
+    function closeLightbox() {
+      const modal = document.getElementById('imageLightbox');
+      if (modal) {
+        modal.classList.remove('active');
       }
     }
 
@@ -2005,15 +2057,13 @@
         const thumbsHtml = imagesList.length > 1 ? `
           <div class="product-thumbs-strip">
             ${imagesList.map(imgUrl => `
-              <img src="${imgUrl}" class="product-thumb-item" onclick="switchProductImage('${product.id}', '${imgUrl}')" onerror="handleImgError(this)" />
+              <img src="${imgUrl}" class="product-thumb-item" onclick="switchProductImage('${product.id}', '${imgUrl}', event)" onerror="handleImgError(this)" />
             `).join('')}
           </div>
         ` : '';
 
         const cardHtml = `
           <div class="product-card ${!isAvailable ? 'out-of-stock' : ''}" id="card-${product.id}">
-            <span class="product-tag ${product.category === 'english' ? 'gold-tag' : ''}">${product.tag}</span>
-            
             <span class="stock-badge ${isAvailable ? 'stock-available' : 'stock-out'}">
               <i class="fa-solid ${isAvailable ? 'fa-circle-check' : 'fa-circle-xmark'}"></i>
               ${isAvailable ? 'Available' : 'Out of Stock'}
@@ -2025,13 +2075,12 @@
               </span>
             ` : ''}
 
-            <div class="product-img-wrapper">
+            <div class="product-img-wrapper" onclick="openLightbox(document.getElementById('main-img-${product.id}').src)">
               <img src="${product.img}" alt="${product.name}" id="main-img-${product.id}" class="product-img" loading="lazy" onerror="handleImgError(this)" />
               ${thumbsHtml}
             </div>
 
             <div class="product-body">
-              <span class="product-cat-name">${product.catName}</span>
               <h3 class="product-title">${product.name}</h3>
 
               ${hasSale && product.saleDesc ? `
@@ -2423,7 +2472,7 @@
           <tr>
             <td>
               <div style="display:flex; align-items:center; gap:10px;">
-                <img src="${p.img}" alt="${p.name}" style="width:36px; height:36px; object-fit:contain; background:#fff; border-radius:4px; padding:2px;" onerror="handleImgError(this)" />
+                <img src="${p.img}" alt="${p.name}" style="width:36px; height:36px; object-fit:cover; background:#fff; border-radius:4px; padding:2px;" onerror="handleImgError(this)" />
                 <div>
                   <b>${p.name}</b>
                   <div style="font-size:0.72rem; color:#94a3b8;"><i class="fa-solid fa-images"></i> ${imgCount} photo(s)</div>
@@ -2476,7 +2525,6 @@
       document.getElementById('editProdFeatures').value = (prod.features || []).join(', ');
       document.getElementById('editProdStock').value = prod.inStock !== false ? 'true' : 'false';
 
-      // Load existing images array
       tempEditImages = prod.images && prod.images.length ? [...prod.images] : [prod.img];
       renderEditPhotosGallery();
 
