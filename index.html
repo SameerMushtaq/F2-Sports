@@ -264,7 +264,7 @@
       justify-content: center;
     }
 
-    /* CONTAINER 2: HERO SECTION WITH 3+3 PICTURES ON BOTH SIDES */
+    /* CONTAINER 2: HERO SECTION WITH 3+3 (TOTAL 6) PICTURES IN A SINGLE ROW ON BOTH SIDES */
     .hero-sports-wrapper {
       background: var(--hero-radial);
       border-bottom: 2px solid var(--border-theme);
@@ -1518,22 +1518,21 @@
       object-fit: contain;
     }
 
-    @media (max-width: 1200px) {
+    @media (max-width: 1300px) {
       .nav-links {
         display: none;
       }
       .hero-sports-wrapper {
         height: auto;
-        padding: 30px 20px;
+        padding: 25px 15px;
       }
       .hero-grid-showcase {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 15px;
       }
       .hero-side-column {
         justify-content: center;
-        gap: 10px;
-        height: 160px;
+        height: 140px;
       }
     }
 
@@ -1543,7 +1542,7 @@
         text-align: center;
       }
       .hero-title-main {
-        font-size: 3.5rem;
+        font-size: 3.2rem;
       }
       .falcon-brand-banner-title {
         font-size: 2.3rem;
@@ -1608,8 +1607,8 @@
         <div class="hero-center-content">
           <h1>
             <span class="hero-title-prefix">Power Your Game With</span>
-            <span class="hero-title-main multi-color-text">FALCON 2 SPORTS</span>
-            <span class="hero-title-suffix">Mastercraft Bats</span>
+            <span class="hero-title-main multi-color-text">Falcon 2</span>
+            <span class="hero-title-suffix">Sports Mastercraft Bats</span>
           </h1>
           <p>Hand-crafted for extraordinary rebound ping, razor-sharp balance, and monster power hitting across all formats.</p>
         </div>
@@ -2359,9 +2358,9 @@
     const defaultHeroPhotos = [
       './hero_bat_1.png',
       './hero_bat_2.png',
+      './hero_bat_1.png',
       './hero_bat_3.png',
       './hero_bat_4.png',
-      './hero_bat_1.png',
       './hero_bat_3.png'
     ];
 
