@@ -1518,21 +1518,18 @@
       object-fit: contain;
     }
 
-    @media (max-width: 1300px) {
-      .nav-links {
-        display: none;
-      }
+    @media (max-width: 1400px) {
       .hero-sports-wrapper {
         height: auto;
-        padding: 25px 15px;
+        padding: 30px 20px;
       }
       .hero-grid-showcase {
         grid-template-columns: 1fr;
-        gap: 15px;
+        gap: 20px;
       }
       .hero-side-column {
         justify-content: center;
-        height: 140px;
+        height: 180px;
       }
     }
 
@@ -2197,6 +2194,24 @@
         <div style="display: flex; gap: 12px; justify-content: center;">
           <button onclick="closeDeleteOrderModal()" class="admin-action-btn" style="background: #475569; color: #fff; padding: 10px 20px; font-size: 0.9rem;">Cancel</button>
           <button onclick="confirmDeleteOrderAction()" class="admin-action-btn" style="background: #ef4444; color: #fff; padding: 10px 20px; font-size: 0.9rem;">Yes, Delete Order</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCT DELETE CONFIRMATION POPUP MODAL -->
+  <div class="modal-overlay" id="deleteProductConfirmModal" onclick="closeDeleteProductModal()">
+    <div class="modal-box" onclick="event.stopPropagation()" style="max-width: 400px; text-align: center;">
+      <div class="modal-header" style="background: #b91c1c;">
+        <h3 style="font-size:1.2rem; color: #fff;"><i class="fa-solid fa-triangle-exclamation"></i> Confirm Product Deletion</h3>
+        <button class="close-cart-btn" onclick="closeDeleteProductModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body" style="padding: 24px;">
+        <p style="font-size: 0.95rem; color: var(--text-main); margin-bottom: 20px;" id="deleteProductConfirmText">Are you sure you want to delete this product from your store?</p>
+        <input type="hidden" id="pendingDeleteProductId" />
+        <div style="display: flex; gap: 12px; justify-content: center;">
+          <button onclick="closeDeleteProductModal()" class="admin-action-btn" style="background: #475569; color: #fff; padding: 10px 20px; font-size: 0.9rem;">Cancel</button>
+          <button onclick="confirmDeleteProductAction()" class="admin-action-btn" style="background: #ef4444; color: #fff; padding: 10px 20px; font-size: 0.9rem;">Yes, Delete Product</button>
         </div>
       </div>
     </div>
@@ -3203,6 +3218,30 @@
       showToast(`Order #${order.orderId} deleted from database successfully.`);
     }
 
+    /* PROMPT POPUP CONFIRMATION FOR PRODUCT DELETION */
+    function deleteProduct(productId) {
+      const prod = products.find(p => p.id === productId);
+      if (!prod) return;
+      document.getElementById('pendingDeleteProductId').value = productId;
+      document.getElementById('deleteProductConfirmText').innerText = `Are you sure you want to delete "${prod.name}" from your store?`;
+      document.getElementById('deleteProductConfirmModal').classList.add('active');
+    }
+
+    function closeDeleteProductModal() {
+      document.getElementById('deleteProductConfirmModal').classList.remove('active');
+    }
+
+    function confirmDeleteProductAction() {
+      const productId = document.getElementById('pendingDeleteProductId').value;
+      products = products.filter(p => p.id !== productId);
+      saveProducts();
+      renderProducts();
+      updateCartUI();
+      updateAdminDashboard();
+      closeDeleteProductModal();
+      showToast('Product removed from store successfully.');
+    }
+
     function renderAdminOrdersList() {
       const container = document.getElementById('mainAdminOrdersList');
       if (!container) return;
@@ -3476,18 +3515,6 @@
         updateCartUI();
         updateAdminDashboard();
         showToast(`${prod.name} stock updated!`);
-      }
-    }
-
-    function deleteProduct(productId) {
-      const prod = products.find(p => p.id === productId);
-      if (confirm(`Are you sure you want to delete "${prod.name}" from your store?`)) {
-        products = products.filter(p => p.id !== productId);
-        saveProducts();
-        renderProducts();
-        updateCartUI();
-        updateAdminDashboard();
-        showToast('Product removed from store.');
       }
     }
 
