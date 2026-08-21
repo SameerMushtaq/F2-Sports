@@ -1641,14 +1641,12 @@
     const WEB3FORMS_ACCESS_KEY = "bbabe700-fc35-4a93-8f7c-244ec811d041";
 
     // Supabase Configuration
-    // Paste your project URL from Supabase Settings -> API -> Project URL
-    const SUPABASE_URL = "https://YOUR_PROJECT_ID.supabase.co";
-    // Replace with your full publishable key from the dashboard
-    const SUPABASE_ANON_KEY = "sb_publishable_PJikuyddJjYiyPRg4ldF75A__zUlo...";
+    const SUPABASE_URL = "https://pgfibpfvlxcllpqbekum.supabase.co";
+    const SUPABASE_ANON_KEY = "sb_publishable_PJIkuydJjYiyPRg4ldF75A__zUloDKH";
 
     let supabaseClient = null;
     try {
-      if (typeof supabase !== 'undefined' && SUPABASE_URL.startsWith("http")) {
+      if (typeof supabase !== 'undefined') {
         supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
       }
     } catch (e) {
