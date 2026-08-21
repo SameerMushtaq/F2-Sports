@@ -15,19 +15,20 @@
 
   <style>
     :root {
-      --primary: #d32f2f;
-      --primary-dark: #9a0007;
-      --gold: #d4af37;
-      --gold-dark: #aa8c2c;
-      --dark: #0f172a;
-      --light: #f8fafc;
-      --text-main: #0f172a;
-      --text-muted: #64748b;
-      --border-color: #e2e8f0;
+      --neon-cyan: #00f0ff;
+      --neon-blue: #0088ff;
+      --neon-yellow: #ffe600;
+      --neon-gold: #ffd000;
+      --dark-bg: #040914;
+      --dark-surface: #0a1326;
+      --dark-card: #0f1c38;
+      --border-neon: rgba(0, 240, 255, 0.25);
+      --border-glow: rgba(0, 240, 255, 0.5);
+      --text-main: #f0fdf4;
+      --text-muted: #8ba2c7;
       --radius: 12px;
-      --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
-      --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.1);
-      --shadow-xl: 0 20px 35px -10px rgba(0,0,0,0.25);
+      --shadow-neon: 0 0 20px rgba(0, 240, 255, 0.25);
+      --shadow-yellow: 0 0 20px rgba(255, 230, 0, 0.3);
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -40,9 +41,10 @@
 
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: #f1f5f9;
+      background-color: var(--dark-bg);
       color: var(--text-main);
       line-height: 1.5;
+      overflow-x: hidden;
     }
 
     h1, h2, h3, h4, .brand-font {
@@ -50,193 +52,254 @@
       font-weight: 700;
     }
 
-    .top-bar {
-      background: #b91c1c;
-      color: #fff;
-      font-size: 0.85rem;
-      padding: 6px 0;
-      text-align: center;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
-
     header {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(15, 23, 42, 0.96);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(4, 9, 20, 0.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-neon);
+      box-shadow: 0 4px 25px rgba(0, 240, 255, 0.1);
+      width: 100%;
     }
 
+    /* FULL EDGE-TO-EDGE NAVBAR WITH ABSOLUTE CORNER ELEMENTS */
     .navbar {
-      max-width: 1280px;
-      margin: 0 auto;
+      width: 100%;
+      max-width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 14px 24px;
+      padding: 10px 16px;
+      position: relative;
     }
 
     .logo-container {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       text-decoration: none;
+      flex-shrink: 0;
     }
 
-    .logo-badge {
-      background: linear-gradient(135deg, #d32f2f, #d4af37);
-      color: white;
-      font-weight: 900;
-      font-size: 1.4rem;
-      width: 44px;
+    .logo-img {
       height: 44px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.5));
+    }
+
+    .logo-fallback {
+      background: linear-gradient(135deg, var(--neon-cyan), var(--neon-blue));
+      color: #040914;
+      font-weight: 900;
+      font-size: 1.3rem;
+      width: 40px;
+      height: 40px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(211, 47, 47, 0.4);
+      border-radius: 8px;
+      box-shadow: var(--shadow-neon);
     }
 
     .logo-title {
-      font-size: 1.4rem;
+      font-size: 1.25rem;
       font-weight: 800;
       color: #ffffff;
       line-height: 1.1;
+      letter-spacing: 0.5px;
     }
 
     .logo-title span {
-      color: var(--gold);
+      color: var(--neon-yellow);
+      text-shadow: 0 0 10px rgba(255, 230, 0, 0.5);
     }
 
     .logo-tagline {
-      font-size: 0.72rem;
-      color: #94a3b8;
+      font-size: 0.62rem;
+      color: var(--neon-cyan);
       text-transform: uppercase;
-      letter-spacing: 1.5px;
+      letter-spacing: 1.6px;
       display: block;
+      font-weight: 600;
     }
 
+    /* CENTERED NAV LINKS */
     .nav-links {
       display: flex;
       list-style: none;
-      gap: 18px;
+      gap: 22px;
       align-items: center;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
     }
 
     .nav-links a {
-      color: #e2e8f0;
+      color: var(--text-main);
       text-decoration: none;
       font-size: 0.9rem;
-      font-weight: 600;
+      font-weight: 700;
       transition: var(--transition);
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
     }
 
     .nav-links a:hover {
-      color: var(--gold);
+      color: var(--neon-cyan);
+      text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
     }
 
+    /* RIGHT CORNER ACTIONS */
     .nav-actions {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .btn-admin-portal-link {
+      background: rgba(255, 230, 0, 0.08);
+      border: 1px solid var(--neon-yellow);
+      color: var(--neon-yellow);
+      padding: 7px 14px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.82rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+
+    .btn-admin-portal-link:hover {
+      background: var(--neon-yellow);
+      color: var(--dark-bg);
+      box-shadow: var(--shadow-yellow);
     }
 
     .cart-btn-trigger {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(0, 240, 255, 0.1);
       color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      padding: 9px 18px;
+      border: 1px solid var(--neon-cyan);
+      padding: 7px 16px;
       border-radius: 50px;
       cursor: pointer;
       font-weight: 700;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       transition: var(--transition);
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
     }
 
     .cart-btn-trigger:hover {
-      background: var(--primary);
-      border-color: var(--primary);
+      background: var(--neon-cyan);
+      color: var(--dark-bg);
+      box-shadow: var(--shadow-neon);
     }
 
     .cart-badge-count {
-      background: var(--gold);
-      color: #0f172a;
-      font-size: 0.75rem;
-      font-weight: 800;
+      background: var(--neon-yellow);
+      color: #040914;
+      font-size: 0.72rem;
+      font-weight: 900;
       border-radius: 50%;
-      width: 22px;
-      height: 22px;
+      width: 20px;
+      height: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
+    /* COMPACTED 2ND CONTAINER (HERO/BRAND SECTION) */
     .hero {
-      background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9)), 
+      background: radial-gradient(circle at center, rgba(0, 136, 255, 0.18) 0%, rgba(4, 9, 20, 0.98) 75%), 
                   url('https://images.unsplash.com/photo-1531415074868-036b107e775a?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
       color: white;
-      padding: 75px 24px 55px;
+      padding: 42px 20px 38px;
       text-align: center;
+      position: relative;
+      border-bottom: 1px solid var(--border-neon);
     }
 
-    .hero h1 {
-      font-size: 2.9rem;
-      line-height: 1.15;
-      margin-bottom: 16px;
+    .hero-title-prefix {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #cbd5e1;
+      display: block;
+      letter-spacing: 1.2px;
+      margin-bottom: 2px;
+      text-transform: uppercase;
     }
 
-    .hero h1 span {
-      background: linear-gradient(to right, #ff4b4b, #d4af37);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .hero-title-main {
+      font-size: 3.4rem;
+      font-weight: 900;
+      color: var(--neon-cyan);
+      text-shadow: 0 0 30px rgba(0, 240, 255, 0.8), 0 0 60px rgba(0, 240, 255, 0.35);
+      display: block;
+      line-height: 1.08;
+      letter-spacing: -0.5px;
+    }
+
+    .hero-title-suffix {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--neon-yellow);
+      text-shadow: 0 0 15px rgba(255, 230, 0, 0.5);
+      display: block;
+      margin-top: 4px;
+      letter-spacing: 0.5px;
     }
 
     .hero p {
-      font-size: 1.1rem;
-      color: #cbd5e1;
-      max-width: 700px;
-      margin: 0 auto 28px;
-    }
-
-    .hero-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .btn-hero {
-      padding: 11px 22px;
-      border-radius: 30px;
       font-size: 0.92rem;
-      font-weight: 700;
-      text-decoration: none;
-      transition: var(--transition);
+      color: var(--text-muted);
+      max-width: 620px;
+      margin: 10px auto 0;
+      line-height: 1.4;
+    }
+
+    /* CONTINUOUS FLOATING RED STRIP ABOVE PRODUCTS */
+    .floating-ticker-wrapper {
+      background: linear-gradient(90deg, #991b1b, #dc2626, #b91c1c, #991b1b);
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 7px 0;
+      box-shadow: 0 0 15px rgba(220, 38, 38, 0.5);
+    }
+
+    .floating-ticker-track {
+      display: inline-flex;
+      animation: marqueeScroll 22s linear infinite;
+    }
+
+    .ticker-item {
+      color: #ffffff;
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 0 35px;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
 
-    .btn-hero-primary {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: #fff;
+    .ticker-item i {
+      color: var(--neon-yellow);
     }
 
-    .btn-hero-secondary {
-      background: rgba(255, 255, 255, 0.12);
-      color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-    }
-
-    .btn-hero:hover {
-      transform: translateY(-2px);
+    @keyframes marqueeScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
 
     .container {
@@ -251,26 +314,28 @@
     }
 
     .section-subtitle {
-      color: var(--primary);
-      font-size: 0.85rem;
+      color: var(--neon-yellow);
+      font-size: 0.82rem;
       font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 1.5px;
+      letter-spacing: 2px;
       display: block;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
+      text-shadow: 0 0 8px rgba(255, 230, 0, 0.4);
     }
 
     .section-title {
-      font-size: 2.1rem;
-      color: var(--dark);
-      margin-bottom: 8px;
+      font-size: 2rem;
+      color: #ffffff;
+      margin-bottom: 6px;
+      text-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
     }
 
     .section-desc {
       color: var(--text-muted);
       max-width: 600px;
       margin: 0 auto;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
     }
 
     .product-grid {
@@ -279,13 +344,13 @@
       gap: 22px;
     }
 
-    /* COMPACTED PRODUCT CARD */
+    /* NEON THEMED PRODUCT CARD */
     .product-card {
-      background: #ffffff;
+      background: var(--dark-card);
       border-radius: var(--radius);
-      border: 1px solid var(--border-color);
+      border: 1px solid var(--border-neon);
       overflow: hidden;
-      box-shadow: var(--shadow-sm);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
       display: flex;
       flex-direction: column;
       transition: var(--transition);
@@ -293,21 +358,22 @@
     }
 
     .product-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
+      transform: translateY(-6px);
+      border-color: var(--neon-cyan);
+      box-shadow: var(--shadow-neon);
     }
 
     .product-card.out-of-stock {
-      opacity: 0.82;
+      opacity: 0.75;
     }
 
     .stock-badge {
       position: absolute;
-      top: 10px;
-      right: 10px;
-      padding: 3px 8px;
+      top: 12px;
+      right: 12px;
+      padding: 4px 10px;
       border-radius: 20px;
-      font-size: 0.68rem;
+      font-size: 0.7rem;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -315,41 +381,42 @@
     }
 
     .stock-available {
-      background: #dcfce7;
-      color: #15803d;
-      border: 1px solid #86efac;
+      background: rgba(0, 240, 255, 0.15);
+      color: var(--neon-cyan);
+      border: 1px solid var(--neon-cyan);
+      box-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
     }
 
     .stock-out {
-      background: #fee2e2;
-      color: #b91c1c;
-      border: 1px solid #fca5a5;
+      background: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+      border: 1px solid #ef4444;
     }
 
     .sale-badge {
       position: absolute;
-      top: 38px;
-      right: 10px;
-      background: linear-gradient(135deg, #ef4444, #b91c1c);
-      color: #ffffff;
-      padding: 3px 8px;
+      top: 44px;
+      right: 12px;
+      background: linear-gradient(135deg, var(--neon-yellow), #f59e0b);
+      color: #040914;
+      padding: 4px 10px;
       border-radius: 20px;
-      font-size: 0.68rem;
-      font-weight: 800;
+      font-size: 0.7rem;
+      font-weight: 900;
       z-index: 5;
-      box-shadow: 0 2px 6px rgba(239, 68, 68, 0.4);
+      box-shadow: var(--shadow-yellow);
       display: flex;
       align-items: center;
       gap: 4px;
     }
 
-    /* FULL CARD IMAGE CONTAINER */
     .product-img-wrapper {
-      height: 250px;
+      height: 360px;
       width: 100%;
-      background: #f8fafc;
+      background: #060d1d;
       position: relative;
       overflow: hidden;
+      cursor: zoom-in;
     }
 
     .product-img {
@@ -366,7 +433,7 @@
 
     .product-thumbs-strip {
       position: absolute;
-      bottom: 8px;
+      bottom: 10px;
       left: 0;
       right: 0;
       display: flex;
@@ -377,49 +444,42 @@
     }
 
     .product-thumb-item {
-      width: 28px;
-      height: 28px;
+      width: 32px;
+      height: 32px;
       object-fit: cover;
-      border: 1.5px solid #ffffff;
+      border: 1.5px solid var(--neon-cyan);
       border-radius: 4px;
-      background: white;
+      background: #040914;
       cursor: pointer;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-      transition: border-color 0.2s;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+      transition: var(--transition);
     }
 
     .product-thumb-item:hover {
-      border-color: var(--gold);
+      border-color: var(--neon-yellow);
+      transform: scale(1.1);
     }
 
-    /* COMPACT DETAILS BODY */
     .product-body {
       padding: 14px 16px;
       display: flex;
       flex-direction: column;
       flex-grow: 1;
-    }
-
-    .product-cat-name {
-      font-size: 0.72rem;
-      font-weight: 800;
-      color: var(--primary);
-      text-transform: uppercase;
-      margin-bottom: 2px;
+      background: var(--dark-surface);
     }
 
     .product-title {
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       font-weight: 700;
-      color: #0f172a;
+      color: #ffffff;
       margin-bottom: 6px;
-      line-height: 1.25;
+      line-height: 1.3;
     }
 
     .sale-promo-strip {
-      background: #fef2f2;
-      border-left: 3px solid #ef4444;
-      color: #991b1b;
+      background: rgba(255, 230, 0, 0.08);
+      border-left: 3px solid var(--neon-yellow);
+      color: var(--neon-yellow);
       padding: 4px 8px;
       font-size: 0.74rem;
       font-weight: 700;
@@ -433,7 +493,7 @@
     .product-features {
       list-style: none;
       margin-bottom: 12px;
-      font-size: 0.78rem;
+      font-size: 0.8rem;
       color: var(--text-muted);
     }
 
@@ -445,8 +505,9 @@
     }
 
     .product-features li i {
-      color: #10b981;
+      color: var(--neon-cyan);
       font-size: 0.7rem;
+      text-shadow: 0 0 6px rgba(0, 240, 255, 0.6);
     }
 
     .product-footer {
@@ -455,40 +516,44 @@
       align-items: center;
       justify-content: space-between;
       padding-top: 10px;
-      border-top: 1px solid #f1f5f9;
+      border-top: 1px solid rgba(0, 240, 255, 0.15);
     }
 
     .price-value {
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       font-weight: 800;
-      color: #0f172a;
+      color: var(--neon-yellow);
+      text-shadow: 0 0 10px rgba(255, 230, 0, 0.4);
     }
 
     .btn-add-cart {
-      background: var(--primary);
-      color: #fff;
+      background: linear-gradient(135deg, var(--neon-cyan), var(--neon-blue));
+      color: #040914;
       border: none;
-      padding: 8px 14px;
-      border-radius: 7px;
-      font-weight: 700;
-      font-size: 0.82rem;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 0.85rem;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
       transition: var(--transition);
+      box-shadow: var(--shadow-neon);
     }
 
     .btn-add-cart:hover {
-      background: var(--primary-dark);
+      background: linear-gradient(135deg, var(--neon-yellow), #f59e0b);
+      box-shadow: var(--shadow-yellow);
+      transform: scale(1.03);
     }
 
     .btn-out-of-stock {
-      background: #94a3b8;
-      color: #fff;
+      background: #334155;
+      color: #94a3b8;
       border: none;
       padding: 8px 12px;
-      border-radius: 7px;
+      border-radius: 8px;
       font-weight: 700;
       font-size: 0.82rem;
       cursor: not-allowed;
@@ -500,17 +565,18 @@
     .qty-control-inline {
       display: flex;
       align-items: center;
-      background: #f1f5f9;
+      background: #060d1d;
       border-radius: 6px;
-      border: 1px solid #cbd5e1;
-      padding: 1px;
+      border: 1px solid var(--border-neon);
+      padding: 2px;
     }
 
     .qty-btn {
-      background: white;
-      border: 1px solid #cbd5e1;
-      width: 26px;
-      height: 26px;
+      background: var(--dark-card);
+      border: 1px solid var(--border-neon);
+      color: var(--neon-cyan);
+      width: 24px;
+      height: 24px;
       border-radius: 4px;
       font-weight: bold;
       cursor: pointer;
@@ -519,24 +585,404 @@
       justify-content: center;
     }
 
+    .qty-btn:hover {
+      background: var(--neon-cyan);
+      color: var(--dark-bg);
+    }
+
     .qty-number {
       padding: 0 8px;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 0.85rem;
+      color: var(--neon-yellow);
     }
 
-    /* ADMIN DASHBOARD SECTION */
-    .admin-main-section {
-      display: none;
-      background: #0b1329;
-      color: #f8fafc;
-      border-top: 4px solid var(--gold);
-      border-bottom: 4px solid var(--primary);
-      padding: 60px 24px;
+    /* FULLSCREEN LIGHTBOX */
+    .lightbox-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 9, 20, 0.96);
+      backdrop-filter: blur(12px);
+      z-index: 3000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      padding: 20px;
     }
 
-    .admin-workspace {
+    .lightbox-modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .lightbox-content {
+      max-width: 92vw;
+      max-height: 92vh;
+      object-fit: contain;
+      border-radius: 8px;
+      border: 1px solid var(--border-neon);
+      box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
+    }
+
+    .lightbox-close-btn {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      background: rgba(0, 240, 255, 0.15);
+      border: 1px solid var(--neon-cyan);
+      color: var(--neon-cyan);
+      font-size: 1.4rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .lightbox-close-btn:hover {
+      background: var(--neon-cyan);
+      color: var(--dark-bg);
+      box-shadow: var(--shadow-neon);
+    }
+
+    /* BULK SECTION */
+    .bulk-section {
+      background: linear-gradient(135deg, var(--dark-surface), var(--dark-card));
+      color: white;
+      border-radius: 16px;
+      padding: 35px 25px;
+      margin: 35px auto 10px;
+      max-width: 1230px;
+      box-shadow: var(--shadow-neon);
+      border: 1px solid var(--border-neon);
+    }
+
+    .bulk-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .bulk-text h3 {
+      font-size: 1.65rem;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .bulk-text p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      max-width: 600px;
+    }
+
+    .bulk-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-bulk-whatsapp {
+      background: #25d366;
+      color: white;
+      padding: 11px 22px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.92rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+      box-shadow: 0 0 15px rgba(37, 211, 102, 0.4);
+    }
+
+    .btn-bulk-call {
+      background: rgba(0, 240, 255, 0.1);
+      color: var(--neon-cyan);
+      border: 1px solid var(--neon-cyan);
+      padding: 11px 22px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.92rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+
+    .btn-bulk-call:hover {
+      background: var(--neon-cyan);
+      color: var(--dark-bg);
+      box-shadow: var(--shadow-neon);
+    }
+
+    /* CART DRAWER & CHECKOUT */
+    .cart-drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 9, 20, 0.8);
+      backdrop-filter: blur(6px);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+    }
+
+    .cart-drawer-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: -480px;
+      width: 100%;
+      max-width: 440px;
+      height: 100%;
+      background: var(--dark-surface);
+      border-left: 1px solid var(--border-neon);
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.7);
+      z-index: 1000;
+      transition: right 0.35s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cart-drawer.active {
+      right: 0;
+    }
+
+    .cart-header {
+      padding: 18px 22px;
+      background: var(--dark-card);
+      border-bottom: 1px solid var(--border-neon);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .close-cart-btn {
+      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid var(--border-neon);
+      color: var(--neon-cyan);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .cart-items-container {
+      flex-grow: 1;
+      overflow-y: auto;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .cart-item {
+      display: flex;
+      gap: 12px;
+      padding: 10px;
+      background: var(--dark-card);
+      border: 1px solid var(--border-neon);
+      border-radius: 8px;
+      align-items: center;
+    }
+
+    .cart-item-img {
+      width: 55px;
+      height: 55px;
+      object-fit: cover;
+      background: #040914;
+      border-radius: 6px;
+      padding: 2px;
+      border: 1px solid var(--border-neon);
+    }
+
+    .cart-item-details {
+      flex-grow: 1;
+    }
+
+    .cart-item-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .cart-item-price {
+      font-weight: 800;
+      color: var(--neon-yellow);
+      font-size: 0.9rem;
+    }
+
+    .cart-footer {
+      padding: 18px 22px;
+      border-top: 1px solid var(--border-neon);
+      background: var(--dark-card);
+    }
+
+    .cart-total-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin-bottom: 14px;
+      color: #fff;
+    }
+
+    .btn-checkout {
+      width: 100%;
+      background: linear-gradient(135deg, var(--neon-yellow), #f59e0b);
+      color: #040914;
+      border: none;
+      padding: 13px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-bottom: 8px;
+      box-shadow: var(--shadow-yellow);
+    }
+
+    .btn-checkout:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 25px rgba(255, 230, 0, 0.5);
+    }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 9, 20, 0.85);
+      backdrop-filter: blur(6px);
+      z-index: 1050;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-box {
+      background: var(--dark-surface);
+      border: 1px solid var(--border-neon);
+      width: 100%;
+      max-width: 520px;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: var(--shadow-neon);
+    }
+
+    .modal-header {
+      background: var(--dark-card);
+      border-bottom: 1px solid var(--border-neon);
+      color: white;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-body {
+      padding: 22px;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .qr-container {
+      background: var(--dark-card);
+      border: 2px dashed var(--neon-cyan);
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .qr-image {
+      width: 170px;
+      height: 170px;
+      margin: 0 auto 10px;
       display: block;
+      background: white;
+      padding: 8px;
+      border-radius: 6px;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+      text-align: left;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.83rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: var(--neon-cyan);
+    }
+
+    .form-input, .form-textarea, .form-select {
+      width: 100%;
+      padding: 10px 14px;
+      background: #060d1d;
+      border: 1px solid var(--border-neon);
+      color: #fff;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-family: inherit;
+    }
+
+    .form-input:focus, .form-textarea:focus, .form-select:focus {
+      outline: none;
+      border-color: var(--neon-yellow);
+      box-shadow: 0 0 8px rgba(255, 230, 0, 0.4);
+    }
+
+    .btn-submit-order {
+      width: 100%;
+      background: linear-gradient(135deg, var(--neon-cyan), var(--neon-blue));
+      color: #040914;
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-weight: 800;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: var(--transition);
+      box-shadow: var(--shadow-neon);
+    }
+
+    .btn-submit-order:hover {
+      background: linear-gradient(135deg, var(--neon-yellow), #f59e0b);
+      box-shadow: var(--shadow-yellow);
+    }
+
+    /* DEDICATED ADMIN PORTAL PAGE VIEW */
+    .admin-standalone-view {
+      display: none;
+      min-height: 100vh;
+      background: var(--dark-bg);
+      padding: 30px 20px;
     }
 
     .admin-stats-grid {
@@ -547,8 +993,8 @@
     }
 
     .stat-box {
-      background: #1e293b;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: var(--dark-card);
+      border: 1px solid var(--border-neon);
       padding: 20px;
       border-radius: 12px;
       display: flex;
@@ -574,7 +1020,7 @@
 
     .stat-label {
       font-size: 0.8rem;
-      color: #94a3b8;
+      color: var(--text-muted);
       text-transform: uppercase;
       font-weight: 600;
     }
@@ -582,7 +1028,7 @@
     .admin-tabs-nav {
       display: flex;
       gap: 10px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      border-bottom: 1px solid var(--border-neon);
       margin-bottom: 25px;
       flex-wrap: wrap;
     }
@@ -590,7 +1036,7 @@
     .admin-tab-btn {
       background: transparent;
       border: none;
-      color: #94a3b8;
+      color: var(--text-muted);
       font-weight: 700;
       font-size: 0.95rem;
       padding: 12px 20px;
@@ -603,9 +1049,9 @@
     }
 
     .admin-tab-btn.active {
-      color: var(--gold);
-      border-bottom-color: var(--gold);
-      background: rgba(255, 255, 255, 0.05);
+      color: var(--neon-cyan);
+      border-bottom-color: var(--neon-cyan);
+      background: rgba(0, 240, 255, 0.05);
       border-radius: 8px 8px 0 0;
     }
 
@@ -618,10 +1064,10 @@
     }
 
     .admin-table-wrapper {
-      background: #1e293b;
+      background: var(--dark-card);
       border-radius: 12px;
       overflow-x: auto;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid var(--border-neon);
     }
 
     .admin-table {
@@ -632,22 +1078,18 @@
     }
 
     .admin-table th {
-      background: #0f172a;
+      background: #060d1d;
       padding: 14px 18px;
-      color: #94a3b8;
+      color: var(--neon-cyan);
       font-weight: 700;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid var(--border-neon);
     }
 
     .admin-table td {
       padding: 14px 18px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(0, 240, 255, 0.1);
       color: #e2e8f0;
       vertical-align: middle;
-    }
-
-    .admin-table tr:hover {
-      background: rgba(255, 255, 255, 0.02);
     }
 
     .admin-action-btn {
@@ -664,13 +1106,13 @@
     }
 
     .btn-edit-prod {
-      background: #f59e0b;
-      color: #0f172a;
+      background: var(--neon-yellow);
+      color: #040914;
     }
 
     .btn-toggle-stock {
-      background: #3b82f6;
-      color: white;
+      background: var(--neon-cyan);
+      color: #040914;
     }
 
     .btn-delete-prod {
@@ -679,10 +1121,10 @@
     }
 
     .admin-form-box {
-      background: #1e293b;
+      background: var(--dark-card);
       padding: 26px;
       border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid var(--border-neon);
     }
 
     .form-grid-2 {
@@ -691,318 +1133,15 @@
       gap: 16px;
     }
 
-    .bulk-section {
-      background: linear-gradient(135deg, #0f172a, #1e293b);
-      color: white;
-      border-radius: 16px;
-      padding: 40px 30px;
-      margin: 40px auto 10px;
-      max-width: 1230px;
-      box-shadow: var(--shadow-xl);
-      border: 1px solid rgba(212, 175, 55, 0.3);
-    }
-
-    .bulk-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 25px;
-    }
-
-    .bulk-text h3 {
-      font-size: 1.8rem;
-      color: #fff;
-      margin-bottom: 6px;
-    }
-
-    .bulk-text p {
-      color: #94a3b8;
-      font-size: 0.95rem;
-      max-width: 600px;
-    }
-
-    .bulk-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .btn-bulk-whatsapp {
-      background: #25d366;
-      color: white;
-      padding: 12px 24px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.95rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: var(--transition);
-    }
-
-    .btn-bulk-call {
-      background: rgba(255, 255, 255, 0.1);
-      color: white;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      padding: 12px 24px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.95rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: var(--transition);
-    }
-
-    .cart-drawer-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(15, 23, 42, 0.6);
-      backdrop-filter: blur(4px);
-      z-index: 999;
-      opacity: 0;
-      visibility: hidden;
-      transition: var(--transition);
-    }
-
-    .cart-drawer-overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .cart-drawer {
-      position: fixed;
-      top: 0;
-      right: -480px;
-      width: 100%;
-      max-width: 440px;
-      height: 100%;
-      background: #ffffff;
-      box-shadow: var(--shadow-xl);
-      z-index: 1000;
-      transition: right 0.35s ease;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .cart-drawer.active {
-      right: 0;
-    }
-
-    .cart-header {
-      padding: 18px 22px;
-      background: #0f172a;
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .close-cart-btn {
-      background: rgba(255, 255, 255, 0.15);
-      border: none;
-      color: #fff;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      cursor: pointer;
-    }
-
-    .cart-items-container {
-      flex-grow: 1;
-      overflow-y: auto;
-      padding: 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .cart-item {
-      display: flex;
-      gap: 12px;
-      padding: 10px;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      align-items: center;
-    }
-
-    .cart-item-img {
-      width: 55px;
-      height: 55px;
-      object-fit: cover;
-      background: white;
-      border-radius: 6px;
-      padding: 2px;
-    }
-
-    .cart-item-details {
-      flex-grow: 1;
-    }
-
-    .cart-item-title {
-      font-size: 0.9rem;
-      font-weight: 700;
-    }
-
-    .cart-item-price {
-      font-weight: 700;
-      color: var(--primary);
-      font-size: 0.9rem;
-    }
-
-    .cart-footer {
-      padding: 18px 22px;
-      border-top: 1px solid #e2e8f0;
-      background: #fafafa;
-    }
-
-    .cart-total-row {
-      display: flex;
-      justify-content: space-between;
-      font-size: 1.15rem;
-      font-weight: 800;
-      margin-bottom: 14px;
-    }
-
-    .btn-checkout {
-      width: 100%;
-      background: #10b981;
-      color: white;
-      border: none;
-      padding: 13px;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: var(--transition);
-      margin-bottom: 8px;
-    }
-
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(15, 23, 42, 0.75);
-      z-index: 1050;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      opacity: 0;
-      visibility: hidden;
-      transition: var(--transition);
-    }
-
-    .modal-overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .modal-box {
-      background: white;
-      width: 100%;
-      max-width: 520px;
-      border-radius: 14px;
-      overflow: hidden;
-      box-shadow: var(--shadow-xl);
-    }
-
-    .modal-header {
-      background: #0f172a;
-      color: white;
-      padding: 16px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .modal-body {
-      padding: 22px;
-      max-height: 80vh;
-      overflow-y: auto;
-    }
-
-    .qr-container {
-      background: #f8fafc;
-      border: 2px dashed #cbd5e1;
-      border-radius: 10px;
-      padding: 16px;
-      text-align: center;
-      margin-bottom: 18px;
-    }
-
-    .qr-image {
-      width: 170px;
-      height: 170px;
-      margin: 0 auto 10px;
-      display: block;
-      background: white;
-      padding: 8px;
-    }
-
-    .form-group {
-      margin-bottom: 14px;
-      text-align: left;
-    }
-
-    .form-label {
-      display: block;
-      font-size: 0.83rem;
-      font-weight: 600;
-      margin-bottom: 4px;
-      color: #334155;
-    }
-
-    .admin-form-box .form-label, #editProductModal .form-label, #adminLoginModal .form-label {
-      color: #cbd5e1;
-    }
-
-    .form-input, .form-textarea, .form-select {
-      width: 100%;
-      padding: 10px 14px;
-      border: 1px solid #cbd5e1;
-      border-radius: 6px;
-      font-size: 0.9rem;
-      font-family: inherit;
-    }
-
-    .admin-form-box .form-input, .admin-form-box .form-select, .admin-form-box .form-textarea,
-    #editProductModal .form-input, #editProductModal .form-select, #adminLoginModal .form-input {
-      background: #0f172a;
-      border-color: #334155;
-      color: #fff;
-    }
-
-    .btn-submit-order {
-      width: 100%;
-      background: var(--primary);
-      color: white;
-      border: none;
-      padding: 12px;
-      border-radius: 6px;
-      font-size: 0.95rem;
-      font-weight: 700;
-      cursor: pointer;
-      margin-top: 10px;
-      transition: var(--transition);
-    }
-
-    .btn-submit-order:hover {
-      background: var(--primary-dark);
-    }
-
     .photos-preview-gallery {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
       margin-top: 10px;
-      background: #0f172a;
+      background: #060d1d;
       padding: 10px;
       border-radius: 8px;
-      border: 1px solid #334155;
+      border: 1px solid var(--border-neon);
     }
 
     .photo-thumb-wrapper {
@@ -1011,8 +1150,8 @@
       height: 60px;
       border-radius: 6px;
       overflow: hidden;
-      border: 1px solid #475569;
-      background: white;
+      border: 1px solid var(--border-neon);
+      background: #040914;
     }
 
     .photo-thumb-img {
@@ -1039,51 +1178,53 @@
     }
 
     .info-section {
-      background: #ffffff;
-      border-top: 1px solid #e2e8f0;
-      border-bottom: 1px solid #e2e8f0;
-      padding: 50px 24px;
+      background: var(--dark-surface);
+      border-top: 1px solid var(--border-neon);
+      border-bottom: 1px solid var(--border-neon);
+      padding: 45px 20px;
     }
 
     .info-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 28px;
+      gap: 24px;
     }
 
     .info-card {
-      background: #f8fafc;
-      padding: 24px;
+      background: var(--dark-card);
+      padding: 22px;
       border-radius: 10px;
-      border: 1px solid #e2e8f0;
+      border: 1px solid var(--border-neon);
     }
 
     .info-card h3 {
       margin-bottom: 14px;
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       display: flex;
       align-items: center;
       gap: 8px;
+      color: #fff;
     }
 
     .faq-item {
       margin-bottom: 10px;
-      border-bottom: 1px solid #e2e8f0;
+      border-bottom: 1px solid rgba(0, 240, 255, 0.15);
       padding-bottom: 8px;
     }
 
     .faq-question {
       font-weight: 600;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      color: var(--neon-cyan);
     }
 
     .faq-answer {
       font-size: 0.85rem;
-      color: #64748b;
+      color: var(--text-muted);
       margin-top: 6px;
       display: none;
     }
@@ -1093,24 +1234,25 @@
     }
 
     footer {
-      background: #0f172a;
-      color: #94a3b8;
-      padding: 50px 24px 20px;
+      background: #02060f;
+      color: var(--text-muted);
+      padding: 45px 20px 20px;
       font-size: 0.88rem;
+      border-top: 1px solid var(--border-neon);
     }
 
     .footer-grid {
       max-width: 1280px;
-      margin: 0 auto 35px;
+      margin: 0 auto 30px;
       display: grid;
       grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr;
-      gap: 30px;
+      gap: 25px;
     }
 
     .footer-col h4 {
       color: #ffffff;
       font-size: 1.05rem;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .footer-links {
@@ -1118,23 +1260,24 @@
     }
 
     .footer-links li {
-      margin-bottom: 8px;
+      margin-bottom: 7px;
     }
 
     .footer-links a {
-      color: #94a3b8;
+      color: var(--text-muted);
       text-decoration: none;
+      transition: var(--transition);
     }
 
     .footer-links a:hover {
-      color: #fff;
+      color: var(--neon-cyan);
     }
 
     .trademark-bar {
       max-width: 1280px;
       margin: 0 auto;
-      padding-top: 20px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 18px;
+      border-top: 1px solid rgba(0, 240, 255, 0.15);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -1147,12 +1290,13 @@
       position: fixed;
       bottom: 24px;
       right: 24px;
-      background: #0f172a;
+      background: var(--dark-card);
       color: white;
       padding: 12px 20px;
       border-radius: 8px;
-      box-shadow: var(--shadow-xl);
-      border-left: 4px solid var(--primary);
+      box-shadow: var(--shadow-neon);
+      border-left: 4px solid var(--neon-cyan);
+      border: 1px solid var(--border-neon);
       z-index: 2000;
       transform: translateY(100px);
       opacity: 0;
@@ -1168,321 +1312,407 @@
       opacity: 1;
     }
 
+    @media (max-width: 1024px) {
+      .nav-links {
+        display: none;
+      }
+    }
+
     @media (max-width: 992px) {
       .footer-grid {
         grid-template-columns: 1fr 1fr;
       }
-      .nav-links {
-        display: none;
+      .navbar {
+        padding: 10px 14px;
+      }
+      .hero-title-main {
+        font-size: 2.8rem;
+      }
+      .hero-title-prefix {
+        font-size: 1rem;
+      }
+      .hero-title-suffix {
+        font-size: 1.1rem;
       }
     }
   </style>
 </head>
 <body>
 
-  <div class="top-bar">
-    F2 Sports Official Store: English Willow, Kashmir Willow &amp; Power Tennis Bats | Pan-India Fast Delivery
-  </div>
+  <!-- STOREFRONT SINGLE PAGE VIEW -->
+  <div id="storefrontView">
+    <header>
+      <div class="navbar">
+        <!-- LOGO AT LEFT CORNER USING logo.png -->
+        <a href="#home" class="logo-container">
+          <img src="logo.png" alt="F2 Sports Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="logo-fallback" style="display:none;">F2</div>
+          <div>
+            <span class="logo-title">F2 <span>SPORTS</span></span>
+            <span class="logo-tagline">Engineered For Champions</span>
+          </div>
+        </a>
 
-  <header>
-    <div class="navbar">
-      <a href="#home" class="logo-container">
-        <div class="logo-badge">F2</div>
-        <div>
-          <span class="logo-title">F2 <span>SPORTS</span></span>
-          <span class="logo-tagline">Engineered For Champions</span>
+        <!-- CENTERED TOP BAR NAVIGATION -->
+        <ul class="nav-links">
+          <li><a href="#home"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li><a href="#english-section"><i class="fa-solid fa-award"></i> English Willow</a></li>
+          <li><a href="#kashmir-section"><i class="fa-solid fa-shield-halved"></i> Kashmir Willow</a></li>
+          <li><a href="#tennis-section"><i class="fa-solid fa-baseball-bat-ball"></i> Tennis</a></li>
+        </ul>
+
+        <!-- ADMIN & CART BUTTONS AT RIGHT CORNER -->
+        <div class="nav-actions">
+          <a href="javascript:void(0)" onclick="openAdminPortalPage()" class="btn-admin-portal-link">
+            <i class="fa-solid fa-user-shield"></i> <span>Admin Portal</span>
+          </a>
+          <button class="cart-btn-trigger" onclick="toggleCartDrawer()">
+            <i class="fa-solid fa-basket-shopping"></i>
+            <span>Cart</span>
+            <span class="cart-badge-count" id="cartCountBadge">0</span>
+          </button>
         </div>
-      </a>
+      </div>
+    </header>
 
-      <ul class="nav-links">
-        <li><a href="#home"><i class="fa-solid fa-house"></i> Home</a></li>
-        <li><a href="#english-section"><i class="fa-solid fa-award"></i> English Willow</a></li>
-        <li><a href="#kashmir-section"><i class="fa-solid fa-shield-halved"></i> Kashmir Willow</a></li>
-        <li><a href="#tennis-section"><i class="fa-solid fa-baseball-bat-ball"></i> Tennis Bats</a></li>
-        <li><a href="#bulk-order"><i class="fa-solid fa-truck-ramp-box"></i> Bulk Orders</a></li>
-        <li><a href="javascript:void(0)" onclick="triggerAdminModal()" style="color:var(--gold);"><i class="fa-solid fa-user-shield"></i> Admin Portal</a></li>
-      </ul>
+    <!-- COMPACT 2ND BRAND CONTAINER -->
+    <section class="hero" id="home">
+      <h1>
+        <span class="hero-title-prefix">Power Your Game With</span>
+        <span class="hero-title-main">Falcon 2</span>
+        <span class="hero-title-suffix">Sports Mastercraft Bats</span>
+      </h1>
+      <p>Professional Cricket Bats handpicked for extraordinary ping, perfect balance, and monstrous power hitting across all formats.</p>
+    </section>
 
-      <div class="nav-actions">
-        <button class="cart-btn-trigger" onclick="toggleCartDrawer()">
-          <i class="fa-solid fa-basket-shopping"></i>
-          <span>Cart</span>
-          <span class="cart-badge-count" id="cartCountBadge">0</span>
-        </button>
+    <!-- CONTINUOUS FLOATING RED STRIP ABOVE PRODUCT CONTAINER -->
+    <div class="floating-ticker-wrapper">
+      <div class="floating-ticker-track">
+        <span class="ticker-item"><i class="fa-solid fa-truck-fast"></i> Pan-India Express Courier Delivery</span>
+        <span class="ticker-item"><i class="fa-solid fa-shield-halved"></i> 100% Genuine Handcrafted Cricket Willow</span>
+        <span class="ticker-item"><i class="fa-solid fa-bolt"></i> Tournament Grade Ping &amp; Balance Tested</span>
+        <span class="ticker-item"><i class="fa-solid fa-qrcode"></i> Instant UPI &amp; Direct QR Booking Available</span>
+        <span class="ticker-item"><i class="fa-solid fa-truck-fast"></i> Pan-India Express Courier Delivery</span>
+        <span class="ticker-item"><i class="fa-solid fa-shield-halved"></i> 100% Genuine Handcrafted Cricket Willow</span>
+        <span class="ticker-item"><i class="fa-solid fa-bolt"></i> Tournament Grade Ping &amp; Balance Tested</span>
+        <span class="ticker-item"><i class="fa-solid fa-qrcode"></i> Instant UPI &amp; Direct QR Booking Available</span>
       </div>
     </div>
-  </header>
 
-  <section class="hero" id="home">
-    <h1>Power Your Game With <span>F2 Sports Mastercraft Bats</span></h1>
-    <p>Professional Cricket Bats handpicked for extraordinary ping, perfect balance, and monstrous power hitting across all formats.</p>
-    <div class="hero-buttons">
-      <a href="#english-section" class="btn-hero btn-hero-primary"><i class="fa-solid fa-award"></i> English Willow</a>
-      <a href="#kashmir-section" class="btn-hero btn-hero-secondary"><i class="fa-solid fa-shield-halved"></i> Kashmir Willow</a>
-      <a href="#tennis-section" class="btn-hero btn-hero-secondary"><i class="fa-solid fa-bolt"></i> Tennis Series</a>
-      <a href="javascript:void(0)" onclick="triggerAdminModal()" class="btn-hero btn-hero-secondary" style="border-color:var(--gold);"><i class="fa-solid fa-lock"></i> Admin Dashboard</a>
-    </div>
-  </section>
+    <!-- PRODUCT CATALOG SECTIONS -->
+    <main>
+      <!-- 1. ENGLISH WILLOW CATEGORY -->
+      <section class="container" id="english-section">
+        <div class="section-header">
+          <span class="section-subtitle">International Standard</span>
+          <h2 class="section-title">English Willow Bats Collection</h2>
+          <p class="section-desc">Hand-crafted from genuine imported English Willow clefts for maximum rebound velocity and feather-light pickup.</p>
+        </div>
+        <div class="product-grid" id="englishProductsGrid"></div>
+      </section>
 
-  <main>
-    <section class="container" id="english-section">
-      <div class="section-header">
-        <span class="section-subtitle">International Standard</span>
-        <h2 class="section-title">English Willow Bats Collection</h2>
-        <p class="section-desc">Hand-crafted from genuine imported English Willow clefts for maximum rebound velocity and feather-light pickup.</p>
-      </div>
-      <div class="product-grid" id="englishProductsGrid"></div>
-    </section>
+      <!-- 2. KASHMIR WILLOW CATEGORY -->
+      <section class="container" id="kashmir-section" style="padding-top: 0;">
+        <div class="section-header">
+          <span class="section-subtitle">Traditional Power</span>
+          <h2 class="section-title">Kashmir Willow Leather Bats Collection</h2>
+          <p class="section-desc">Selected Grade Kashmir Willow leather ball bats crafted with heavy spines and thick edges for tournament performance.</p>
+        </div>
+        <div class="product-grid" id="kashmirProductsGrid"></div>
+      </section>
 
-    <section class="container" id="kashmir-section" style="padding-top: 0;">
-      <div class="section-header">
-        <span class="section-subtitle">Traditional Power</span>
-        <h2 class="section-title">Kashmir Willow Leather Bats Collection</h2>
-        <p class="section-desc">Selected Grade Kashmir Willow leather ball bats crafted with heavy spines and thick edges for tournament performance.</p>
-      </div>
-      <div class="product-grid" id="kashmirProductsGrid"></div>
-    </section>
+      <!-- 3. TENNIS CRICKET CATEGORY -->
+      <section class="container" id="tennis-section" style="padding-top: 0;">
+        <div class="section-header">
+          <span class="section-subtitle">Hard &amp; Soft Tennis Dominators</span>
+          <h2 class="section-title">Tennis Cricket Bats Collection</h2>
+          <p class="section-desc">Engineered specifically for tennis ball cricket with scoop and power-blade dynamics for 360-degree boundary clearing.</p>
+        </div>
+        <div class="product-grid" id="tennisProductsGrid"></div>
+      </section>
 
-    <section class="container" id="tennis-section" style="padding-top: 0;">
-      <div class="section-header">
-        <span class="section-subtitle">Hard &amp; Soft Tennis Dominators</span>
-        <h2 class="section-title">Tennis Cricket Bats Collection</h2>
-        <p class="section-desc">Engineered specifically for tennis ball cricket with scoop and power-blade dynamics for 360-degree boundary clearing.</p>
-      </div>
-      <div class="product-grid" id="tennisProductsGrid"></div>
-    </section>
-
-    <!-- BULK ORDER SECTION -->
-    <section class="container" id="bulk-order" style="padding-top: 0;">
-      <div class="bulk-section">
-        <div class="bulk-content">
-          <div class="bulk-text">
-            <span style="color:var(--gold); font-weight:800; font-size:0.85rem; text-transform:uppercase; letter-spacing:1px;">Academy &amp; Club Wholesaler</span>
-            <h3>Bulk Orders &amp; Custom Team Inquiries</h3>
-            <p>Planning bulk bat procurement for your academy, cricket club, corporate team, or tournament sponsor? Contact our manufacturing desk for wholesale rates and custom player specifications.</p>
-          </div>
-          <div class="bulk-actions">
-            <a href="https://wa.me/918493977654?text=Hi%20F2%20Sports,%20I%20want%20to%20inquire%20about%20a%20bulk%20order%20of%20cricket%20bats." target="_blank" class="btn-bulk-whatsapp">
-              <i class="fa-brands fa-whatsapp" style="font-size:1.2rem;"></i> WhatsApp Bulk Desk
-            </a>
-            <a href="tel:+918493977654" class="btn-bulk-call">
-              <i class="fa-solid fa-phone"></i> Call Direct (+91 84939 77654)
-            </a>
+      <!-- BULK ORDER SECTION -->
+      <section class="container" id="bulk-order" style="padding-top: 0;">
+        <div class="bulk-section">
+          <div class="bulk-content">
+            <div class="bulk-text">
+              <span style="color:var(--neon-yellow); font-weight:800; font-size:0.85rem; text-transform:uppercase; letter-spacing:1px;">Academy &amp; Club Wholesaler</span>
+              <h3>Bulk Orders &amp; Custom Team Inquiries</h3>
+              <p>Planning bulk bat procurement for your academy, cricket club, corporate team, or tournament sponsor? Contact our manufacturing desk for wholesale rates and custom player specifications.</p>
+            </div>
+            <div class="bulk-actions">
+              <a href="https://wa.me/918493977654?text=Hi%20F2%20Sports,%20I%20want%20to%20inquire%20about%20a%20bulk%20order%20of%20cricket%20bats." target="_blank" class="btn-bulk-whatsapp">
+                <i class="fa-brands fa-whatsapp" style="font-size:1.2rem;"></i> WhatsApp Bulk Desk
+              </a>
+              <a href="tel:+918493977654" class="btn-bulk-call">
+                <i class="fa-solid fa-phone"></i> Call Direct (+91 84939 77654)
+              </a>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ADMIN WORKSPACE -->
-    <section class="admin-main-section" id="admin-section">
-      <div class="container" style="padding-top:0; padding-bottom:0;">
-        <div class="section-header" style="margin-bottom:30px;">
-          <span class="section-subtitle" style="color:var(--gold);">Cloud Store Management</span>
-          <h2 class="section-title" style="color:#ffffff;">F2 Sports Admin Control Center</h2>
-          <p class="section-desc" style="color:#94a3b8;">Real-time Cloud Database, Order Status Tracking &amp; Catalog Management.</p>
-        </div>
-
-        <div class="admin-workspace" id="adminWorkspace">
-          <div class="admin-stats-grid">
-            <div class="stat-box">
-              <div class="stat-icon" style="background:rgba(212, 175, 55, 0.15); color:var(--gold);"><i class="fa-solid fa-indian-rupee-sign"></i></div>
-              <div>
-                <div class="stat-num" id="statRevenue">Rs. 0</div>
-                <div class="stat-label">Total Revenue</div>
-              </div>
-            </div>
-            <div class="stat-box">
-              <div class="stat-icon" style="background:rgba(59, 130, 246, 0.15); color:#60a5fa;"><i class="fa-solid fa-truck-fast"></i></div>
-              <div>
-                <div class="stat-num" id="statOrders">0</div>
-                <div class="stat-label">Total Cloud Orders</div>
-              </div>
-            </div>
-            <div class="stat-box">
-              <div class="stat-icon" style="background:rgba(16, 185, 129, 0.15); color:#34d399;"><i class="fa-solid fa-baseball-bat-ball"></i></div>
-              <div>
-                <div class="stat-num" id="statProducts">0</div>
-                <div class="stat-label">Live Bats Catalog</div>
-              </div>
-            </div>
-            <div class="stat-box" style="justify-content:space-between;">
-              <div>
-                <div style="font-size:0.85rem; font-weight:700; color:#fff;">Admin Active</div>
-                <div style="font-size:0.75rem; color:#94a3b8;">Owner: Sajid | F2 Sports</div>
-              </div>
-              <button onclick="handleMainAdminLogout()" class="admin-action-btn" style="background:#ef4444; color:#fff; padding:8px 14px;">
-                <i class="fa-solid fa-power-off"></i> Logout
-              </button>
-            </div>
+      <!-- FAQ & SUGGESTIONS -->
+      <section class="info-section" id="help-suggestions">
+        <div class="container" style="padding: 0;">
+          <div class="section-header">
+            <span class="section-subtitle">Player Support</span>
+            <h2 class="section-title">Help, Inquiries &amp; Suggestions</h2>
           </div>
 
-          <div class="admin-tabs-nav">
-            <button class="admin-tab-btn active" onclick="switchAdminTab('orders')"><i class="fa-solid fa-clipboard-list"></i> Customer Orders (<span id="adminOrdersTabCount">0</span>)</button>
-            <button class="admin-tab-btn" onclick="switchAdminTab('products')"><i class="fa-solid fa-boxes-packing"></i> Manage &amp; Edit Catalog (<span id="adminProdsTabCount">0</span>)</button>
-            <button class="admin-tab-btn" onclick="switchAdminTab('add-product')"><i class="fa-solid fa-plus-circle"></i> Add New Cricket Bat</button>
-          </div>
-
-          <div class="admin-tab-pane active" id="adminPaneOrders">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; flex-wrap:wrap; gap:10px;">
-              <h4 style="font-size:1.1rem; color:#fff;">Cloud Orders Record (Booking to Dispatch)</h4>
+          <div class="info-grid">
+            <div class="info-card">
+              <h3><i class="fa-solid fa-circle-question" style="color:var(--neon-cyan);"></i> FAQs &amp; Bat Care</h3>
+              <div class="faq-item active">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                  <span>What is the difference between Grade A &amp; Grade B Willow?</span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">Grade A features 8-11 straight grains with minimal blemishes for match play. Grade B has 6-8 grains offering power and durability at a competitive price.</div>
+              </div>
+              <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                  <span>How can I pay via UPI or QR Code?</span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">Add your bats to cart, click checkout, scan our verified QR Scanner with Google Pay, PhonePe, or Paytm, and submit your 12-digit UTR number.</div>
+              </div>
             </div>
-            <div id="mainAdminOrdersList"></div>
-          </div>
 
-          <div class="admin-tab-pane" id="adminPaneProducts">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
-              <h4 style="font-size:1.1rem; color:#fff;">Active Bat Products List</h4>
-              <button class="admin-action-btn" style="background:var(--gold); color:#0f172a;" onclick="switchAdminTab('add-product')"><i class="fa-solid fa-plus"></i> Add Another Bat</button>
-            </div>
-            <div class="admin-table-wrapper">
-              <table class="admin-table">
-                <thead>
-                  <tr>
-                    <th>Product</th>
-                    <th>Section</th>
-                    <th>Sub-Category</th>
-                    <th>Price</th>
-                    <th>Sale / Offer Tag</th>
-                    <th>Stock</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody id="adminProductsTableBody"></tbody>
-              </table>
-            </div>
-          </div>
-
-          <div class="admin-tab-pane" id="adminPaneAddProduct">
-            <div class="admin-form-box">
-              <h4 style="font-size:1.15rem; color:#fff; margin-bottom:18px;"><i class="fa-solid fa-circle-plus" style="color:var(--gold);"></i> Add New Bat to Catalog</h4>
-              <form id="addNewProductForm" onsubmit="handleAdminAddNewProduct(event)">
-                <div class="form-grid-2">
-                  <div class="form-group">
-                    <label class="form-label">Store Section Category</label>
-                    <select id="newProdCategory" class="form-select" required>
-                      <option value="english">English Willow Bats</option>
-                      <option value="kashmir">Kashmir Willow Bats</option>
-                      <option value="tennis">Tennis Cricket Bats</option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label">Category Sub-Type Name</label>
-                    <input type="text" id="newProdCatName" class="form-input" placeholder="e.g. Players Edition, Grade A, 36 Inch" required />
-                  </div>
-                </div>
-
-                <div class="form-grid-2">
-                  <div class="form-group">
-                    <label class="form-label">Product Full Name / Title</label>
-                    <input type="text" id="newProdName" class="form-input" placeholder="e.g. F2 Mastercraft Power Pro Bat" required />
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label">Price in Rs. (INR)</label>
-                    <input type="number" id="newProdPrice" class="form-input" placeholder="e.g. 8499" required />
-                  </div>
-                </div>
-
-                <div class="form-grid-2">
-                  <div class="form-group">
-                    <label class="form-label">Willow Tag</label>
-                    <input type="text" id="newProdTag" class="form-input" placeholder="e.g. Grade 1 English Willow / Reserve Cleft" required />
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label">Image Filename / Main URL</label>
-                    <input type="text" id="newProdImg" class="form-input" placeholder="e.g. ./custom_bat.jpg" required />
-                  </div>
-                </div>
-
-                <div class="form-grid-2">
-                  <div class="form-group">
-                    <label class="form-label">Sale / Discount Badge (Optional)</label>
-                    <input type="text" id="newProdSaleBadge" class="form-input" placeholder="e.g. 20% OFF, FLAT 1000 OFF" />
-                  </div>
-                  <div class="form-group">
-                    <label class="form-label">Offer Description (Optional)</label>
-                    <input type="text" id="newProdSaleDesc" class="form-input" placeholder="e.g. Eid Special Offer, Festival Deal" />
-                  </div>
-                </div>
-
+            <div class="info-card">
+              <h3><i class="fa-solid fa-lightbulb" style="color:var(--neon-yellow);"></i> Custom Suggestions</h3>
+              <form onsubmit="handleSuggestionSubmit(event)">
                 <div class="form-group">
-                  <label class="form-label">Key Specifications (comma separated)</label>
-                  <input type="text" id="newProdFeatures" class="form-input" placeholder="e.g. 8-11 Straight Grains, 40mm Monster Edges, Full Concave (1160-1180g)" required />
+                  <label class="form-label">Your Name</label>
+                  <input type="text" class="form-input" placeholder="Player Name" required>
                 </div>
-
                 <div class="form-group">
-                  <label class="form-label">Initial Stock Status</label>
-                  <select id="newProdStock" class="form-select">
-                    <option value="true">Available in Stock</option>
-                    <option value="false">Out of Stock</option>
-                  </select>
+                  <label class="form-label">Suggestions / Custom Specs Request</label>
+                  <textarea class="form-textarea" rows="3" placeholder="Tell us your preferred weight, handle shape, or custom requests..." required></textarea>
                 </div>
-
-                <button type="submit" class="btn-submit-order" style="background:var(--gold); color:#0f172a; max-width:260px;">
-                  <i class="fa-solid fa-plus-circle"></i> Publish Product
-                </button>
+                <button type="submit" class="btn-submit-order">Submit Feedback</button>
               </form>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
-    <section class="info-section" id="help-suggestions">
-      <div class="container" style="padding: 0;">
-        <div class="section-header">
-          <span class="section-subtitle">Player Support</span>
-          <h2 class="section-title">Help, Inquiries &amp; Suggestions</h2>
+    <!-- FOOTER -->
+    <footer id="contact">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4 style="font-size: 1.2rem;">F2 <span style="color:var(--neon-yellow);">SPORTS</span></h4>
+          <p>Precision handcrafted cricket bats designed for boundary power, premium aesthetics, and long-lasting match durability.</p>
         </div>
-
-        <div class="info-grid">
-          <div class="info-card">
-            <h3><i class="fa-solid fa-circle-question" style="color:var(--primary);"></i> FAQs &amp; Bat Care</h3>
-            <div class="faq-item active">
-              <div class="faq-question" onclick="toggleFaq(this)">
-                <span>What is the difference between Grade A &amp; Grade B English Willow?</span>
-                <i class="fa-solid fa-chevron-down"></i>
-              </div>
-              <div class="faq-answer">Grade A features 8-11 straight grains with minimal blemishes for international match play. Grade B has 6-8 grains offering elite power and durability at a competitive price.</div>
-            </div>
-            <div class="faq-item">
-              <div class="faq-question" onclick="toggleFaq(this)">
-                <span>How can I pay via UPI or QR Code?</span>
-                <i class="fa-solid fa-chevron-down"></i>
-              </div>
-              <div class="faq-answer">Add your bats to cart, click checkout, scan our verified QR Scanner with Google Pay, PhonePe, or Paytm, and submit your 12-digit UTR number.</div>
-            </div>
-          </div>
-
-          <div class="info-card">
-            <h3><i class="fa-solid fa-lightbulb" style="color:var(--primary);"></i> Custom Suggestions</h3>
-            <form onsubmit="handleSuggestionSubmit(event)">
-              <div class="form-group">
-                <label class="form-label">Your Name</label>
-                <input type="text" class="form-input" placeholder="Player Name" required>
-              </div>
-              <div class="form-group">
-                <label class="form-label">Suggestions / Custom Specs Request</label>
-                <textarea class="form-textarea" rows="3" placeholder="Tell us your preferred weight, handle shape, or custom requests..." required></textarea>
-              </div>
-              <button type="submit" class="btn-submit-order" style="background:#0f172a;">Submit Feedback</button>
-            </form>
-          </div>
+        <div class="footer-col">
+          <h4>English Willow</h4>
+          <ul class="footer-links">
+            <li><a href="#english-section">Grade A English Willow</a></li>
+            <li><a href="#english-section">Grade B English Willow</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Kashmir Willow</h4>
+          <ul class="footer-links">
+            <li><a href="#kashmir-section">Players Edition</a></li>
+            <li><a href="#kashmir-section">Platinum</a></li>
+            <li><a href="#kashmir-section">Diamond</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Tennis Series</h4>
+          <ul class="footer-links">
+            <li><a href="#tennis-section">Designed</a></li>
+            <li><a href="#tennis-section">Without Design</a></li>
+            <li><a href="#tennis-section">Popular</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact &amp; Bulk Desk</h4>
+          <p><i class="fa-solid fa-phone" style="color:var(--neon-cyan);"></i> <a href="tel:+918493977654" style="color:inherit; text-decoration:none;">+91 84939 77654</a></p>
+          <p><i class="fa-brands fa-whatsapp" style="color:#25d366;"></i> <a href="https://wa.me/918493977654" target="_blank" style="color:inherit; text-decoration:none;">+91 84939 77654</a></p>
+          <p><i class="fa-solid fa-envelope" style="color:var(--neon-yellow);"></i> <a href="mailto:f2sportsstore@gmail.com" style="color:inherit; text-decoration:none;">f2sportsstore@gmail.com</a></p>
+          <p><i class="fa-solid fa-envelope-open-text" style="color:var(--neon-yellow);"></i> <a href="mailto:Zeesajid55@gmail.com" style="color:inherit; text-decoration:none;">Zeesajid55@gmail.com</a></p>
+          <p><i class="fa-solid fa-location-dot" style="color:var(--neon-cyan);"></i> Panchpora Sangam, Halmullah Dadoo Road Near Sub-Station Punchpora Marhama - 192124</p>
         </div>
       </div>
-    </section>
-  </main>
 
+      <div class="trademark-bar">
+        <div>&copy; 2026 <strong>F2 Sports</strong>. All Rights Reserved.</div>
+        <div><i class="fa-solid fa-trademark" style="color:var(--neon-yellow);"></i> F2 SPORTS is a Registered Trademark</div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- SEPARATE DEDICATED ADMIN PORTAL & DASHBOARD PAGE VIEW -->
+  <div class="admin-standalone-view" id="adminStandaloneView">
+    <div style="max-width:1280px; margin:0 auto;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px; border-bottom:1px solid var(--border-neon); padding-bottom:18px;">
+        <div style="display:flex; align-items:center; gap:14px;">
+          <img src="logo.png" alt="F2 Logo" style="height:42px;" onerror="this.style.display='none'" />
+          <div>
+            <h2 style="color:#fff; font-size:1.6rem;">F2 Sports <span style="color:var(--neon-yellow);">Cloud Admin Portal</span></h2>
+            <p style="color:var(--neon-cyan); font-size:0.8rem; letter-spacing:1px; text-transform:uppercase;">Master Control Center</p>
+          </div>
+        </div>
+        <div style="display:flex; gap:12px;">
+          <button onclick="returnToStorefront()" class="admin-action-btn" style="background:rgba(0,240,255,0.15); color:var(--neon-cyan); border:1px solid var(--neon-cyan); padding:8px 16px;">
+            <i class="fa-solid fa-store"></i> Return to Storefront
+          </button>
+          <button onclick="handleMainAdminLogout()" class="admin-action-btn" style="background:#ef4444; color:#fff; padding:8px 16px;">
+            <i class="fa-solid fa-power-off"></i> Logout
+          </button>
+        </div>
+      </div>
+
+      <div class="admin-stats-grid">
+        <div class="stat-box">
+          <div class="stat-icon" style="background:rgba(255, 230, 0, 0.15); color:var(--neon-yellow);"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+          <div>
+            <div class="stat-num" id="statRevenue">Rs. 0</div>
+            <div class="stat-label">Total Revenue</div>
+          </div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-icon" style="background:rgba(0, 240, 255, 0.15); color:var(--neon-cyan);"><i class="fa-solid fa-truck-fast"></i></div>
+          <div>
+            <div class="stat-num" id="statOrders">0</div>
+            <div class="stat-label">Total Cloud Orders</div>
+          </div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-icon" style="background:rgba(0, 136, 255, 0.15); color:var(--neon-blue);"><i class="fa-solid fa-baseball-bat-ball"></i></div>
+          <div>
+            <div class="stat-num" id="statProducts">0</div>
+            <div class="stat-label">Live Bats Catalog</div>
+          </div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-icon" style="background:rgba(16, 185, 129, 0.15); color:#34d399;"><i class="fa-solid fa-user-check"></i></div>
+          <div>
+            <div style="font-size:1.1rem; font-weight:800; color:#fff;">Sajid (Owner)</div>
+            <div class="stat-label">Authorized Access</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="admin-tabs-nav">
+        <button class="admin-tab-btn active" onclick="switchAdminTab('orders')"><i class="fa-solid fa-clipboard-list"></i> Customer Orders (<span id="adminOrdersTabCount">0</span>)</button>
+        <button class="admin-tab-btn" onclick="switchAdminTab('products')"><i class="fa-solid fa-boxes-packing"></i> Manage &amp; Edit Catalog (<span id="adminProdsTabCount">0</span>)</button>
+        <button class="admin-tab-btn" onclick="switchAdminTab('add-product')"><i class="fa-solid fa-plus-circle"></i> Add New Cricket Bat</button>
+      </div>
+
+      <div class="admin-tab-pane active" id="adminPaneOrders">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; flex-wrap:wrap; gap:10px;">
+          <h4 style="font-size:1.1rem; color:#fff;">Cloud Orders Record (Booking to Dispatch)</h4>
+        </div>
+        <div id="mainAdminOrdersList"></div>
+      </div>
+
+      <div class="admin-tab-pane" id="adminPaneProducts">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+          <h4 style="font-size:1.1rem; color:#fff;">Active Bat Products List</h4>
+          <button class="admin-action-btn" style="background:var(--neon-yellow); color:#040914;" onclick="switchAdminTab('add-product')"><i class="fa-solid fa-plus"></i> Add Another Bat</button>
+        </div>
+        <div class="admin-table-wrapper">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Sale / Offer Tag</th>
+                <th>Stock</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="adminProductsTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="admin-tab-pane" id="adminPaneAddProduct">
+        <div class="admin-form-box">
+          <h4 style="font-size:1.15rem; color:#fff; margin-bottom:18px;"><i class="fa-solid fa-circle-plus" style="color:var(--neon-cyan);"></i> Add New Bat to Catalog</h4>
+          <form id="addNewProductForm" onsubmit="handleAdminAddNewProduct(event)">
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">Category Section</label>
+                <select id="newProdCategory" class="form-select" required>
+                  <option value="english">English Willow Bats</option>
+                  <option value="kashmir">Kashmir Willow Bats</option>
+                  <option value="tennis">Tennis Cricket Bats</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Product Full Name / Title</label>
+                <input type="text" id="newProdName" class="form-input" placeholder="e.g. F2 Mastercraft Power Pro Bat" required />
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">Price in Rs. (INR)</label>
+                <input type="number" id="newProdPrice" class="form-input" placeholder="e.g. 17499" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Image Filename / Main URL</label>
+                <input type="text" id="newProdImg" class="form-input" placeholder="e.g. ./grade_a_english.jpg" required />
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">Sale / Discount Badge (Optional)</label>
+                <input type="text" id="newProdSaleBadge" class="form-input" placeholder="e.g. 15% OFF, FLAT 1000 OFF" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Offer Description (Optional)</label>
+                <input type="text" id="newProdSaleDesc" class="form-input" placeholder="e.g. Eid Special Offer, Festival Deal" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Key Specifications (comma separated)</label>
+              <input type="text" id="newProdFeatures" class="form-input" placeholder="e.g. 8-11 Straight Grains, 40mm Monster Edges, Full Concave (1160-1180g)" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Initial Stock Status</label>
+              <select id="newProdStock" class="form-select">
+                <option value="true">Available in Stock</option>
+                <option value="false">Out of Stock</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn-submit-order" style="background:linear-gradient(135deg, var(--neon-cyan), var(--neon-blue)); color:#040914; max-width:260px;">
+              <i class="fa-solid fa-plus-circle"></i> Publish Product
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FULLSCREEN LIGHTBOX -->
+  <div class="lightbox-modal" id="imageLightbox" onclick="closeLightbox()">
+    <button class="lightbox-close-btn" onclick="closeLightbox()"><i class="fa-solid fa-xmark"></i></button>
+    <img src="" alt="Enlarged Product View" class="lightbox-content" id="lightboxImg" onclick="event.stopPropagation()" />
+  </div>
+
+  <!-- CART DRAWER -->
   <div class="cart-drawer-overlay" id="cartOverlay" onclick="toggleCartDrawer()"></div>
   <div class="cart-drawer" id="cartDrawer">
     <div class="cart-header">
-      <h3><i class="fa-solid fa-basket-shopping"></i> Your Cart (<span id="cartCountTitle">0</span>)</h3>
+      <h3><i class="fa-solid fa-basket-shopping" style="color:var(--neon-cyan);"></i> Your Cart (<span id="cartCountTitle">0</span>)</h3>
       <button class="close-cart-btn" onclick="toggleCartDrawer()"><i class="fa-solid fa-xmark"></i></button>
     </div>
     <div class="cart-items-container" id="cartItemsList"></div>
     <div class="cart-footer">
       <div class="cart-total-row">
         <span>Grand Total:</span>
-        <span id="cartGrandTotal">Rs. 0</span>
+        <span id="cartGrandTotal" style="color:var(--neon-yellow);">Rs. 0</span>
       </div>
       <button class="btn-checkout" id="checkoutBtn" onclick="openCheckoutModal()" disabled>
         <i class="fa-solid fa-lock"></i> Proceed to QR / UPI Checkout
@@ -1490,18 +1720,19 @@
     </div>
   </div>
 
+  <!-- CHECKOUT MODAL -->
   <div class="modal-overlay" id="checkoutModal">
     <div class="modal-box">
       <div class="modal-header">
-        <h3><i class="fa-solid fa-qrcode"></i> Scan &amp; Pay (UPI / QR)</h3>
+        <h3><i class="fa-solid fa-qrcode" style="color:var(--neon-cyan);"></i> Scan &amp; Pay (UPI / QR)</h3>
         <button class="close-cart-btn" onclick="closeCheckoutModal()"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div class="modal-body">
         <div class="qr-container">
-          <p style="font-size:0.85rem; margin-bottom:8px; font-weight:600;">Scan with GPay, PhonePe, Paytm, or BHIM</p>
+          <p style="font-size:0.85rem; margin-bottom:8px; font-weight:600; color:#cbd5e1;">Scan with GPay, PhonePe, Paytm, or BHIM</p>
           <img src="https://api.qrserver.com/v1/create-qr-code/?size=170x170&amp;data=upi://pay?pa=f2sports@upi%26pn=F2%20Sports%20Official%26mc=5945" alt="F2 Sports QR Scanner" class="qr-image" />
-          <p style="font-family:monospace; font-weight:700; font-size:0.95rem;">UPI ID: f2sports@upi</p>
-          <p style="font-size:0.85rem; margin-top:6px;">Payable Amount: <b style="color:var(--primary);" id="checkoutModalTotal">Rs. 0</b></p>
+          <p style="font-family:monospace; font-weight:700; font-size:0.95rem; color:var(--neon-cyan);">UPI ID: f2sports@upi</p>
+          <p style="font-size:0.85rem; margin-top:6px;">Payable Amount: <b style="color:var(--neon-yellow);" id="checkoutModalTotal">Rs. 0</b></p>
         </div>
 
         <form id="orderForm" onsubmit="handlePlaceOrder(event)">
@@ -1531,10 +1762,11 @@
     </div>
   </div>
 
+  <!-- ADMIN LOGIN MODAL -->
   <div class="modal-overlay" id="adminLoginModal">
-    <div class="modal-box" style="background:#1e293b; color:#fff;">
-      <div class="modal-header" style="background:#0f172a;">
-        <h3><i class="fa-solid fa-shield-halved" style="color:var(--gold);"></i> Admin Portal Login</h3>
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-shield-halved" style="color:var(--neon-yellow);"></i> Admin Portal Login</h3>
         <button class="close-cart-btn" onclick="closeAdminLoginModal()"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div class="modal-body">
@@ -1547,9 +1779,9 @@
             <label class="form-label">Admin Password</label>
             <input type="password" id="modalAdminPass" class="form-input" placeholder="••••••••" required />
           </div>
-          <p style="font-size:0.75rem; color:#94a3b8; margin-bottom:12px;">Default credentials: <b>admin</b> / <b>f2sports2026</b></p>
-          <button type="submit" class="btn-submit-order" style="background:var(--gold); color:#0f172a;">
-            <i class="fa-solid fa-right-to-bracket"></i> Login &amp; Open Workspace
+          <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:12px;">Default credentials: <b>admin</b> / <b>f2sports2026</b></p>
+          <button type="submit" class="btn-submit-order" style="background:linear-gradient(135deg, var(--neon-yellow), #f59e0b); color:#040914;">
+            <i class="fa-solid fa-right-to-bracket"></i> Login to Workspace
           </button>
         </form>
       </div>
@@ -1558,9 +1790,9 @@
 
   <!-- EDIT PRODUCT MODAL -->
   <div class="modal-overlay" id="editProductModal">
-    <div class="modal-box" style="background:#1e293b; color:#fff; max-width:640px;">
-      <div class="modal-header" style="background:#0f172a;">
-        <h3><i class="fa-solid fa-pen-to-square" style="color:var(--gold);"></i> Edit Bat Details &amp; Photos</h3>
+    <div class="modal-box" style="max-width:640px;">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-pen-to-square" style="color:var(--neon-cyan);"></i> Edit Bat Details &amp; Photos</h3>
         <button class="close-cart-btn" onclick="closeEditModal()"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div class="modal-body">
@@ -1577,26 +1809,15 @@
               </select>
             </div>
             <div class="form-group">
-              <label class="form-label">Sub-Category</label>
-              <input type="text" id="editProdCatName" class="form-input" required />
-            </div>
-          </div>
-
-          <div class="form-grid-2">
-            <div class="form-group">
               <label class="form-label">Product Name</label>
               <input type="text" id="editProdName" class="form-input" required />
             </div>
-            <div class="form-group">
-              <label class="form-label">Price in Rs. (INR)</label>
-              <input type="number" id="editProdPrice" class="form-input" required />
-            </div>
           </div>
 
           <div class="form-grid-2">
             <div class="form-group">
-              <label class="form-label">Willow Tag</label>
-              <input type="text" id="editProdTag" class="form-input" required />
+              <label class="form-label">Price in Rs. (INR)</label>
+              <input type="number" id="editProdPrice" class="form-input" required />
             </div>
             <div class="form-group">
               <label class="form-label">Main Image URL / Path</label>
@@ -1605,22 +1826,22 @@
           </div>
 
           <!-- MULTIPLE PHOTO UPLOAD SECTION TO SUPABASE -->
-          <div class="form-group" style="background:rgba(212, 175, 55, 0.08); padding:14px; border-radius:8px; border:1px dashed var(--gold);">
-            <label class="form-label" style="color:var(--gold); font-weight:700;">
+          <div class="form-group" style="background:rgba(0, 240, 255, 0.05); padding:14px; border-radius:8px; border:1px dashed var(--neon-cyan);">
+            <label class="form-label" style="color:var(--neon-cyan); font-weight:700;">
               <i class="fa-solid fa-cloud-arrow-up"></i> Upload Bat Photos to Supabase Storage (Multi-Select)
             </label>
             <input type="file" id="editProdMultiFiles" class="form-input" multiple accept="image/*" onchange="handleMultiplePhotosUpload(event)" />
-            <div id="uploadStatusNotice" style="font-size:0.78rem; color:#38bdf8; margin-top:6px; display:none;"></div>
+            <div id="uploadStatusNotice" style="font-size:0.78rem; color:var(--neon-cyan); margin-top:6px; display:none;"></div>
             <div class="photos-preview-gallery" id="editPhotosPreviewList"></div>
           </div>
 
-          <div class="form-grid-2" style="background:rgba(239, 68, 68, 0.1); padding:12px; border-radius:8px; border:1px dashed #ef4444; margin-bottom:14px;">
+          <div class="form-grid-2" style="background:rgba(255, 230, 0, 0.05); padding:12px; border-radius:8px; border:1px dashed var(--neon-yellow); margin-bottom:14px;">
             <div class="form-group" style="margin-bottom:0;">
-              <label class="form-label" style="color:#fca5a5;"><i class="fa-solid fa-tag"></i> Sale Label (e.g. 20% OFF)</label>
+              <label class="form-label" style="color:var(--neon-yellow);"><i class="fa-solid fa-tag"></i> Sale Label (e.g. 15% OFF)</label>
               <input type="text" id="editProdSaleBadge" class="form-input" placeholder="Leave empty if no sale" />
             </div>
             <div class="form-group" style="margin-bottom:0;">
-              <label class="form-label" style="color:#fca5a5;"><i class="fa-solid fa-gift"></i> Sale Description (e.g. Eid Offer)</label>
+              <label class="form-label" style="color:var(--neon-yellow);"><i class="fa-solid fa-gift"></i> Sale Description (e.g. Eid Offer)</label>
               <input type="text" id="editProdSaleDesc" class="form-input" placeholder="e.g. Eid Special Discount" />
             </div>
           </div>
@@ -1638,7 +1859,7 @@
             </select>
           </div>
 
-          <button type="submit" class="btn-submit-order" style="background:var(--gold); color:#0f172a;" id="btnSaveEditedProd">
+          <button type="submit" class="btn-submit-order" style="background:linear-gradient(135deg, var(--neon-yellow), #f59e0b); color:#040914;" id="btnSaveEditedProd">
             <i class="fa-solid fa-floppy-disk"></i> Save &amp; Update Product
           </button>
         </form>
@@ -1646,59 +1867,8 @@
     </div>
   </div>
 
-  <!-- FOOTER SECTION -->
-  <footer id="contact">
-    <div class="footer-grid">
-      <div class="footer-col">
-        <h4 style="font-size: 1.2rem;">F2 <span style="color:var(--gold);">SPORTS</span></h4>
-        <p>Precision handcrafted cricket bats designed for boundary power, premium aesthetics, and long-lasting match durability.</p>
-      </div>
-      <div class="footer-col">
-        <h4>English Willow</h4>
-        <ul class="footer-links">
-          <li><a href="#english-section">Grade A English Willow</a></li>
-          <li><a href="#english-section">Grade B English Willow</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Kashmir Willow</h4>
-        <ul class="footer-links">
-          <li><a href="#kashmir-section">Players Edition</a></li>
-          <li><a href="#kashmir-section">Platinum</a></li>
-          <li><a href="#kashmir-section">Diamond</a></li>
-          <li><a href="#kashmir-section">Gold</a></li>
-          <li><a href="#kashmir-section">Silver</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Tennis Series</h4>
-        <ul class="footer-links">
-          <li><a href="#tennis-section">Designed</a></li>
-          <li><a href="#tennis-section">Without Design</a></li>
-          <li><a href="#tennis-section">Popular</a></li>
-          <li><a href="#tennis-section">Cane Handle</a></li>
-          <li><a href="#tennis-section">Kissan Tennis</a></li>
-          <li><a href="#tennis-section">36 Inch Monster</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Contact &amp; Bulk Desk</h4>
-        <p><i class="fa-solid fa-phone" style="color:var(--gold);"></i> <a href="tel:+918493977654" style="color:inherit; text-decoration:none;">+91 84939 77654</a></p>
-        <p><i class="fa-brands fa-whatsapp" style="color:#25d366;"></i> <a href="https://wa.me/918493977654" target="_blank" style="color:inherit; text-decoration:none;">+91 84939 77654</a></p>
-        <p><i class="fa-solid fa-envelope" style="color:var(--gold);"></i> <a href="mailto:f2sportsstore@gmail.com" style="color:inherit; text-decoration:none;">f2sportsstore@gmail.com</a></p>
-        <p><i class="fa-solid fa-envelope-open-text" style="color:var(--gold);"></i> <a href="mailto:Zeesajid55@gmail.com" style="color:inherit; text-decoration:none;">Zeesajid55@gmail.com</a></p>
-        <p><i class="fa-solid fa-location-dot" style="color:var(--gold);"></i> Panchpora Sangam, Halmullah Dadoo Road Near Sub-Station Punchpora Marhama - 192124</p>
-      </div>
-    </div>
-
-    <div class="trademark-bar">
-      <div>&copy; 2026 <strong>F2 Sports</strong>. All Rights Reserved.</div>
-      <div><i class="fa-solid fa-trademark"></i> F2 SPORTS is a Registered Trademark</div>
-    </div>
-  </footer>
-
   <div class="toast" id="appToast">
-    <i class="fa-solid fa-circle-check" style="color:#10b981;"></i>
+    <i class="fa-solid fa-circle-check" style="color:var(--neon-cyan);"></i>
     <span id="toastMsg">Added to cart</span>
   </div>
 
@@ -1725,10 +1895,8 @@
       {
         id: 'EW1',
         category: 'english',
-        catName: 'Grade A',
         name: 'F2 Pro Grade A English Willow Bat',
         price: 17499,
-        tag: 'Grade A Cleft',
         img: './grade_a_english.jpg',
         images: ['./grade_a_english.jpg'],
         inStock: true,
@@ -1739,10 +1907,8 @@
       {
         id: 'EW2',
         category: 'english',
-        catName: 'Grade B',
         name: 'F2 Match Grade B English Willow Bat',
         price: 16999,
-        tag: 'Grade B Cleft',
         img: './grade_b_english.jpg',
         images: ['./grade_b_english.jpg'],
         inStock: true,
@@ -1753,10 +1919,8 @@
       {
         id: 'KW1',
         category: 'kashmir',
-        catName: 'Players Edition',
         name: 'F2 Players Edition Kashmir Leather Bat',
         price: 7999,
-        tag: 'Top Reserve KW',
         img: './Players_edition.jpg',
         images: ['./Players_edition.jpg'],
         inStock: true,
@@ -1767,10 +1931,8 @@
       {
         id: 'KW2',
         category: 'kashmir',
-        catName: 'Platinum',
         name: 'F2 Platinum Leather Bat',
         price: 6499,
-        tag: 'Platinum Reserve',
         img: './platinum.jpg',
         images: ['./platinum.jpg'],
         inStock: true,
@@ -1781,10 +1943,8 @@
       {
         id: 'KW3',
         category: 'kashmir',
-        catName: 'Diamond',
         name: 'F2 Diamond Leather Bat',
         price: 5199,
-        tag: 'Diamond Series',
         img: './diamond.jpg',
         images: ['./diamond.jpg'],
         inStock: true,
@@ -1795,10 +1955,8 @@
       {
         id: 'KW4',
         category: 'kashmir',
-        catName: 'Gold',
         name: 'F2 Gold Reserve Leather Bat',
         price: 4199,
-        tag: 'Gold Standard',
         img: './gold.jpg',
         images: ['./gold.jpg'],
         inStock: false,
@@ -1809,10 +1967,8 @@
       {
         id: 'KW5',
         category: 'kashmir',
-        catName: 'Silver',
         name: 'F2 Silver Club Leather Bat',
         price: 3299,
-        tag: 'Silver Club',
         img: './silver.jpg',
         images: ['./silver.jpg'],
         inStock: true,
@@ -1823,10 +1979,8 @@
       {
         id: 'TN1',
         category: 'tennis',
-        catName: 'Designed',
         name: 'F2 Laser-Designed Hard Tennis Bat',
         price: 2499,
-        tag: 'UV 3D Graphics',
         img: './designed.jpg',
         images: ['./designed.jpg'],
         inStock: true,
@@ -1837,10 +1991,8 @@
       {
         id: 'TN2',
         category: 'tennis',
-        catName: 'Without Design',
         name: 'F2 Classic Raw (Without Design) Tennis Bat',
         price: 1999,
-        tag: 'Raw Natural Polish',
         img: './without_design.jpg',
         images: ['./without_design.jpg'],
         inStock: true,
@@ -1851,10 +2003,8 @@
       {
         id: 'TN3',
         category: 'tennis',
-        catName: 'Popular',
         name: 'F2 Popular Turf Dominator Tennis Bat',
         price: 1799,
-        tag: 'Top Turf Seller',
         img: './popular.jpg',
         images: ['./popular.jpg'],
         inStock: true,
@@ -1865,10 +2015,8 @@
       {
         id: 'TN4',
         category: 'tennis',
-        catName: 'Cane',
         name: 'F2 Full Cane Handle Tennis Bat',
         price: 2899,
-        tag: '9-Piece Cane Handle',
         img: './cane.jpg',
         images: ['./cane.jpg'],
         inStock: false,
@@ -1879,10 +2027,8 @@
       {
         id: 'TN5',
         category: 'tennis',
-        catName: 'Kissan Tennis',
         name: 'F2 Kissan Tennis Heavy Punch Bat',
         price: 2299,
-        tag: 'Heavy Punch Willow',
         img: './kissan_tennis.jpg',
         images: ['./kissan_tennis.jpg'],
         inStock: true,
@@ -1893,10 +2039,8 @@
       {
         id: 'TN6',
         category: 'tennis',
-        catName: '36 Inch',
         name: 'F2 36-Inch Long Blade Monster Tennis Bat',
         price: 2999,
-        tag: '36-Inch Long Blade',
         img: './36inch.jpg',
         images: ['./36inch.jpg'],
         inStock: true,
@@ -1965,10 +2109,27 @@
       imgElement.src = fallbackImage;
     }
 
-    function switchProductImage(productId, newSrc) {
+    function switchProductImage(productId, newSrc, e) {
+      if (e) e.stopPropagation();
       const imgElem = document.getElementById(`main-img-${productId}`);
       if (imgElem) {
         imgElem.src = newSrc;
+      }
+    }
+
+    function openLightbox(imgSrc) {
+      const modal = document.getElementById('imageLightbox');
+      const img = document.getElementById('lightboxImg');
+      if (modal && img) {
+        img.src = imgSrc;
+        modal.classList.add('active');
+      }
+    }
+
+    function closeLightbox() {
+      const modal = document.getElementById('imageLightbox');
+      if (modal) {
+        modal.classList.remove('active');
       }
     }
 
@@ -1992,7 +2153,7 @@
         const thumbsHtml = imagesList.length > 1 ? `
           <div class="product-thumbs-strip">
             ${imagesList.map(imgUrl => `
-              <img src="${imgUrl}" class="product-thumb-item" onclick="switchProductImage('${product.id}', '${imgUrl}')" onerror="handleImgError(this)" />
+              <img src="${imgUrl}" class="product-thumb-item" onclick="switchProductImage('${product.id}', '${imgUrl}', event)" onerror="handleImgError(this)" />
             `).join('')}
           </div>
         ` : '';
@@ -2006,17 +2167,16 @@
 
             ${hasSale ? `
               <span class="sale-badge">
-                <i class="fa-solid fa-fire"></i> ${product.saleBadge}
+                <i class="fa-solid fa-bolt"></i> ${product.saleBadge}
               </span>
             ` : ''}
 
-            <div class="product-img-wrapper">
+            <div class="product-img-wrapper" onclick="openLightbox(document.getElementById('main-img-${product.id}').src)">
               <img src="${product.img}" alt="${product.name}" id="main-img-${product.id}" class="product-img" loading="lazy" onerror="handleImgError(this)" />
               ${thumbsHtml}
             </div>
 
             <div class="product-body">
-              <span class="product-cat-name">${product.catName}</span>
               <h3 class="product-title">${product.name}</h3>
 
               ${hasSale && product.saleDesc ? `
@@ -2026,7 +2186,7 @@
               ` : ''}
 
               <ul class="product-features">
-                ${product.features.map(f => `<li><i class="fa-solid fa-check"></i> ${f}</li>`).join('')}
+                ${product.features.map(f => `<li><i class="fa-solid fa-circle-check"></i> ${f}</li>`).join('')}
               </ul>
 
               <div class="product-footer">
@@ -2093,8 +2253,8 @@
       const checkoutBtn = document.getElementById('checkoutBtn');
 
       if (totalItems === 0) {
-        cartList.innerHTML = `<div style="text-align:center; padding:50px 20px; color:#64748b;">
-          <i class="fa-solid fa-basket-shopping" style="font-size:3rem; color:#cbd5e1; margin-bottom:10px;"></i>
+        cartList.innerHTML = `<div style="text-align:center; padding:50px 20px; color:var(--text-muted);">
+          <i class="fa-solid fa-basket-shopping" style="font-size:3rem; color:#334155; margin-bottom:10px;"></i>
           <h4>Your cart is empty</h4>
         </div>`;
         checkoutBtn.disabled = true;
@@ -2110,7 +2270,7 @@
               <img src="${item.img}" alt="${item.name}" class="cart-item-img" onerror="handleImgError(this)" />
               <div class="cart-item-details">
                 <div class="cart-item-title">${item.name}</div>
-                <div style="font-size:0.75rem; color:#64748b;">Rs. ${Number(item.price).toLocaleString('en-IN')} each</div>
+                <div style="font-size:0.75rem; color:var(--text-muted);">Rs. ${Number(item.price).toLocaleString('en-IN')} each</div>
                 <div class="cart-item-price">Rs. ${itemTotal.toLocaleString('en-IN')}</div>
               </div>
               <div class="qty-control-inline">
@@ -2277,10 +2437,11 @@
       e.target.reset();
     }
 
-    function triggerAdminModal() {
+    /* SEPARATE FULL-PAGE ADMIN PORTAL */
+    function openAdminPortalPage() {
       const isAuth = sessionStorage.getItem('f2_main_admin_auth');
       if (isAuth) {
-        revealAdminDashboard();
+        showAdminPageView();
       } else {
         document.getElementById('adminLoginModal').classList.add('active');
       }
@@ -2299,24 +2460,29 @@
         sessionStorage.setItem('f2_main_admin_auth', 'true');
         closeAdminLoginModal();
         showToast('Admin logged in successfully!');
-        revealAdminDashboard();
+        showAdminPageView();
       } else {
         alert('Invalid Admin credentials! Default: admin / f2sports2026');
       }
     }
 
-    function revealAdminDashboard() {
-      const adminSection = document.getElementById('admin-section');
-      adminSection.style.display = 'block';
+    function showAdminPageView() {
+      document.getElementById('storefrontView').style.display = 'none';
+      document.getElementById('adminStandaloneView').style.display = 'block';
       updateAdminDashboard();
-      adminSection.scrollIntoView({ behavior: 'smooth' });
+      window.scrollTo(0, 0);
+    }
+
+    function returnToStorefront() {
+      document.getElementById('adminStandaloneView').style.display = 'none';
+      document.getElementById('storefrontView').style.display = 'block';
+      window.scrollTo(0, 0);
     }
 
     function handleMainAdminLogout() {
       sessionStorage.removeItem('f2_main_admin_auth');
-      document.getElementById('admin-section').style.display = 'none';
       showToast('Logged out from Admin Dashboard');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      returnToStorefront();
     }
 
     function switchAdminTab(tabName) {
@@ -2359,7 +2525,7 @@
       if (!container) return;
 
       if (orders.length === 0) {
-        container.innerHTML = '<div style="text-align:center; color:#94a3b8; padding:30px; background:#1e293b; border-radius:10px;">No customer orders placed yet.</div>';
+        container.innerHTML = '<div style="text-align:center; color:var(--text-muted); padding:30px; background:var(--dark-card); border-radius:10px;">No customer orders placed yet.</div>';
         return;
       }
 
@@ -2367,21 +2533,21 @@
       orders.forEach((order, index) => {
         const itemsListStr = order.items.map(i => `${i.name} (x${i.qty})`).join(', ');
         container.innerHTML += `
-          <div style="background:#1e293b; border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:20px; margin-bottom:16px;">
-            <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px; margin-bottom:12px; font-weight:800; font-size:1.05rem;">
+          <div style="background:var(--dark-card); border:1px solid var(--border-neon); border-radius:12px; padding:20px; margin-bottom:16px;">
+            <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(0, 240, 255, 0.1); padding-bottom:10px; margin-bottom:12px; font-weight:800; font-size:1.05rem;">
               <span>Order #${order.orderId}</span>
-              <span style="color:var(--gold);">${order.totalAmount}</span>
+              <span style="color:var(--neon-yellow);">${order.totalAmount}</span>
             </div>
             <div style="font-size:0.88rem; line-height:1.6; color:#cbd5e1;">
               <p><b>Date:</b> ${order.date}</p>
               <p><b>Customer:</b> ${order.customer.name} | <b>Email:</b> ${order.customer.email} | <b>Phone:</b> ${order.customer.phone}</p>
               <p><b>Address:</b> ${order.customer.address}</p>
               <p><b>Bats Ordered:</b> ${itemsListStr}</p>
-              <p><b>UPI UTR Number:</b> <code style="background:#0f172a; padding:2px 8px; border-radius:4px; color:#38bdf8;">${order.utr}</code></p>
-              <p><b>Current Stage:</b> <span style="font-weight:700; color:#34d399;">${order.status}</span></p>
+              <p><b>UPI UTR Number:</b> <code style="background:#060d1d; padding:2px 8px; border-radius:4px; color:var(--neon-cyan);">${order.utr}</code></p>
+              <p><b>Current Stage:</b> <span style="font-weight:700; color:var(--neon-cyan);">${order.status}</span></p>
             </div>
-            <div style="margin-top:14px; padding-top:12px; border-top:1px dashed rgba(255,255,255,0.1); display:flex; gap:10px; flex-wrap:wrap;">
-              <button class="admin-action-btn" style="background:#0284c7; color:#fff;" onclick="sendOrderPlacedEmail(${index})">
+            <div style="margin-top:14px; padding-top:12px; border-top:1px dashed rgba(0, 240, 255, 0.15); display:flex; gap:10px; flex-wrap:wrap;">
+              <button class="admin-action-btn" style="background:var(--neon-blue); color:#fff;" onclick="sendOrderPlacedEmail(${index})">
                 <i class="fa-solid fa-envelope"></i> Send Confirmation Email
               </button>
               <button class="admin-action-btn" style="background:#059669; color:#fff;" onclick="markOrderDispatched(${index})">
@@ -2401,26 +2567,25 @@
 
       products.forEach(p => {
         const isAvailable = p.inStock !== false;
-        const saleBadgeStr = p.saleBadge ? `<span style="background:#ef4444; color:#fff; padding:2px 6px; border-radius:4px; font-weight:700; font-size:0.75rem;">${p.saleBadge}</span>` : '<span style="color:#64748b;">None</span>';
+        const saleBadgeStr = p.saleBadge ? `<span style="background:var(--neon-yellow); color:#040914; padding:2px 6px; border-radius:4px; font-weight:800; font-size:0.75rem;">${p.saleBadge}</span>` : '<span style="color:var(--text-muted);">None</span>';
         const imgCount = (p.images && p.images.length) ? p.images.length : 1;
 
         tbody.innerHTML += `
           <tr>
             <td>
               <div style="display:flex; align-items:center; gap:10px;">
-                <img src="${p.img}" alt="${p.name}" style="width:36px; height:36px; object-fit:cover; background:#fff; border-radius:4px; padding:2px;" onerror="handleImgError(this)" />
+                <img src="${p.img}" alt="${p.name}" style="width:36px; height:36px; object-fit:cover; background:#040914; border-radius:4px; padding:2px; border:1px solid var(--border-neon);" onerror="handleImgError(this)" />
                 <div>
                   <b>${p.name}</b>
-                  <div style="font-size:0.72rem; color:#94a3b8;"><i class="fa-solid fa-images"></i> ${imgCount} photo(s)</div>
+                  <div style="font-size:0.72rem; color:var(--text-muted);"><i class="fa-solid fa-images"></i> ${imgCount} photo(s)</div>
                 </div>
               </div>
             </td>
-            <td style="text-transform:capitalize;">${p.category} Willow</td>
-            <td>${p.catName}</td>
+            <td style="text-transform:capitalize; color:var(--neon-cyan);">${p.category}</td>
             <td>Rs. ${Number(p.price).toLocaleString('en-IN')}</td>
             <td>
               <div>${saleBadgeStr}</div>
-              ${p.saleDesc ? `<div style="font-size:0.75rem; color:#94a3b8;">${p.saleDesc}</div>` : ''}
+              ${p.saleDesc ? `<div style="font-size:0.75rem; color:var(--neon-cyan);">${p.saleDesc}</div>` : ''}
             </td>
             <td>
               <span class="stock-badge ${isAvailable ? 'stock-available' : 'stock-out'}" style="position:static; display:inline-block;">
@@ -2451,10 +2616,8 @@
 
       document.getElementById('editProdId').value = prod.id;
       document.getElementById('editProdCategory').value = prod.category;
-      document.getElementById('editProdCatName').value = prod.catName;
       document.getElementById('editProdName').value = prod.name;
       document.getElementById('editProdPrice').value = prod.price;
-      document.getElementById('editProdTag').value = prod.tag;
       document.getElementById('editProdImg').value = prod.img;
       document.getElementById('editProdSaleBadge').value = prod.saleBadge || '';
       document.getElementById('editProdSaleDesc').value = prod.saleDesc || '';
@@ -2538,7 +2701,7 @@
       }
 
       renderEditPhotosGallery();
-      notice.innerHTML = `<i class="fa-solid fa-circle-check" style="color:#10b981;"></i> Uploaded ${files.length} photo(s) successfully!`;
+      notice.innerHTML = `<i class="fa-solid fa-circle-check" style="color:var(--neon-cyan);"></i> Uploaded ${files.length} photo(s) successfully!`;
       saveBtn.disabled = false;
       e.target.value = '';
       setTimeout(() => { notice.style.display = 'none'; }, 4000);
@@ -2561,10 +2724,8 @@
       products[index] = {
         ...products[index],
         category: document.getElementById('editProdCategory').value,
-        catName: document.getElementById('editProdCatName').value,
         name: document.getElementById('editProdName').value,
         price: Number(document.getElementById('editProdPrice').value),
-        tag: document.getElementById('editProdTag').value,
         img: mainImg,
         images: tempEditImages.length > 0 ? tempEditImages : [mainImg],
         saleBadge: document.getElementById('editProdSaleBadge').value.trim(),
@@ -2583,10 +2744,8 @@
     function handleAdminAddNewProduct(e) {
       e.preventDefault();
       const category = document.getElementById('newProdCategory').value;
-      const catName = document.getElementById('newProdCatName').value;
       const name = document.getElementById('newProdName').value;
       const price = Number(document.getElementById('newProdPrice').value);
-      const tag = document.getElementById('newProdTag').value;
       const img = document.getElementById('newProdImg').value;
       const saleBadge = document.getElementById('newProdSaleBadge').value.trim();
       const saleDesc = document.getElementById('newProdSaleDesc').value.trim();
@@ -2598,10 +2757,8 @@
       const newProduct = {
         id: 'PROD-' + Date.now(),
         category,
-        catName,
         name,
         price,
-        tag,
         img,
         images: [img],
         saleBadge,
@@ -2715,8 +2872,7 @@
       updateCartUI();
       listenToCloudOrders();
       if (sessionStorage.getItem('f2_main_admin_auth')) {
-        document.getElementById('admin-section').style.display = 'block';
-        updateAdminDashboard();
+        showAdminPageView();
       }
     });
   </script>
