@@ -35,7 +35,7 @@
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* THEME 2: LIGHT GREEN BLUE (CYAN & EMERALD ATHLETIC) */
+    /* THEME 2: LIGHT GREEN BLUE */
     [data-theme="light-green-blue"] {
       --bg-main: #f0fdf4;
       --bg-surface: #ffffff;
@@ -125,6 +125,24 @@
       box-shadow: var(--shadow-accent);
     }
 
+    .admin-text-trigger {
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+      transition: var(--transition);
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+
+    .admin-text-trigger:hover {
+      background: rgba(225, 29, 72, 0.12);
+    }
+
+    .admin-text-trigger:hover .logo-title span {
+      text-decoration: underline;
+    }
+
     .logo-title {
       font-size: 1.25rem;
       font-weight: 800;
@@ -148,7 +166,7 @@
     .nav-links {
       display: flex;
       list-style: none;
-      gap: 22px;
+      gap: 20px;
       align-items: center;
       position: absolute;
       left: 50%;
@@ -177,7 +195,6 @@
       flex-shrink: 0;
     }
 
-    /* THEME SWITCHER BUTTON */
     .theme-toggle-btn {
       background: var(--bg-surface);
       border: 1.5px solid var(--border-theme);
@@ -196,29 +213,6 @@
     .theme-toggle-btn:hover {
       border-color: var(--accent-primary);
       color: var(--accent-primary);
-    }
-
-    .btn-admin-portal-link {
-      background: var(--bg-surface);
-      border: 1.5px solid var(--border-theme);
-      color: var(--text-main);
-      padding: 7px 14px;
-      border-radius: 50px;
-      cursor: pointer;
-      font-weight: 700;
-      font-size: 0.82rem;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: var(--transition);
-      text-decoration: none;
-    }
-
-    .btn-admin-portal-link:hover {
-      background: var(--accent-primary);
-      color: #fff;
-      border-color: var(--accent-primary);
-      box-shadow: var(--shadow-accent);
     }
 
     .cart-btn-trigger {
@@ -255,7 +249,7 @@
       justify-content: center;
     }
 
-    /* CONTAINER 2: HERO SECTION WITH FULL-HEIGHT VERTICAL PNG PHOTOS */
+    /* CONTAINER 2: HERO SECTION */
     .hero-sports-wrapper {
       background: var(--hero-radial);
       border-bottom: 2px solid var(--border-theme);
@@ -730,327 +724,242 @@
       background: var(--accent-primary);
     }
 
-    /* BULK SECTION */
-    .bulk-section {
+    /* SOCIAL FOLLOW STRIP */
+    .social-follow-strip {
       background: var(--bg-surface);
-      color: var(--text-main);
-      border-radius: var(--radius);
-      padding: 35px 25px;
-      margin: 35px auto 10px;
-      max-width: 1230px;
-      box-shadow: var(--shadow-accent);
-      border: 1px solid var(--border-theme);
-    }
-
-    .bulk-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    .bulk-text h3 {
-      font-size: 2rem;
-      color: var(--text-main);
-      margin-bottom: 4px;
-    }
-
-    .bulk-text p {
-      color: var(--text-muted);
-      font-size: 0.92rem;
-      max-width: 600px;
-    }
-
-    .bulk-actions {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .btn-bulk-whatsapp {
-      background: #25d366;
-      color: white;
-      padding: 10px 22px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.92rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: var(--transition);
-      box-shadow: 0 0 15px rgba(37, 211, 102, 0.3);
-    }
-
-    .btn-bulk-call {
-      background: var(--bg-card);
-      color: var(--text-main);
-      border: 1px solid var(--border-theme);
-      padding: 10px 22px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.92rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: var(--transition);
-    }
-
-    .btn-bulk-call:hover {
-      background: var(--accent-primary);
-      color: #fff;
-    }
-
-    /* CART DRAWER */
-    .cart-drawer-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(6px);
-      z-index: 999;
-      opacity: 0;
-      visibility: hidden;
-      transition: var(--transition);
-    }
-
-    .cart-drawer-overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .cart-drawer {
-      position: fixed;
-      top: 0;
-      right: -480px;
-      width: 100%;
-      max-width: 440px;
-      height: 100%;
-      background: var(--bg-surface);
-      border-left: 2px solid var(--border-theme);
-      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.4);
-      z-index: 1000;
-      transition: right 0.35s ease;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .cart-drawer.active {
-      right: 0;
-    }
-
-    .cart-header {
-      padding: 18px 22px;
-      background: var(--bg-card);
-      border-bottom: 1px solid var(--border-subtle);
-      color: var(--text-main);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .close-cart-btn {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-theme);
-      color: var(--text-main);
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      cursor: pointer;
-    }
-
-    .cart-items-container {
-      flex-grow: 1;
-      overflow-y: auto;
-      padding: 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .cart-item {
-      display: flex;
-      gap: 12px;
-      padding: 10px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius);
-      align-items: center;
-    }
-
-    .cart-item-img {
-      width: 55px;
-      height: 55px;
-      object-fit: cover;
-      background: var(--bg-surface);
-      border-radius: 6px;
-      padding: 2px;
-      border: 1px solid var(--border-theme);
-    }
-
-    .cart-item-details {
-      flex-grow: 1;
-    }
-
-    .cart-item-title {
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--text-main);
-    }
-
-    .cart-item-price {
-      font-weight: 800;
-      color: var(--accent-primary);
-      font-size: 0.9rem;
-    }
-
-    .cart-footer {
-      padding: 18px 22px;
       border-top: 1px solid var(--border-subtle);
-      background: var(--bg-card);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 18px 20px;
+      text-align: center;
     }
 
-    .cart-total-row {
+    .social-follow-wrapper {
+      max-width: 1320px;
+      margin: 0 auto;
       display: flex;
-      justify-content: space-between;
-      font-size: 1.15rem;
-      font-weight: 800;
-      margin-bottom: 14px;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .social-follow-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .social-btn {
+      padding: 8px 18px;
+      border-radius: 50px;
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+
+    .social-btn.instagram {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      box-shadow: 0 4px 12px rgba(220, 39, 67, 0.3);
+    }
+
+    .social-btn.facebook {
+      background: #1877f2;
+      box-shadow: 0 4px 12px rgba(24, 119, 242, 0.3);
+    }
+
+    .social-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    /* COMPACT PLAYER SUPPORT CONTAINER */
+    .info-section {
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 24px 20px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .info-card {
+      background: var(--bg-card);
+      padding: 16px 18px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .info-card h3 {
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
       color: var(--text-main);
     }
 
-    .btn-checkout {
-      width: 100%;
-      background: var(--accent-primary);
-      color: #fff;
-      border: none;
-      padding: 13px;
-      border-radius: 50px;
-      font-size: 0.95rem;
-      font-weight: 700;
+    .faq-item {
+      margin-bottom: 6px;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 6px;
+    }
+
+    .faq-question {
+      font-weight: 600;
+      font-size: 0.82rem;
       cursor: pointer;
-      transition: var(--transition);
-      margin-bottom: 8px;
-      box-shadow: var(--shadow-accent);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text-main);
     }
 
-    .btn-checkout:hover {
-      background: var(--accent-primary-hover);
+    .faq-answer {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+      display: none;
+      line-height: 1.35;
     }
 
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.8);
-      backdrop-filter: blur(6px);
-      z-index: 1050;
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+
+    /* BRAND PROMINENT BANNER ABOVE FOOTER */
+    .falcon-brand-banner {
+      background: var(--bg-surface);
+      padding: 30px 20px 20px;
+      text-align: center;
+      border-top: 2px solid var(--border-theme);
+    }
+
+    .falcon-brand-banner-title {
+      font-size: 2.4rem;
+      font-weight: 900;
+      color: var(--text-main);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
-      opacity: 0;
-      visibility: hidden;
-      transition: var(--transition);
+      gap: 12px;
+      letter-spacing: -0.5px;
+      line-height: 1.1;
     }
 
-    .modal-overlay.active {
-      opacity: 1;
-      visibility: visible;
+    .falcon-brand-banner-title i {
+      color: var(--accent-primary);
+      font-size: 2rem;
     }
 
-    .modal-box {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-theme);
-      width: 100%;
-      max-width: 540px;
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow-accent);
+    .falcon-brand-banner-tag {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-top: 4px;
     }
 
-    .modal-header {
-      background: var(--bg-card);
-      border-bottom: 1px solid var(--border-theme);
-      color: var(--text-main);
+    /* MINIMAL CLEAN FOOTER */
+    footer {
+      background: var(--bg-main);
+      color: var(--text-muted);
       padding: 16px 20px;
+      font-size: 0.82rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .footer-bar-clean {
+      max-width: 1320px;
+      margin: 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
     }
 
-    .modal-body {
-      padding: 22px;
-      max-height: 80vh;
-      overflow-y: auto;
-    }
-
-    .qr-container {
-      background: var(--bg-card);
-      border: 2px dashed var(--border-theme);
-      border-radius: var(--radius);
-      padding: 16px;
+    .footer-bar-location {
+      color: var(--text-main);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
       text-align: center;
-      margin-bottom: 18px;
     }
 
-    .qr-image {
-      width: 170px;
-      height: 170px;
-      margin: 0 auto 10px;
-      display: block;
-      background: white;
-      padding: 8px;
-      border-radius: 6px;
+    .footer-bar-location i {
+      color: var(--accent-primary);
     }
 
-    .form-group {
-      margin-bottom: 14px;
-      text-align: left;
-    }
-
-    .form-label {
-      display: block;
-      font-size: 0.83rem;
-      font-weight: 700;
-      margin-bottom: 4px;
-      color: var(--text-main);
-      letter-spacing: 0.3px;
-    }
-
-    .form-input, .form-textarea, .form-select {
-      width: 100%;
-      padding: 10px 14px;
+    /* DEDICATED BULK ORDER PAGE VIEW */
+    .bulk-standalone-view {
+      display: none;
+      min-height: 100vh;
       background: var(--bg-main);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-main);
-      border-radius: 6px;
-      font-size: 0.9rem;
-      font-family: inherit;
+      padding: 40px 20px;
     }
 
-    .form-input:focus, .form-textarea:focus, .form-select:focus {
-      outline: none;
-      border-color: var(--accent-primary);
-    }
-
-    .btn-submit-order {
-      width: 100%;
-      background: var(--accent-primary);
-      color: #ffffff;
-      border: none;
-      padding: 12px;
-      border-radius: 50px;
-      font-size: 0.95rem;
-      font-weight: 700;
-      cursor: pointer;
-      margin-top: 10px;
-      transition: var(--transition);
+    .bulk-portal-container {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-theme);
+      border-radius: var(--radius);
+      padding: 35px 25px;
       box-shadow: var(--shadow-accent);
     }
 
-    .btn-submit-order:hover {
-      background: var(--accent-primary-hover);
+    .bulk-channel-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 30px;
+    }
+
+    .bulk-channel-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius);
+      padding: 22px 18px;
+      text-align: center;
+      text-decoration: none;
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: var(--transition);
+    }
+
+    .bulk-channel-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent-primary);
+      box-shadow: var(--shadow-accent);
+    }
+
+    .bulk-channel-card i {
+      font-size: 2.2rem;
+    }
+
+    .bulk-channel-card span {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .bulk-channel-card small {
+      font-size: 0.78rem;
+      color: var(--text-muted);
     }
 
     /* DEDICATED ADMIN PORTAL VIEW */
@@ -1283,115 +1192,7 @@
       object-fit: contain;
     }
 
-    .info-section {
-      background: var(--bg-surface);
-      border-top: 1px solid var(--border-subtle);
-      border-bottom: 1px solid var(--border-subtle);
-      padding: 45px 20px;
-    }
-
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 24px;
-    }
-
-    .info-card {
-      background: var(--bg-card);
-      padding: 22px;
-      border-radius: var(--radius);
-      border: 1px solid var(--border-subtle);
-    }
-
-    .info-card h3 {
-      margin-bottom: 10px;
-      font-size: 1.3rem;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--text-main);
-    }
-
-    .faq-item {
-      margin-bottom: 10px;
-      border-bottom: 1px solid var(--border-subtle);
-      padding-bottom: 8px;
-    }
-
-    .faq-question {
-      font-weight: 600;
-      font-size: 0.9rem;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: var(--text-main);
-    }
-
-    .faq-answer {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      margin-top: 6px;
-      display: none;
-    }
-
-    .faq-item.active .faq-answer {
-      display: block;
-    }
-
-    footer {
-      background: var(--bg-surface);
-      color: var(--text-muted);
-      padding: 45px 20px 20px;
-      font-size: 0.88rem;
-      border-top: 2px solid var(--border-theme);
-    }
-
-    .footer-grid {
-      max-width: 1280px;
-      margin: 0 auto 30px;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr 1.5fr;
-      gap: 25px;
-    }
-
-    .footer-col h4 {
-      color: var(--text-main);
-      font-size: 1.1rem;
-      margin-bottom: 10px;
-    }
-
-    .footer-links {
-      list-style: none;
-    }
-
-    .footer-links li {
-      margin-bottom: 6px;
-    }
-
-    .footer-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: var(--transition);
-    }
-
-    .footer-links a:hover {
-      color: var(--accent-primary);
-    }
-
-    .trademark-bar {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding-top: 18px;
-      border-top: 1px solid var(--border-subtle);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      font-size: 0.8rem;
-    }
-
+    /* TOAST */
     .toast {
       position: fixed;
       bottom: 24px;
@@ -1438,47 +1239,46 @@
     }
 
     @media (max-width: 992px) {
-      .footer-grid {
-        grid-template-columns: 1fr 1fr;
-      }
       .hero-title-main {
         font-size: 3rem;
+      }
+      .footer-bar-clean {
+        flex-direction: column;
+        text-align: center;
       }
     }
   </style>
 </head>
 <body data-theme="dark-red">
 
-  <!-- STOREFRONT VIEW -->
+  <!-- 1. MAIN STOREFRONT VIEW -->
   <div id="storefrontView">
     <header>
       <div class="navbar">
-        <!-- LOGO AT LEFT CORNER -->
-        <a href="#home" class="logo-container">
+        <!-- LOGO AT LEFT CORNER WITH CLICKABLE TEXT TO OPEN ADMIN LOGIN -->
+        <div class="logo-container">
           <img src="logo.png" alt="F2 Sports Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
           <div class="logo-fallback" style="display:none;">F2</div>
-          <div>
+          <div class="admin-text-trigger" onclick="openAdminPortalPage()" title="Click to open Admin Portal">
             <span class="logo-title">F2 <span>SPORTS</span></span>
             <span class="logo-tagline">Engineered For Champions</span>
           </div>
-        </a>
+        </div>
 
-        <!-- CENTERED SMOOTH FONT NAVIGATION -->
+        <!-- CENTERED NAVIGATION -->
         <ul class="nav-links">
           <li><a href="#home"><i class="fa-solid fa-house"></i> Home</a></li>
-          <li><a href="#english-section"><i class="fa-solid fa-award"></i> English Willow</a></li>
           <li><a href="#kashmir-section"><i class="fa-solid fa-shield-halved"></i> Kashmir Willow</a></li>
+          <li><a href="#english-section"><i class="fa-solid fa-award"></i> English Willow</a></li>
           <li><a href="#tennis-section"><i class="fa-solid fa-baseball-bat-ball"></i> Tennis</a></li>
+          <li><a href="javascript:void(0)" onclick="openBulkOrderPage()"><i class="fa-solid fa-truck-ramp-box"></i> Bulk Order</a></li>
         </ul>
 
-        <!-- RIGHT CORNER: THEME TOGGLE, ADMIN & CART -->
+        <!-- RIGHT CORNER: THEME TOGGLE & CART -->
         <div class="nav-actions">
           <button class="theme-toggle-btn" onclick="toggleColorTheme()" title="Toggle Color Theme">
             <i class="fa-solid fa-circle-half-stroke"></i> <span id="themeToggleLabel">Green Mode</span>
           </button>
-          <a href="javascript:void(0)" onclick="openAdminPortalPage()" class="btn-admin-portal-link">
-            <i class="fa-solid fa-user-shield"></i> <span>Admin</span>
-          </a>
           <button class="cart-btn-trigger" onclick="toggleCartDrawer()">
             <i class="fa-solid fa-basket-shopping"></i>
             <span>Cart</span>
@@ -1491,7 +1291,7 @@
     <!-- CONTAINER 2: HERO SECTION WITH FULL-HEIGHT VERTICAL PNG PHOTOS -->
     <section class="hero-sports-wrapper" id="home">
       <div class="hero-grid-showcase">
-        <!-- LEFT 2 TRANSPARENT PNG PHOTOS (FULL VERTICAL HEIGHT) -->
+        <!-- LEFT 2 TRANSPARENT PNG PHOTOS -->
         <div class="hero-side-column">
           <div class="hero-png-item">
             <img src="./hero_bat_1.png" id="heroPhotoImg1" class="hero-png-img" alt="Cricket Bat Slot 1" onerror="handleImgError(this)" />
@@ -1501,7 +1301,7 @@
           </div>
         </div>
 
-        <!-- CENTER SMOOTH TEXT -->
+        <!-- CENTER TEXT -->
         <div class="hero-center-content">
           <h1>
             <span class="hero-title-prefix">Power Your Game With</span>
@@ -1511,7 +1311,7 @@
           <p>Hand-crafted for extraordinary rebound ping, razor-sharp balance, and monster power hitting across all formats.</p>
         </div>
 
-        <!-- RIGHT 2 TRANSPARENT PNG PHOTOS (FULL VERTICAL HEIGHT) -->
+        <!-- RIGHT 2 TRANSPARENT PNG PHOTOS -->
         <div class="hero-side-column">
           <div class="hero-png-item">
             <img src="./hero_bat_3.png" id="heroPhotoImg3" class="hero-png-img" alt="Cricket Bat Slot 3" onerror="handleImgError(this)" />
@@ -1539,24 +1339,24 @@
 
     <!-- PRODUCT CATALOG -->
     <main>
-      <!-- 1. ENGLISH WILLOW CATEGORY -->
-      <section class="container" id="english-section">
-        <div class="section-header">
-          <span class="section-subtitle">International Standard</span>
-          <h2 class="section-title">English Willow Bats Collection</h2>
-          <p class="section-desc">Hand-crafted from genuine imported English Willow clefts for maximum rebound velocity and feather-light pickup.</p>
-        </div>
-        <div class="product-grid" id="englishProductsGrid"></div>
-      </section>
-
-      <!-- 2. KASHMIR WILLOW CATEGORY -->
-      <section class="container" id="kashmir-section" style="padding-top: 0;">
+      <!-- 1. KASHMIR WILLOW CATEGORY -->
+      <section class="container" id="kashmir-section">
         <div class="section-header">
           <span class="section-subtitle">Traditional Power</span>
           <h2 class="section-title">Kashmir Willow Leather Bats Collection</h2>
           <p class="section-desc">Selected Grade Kashmir Willow leather ball bats crafted with heavy spines and thick edges for tournament performance.</p>
         </div>
         <div class="product-grid" id="kashmirProductsGrid"></div>
+      </section>
+
+      <!-- 2. ENGLISH WILLOW CATEGORY -->
+      <section class="container" id="english-section" style="padding-top: 0;">
+        <div class="section-header">
+          <span class="section-subtitle">International Standard</span>
+          <h2 class="section-title">English Willow Bats Collection</h2>
+          <p class="section-desc">Hand-crafted from genuine imported English Willow clefts for maximum rebound velocity and feather-light pickup.</p>
+        </div>
+        <div class="product-grid" id="englishProductsGrid"></div>
       </section>
 
       <!-- 3. TENNIS CRICKET CATEGORY -->
@@ -1569,66 +1369,82 @@
         <div class="product-grid" id="tennisProductsGrid"></div>
       </section>
 
-      <!-- BULK ORDER SECTION -->
-      <section class="container" id="bulk-order" style="padding-top: 0;">
-        <div class="bulk-section">
-          <div class="bulk-content">
-            <div class="bulk-text">
-              <span style="color:var(--accent-primary); font-weight:800; font-size:0.85rem; text-transform:uppercase; letter-spacing:1px;">Academy &amp; Club Wholesaler</span>
-              <h3>Bulk Orders &amp; Custom Team Inquiries</h3>
-              <p>Planning bulk bat procurement for your academy, cricket club, corporate team, or tournament sponsor? Contact our manufacturing desk for wholesale rates and custom player specifications.</p>
-            </div>
-            <div class="bulk-actions">
-              <a href="https://wa.me/918493977654?text=Hi%20F2%20Sports,%20I%20want%20to%20inquire%20about%20a%20bulk%20order%20of%20cricket%20bats." target="_blank" class="btn-bulk-whatsapp">
-                <i class="fa-brands fa-whatsapp" style="font-size:1.2rem;"></i> WhatsApp Bulk Desk
-              </a>
-              <a href="tel:+918493977654" class="btn-bulk-call">
-                <i class="fa-solid fa-phone"></i> Call Direct (+91 84939 77654)
-              </a>
-            </div>
-          </div>
+      <!-- FOLLOW US ON SOCIAL MEDIA STRIP (BEFORE SUPPORT DESK) -->
+      <section class="social-follow-strip">
+        <div class="social-follow-wrapper">
+          <span class="social-follow-title"><i class="fa-solid fa-hashtag" style="color:var(--accent-primary);"></i> Follow Us:</span>
+          <a href="https://www.instagram.com/f2sports__?igsi=ZDNlZDc0MzIxNw==" target="_blank" class="social-btn instagram">
+            <i class="fa-brands fa-instagram"></i> Follow on Instagram (@f2sports__)
+          </a>
+          <a href="https://facebook.com" target="_blank" class="social-btn facebook">
+            <i class="fa-brands fa-facebook"></i> Join Us on Facebook
+          </a>
         </div>
       </section>
 
-      <!-- FAQ & SUGGESTIONS -->
+      <!-- COMPACT PLAYER SUPPORT CONTAINER -->
       <section class="info-section" id="help-suggestions">
         <div class="container" style="padding: 0;">
-          <div class="section-header">
-            <span class="section-subtitle">Player Support</span>
-            <h2 class="section-title">Help, Inquiries &amp; Suggestions</h2>
+          <div class="section-header" style="margin-bottom: 16px;">
+            <span class="section-subtitle" style="font-size:0.75rem; margin-bottom:2px;">Support Desk</span>
+            <h2 class="section-title" style="font-size:1.4rem; margin-bottom:0;">Player Help &amp; Specs</h2>
           </div>
 
           <div class="info-grid">
             <div class="info-card">
-              <h3><i class="fa-solid fa-circle-question" style="color:var(--accent-primary);"></i> FAQs &amp; Bat Care</h3>
+              <h3><i class="fa-solid fa-circle-question" style="color:var(--accent-primary);"></i> Quick FAQs &amp; Bat Care</h3>
+              
               <div class="faq-item active">
                 <div class="faq-question" onclick="toggleFaq(this)">
-                  <span>What is the difference between Grade A &amp; Grade B Willow?</span>
+                  <span>Willow Grade Differences?</span>
                   <i class="fa-solid fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">Grade A features 8-11 straight grains with minimal blemishes for match play. Grade B has 6-8 grains offering power and durability at a competitive price.</div>
               </div>
+
               <div class="faq-item">
                 <div class="faq-question" onclick="toggleFaq(this)">
-                  <span>How can I pay via UPI or QR Code?</span>
+                  <span>How to pay via UPI / QR?</span>
                   <i class="fa-solid fa-chevron-down"></i>
                 </div>
-                <div class="faq-answer">Add your bats to cart, click checkout, scan our verified QR Scanner with Google Pay, PhonePe, or Paytm, and submit your 12-digit UTR number.</div>
+                <div class="faq-answer">Add to cart, proceed to checkout, scan verified UPI QR with GPay/PhonePe/Paytm, and enter UTR.</div>
+              </div>
+
+              <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                  <span>Do bats come pre-knocked and oiled?</span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">Yes, all our willow bats undergo initial machine knocking and linseed oil seasoning. We recommend light net sessions with old leather balls before competitive match play.</div>
+              </div>
+
+              <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                  <span>What is the expected delivery timeframe?</span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">We offer pan-India express dispatch. Deliveries generally arrive in 3 to 5 business days with live tracking provided upon shipment.</div>
+              </div>
+
+              <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                  <span>Can I request custom weight or handle shapes?</span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">Yes! You can specify your preferred pickup weight, round/oval handle shape, and edge profile in the custom request box on the right.</div>
               </div>
             </div>
 
             <div class="info-card">
-              <h3><i class="fa-solid fa-lightbulb" style="color:var(--accent-primary);"></i> Custom Suggestions</h3>
+              <h3><i class="fa-solid fa-lightbulb" style="color:var(--accent-primary);"></i> Custom Request</h3>
               <form onsubmit="handleSuggestionSubmit(event)">
-                <div class="form-group">
-                  <label class="form-label">Your Name</label>
-                  <input type="text" class="form-input" placeholder="Player Name" required>
+                <div class="form-group" style="margin-bottom: 8px;">
+                  <input type="text" class="form-input" style="padding: 6px 10px; font-size: 0.8rem;" placeholder="Your Name" required>
                 </div>
-                <div class="form-group">
-                  <label class="form-label">Suggestions / Custom Specs Request</label>
-                  <textarea class="form-textarea" rows="3" placeholder="Tell us your preferred weight, handle shape, or custom requests..." required></textarea>
+                <div class="form-group" style="margin-bottom: 8px;">
+                  <textarea class="form-textarea" rows="3" style="padding: 6px 10px; font-size: 0.8rem;" placeholder="Preferred weight, handle shape or custom specifications..." required></textarea>
                 </div>
-                <button type="submit" class="btn-submit-order">Submit Feedback</button>
+                <button type="submit" class="btn-submit-order" style="padding: 8px; font-size: 0.8rem; margin-top: 0;">Submit Request</button>
               </form>
             </div>
           </div>
@@ -1636,65 +1452,95 @@
       </section>
     </main>
 
-    <!-- FOOTER -->
-    <footer id="contact">
-      <div class="footer-grid">
-        <div class="footer-col">
-          <h4 style="font-size: 1.25rem;">F2 <span>SPORTS</span></h4>
-          <p>Precision handcrafted cricket bats designed for boundary power, premium aesthetics, and long-lasting match durability.</p>
-        </div>
-        <div class="footer-col">
-          <h4>English Willow</h4>
-          <ul class="footer-links">
-            <li><a href="#english-section">Grade A English Willow</a></li>
-            <li><a href="#english-section">Grade B English Willow</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Kashmir Willow</h4>
-          <ul class="footer-links">
-            <li><a href="#kashmir-section">Players Edition</a></li>
-            <li><a href="#kashmir-section">Platinum</a></li>
-            <li><a href="#kashmir-section">Diamond</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Tennis Series</h4>
-          <ul class="footer-links">
-            <li><a href="#tennis-section">Designed</a></li>
-            <li><a href="#tennis-section">Without Design</a></li>
-            <li><a href="#tennis-section">Popular</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Contact &amp; Bulk Desk</h4>
-          <p><i class="fa-solid fa-phone" style="color:var(--accent-primary);"></i> <a href="tel:+918493977654" style="color:inherit; text-decoration:none;">+91 84939 77654</a></p>
-          <p><i class="fa-brands fa-whatsapp" style="color:#25d366;"></i> <a href="https://wa.me/918493977654" target="_blank" style="color:inherit; text-decoration:none;">+91 84939 77654</a></p>
-          <p><i class="fa-solid fa-envelope" style="color:var(--accent-primary);"></i> <a href="mailto:f2sportsstore@gmail.com" style="color:inherit; text-decoration:none;">f2sportsstore@gmail.com</a></p>
-          <p><i class="fa-solid fa-envelope-open-text" style="color:var(--accent-primary);"></i> <a href="mailto:Zeesajid55@gmail.com" style="color:inherit; text-decoration:none;">Zeesajid55@gmail.com</a></p>
-          <p><i class="fa-solid fa-location-dot" style="color:var(--accent-primary);"></i> Panchpora Sangam, Halmullah Dadoo Road Near Sub-Station Punchpora Marhama - 192124</p>
-        </div>
+    <!-- PROMINENT BRAND BANNER ABOVE FOOTER -->
+    <div class="falcon-brand-banner">
+      <div class="falcon-brand-banner-title">
+        <i class="fa-solid fa-feather-pointed"></i>
+        <span>Falcon 2 Sports</span>
       </div>
+      <div class="falcon-brand-banner-tag">Mastercraft Cricket Blades &amp; High Velocity Dominators</div>
+    </div>
 
-      <div class="trademark-bar">
-        <div>&copy; 2026 <strong>F2 Sports</strong>. All Rights Reserved.</div>
-        <div><i class="fa-solid fa-trademark"></i> F2 SPORTS is a Registered Trademark</div>
+    <!-- MINIMAL CLEAN FOOTER (TRADEMARKS, LOCATION IN MIDDLE, ALL RIGHTS RESERVED) -->
+    <footer>
+      <div class="footer-bar-clean">
+        <div><i class="fa-solid fa-trademark" style="color:var(--accent-primary);"></i> F2 SPORTS is a Registered Trademark</div>
+        <div class="footer-bar-location">
+          <i class="fa-solid fa-location-dot"></i> Panchpora Sangam, Halmullah Dadoo Road Near Sub-Station Punchpora Marhama - 192124
+        </div>
+        <div>&copy; 2026 <strong>Falcon 2 Sports</strong>. All Rights Reserved.</div>
       </div>
     </footer>
   </div>
 
-  <!-- SEPARATE ADMIN PORTAL & DASHBOARD VIEW -->
+  <!-- 2. DEDICATED BULK ORDER PAGE CONTAINER -->
+  <div class="bulk-standalone-view" id="bulkStandaloneView">
+    <div class="bulk-portal-container">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid var(--border-theme); padding-bottom:16px; margin-bottom:20px;">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <img src="logo.png" alt="F2 Logo" style="height:44px;" onerror="this.style.display='none'" />
+          <div>
+            <h2 style="font-size:1.6rem; color:var(--text-main); margin-bottom:2px;">Falcon 2 Sports <span style="color:var(--accent-primary);">Bulk Procurement</span></h2>
+            <p style="color:var(--text-muted); font-size:0.82rem; text-transform:uppercase; letter-spacing:1px; font-weight:700;">Club, Academy &amp; Sponsor Direct Desk</p>
+          </div>
+        </div>
+        <button onclick="returnToStorefrontFromBulk()" class="btn-submit-order" style="width:auto; padding:8px 18px; margin-top:0; font-size:0.85rem;">
+          <i class="fa-solid fa-arrow-left"></i> Back to Store
+        </button>
+      </div>
+
+      <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.6; margin-bottom:15px;">
+        Connect directly with our master manufacturing team for customized cleft selection, team logo engraving, wholesale price tiers, and priority tournament shipping. Choose your preferred contact channel below:
+      </p>
+
+      <!-- 4 BULK CONTACT CHANNELS -->
+      <div class="bulk-channel-grid">
+        <!-- 1. WHATSAPP -->
+        <a href="https://wa.me/918493977654?text=Hi%20F2%20Sports,%20I%20want%20to%20inquire%20about%20a%20bulk%20order%20of%20cricket%20bats." target="_blank" class="bulk-channel-card">
+          <i class="fa-brands fa-whatsapp" style="color:#25d366;"></i>
+          <span>WhatsApp Desk</span>
+          <small>Instant chat &amp; catalog</small>
+        </a>
+
+        <!-- 2. EMAIL -->
+        <a href="mailto:f2sportsstore@gmail.com?cc=Zeesajid55@gmail.com&subject=Bulk%20Order%20Inquiry%20-%20F2%20Sports" class="bulk-channel-card">
+          <i class="fa-solid fa-envelope" style="color:var(--accent-primary);"></i>
+          <span>Official Email</span>
+          <small>Quotations &amp; specs</small>
+        </a>
+
+        <!-- 3. INSTAGRAM -->
+        <a href="https://www.instagram.com/f2sports__?igsi=ZDNlZDc0MzIxNw==" target="_blank" class="bulk-channel-card">
+          <i class="fa-brands fa-instagram" style="color:#e1306c;"></i>
+          <span>Instagram DM</span>
+          <small>Live bat videos &amp; ping test</small>
+        </a>
+
+        <!-- 4. DIRECT CALL -->
+        <a href="tel:+918493977654" class="bulk-channel-card">
+          <i class="fa-solid fa-phone" style="color:#38bdf8;"></i>
+          <span>Direct Phone</span>
+          <small>+91 84939 77654</small>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. DEDICATED ADMIN PORTAL VIEW -->
   <div class="admin-standalone-view" id="adminStandaloneView">
     <div style="max-width:1280px; margin:0 auto;">
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px; border-bottom:2px solid var(--border-theme); padding-bottom:18px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px; border-bottom:2px solid var(--border-theme); padding-bottom:18px; flex-wrap:wrap; gap:12px;">
         <div style="display:flex; align-items:center; gap:14px;">
           <img src="logo.png" alt="F2 Logo" style="height:44px;" onerror="this.style.display='none'" />
           <div>
-            <h2 style="color:var(--text-main); font-size:1.8rem;">F2 Sports <span style="color:var(--accent-primary);">Admin Portal</span></h2>
-            <p style="color:var(--text-muted); font-size:0.8rem; letter-spacing:1px; text-transform:uppercase; font-weight:700;">Master Control Center</p>
+            <h2 style="color:var(--text-main); font-size:1.8rem;">Falcon 2 Sports <span style="color:var(--accent-primary);">Admin Portal</span></h2>
+            <p style="color:var(--text-muted); font-size:0.8rem; letter-spacing:1px; text-transform:uppercase; font-weight:700;" id="activeAdminHeaderLabel">Active Admin: Sajid Mushtaq</p>
           </div>
         </div>
-        <div style="display:flex; gap:12px;">
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <button onclick="openChangePasswordModal()" class="admin-action-btn" style="background:var(--bg-surface); color:var(--text-main); border:1px solid var(--border-theme); padding:8px 16px;">
+            <i class="fa-solid fa-key"></i> Change Password
+          </button>
           <button onclick="returnToStorefront()" class="admin-action-btn" style="background:var(--bg-surface); color:var(--text-main); border:1px solid var(--border-theme); padding:8px 16px;">
             <i class="fa-solid fa-store"></i> Return to Storefront
           </button>
@@ -1729,7 +1575,7 @@
         <div class="stat-box">
           <div class="stat-icon" style="background:rgba(251, 191, 36, 0.15); color:var(--accent-gold);"><i class="fa-solid fa-user-check"></i></div>
           <div>
-            <div style="font-size:1.1rem; font-weight:800; color:var(--text-main);">Sajid (Owner)</div>
+            <div style="font-size:1.1rem; font-weight:800; color:var(--text-main);" id="activeAdminUserDisplay">Sajid Mushtaq</div>
             <div class="stat-label">Authorized Access</div>
           </div>
         </div>
@@ -1782,8 +1628,8 @@
               <div class="form-group">
                 <label class="form-label">Category Section</label>
                 <select id="newProdCategory" class="form-select" required>
-                  <option value="english">English Willow Bats</option>
                   <option value="kashmir">Kashmir Willow Bats</option>
+                  <option value="english">English Willow Bats</option>
                   <option value="tennis">Tennis Cricket Bats</option>
                 </select>
               </div>
@@ -1842,7 +1688,6 @@
           <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:20px;">Upload transparent background .png photos for the left and right showcase slots in the 2nd container.</p>
 
           <div class="hero-editor-grid">
-            <!-- SLOT 1 -->
             <div class="hero-slot-card">
               <span class="form-label">Left Slot 1</span>
               <div class="hero-slot-preview">
@@ -1851,7 +1696,6 @@
               <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 0)" class="form-input" style="font-size:0.75rem;" />
             </div>
 
-            <!-- SLOT 2 -->
             <div class="hero-slot-card">
               <span class="form-label">Left Slot 2</span>
               <div class="hero-slot-preview">
@@ -1860,7 +1704,6 @@
               <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 1)" class="form-input" style="font-size:0.75rem;" />
             </div>
 
-            <!-- SLOT 3 -->
             <div class="hero-slot-card">
               <span class="form-label">Right Slot 1</span>
               <div class="hero-slot-preview">
@@ -1869,7 +1712,6 @@
               <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 2)" class="form-input" style="font-size:0.75rem;" />
             </div>
 
-            <!-- SLOT 4 -->
             <div class="hero-slot-card">
               <span class="form-label">Right Slot 2</span>
               <div class="hero-slot-preview">
@@ -1961,16 +1803,84 @@
       <div class="modal-body">
         <form onsubmit="handleModalAdminLogin(event)">
           <div class="form-group">
-            <label class="form-label">Admin Username</label>
-            <input type="text" id="modalAdminUser" class="form-input" placeholder="admin" required />
+            <label class="form-label">Select Admin User</label>
+            <select id="modalAdminUser" class="form-select" required>
+              <option value="Sajid Mushtaq">Sajid Mushtaq</option>
+              <option value="Sameer Mushtaq">Sameer Mushtaq</option>
+            </select>
           </div>
           <div class="form-group">
-            <label class="form-label">Admin Password</label>
+            <label class="form-label">Password</label>
             <input type="password" id="modalAdminPass" class="form-input" placeholder="••••••••" required />
           </div>
-          <p style="font-size:0.75rem; color:var(--text-muted); margin-bottom:12px;">Default credentials: <b>admin</b> / <b>f2sports2026</b></p>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+            <a href="javascript:void(0)" onclick="openForgotPasswordModal()" style="color:var(--accent-primary); font-size:0.8rem; font-weight:700; text-decoration:none;">
+              <i class="fa-solid fa-question-circle"></i> Forgot Password?
+            </a>
+          </div>
           <button type="submit" class="btn-submit-order">
             <i class="fa-solid fa-right-to-bracket"></i> Login to Workspace
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORGOT PASSWORD MODAL -->
+  <div class="modal-overlay" id="forgotPasswordModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 style="font-size:1.2rem;"><i class="fa-solid fa-unlock-keyhole" style="color:var(--accent-primary);"></i> Reset Admin Password</h3>
+        <button class="close-cart-btn" onclick="closeForgotPasswordModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <form onsubmit="handleForgotPasswordSubmit(event)">
+          <div class="form-group">
+            <label class="form-label">Select Admin</label>
+            <select id="forgotAdminUser" class="form-select" required>
+              <option value="Sajid Mushtaq">Sajid Mushtaq</option>
+              <option value="Sameer Mushtaq">Sameer Mushtaq</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Master Recovery Key</label>
+            <input type="password" id="forgotMasterKey" class="form-input" placeholder="Enter recovery key (f2sportsmaster)" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">New Password</label>
+            <input type="password" id="forgotNewPass" class="form-input" placeholder="Enter new password" required />
+          </div>
+          <button type="submit" class="btn-submit-order">
+            <i class="fa-solid fa-rotate"></i> Reset Password
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHANGE PASSWORD MODAL -->
+  <div class="modal-overlay" id="changePasswordModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 style="font-size:1.2rem;"><i class="fa-solid fa-key" style="color:var(--accent-primary);"></i> Change Admin Password</h3>
+        <button class="close-cart-btn" onclick="closeChangePasswordModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <form onsubmit="handleChangePasswordSubmit(event)">
+          <div class="form-group">
+            <label class="form-label">Active Admin</label>
+            <input type="text" id="changePassAdminUser" class="form-input" readonly />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Current Password</label>
+            <input type="password" id="changePassOld" class="form-input" placeholder="Enter current password" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">New Password</label>
+            <input type="password" id="changePassNew" class="form-input" placeholder="Enter new password" required />
+          </div>
+          <button type="submit" class="btn-submit-order">
+            <i class="fa-solid fa-check"></i> Update Password
           </button>
         </form>
       </div>
@@ -1992,8 +1902,8 @@
             <div class="form-group">
               <label class="form-label">Category Section</label>
               <select id="editProdCategory" class="form-select" required>
-                <option value="english">English Willow Bats</option>
                 <option value="kashmir">Kashmir Willow Bats</option>
+                <option value="english">English Willow Bats</option>
                 <option value="tennis">Tennis Cricket Bats</option>
               </select>
             </div>
@@ -2080,6 +1990,19 @@
       console.warn("Supabase initialization notice:", e);
     }
 
+    /* ADMIN CREDENTIALS & MULTI-USER MANAGEMENT */
+    const defaultAdminAccounts = {
+      "Sajid Mushtaq": "Sajid@123",
+      "Sameer Mushtaq": "S@m33r1921"
+    };
+
+    let adminAccounts = JSON.parse(localStorage.getItem('f2_admin_accounts')) || defaultAdminAccounts;
+    const MASTER_RECOVERY_KEY = "f2sportsmaster";
+
+    function saveAdminAccounts() {
+      localStorage.setItem('f2_admin_accounts', JSON.stringify(adminAccounts));
+    }
+
     // Color Theme Switcher Logic
     let currentTheme = localStorage.getItem('f2_theme') || 'dark-red';
     function applyColorTheme(theme) {
@@ -2108,30 +2031,6 @@
     let heroPhotos = JSON.parse(localStorage.getItem('f2_hero_photos')) || defaultHeroPhotos;
 
     const initialProducts = [
-      {
-        id: 'EW1',
-        category: 'english',
-        name: 'F2 Pro Grade A English Willow Bat',
-        price: 17499,
-        img: './grade_a_english.jpg',
-        images: ['./grade_a_english.jpg'],
-        inStock: true,
-        saleBadge: '15% OFF',
-        saleDesc: 'Eid Special Offer',
-        features: ['8–11 Straight Defined Grains', '40mm Monster Edges', 'Full Concave Profile (1160–1180g)']
-      },
-      {
-        id: 'EW2',
-        category: 'english',
-        name: 'F2 Match Grade B English Willow Bat',
-        price: 16999,
-        img: './grade_b_english.jpg',
-        images: ['./grade_b_english.jpg'],
-        inStock: true,
-        saleBadge: '',
-        saleDesc: '',
-        features: ['6–8 Straight Defined Grains', '38mm Power Edges', 'Mid-to-Low Profile (1170–1190g)']
-      },
       {
         id: 'KW1',
         category: 'kashmir',
@@ -2191,6 +2090,30 @@
         saleBadge: '',
         saleDesc: '',
         features: ['Durable Seasoned Grains', '35mm Edges', 'Light Swing Weight (1170g)']
+      },
+      {
+        id: 'EW1',
+        category: 'english',
+        name: 'F2 Pro Grade A English Willow Bat',
+        price: 17499,
+        img: './grade_a_english.jpg',
+        images: ['./grade_a_english.jpg'],
+        inStock: true,
+        saleBadge: '15% OFF',
+        saleDesc: 'Eid Special Offer',
+        features: ['8–11 Straight Defined Grains', '40mm Monster Edges', 'Full Concave Profile (1160–1180g)']
+      },
+      {
+        id: 'EW2',
+        category: 'english',
+        name: 'F2 Match Grade B English Willow Bat',
+        price: 16999,
+        img: './grade_b_english.jpg',
+        images: ['./grade_b_english.jpg'],
+        inStock: true,
+        saleBadge: '',
+        saleDesc: '',
+        features: ['6–8 Straight Defined Grains', '38mm Power Edges', 'Mid-to-Low Profile (1170–1190g)']
       },
       {
         id: 'TN1',
@@ -2403,14 +2326,14 @@
     }
 
     function renderProducts() {
-      const englishContainer = document.getElementById('englishProductsGrid');
       const kashmirContainer = document.getElementById('kashmirProductsGrid');
+      const englishContainer = document.getElementById('englishProductsGrid');
       const tennisContainer = document.getElementById('tennisProductsGrid');
 
-      if (!englishContainer || !kashmirContainer || !tennisContainer) return;
+      if (!kashmirContainer || !englishContainer || !tennisContainer) return;
 
-      englishContainer.innerHTML = '';
       kashmirContainer.innerHTML = '';
+      englishContainer.innerHTML = '';
       tennisContainer.innerHTML = '';
 
       products.forEach(product => {
@@ -2480,10 +2403,10 @@
           </div>
         `;
 
-        if (product.category === 'english') {
-          englishContainer.innerHTML += cardHtml;
-        } else if (product.category === 'kashmir') {
+        if (product.category === 'kashmir') {
           kashmirContainer.innerHTML += cardHtml;
+        } else if (product.category === 'english') {
+          englishContainer.innerHTML += cardHtml;
         } else if (product.category === 'tennis') {
           tennisContainer.innerHTML += cardHtml;
         }
@@ -2706,11 +2629,25 @@
       e.target.reset();
     }
 
-    /* ADMIN DASHBOARD VIEW */
+    /* DEDICATED BULK ORDER PAGE NAVIGATION */
+    function openBulkOrderPage() {
+      document.getElementById('storefrontView').style.display = 'none';
+      document.getElementById('adminStandaloneView').style.display = 'none';
+      document.getElementById('bulkStandaloneView').style.display = 'block';
+      window.scrollTo(0, 0);
+    }
+
+    function returnToStorefrontFromBulk() {
+      document.getElementById('bulkStandaloneView').style.display = 'none';
+      document.getElementById('storefrontView').style.display = 'block';
+      window.scrollTo(0, 0);
+    }
+
+    /* AUTHENTICATION & MULTI-ADMIN ROUTING */
     function openAdminPortalPage() {
-      const isAuth = sessionStorage.getItem('f2_main_admin_auth');
-      if (isAuth) {
-        showAdminPageView();
+      const activeAdmin = sessionStorage.getItem('f2_active_admin_user');
+      if (activeAdmin) {
+        showAdminPageView(activeAdmin);
       } else {
         document.getElementById('adminLoginModal').classList.add('active');
       }
@@ -2725,19 +2662,22 @@
       const user = document.getElementById('modalAdminUser').value;
       const pass = document.getElementById('modalAdminPass').value;
 
-      if (user === 'admin' && pass === 'f2sports2026') {
-        sessionStorage.setItem('f2_main_admin_auth', 'true');
+      if (adminAccounts[user] && adminAccounts[user] === pass) {
+        sessionStorage.setItem('f2_active_admin_user', user);
         closeAdminLoginModal();
-        showToast('Admin logged in successfully!');
-        showAdminPageView();
+        showToast(`Welcome ${user}!`);
+        showAdminPageView(user);
       } else {
-        alert('Invalid Admin credentials! Default: admin / f2sports2026');
+        alert('Invalid password for ' + user + '! Please verify credentials.');
       }
     }
 
-    function showAdminPageView() {
+    function showAdminPageView(adminName) {
       document.getElementById('storefrontView').style.display = 'none';
+      document.getElementById('bulkStandaloneView').style.display = 'none';
       document.getElementById('adminStandaloneView').style.display = 'block';
+      document.getElementById('activeAdminHeaderLabel').innerText = `Active Admin: ${adminName}`;
+      document.getElementById('activeAdminUserDisplay').innerText = adminName;
       applyHeroPhotos();
       updateAdminDashboard();
       window.scrollTo(0, 0);
@@ -2745,14 +2685,71 @@
 
     function returnToStorefront() {
       document.getElementById('adminStandaloneView').style.display = 'none';
+      document.getElementById('bulkStandaloneView').style.display = 'none';
       document.getElementById('storefrontView').style.display = 'block';
       window.scrollTo(0, 0);
     }
 
     function handleMainAdminLogout() {
-      sessionStorage.removeItem('f2_main_admin_auth');
+      sessionStorage.removeItem('f2_active_admin_user');
       showToast('Logged out from Admin Dashboard');
       returnToStorefront();
+    }
+
+    /* FORGOT PASSWORD LOGIC */
+    function openForgotPasswordModal() {
+      closeAdminLoginModal();
+      document.getElementById('forgotPasswordModal').classList.add('active');
+    }
+
+    function closeForgotPasswordModal() {
+      document.getElementById('forgotPasswordModal').classList.remove('active');
+    }
+
+    function handleForgotPasswordSubmit(e) {
+      e.preventDefault();
+      const user = document.getElementById('forgotAdminUser').value;
+      const key = document.getElementById('forgotMasterKey').value;
+      const newPass = document.getElementById('forgotNewPass').value;
+
+      if (key === MASTER_RECOVERY_KEY) {
+        adminAccounts[user] = newPass;
+        saveAdminAccounts();
+        closeForgotPasswordModal();
+        alert(`Password for ${user} has been successfully reset!`);
+        openAdminPortalPage();
+      } else {
+        alert('Incorrect Master Recovery Key! Default recovery key is: f2sportsmaster');
+      }
+    }
+
+    /* CHANGE PASSWORD LOGIC INSIDE DASHBOARD */
+    function openChangePasswordModal() {
+      const activeAdmin = sessionStorage.getItem('f2_active_admin_user') || 'Sajid Mushtaq';
+      document.getElementById('changePassAdminUser').value = activeAdmin;
+      document.getElementById('changePasswordModal').classList.add('active');
+    }
+
+    function closeChangePasswordModal() {
+      document.getElementById('changePasswordModal').classList.remove('active');
+    }
+
+    function handleChangePasswordSubmit(e) {
+      e.preventDefault();
+      const user = document.getElementById('changePassAdminUser').value;
+      const oldPass = document.getElementById('changePassOld').value;
+      const newPass = document.getElementById('changePassNew').value;
+
+      if (adminAccounts[user] === oldPass) {
+        adminAccounts[user] = newPass;
+        saveAdminAccounts();
+        closeChangePasswordModal();
+        showToast(`Password updated for ${user}!`);
+        document.getElementById('changePassOld').value = '';
+        document.getElementById('changePassNew').value = '';
+      } else {
+        alert('Current password does not match!');
+      }
     }
 
     function switchAdminTab(tabName) {
@@ -3146,8 +3143,9 @@
       renderProducts();
       updateCartUI();
       listenToCloudOrders();
-      if (sessionStorage.getItem('f2_main_admin_auth')) {
-        showAdminPageView();
+      const activeAdmin = sessionStorage.getItem('f2_active_admin_user');
+      if (activeAdmin) {
+        showAdminPageView(activeAdmin);
       }
     });
   </script>
