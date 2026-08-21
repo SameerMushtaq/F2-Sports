@@ -1680,8 +1680,8 @@
     <span id="toastMsg">Added to cart</span>
   </div>
 
-  <script>
-    const fallbackImage = 'https://images.unsplash.com/photo-1531415074868-036b107e775a?q=80&w=600&auto=format&fit=crop';
+<script>
+    const fallbackImage = 'https://images.unsplash.com/photo-1531415074868-036b107e775a?q=80&w=800&auto=format&fit=crop';
     
     // Web3Forms Key registered for f2sportsstore@gmail.com
     const WEB3FORMS_ACCESS_KEY = "bbabe700-fc35-4a93-8f7c-244ec811d041";
@@ -1758,6 +1758,8 @@
         console.error("Multi-image upload error:", err);
       }
     }
+
+    const defaultBatImage = 'https://images.unsplash.com/photo-1531415074868-036b107e775a?q=80&w=800&auto=format&fit=crop';
 
     const initialProducts = [
       {
@@ -1948,6 +1950,16 @@
     let orders = JSON.parse(localStorage.getItem('f2_orders')) || [];
     let cart = {};
 
+    function sanitizeImageList(prod) {
+      let list = [];
+      if (Array.isArray(prod.images) && prod.images.length) {
+        list = prod.images.filter(url => typeof url === 'string' && url.trim().length > 3);
+      } else if (typeof prod.img === 'string') {
+        list = prod.img.split(',').map(s => s.trim()).filter(url => url.length > 3);
+      }
+      return list.length ? list : [fallbackImage];
+    }
+
     function saveProducts() {
       localStorage.setItem('f2_products', JSON.stringify(products));
       if (db) {
@@ -1961,6 +1973,16 @@
 
     function saveOrders() {
       localStorage.setItem('f2_orders', JSON.stringify(orders));
+    }
+
+    function resetCatalogToDefault() {
+      if (confirm("Reset the catalog to default product photos & list? This will remove corrupted images.")) {
+        products = JSON.parse(JSON.stringify(initialProducts));
+        saveProducts();
+        renderProducts();
+        updateAdminDashboard();
+        showToast("Catalog reset successfully!");
+      }
     }
 
     function listenToCloudOrders() {
@@ -2014,12 +2036,8 @@
         const isAvailable = product.inStock !== false;
         const hasSale = Boolean(product.saleBadge && product.saleBadge.trim() !== '');
 
-        // Standardize multi-image array
-        const imgList = (product.images && product.images.length) 
-          ? product.images 
-          : (product.img ? product.img.split(',').map(s => s.trim()).filter(Boolean) : [fallbackImage]);
-
-        const mainSrc = imgList[0] || fallbackImage;
+        const imgList = sanitizeImageList(product);
+        const mainSrc = imgList[0];
 
         const thumbsHtml = imgList.length > 1 ? `
           <div class="gallery-thumbs-row">
@@ -2102,10 +2120,10 @@
       const product = products.find(p => p.id === productId);
       if (!product || product.inStock === false) return;
 
-      const singleImg = (product.images && product.images[0]) ? product.images[0] : (product.img ? product.img.split(',')[0].trim() : fallbackImage);
+      const imgList = sanitizeImageList(product);
 
       if (!cart[productId]) {
-        cart[productId] = { ...product, img: singleImg, qty: 1 };
+        cart[productId] = { ...product, img: imgList[0], qty: 1 };
       } else {
         cart[productId].qty += 1;
       }
@@ -2429,17 +2447,16 @@
         const isAvailable = p.inStock !== false;
         const saleBadgeStr = p.saleBadge ? `<span style="background:#ef4444; color:#fff; padding:2px 6px; border-radius:4px; font-weight:700; font-size:0.75rem;">${p.saleBadge}</span>` : '<span style="color:#64748b;">None</span>';
         
-        const firstImg = (p.images && p.images.length) ? p.images[0] : (p.img ? p.img.split(',')[0].trim() : fallbackImage);
-        const countImages = (p.images && p.images.length) ? p.images.length : (p.img ? p.img.split(',').length : 1);
+        const imgList = sanitizeImageList(p);
 
         tbody.innerHTML += `
           <tr>
             <td>
               <div style="display:flex; align-items:center; gap:10px;">
-                <img src="${firstImg}" alt="${p.name}" style="width:36px; height:36px; object-fit:contain; background:#fff; border-radius:4px; padding:2px;" onerror="handleImgError(this)" />
+                <img src="${imgList[0]}" alt="${p.name}" style="width:36px; height:36px; object-fit:contain; background:#fff; border-radius:4px; padding:2px;" onerror="handleImgError(this)" />
                 <div>
                   <b>${p.name}</b>
-                  <div style="font-size:0.75rem; color:#94a3b8;">${countImages} photo(s)</div>
+                  <div style="font-size:0.75rem; color:#94a3b8;">${imgList.length} photo(s)</div>
                 </div>
               </div>
             </td>
@@ -2477,7 +2494,7 @@
       const prod = products.find(p => p.id === productId);
       if (!prod) return;
 
-      const imgsStr = (prod.images && prod.images.length) ? prod.images.join(' , ') : (prod.img || '');
+      const imgList = sanitizeImageList(prod);
 
       document.getElementById('editProdId').value = prod.id;
       document.getElementById('editProdCategory').value = prod.category;
@@ -2485,7 +2502,7 @@
       document.getElementById('editProdName').value = prod.name;
       document.getElementById('editProdPrice').value = prod.price;
       document.getElementById('editProdTag').value = prod.tag;
-      document.getElementById('editProdImg').value = imgsStr;
+      document.getElementById('editProdImg').value = imgList.join(' , ');
       document.getElementById('editProdSaleBadge').value = prod.saleBadge || '';
       document.getElementById('editProdSaleDesc').value = prod.saleDesc || '';
       document.getElementById('editProdFeatures').value = (prod.features || []).join(', ');
@@ -2513,7 +2530,7 @@
       const features = featuresStr.split(',').map(f => f.trim()).filter(f => f.length > 0);
 
       const rawImgs = document.getElementById('editProdImg').value;
-      const imagesArr = rawImgs.split(',').map(s => s.trim()).filter(Boolean);
+      const imagesArr = rawImgs.split(',').map(s => s.trim()).filter(s => s.length > 3);
 
       products[index] = {
         ...products[index],
@@ -2545,7 +2562,7 @@
       const price = Number(document.getElementById('newProdPrice').value);
       const tag = document.getElementById('newProdTag').value;
       const rawImgs = document.getElementById('newProdImg').value;
-      const imagesArr = rawImgs.split(',').map(s => s.trim()).filter(Boolean);
+      const imagesArr = rawImgs.split(',').map(s => s.trim()).filter(s => s.length > 3);
 
       const saleBadge = document.getElementById('newProdSaleBadge').value.trim();
       const saleDesc = document.getElementById('newProdSaleDesc').value.trim();
