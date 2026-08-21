@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- 100% Free Supabase Client SDK (Replaces Firebase) -->
+  <!-- Supabase Cloud SDK -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
@@ -138,6 +138,12 @@
 
     .nav-links a:hover {
       color: var(--gold);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
     .cart-btn-trigger {
@@ -1253,7 +1259,7 @@
         <div class="section-header" style="margin-bottom:30px;">
           <span class="section-subtitle" style="color:var(--gold);">Cloud Store Management</span>
           <h2 class="section-title" style="color:#ffffff;">F2 Sports Admin Control Center</h2>
-          <p class="section-desc" style="color:#94a3b8;">Real-time Cloud Database, Multi-Photo Storage &amp; Catalog Management.</p>
+          <p class="section-desc" style="color:#94a3b8;">Real-time Supabase Database, Multi-Photo Storage &amp; Catalog Management.</p>
         </div>
 
         <div class="admin-workspace" id="adminWorkspace">
@@ -1368,7 +1374,7 @@
                   </div>
                   <div class="form-group">
                     <label class="form-label">Image URLs (comma separated)</label>
-                    <input type="text" id="newProdImg" class="form-input" placeholder="e.g. ./front.jpg, ./back.jpg" required />
+                    <input type="text" id="newProdImg" class="form-input" placeholder="e.g. ./grade_a_english.jpg" required />
                   </div>
                 </div>
 
@@ -1689,22 +1695,18 @@
     const fallbackImage = 'https://images.unsplash.com/photo-1531415074868-036b107e775a?q=80&w=800&auto=format&fit=crop';
     const WEB3FORMS_ACCESS_KEY = "bbabe700-fc35-4a93-8f7c-244ec811d041";
 
-    // -------------------------------------------------------------
-    // REPLACE WITH YOUR SUPABASE PROJECT URL AND ANON KEY
-    // -------------------------------------------------------------
-    const supabaseUrl = 'https://YOUR_SUPABASE_PROJECT_ID.supabase.co';
-    const supabaseKey = 'YOUR_SUPABASE_ANON_PUBLIC_KEY';
+    const supabaseUrl = 'https://pgfibpfvlxcllpqbekum.supabase.co';
+    const supabaseKey = 'sb_publishable_PJIkuydJjYiyPrg4ldF75A__zUloN_A';
     
     let supabase = null;
     try {
-      if (supabaseUrl !== 'https://YOUR_SUPABASE_PROJECT_ID.supabase.co') {
+      if (window.supabase) {
         supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
       }
     } catch (e) {
-      console.warn("Supabase initialization fallback:", e);
+      console.warn("Supabase init notice:", e);
     }
 
-    // MULTI-IMAGE DIRECT UPLOAD TO SUPABASE STORAGE
     async function uploadPhotosToSupabase(fileInputElement, targetUrlInputId, statusDisplayId) {
       const files = Array.from(fileInputElement.files);
       if (!files.length) return;
@@ -1713,7 +1715,7 @@
       if (statusEl) statusEl.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Uploading ${files.length} images to Supabase...`;
 
       if (!supabase) {
-        if (statusEl) statusEl.innerHTML = `<span style="color:#ef4444;">Please configure your Supabase URL & Key in script.</span>`;
+        if (statusEl) statusEl.innerHTML = `<span style="color:#ef4444;">Supabase client not initialized.</span>`;
         return;
       }
 
@@ -1722,15 +1724,15 @@
       try {
         for (const file of files) {
           const fileExt = file.name.split('.').pop();
-          const fileName = `${Date.now()}_${Math.random().toString(36).substring(2, 8)}.${fileExt}`;
-          const filePath = `bats/${fileName}`;
+          const cleanName = file.name.replace(/[^a-zA-Z0-9]/g, '_');
+          const filePath = `${Date.now()}_${cleanName}.${fileExt}`;
 
           const { error: uploadError } = await supabase.storage
             .from('bat-images')
             .upload(filePath, file);
 
           if (uploadError) {
-            console.error("Supabase upload error:", uploadError);
+            console.error("Supabase storage error:", uploadError);
             continue;
           }
 
@@ -1747,10 +1749,12 @@
           document.getElementById(targetUrlInputId).value = uploadedUrls.join(' , ');
           if (statusEl) statusEl.innerHTML = `<span style="color:#10b981;"><i class="fa-solid fa-check-circle"></i> ${uploadedUrls.length} photo(s) hosted on Supabase!</span>`;
           showToast(`${uploadedUrls.length} photos uploaded to Supabase!`);
+        } else {
+          if (statusEl) statusEl.innerHTML = `<span style="color:#ef4444;">Upload error. Ensure 'bat-images' bucket is Public in Supabase.</span>`;
         }
       } catch (err) {
         console.error("Supabase upload exception:", err);
-        if (statusEl) statusEl.innerHTML = `<span style="color:#ef4444;">Upload failed. Check Storage bucket name.</span>`;
+        if (statusEl) statusEl.innerHTML = `<span style="color:#ef4444;">Upload failed. Check connection.</span>`;
       }
     }
 
@@ -1763,7 +1767,6 @@
         price: 24999,
         tag: 'Grade A Cleft',
         images: ['./grade_a_english.jpg'],
-        img: './grade_a_english.jpg',
         inStock: true,
         saleBadge: '15% OFF',
         saleDesc: 'Eid Special Offer',
@@ -1777,7 +1780,6 @@
         price: 16999,
         tag: 'Grade B Cleft',
         images: ['./grade_b_english.jpg'],
-        img: './grade_b_english.jpg',
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -1791,7 +1793,6 @@
         price: 7999,
         tag: 'Top Reserve KW',
         images: ['./Players_edition.jpg'],
-        img: './Players_edition.jpg',
         inStock: true,
         saleBadge: '20% OFF',
         saleDesc: 'Eid Mubarak Festival Deal',
@@ -1805,7 +1806,6 @@
         price: 6499,
         tag: 'Platinum Reserve',
         images: ['./platinum.jpg'],
-        img: './platinum.jpg',
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -1819,7 +1819,6 @@
         price: 5199,
         tag: 'Diamond Series',
         images: ['./diamond.jpg'],
-        img: './diamond.jpg',
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -1833,7 +1832,6 @@
         price: 4199,
         tag: 'Gold Standard',
         images: ['./gold.jpg'],
-        img: './gold.jpg',
         inStock: false,
         saleBadge: '',
         saleDesc: '',
@@ -1847,7 +1845,6 @@
         price: 3299,
         tag: 'Silver Club',
         images: ['./silver.jpg'],
-        img: './silver.jpg',
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -1861,7 +1858,6 @@
         price: 2499,
         tag: 'UV 3D Graphics',
         images: ['./designed.jpg'],
-        img: './designed.jpg',
         inStock: true,
         saleBadge: '10% OFF',
         saleDesc: 'Turf Special',
@@ -1875,7 +1871,6 @@
         price: 1999,
         tag: 'Raw Natural Polish',
         images: ['./without_design.jpg'],
-        img: './without_design.jpg',
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -1889,7 +1884,6 @@
         price: 1799,
         tag: 'Top Turf Seller',
         images: ['./popular.jpg'],
-        img: './popular.jpg',
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -1903,7 +1897,6 @@
         price: 2899,
         tag: '9-Piece Cane Handle',
         images: ['./cane.jpg'],
-        img: './cane.jpg',
         inStock: false,
         saleBadge: '',
         saleDesc: '',
@@ -1917,7 +1910,6 @@
         price: 2299,
         tag: 'Heavy Punch Willow',
         images: ['./kissan_tennis.jpg'],
-        img: './kissan_tennis.jpg',
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -1931,7 +1923,6 @@
         price: 2999,
         tag: '36-Inch Long Blade',
         images: ['./36inch.jpg'],
-        img: './36inch.jpg',
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -1946,9 +1937,9 @@
     function sanitizeImageList(prod) {
       let list = [];
       if (Array.isArray(prod.images) && prod.images.length) {
-        list = prod.images.filter(url => typeof url === 'string' && url.trim().length > 3);
+        list = prod.images.filter(url => typeof url === 'string' && url.trim().length > 2);
       } else if (typeof prod.img === 'string') {
-        list = prod.img.split(',').map(s => s.trim()).filter(url => url.length > 3);
+        list = prod.img.split(',').map(s => s.trim()).filter(url => url.length > 2);
       }
       return list.length ? list : [fallbackImage];
     }
@@ -1959,7 +1950,7 @@
         try {
           await supabase.from('catalog').upsert({ id: 'current', data: products });
         } catch (e) {
-          console.warn("Supabase catalog sync error:", e);
+          console.warn("Supabase catalog save notice:", e);
         }
       }
     }
@@ -1969,7 +1960,8 @@
     }
 
     function resetCatalogToDefault() {
-      if (confirm("Reset catalog to original presets? This will clear corrupted image references.")) {
+      if (confirm("Reset catalog to default presets? This will refresh all products.")) {
+        localStorage.removeItem('f2_products');
         products = JSON.parse(JSON.stringify(initialProducts));
         saveProducts();
         renderProducts();
@@ -1981,23 +1973,21 @@
     async function loadCloudData() {
       if (!supabase) return;
 
-      // Load Catalog from Supabase
       try {
         const { data: catData } = await supabase.from('catalog').select('data').eq('id', 'current').single();
-        if (catData && catData.data) {
+        if (catData && Array.isArray(catData.data) && catData.data.length > 0) {
           products = catData.data;
           localStorage.setItem('f2_products', JSON.stringify(products));
           renderProducts();
           updateAdminDashboard();
         }
       } catch (e) {
-        console.log("Supabase catalog fetch fallback");
+        console.log("Supabase catalog fallback");
       }
 
-      // Load Orders from Supabase
       try {
         const { data: ordersData } = await supabase.from('orders').select('*').order('created_at', { ascending: false });
-        if (ordersData) {
+        if (ordersData && Array.isArray(ordersData)) {
           orders = ordersData.map(o => ({
             dbId: o.id,
             orderId: o.order_id,
@@ -2013,7 +2003,7 @@
           updateAdminDashboard();
         }
       } catch (e) {
-        console.log("Supabase orders fetch fallback");
+        console.log("Supabase orders fallback");
       }
     }
 
@@ -2094,7 +2084,7 @@
               ` : ''}
 
               <ul class="product-features">
-                ${product.features.map(f => `<li><i class="fa-solid fa-check"></i> ${f}</li>`).join('')}
+                ${(product.features || []).map(f => `<li><i class="fa-solid fa-check"></i> ${f}</li>`).join('')}
               </ul>
 
               <div class="product-footer">
@@ -2278,7 +2268,6 @@
         status: 'Order Booked'
       };
 
-      // 1. Save to Supabase Cloud Database
       if (supabase) {
         try {
           await supabase.from('orders').insert([{
@@ -2292,16 +2281,14 @@
             date: currentDateStr
           }]);
         } catch (err) {
-          console.error("Supabase Database write error:", err);
+          console.error("Supabase database insert error:", err);
         }
       }
 
-      // 2. Local State update
       orders.unshift(orderData);
       saveOrders();
       updateAdminDashboard();
 
-      // 3. Automated Web3Forms Alert
       try {
         await fetch("https://api.web3forms.com/submit", {
           method: "POST",
@@ -2324,10 +2311,10 @@
           })
         });
       } catch (err) {
-        console.error("Web3Forms notice:", err);
+        console.error("Web3Forms transmission error:", err);
       }
 
-      alert(`🎉 Thank you, ${name}!\nYour order #${orderId} has been successfully recorded.`);
+      alert(`🎉 Thank you, ${name}!\nYour order #${orderId} has been successfully placed.`);
 
       if (submitBtn) {
         submitBtn.disabled = false;
@@ -2434,7 +2421,7 @@
 
       container.innerHTML = '';
       orders.forEach((order, index) => {
-        const itemsListStr = order.items.map(i => `${i.name} (x${i.qty})`).join(', ');
+        const itemsListStr = (order.items || []).map(i => `${i.name} (x${i.qty})`).join(', ');
         container.innerHTML += `
           <div style="background:#1e293b; border:1px solid rgba(255,255,255,0.1); border-radius:12px; padding:20px; margin-bottom:16px;">
             <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px; margin-bottom:12px; font-weight:800; font-size:1.05rem;">
@@ -2443,8 +2430,8 @@
             </div>
             <div style="font-size:0.88rem; line-height:1.6; color:#cbd5e1;">
               <p><b>Date:</b> ${order.date}</p>
-              <p><b>Customer:</b> ${order.customer.name} | <b>Email:</b> ${order.customer.email} | <b>Phone:</b> ${order.customer.phone}</p>
-              <p><b>Address:</b> ${order.customer.address}</p>
+              <p><b>Customer:</b> ${order.customer?.name} | <b>Email:</b> ${order.customer?.email} | <b>Phone:</b> ${order.customer?.phone}</p>
+              <p><b>Address:</b> ${order.customer?.address}</p>
               <p><b>Bats Ordered:</b> ${itemsListStr}</p>
               <p><b>UPI UTR Number:</b> <code style="background:#0f172a; padding:2px 8px; border-radius:4px; color:#38bdf8;">${order.utr}</code></p>
               <p><b>Current Stage:</b> <span style="font-weight:700; color:#34d399;">${order.status}</span></p>
@@ -2555,7 +2542,7 @@
       const features = featuresStr.split(',').map(f => f.trim()).filter(f => f.length > 0);
 
       const rawImgs = document.getElementById('editProdImg').value;
-      const imagesArr = rawImgs.split(',').map(s => s.trim()).filter(s => s.length > 3);
+      const imagesArr = rawImgs.split(',').map(s => s.trim()).filter(s => s.length > 2);
 
       products[index] = {
         ...products[index],
@@ -2565,7 +2552,6 @@
         price: Number(document.getElementById('editProdPrice').value),
         tag: document.getElementById('editProdTag').value,
         images: imagesArr.length ? imagesArr : [fallbackImage],
-        img: imagesArr[0] || fallbackImage,
         saleBadge: document.getElementById('editProdSaleBadge').value.trim(),
         saleDesc: document.getElementById('editProdSaleDesc').value.trim(),
         features: features.length ? features : ['Tournament Quality', 'Handcrafted Willow'],
@@ -2587,7 +2573,7 @@
       const price = Number(document.getElementById('newProdPrice').value);
       const tag = document.getElementById('newProdTag').value;
       const rawImgs = document.getElementById('newProdImg').value;
-      const imagesArr = rawImgs.split(',').map(s => s.trim()).filter(s => s.length > 3);
+      const imagesArr = rawImgs.split(',').map(s => s.trim()).filter(s => s.length > 2);
 
       const saleBadge = document.getElementById('newProdSaleBadge').value.trim();
       const saleDesc = document.getElementById('newProdSaleDesc').value.trim();
@@ -2604,7 +2590,6 @@
         price,
         tag,
         images: imagesArr.length ? imagesArr : [fallbackImage],
-        img: imagesArr[0] || fallbackImage,
         saleBadge,
         saleDesc,
         inStock,
@@ -2647,7 +2632,7 @@
 
     function sendOrderPlacedEmail(index) {
       const order = orders[index];
-      const itemsList = order.items.map(i => `- ${i.name} (Qty: ${i.qty}) - Rs. ${(Number(i.price) * i.qty).toLocaleString('en-IN')}`).join('%0D%0A');
+      const itemsList = (order.items || []).map(i => `- ${i.name} (Qty: ${i.qty}) - Rs. ${(Number(i.price) * i.qty).toLocaleString('en-IN')}`).join('%0D%0A');
       
       const subject = encodeURIComponent(`Order Confirmation - #${order.orderId} | F2 Sports`);
       const body = encodeURIComponent(
@@ -2679,7 +2664,6 @@
 
       order.status = `Dispatched via ${courierName} (AWB: ${trackingNo})`;
 
-      // Update Supabase record
       if (supabase && order.dbId) {
         try {
           await supabase.from('orders').update({ status: order.status }).eq('id', order.dbId);
