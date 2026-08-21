@@ -163,6 +163,21 @@
       font-weight: 700;
     }
 
+    .admin-welcome-top-badge {
+      display: none;
+      align-items: center;
+      gap: 6px;
+      background: rgba(251, 191, 36, 0.12);
+      border: 1px solid var(--accent-gold);
+      color: var(--accent-gold);
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-left: 14px;
+      box-shadow: 0 0 10px rgba(251, 191, 36, 0.2);
+    }
+
     .nav-links {
       display: flex;
       list-style: none;
@@ -249,40 +264,37 @@
       justify-content: center;
     }
 
-    /* CONTAINER 2: HERO SECTION */
+    /* CONTAINER 2: HERO SECTION WITH 4+4 (TOTAL 8) PICTURES SHOWCASE */
     .hero-sports-wrapper {
       background: var(--hero-radial);
       border-bottom: 2px solid var(--border-theme);
       position: relative;
       overflow: hidden;
-      padding: 0 20px;
-      height: 260px;
+      padding: 10px 20px;
+      min-height: 280px;
       display: flex;
       align-items: center;
     }
 
     .hero-grid-showcase {
-      max-width: 1400px;
+      max-width: 1450px;
       width: 100%;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 280px 1fr 280px;
+      grid-template-columns: 340px 1fr 340px;
       align-items: stretch;
-      height: 100%;
       gap: 20px;
     }
 
     .hero-side-column {
-      display: flex;
-      justify-content: space-around;
-      align-items: stretch;
-      gap: 15px;
-      height: 100%;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      align-items: center;
     }
 
     .hero-png-item {
-      width: 130px;
-      height: 100%;
+      height: 220px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -321,9 +333,8 @@
     }
 
     .hero-title-main {
-      font-size: 3.8rem;
+      font-size: 4.6rem;
       font-weight: 900;
-      color: var(--accent-primary);
       display: block;
       line-height: 1;
       margin: 2px 0;
@@ -331,12 +342,13 @@
     }
 
     .hero-title-suffix {
-      font-size: 1.35rem;
+      font-size: 1.45rem;
       font-weight: 700;
       color: var(--accent-secondary);
       display: block;
       line-height: 1.1;
       letter-spacing: 0.5px;
+      margin-top: 4px;
     }
 
     .hero-center-content p {
@@ -724,7 +736,7 @@
       background: var(--accent-primary);
     }
 
-    /* SOCIAL FOLLOW STRIP (INSTAGRAM ONLY) */
+    /* SOCIAL FOLLOW STRIP */
     .social-follow-strip {
       background: var(--bg-surface);
       border-top: 1px solid var(--border-subtle);
@@ -846,7 +858,7 @@
       box-shadow: 0 0 10px rgba(225, 29, 72, 0.3);
     }
 
-    /* BRAND PROMINENT BANNER */
+    /* MULTI-COLOR PROMINENT BRAND BANNER (+10PX LARGER WITH LOGO ICON) */
     .falcon-brand-banner {
       background: var(--bg-surface);
       padding: 36px 20px 24px;
@@ -920,16 +932,14 @@
       color: var(--accent-primary);
     }
 
-    /* ==========================================================================
-       ROBUST MODAL & CART DRAWER STRUCTURE (FIXES THE DISPLACED CART BUG)
-       ========================================================================== */
+    /* ISOLATED CART DRAWER & MODAL OVERLAYS */
     .cart-drawer-overlay, .modal-overlay {
       position: fixed;
       inset: 0;
       background: rgba(0, 0, 0, 0.75);
       backdrop-filter: blur(6px);
-      z-index: 1000;
-      display: none; /* Controlled via JS block display */
+      z-index: 2500;
+      display: none;
       opacity: 0;
       transition: opacity 0.3s ease;
     }
@@ -951,7 +961,7 @@
       background: var(--bg-surface);
       border-left: 2px solid var(--border-theme);
       box-shadow: -10px 0 30px rgba(0, 0, 0, 0.6);
-      z-index: 1050;
+      z-index: 2600;
       display: flex;
       flex-direction: column;
       transform: translateX(100%);
@@ -1087,7 +1097,7 @@
       border-radius: var(--radius);
       overflow: hidden;
       box-shadow: var(--shadow-accent);
-      z-index: 1060;
+      z-index: 2600;
     }
 
     .modal-header {
@@ -1172,6 +1182,25 @@
 
     .btn-submit-order:hover {
       background: var(--accent-primary-hover);
+    }
+
+    /* CUSTOM SUCCESS MODAL CONTAINER */
+    .success-modal-content {
+      text-align: center;
+      padding: 20px 10px;
+    }
+
+    .success-modal-icon {
+      font-size: 3.5rem;
+      color: #10b981;
+      margin-bottom: 16px;
+      animation: bounceIn 0.5s ease;
+    }
+
+    @keyframes bounceIn {
+      0% { transform: scale(0); opacity: 0; }
+      60% { transform: scale(1.15); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
     }
 
     /* DEDICATED BULK ORDER PAGE VIEW */
@@ -1490,7 +1519,7 @@
         text-align: center;
       }
       .hero-title-main {
-        font-size: 3rem;
+        font-size: 3.5rem;
       }
       .falcon-brand-banner-title {
         font-size: 2.3rem;
@@ -1504,13 +1533,17 @@
   <div id="storefrontView">
     <header>
       <div class="navbar">
-        <!-- LOGO AT LEFT CORNER WITH CLICKABLE TEXT TO OPEN ADMIN LOGIN -->
+        <!-- LOGO AT LEFT CORNER WITH DOUBLE-CLICK TRIGGER TO OPEN ADMIN LOGIN -->
         <div class="logo-container">
           <img src="logo.png" alt="F2 Sports Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
           <div class="logo-fallback" style="display:none;">F2</div>
-          <div class="admin-text-trigger" onclick="openAdminPortalPage()" title="Click to open Admin Portal">
+          <div class="admin-text-trigger" ondblclick="openAdminPortalPage()" title="Double-click to open Admin Portal">
             <span class="logo-title">F2 <span>SPORTS</span></span>
             <span class="logo-tagline">Engineered For Champions</span>
+          </div>
+          <!-- Welcome Admin badge placed right in the top navbar -->
+          <div class="admin-welcome-top-badge" id="adminWelcomeBadge">
+            <i class="fa-solid fa-user-shield"></i> <span id="adminWelcomeText">Welcome</span>
           </div>
         </div>
 
@@ -1537,10 +1570,10 @@
       </div>
     </header>
 
-    <!-- CONTAINER 2: HERO SECTION WITH FULL-HEIGHT VERTICAL PNG PHOTOS -->
+    <!-- CONTAINER 2: HERO SECTION WITH 4+4 (TOTAL 8) PICTURES SHOWCASE -->
     <section class="hero-sports-wrapper" id="home">
       <div class="hero-grid-showcase">
-        <!-- LEFT 2 TRANSPARENT PNG PHOTOS -->
+        <!-- LEFT 4 TRANSPARENT PNG PHOTOS (2x2 GRID) -->
         <div class="hero-side-column">
           <div class="hero-png-item">
             <img src="./hero_bat_1.png" id="heroPhotoImg1" class="hero-png-img" alt="Cricket Bat Slot 1" onerror="handleImgError(this)" />
@@ -1550,17 +1583,17 @@
           </div>
         </div>
 
-        <!-- CENTER TEXT -->
+        <!-- CENTER TEXT WITH MULTI-COLOR FALCON 2 -->
         <div class="hero-center-content">
           <h1>
             <span class="hero-title-prefix">Power Your Game With</span>
-            <span class="hero-title-main">Falcon 2</span>
+            <span class="hero-title-main multi-color-text">Falcon 2</span>
             <span class="hero-title-suffix">Sports Mastercraft Bats</span>
           </h1>
           <p>Hand-crafted for extraordinary rebound ping, razor-sharp balance, and monster power hitting across all formats.</p>
         </div>
 
-        <!-- RIGHT 2 TRANSPARENT PNG PHOTOS -->
+        <!-- RIGHT 4 TRANSPARENT PNG PHOTOS (2x2 GRID) -->
         <div class="hero-side-column">
           <div class="hero-png-item">
             <img src="./hero_bat_3.png" id="heroPhotoImg3" class="hero-png-img" alt="Cricket Bat Slot 3" onerror="handleImgError(this)" />
@@ -1618,7 +1651,7 @@
         <div class="product-grid" id="tennisProductsGrid"></div>
       </section>
 
-      <!-- FOLLOW US ON SOCIAL MEDIA STRIP (INSTAGRAM ONLY) -->
+      <!-- FOLLOW US ON INSTAGRAM STRIP -->
       <section class="social-follow-strip">
         <div class="social-follow-wrapper">
           <a href="https://www.instagram.com/f2sports__?igsi=ZDNlZDc0MzIxNw==" target="_blank" class="social-btn instagram">
@@ -1974,9 +2007,15 @@
     </div>
   </div>
 
-  <!-- FIXED OVERLAY CART DRAWER (PROPERLY ISOLATED IN DOM) -->
+  <!-- FULLSCREEN LIGHTBOX -->
+  <div class="lightbox-modal" id="imageLightbox" onclick="closeLightbox()">
+    <button class="lightbox-close-btn" onclick="closeLightbox()"><i class="fa-solid fa-xmark"></i></button>
+    <img src="" alt="Enlarged Product View" class="lightbox-content" id="lightboxImg" onclick="event.stopPropagation()" />
+  </div>
+
+  <!-- FIXED OVERLAY CART DRAWER -->
   <div class="cart-drawer-overlay" id="cartOverlay" onclick="toggleCartDrawer()"></div>
-  <div class="cart-drawer" id="cartDrawer">
+  <div class="cart-drawer" id="cartDrawer" onclick="event.stopPropagation()">
     <div class="cart-header">
       <h3 style="font-size:1.2rem;"><i class="fa-solid fa-basket-shopping" style="color:var(--accent-primary);"></i> Your Cart (<span id="cartCountTitle">0</span>)</h3>
       <button class="close-cart-btn" onclick="toggleCartDrawer()"><i class="fa-solid fa-xmark"></i></button>
@@ -1994,8 +2033,8 @@
   </div>
 
   <!-- CHECKOUT MODAL -->
-  <div class="modal-overlay" id="checkoutModal">
-    <div class="modal-box">
+  <div class="modal-overlay" id="checkoutModal" onclick="closeCheckoutModal()">
+    <div class="modal-box" onclick="event.stopPropagation()">
       <div class="modal-header">
         <h3 style="font-size:1.2rem;"><i class="fa-solid fa-qrcode" style="color:var(--accent-primary);"></i> Scan &amp; Pay (UPI / QR)</h3>
         <button class="close-cart-btn" onclick="closeCheckoutModal()"><i class="fa-solid fa-xmark"></i></button>
@@ -2036,8 +2075,8 @@
   </div>
 
   <!-- ADMIN LOGIN MODAL -->
-  <div class="modal-overlay" id="adminLoginModal">
-    <div class="modal-box">
+  <div class="modal-overlay" id="adminLoginModal" onclick="closeAdminLoginModal()">
+    <div class="modal-box" onclick="event.stopPropagation()">
       <div class="modal-header">
         <h3 style="font-size:1.2rem;"><i class="fa-solid fa-shield-halved" style="color:var(--accent-primary);"></i> Admin Portal Login</h3>
         <button class="close-cart-btn" onclick="closeAdminLoginModal()"><i class="fa-solid fa-xmark"></i></button>
@@ -2069,8 +2108,8 @@
   </div>
 
   <!-- FORGOT PASSWORD MODAL -->
-  <div class="modal-overlay" id="forgotPasswordModal">
-    <div class="modal-box">
+  <div class="modal-overlay" id="forgotPasswordModal" onclick="closeForgotPasswordModal()">
+    <div class="modal-box" onclick="event.stopPropagation()">
       <div class="modal-header">
         <h3 style="font-size:1.2rem;"><i class="fa-solid fa-unlock-keyhole" style="color:var(--accent-primary);"></i> Reset Admin Password</h3>
         <button class="close-cart-btn" onclick="closeForgotPasswordModal()"><i class="fa-solid fa-xmark"></i></button>
@@ -2101,8 +2140,8 @@
   </div>
 
   <!-- CHANGE PASSWORD MODAL -->
-  <div class="modal-overlay" id="changePasswordModal">
-    <div class="modal-box">
+  <div class="modal-overlay" id="changePasswordModal" onclick="closeChangePasswordModal()">
+    <div class="modal-box" onclick="event.stopPropagation()">
       <div class="modal-header">
         <h3 style="font-size:1.2rem;"><i class="fa-solid fa-key" style="color:var(--accent-primary);"></i> Change Admin Password</h3>
         <button class="close-cart-btn" onclick="closeChangePasswordModal()"><i class="fa-solid fa-xmark"></i></button>
@@ -2129,9 +2168,46 @@
     </div>
   </div>
 
+  <!-- ORDER DELETE CONFIRMATION POPUP MODAL -->
+  <div class="modal-overlay" id="deleteOrderConfirmModal" onclick="closeDeleteOrderModal()">
+    <div class="modal-box" onclick="event.stopPropagation()" style="max-width: 400px; text-align: center;">
+      <div class="modal-header" style="background: #b91c1c;">
+        <h3 style="font-size:1.2rem; color: #fff;"><i class="fa-solid fa-triangle-exclamation"></i> Confirm Order Deletion</h3>
+        <button class="close-cart-btn" onclick="closeDeleteOrderModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body" style="padding: 24px;">
+        <p style="font-size: 0.95rem; color: var(--text-main); margin-bottom: 20px;" id="deleteOrderConfirmText">Are you sure you want to delete this order for foul play?</p>
+        <input type="hidden" id="pendingDeleteOrderIndex" />
+        <div style="display: flex; gap: 12px; justify-content: center;">
+          <button onclick="closeDeleteOrderModal()" class="admin-action-btn" style="background: #475569; color: #fff; padding: 10px 20px; font-size: 0.9rem;">Cancel</button>
+          <button onclick="confirmDeleteOrderAction()" class="admin-action-btn" style="background: #ef4444; color: #fff; padding: 10px 20px; font-size: 0.9rem;">Yes, Delete Order</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ORDER SUCCESS / THANK YOU MODAL CONTAINER -->
+  <div class="modal-overlay" id="orderSuccessModal" onclick="closeOrderSuccessModal()">
+    <div class="modal-box" onclick="event.stopPropagation()" style="max-width: 440px;">
+      <div class="modal-header">
+        <h3 style="font-size:1.2rem;"><i class="fa-solid fa-circle-check" style="color:#10b981;"></i> Order Successful</h3>
+        <button class="close-cart-btn" onclick="closeOrderSuccessModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body success-modal-content">
+        <div class="success-modal-icon">
+          <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <h3 class="multi-color-text" style="font-size: 1.8rem; font-weight: 800; margin-bottom: 8px;">Falcon 2</h3>
+        <p style="font-size: 1rem; font-weight: 700; color: var(--text-main); margin-bottom: 6px;" id="successCustomerHeading">Thank you, Valued Player!</p>
+        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px;" id="successOrderIdText">Your order has been successfully recorded and sent to fulfillment.</p>
+        <button onclick="closeOrderSuccessModal()" class="btn-submit-order">Continue Shopping</button>
+      </div>
+    </div>
+  </div>
+
   <!-- EDIT PRODUCT MODAL -->
-  <div class="modal-overlay" id="editProductModal">
-    <div class="modal-box" style="max-width:640px;">
+  <div class="modal-overlay" id="editProductModal" onclick="closeEditModal()">
+    <div class="modal-box" style="max-width:640px;" onclick="event.stopPropagation()">
       <div class="modal-header">
         <h3 style="font-size:1.2rem;"><i class="fa-solid fa-pen-to-square" style="color:var(--accent-primary);"></i> Edit Bat Details &amp; Photos</h3>
         <button class="close-cart-btn" onclick="closeEditModal()"><i class="fa-solid fa-xmark"></i></button>
@@ -2206,6 +2282,11 @@
         </form>
       </div>
     </div>
+  </div>
+
+  <div class="toast" id="appToast">
+    <i class="fa-solid fa-circle-check" style="color:var(--accent-primary);"></i>
+    <span id="toastMsg">Added to cart</span>
   </div>
 
   <script>
@@ -2760,6 +2841,16 @@
       document.getElementById('checkoutModal').classList.remove('active');
     }
 
+    function openOrderSuccessModal(custName, orderId) {
+      document.getElementById('successCustomerHeading').innerText = `Thank you, ${custName}!`;
+      document.getElementById('successOrderIdText').innerText = `Your order #${orderId} has been successfully recorded.`;
+      document.getElementById('orderSuccessModal').classList.add('active');
+    }
+
+    function closeOrderSuccessModal() {
+      document.getElementById('orderSuccessModal').classList.remove('active');
+    }
+
     function toggleFaq(el) {
       el.parentElement.classList.toggle('active');
     }
@@ -2856,8 +2947,6 @@
         console.error("Web3Forms transmission notice:", err);
       }
 
-      alert(`🎉 Thank you, ${name}!\nYour order #${orderId} has been successfully recorded.`);
-
       if (submitBtn) {
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalBtnText;
@@ -2867,6 +2956,8 @@
       updateCartUI();
       closeCheckoutModal();
       document.getElementById('orderForm').reset();
+
+      openOrderSuccessModal(name, orderId);
     }
 
     function handleSuggestionSubmit(e) {
@@ -2889,7 +2980,7 @@
       window.scrollTo(0, 0);
     }
 
-    /* AUTHENTICATION & MULTI-ADMIN ROUTING */
+    /* AUTHENTICATION & MULTI-ADMIN ROUTING (TRIGGERED VIA DOUBLE-CLICK) */
     function openAdminPortalPage() {
       const activeAdmin = sessionStorage.getItem('f2_active_admin_user');
       if (activeAdmin) {
@@ -2924,6 +3015,15 @@
       document.getElementById('adminStandaloneView').style.display = 'block';
       document.getElementById('activeAdminHeaderLabel').innerText = `Active Admin: ${adminName}`;
       document.getElementById('activeAdminUserDisplay').innerText = adminName;
+      
+      // Update welcome banner on top bar
+      const badge = document.getElementById('adminWelcomeBadge');
+      const text = document.getElementById('adminWelcomeText');
+      if (badge && text) {
+        text.innerText = `Welcome ${adminName}`;
+        badge.style.display = 'flex';
+      }
+
       applyHeroPhotos();
       updateAdminDashboard();
       window.scrollTo(0, 0);
@@ -2933,12 +3033,26 @@
       document.getElementById('adminStandaloneView').style.display = 'none';
       document.getElementById('bulkStandaloneView').style.display = 'none';
       document.getElementById('storefrontView').style.display = 'block';
+      
+      // Keep welcome badge visible on storefront header if logged in
+      const activeAdmin = sessionStorage.getItem('f2_active_admin_user');
+      const badge = document.getElementById('adminWelcomeBadge');
+      const text = document.getElementById('adminWelcomeText');
+      if (activeAdmin && badge && text) {
+        text.innerText = `Welcome ${activeAdmin}`;
+        badge.style.display = 'flex';
+      } else if (badge) {
+        badge.style.display = 'none';
+      }
+
       window.scrollTo(0, 0);
     }
 
     function handleMainAdminLogout() {
       sessionStorage.removeItem('f2_active_admin_user');
       showToast('Logged out from Admin Dashboard');
+      const badge = document.getElementById('adminWelcomeBadge');
+      if (badge) badge.style.display = 'none';
       returnToStorefront();
     }
 
@@ -3036,6 +3150,43 @@
       renderAdminProductsTable();
     }
 
+    /* PROMPT POPUP CONFIRMATION FOR ORDER DELETION & SUPABASE DATABASE SYNC */
+    function promptDeleteOrder(index) {
+      const order = orders[index];
+      document.getElementById('pendingDeleteOrderIndex').value = index;
+      document.getElementById('deleteOrderConfirmText').innerText = `Are you sure you want to delete Order #${order.orderId} for foul play?`;
+      document.getElementById('deleteOrderConfirmModal').classList.add('active');
+    }
+
+    function closeDeleteOrderModal() {
+      document.getElementById('deleteOrderConfirmModal').classList.remove('active');
+    }
+
+    async function confirmDeleteOrderAction() {
+      const index = parseInt(document.getElementById('pendingDeleteOrderIndex').value);
+      const order = orders[index];
+      if (!order) return;
+
+      if (supabaseClient) {
+        try {
+          if (order.docId) {
+            await supabaseClient.from('orders').delete().eq('id', order.docId);
+          }
+          if (order.orderId) {
+            await supabaseClient.from('orders').delete().eq('order_id', order.orderId);
+          }
+        } catch (e) {
+          console.error("Supabase order deletion exception:", e);
+        }
+      }
+      
+      orders.splice(index, 1);
+      saveOrders();
+      updateAdminDashboard();
+      closeDeleteOrderModal();
+      showToast(`Order #${order.orderId} deleted from database successfully.`);
+    }
+
     function renderAdminOrdersList() {
       const container = document.getElementById('mainAdminOrdersList');
       if (!container) return;
@@ -3049,8 +3200,15 @@
       orders.forEach((order, index) => {
         const itemsListStr = order.items.map(i => `${i.name} (x${i.qty})`).join(', ');
         container.innerHTML += `
-          <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:8px; padding:20px; margin-bottom:16px;">
-            <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border-subtle); padding-bottom:10px; margin-bottom:12px; font-weight:800; font-size:1.15rem;">
+          <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:8px; padding:20px; margin-bottom:16px; position:relative;">
+            <!-- DELETE BUTTON PLACED ON THE OPPOSITE CORNER (TOP RIGHT) -->
+            <div style="position: absolute; top: 16px; right: 16px;">
+              <button class="admin-action-btn" style="background:#ef4444; color:#fff; padding: 6px 12px; font-weight: 700;" onclick="promptDeleteOrder(${index})">
+                <i class="fa-solid fa-trash"></i> Delete Order
+              </button>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border-subtle); padding-bottom:10px; margin-bottom:12px; font-weight:800; font-size:1.15rem; padding-right: 120px;">
               <span>Order #${order.orderId}</span>
               <span style="color:var(--accent-primary);">${order.totalAmount}</span>
             </div>
@@ -3391,7 +3549,12 @@
       listenToCloudOrders();
       const activeAdmin = sessionStorage.getItem('f2_active_admin_user');
       if (activeAdmin) {
-        showAdminPageView(activeAdmin);
+        const badge = document.getElementById('adminWelcomeBadge');
+        const text = document.getElementById('adminWelcomeText');
+        if (badge && text) {
+          text.innerText = `Welcome ${activeAdmin}`;
+          badge.style.display = 'flex';
+        }
       }
     });
   </script>
