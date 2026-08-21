@@ -141,12 +141,6 @@
       color: var(--gold);
     }
 
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
     .cart-btn-trigger {
       background: rgba(255, 255, 255, 0.1);
       color: #fff;
@@ -383,6 +377,7 @@
       justify-content: center;
       padding: 16px;
       overflow: hidden;
+      position: relative;
     }
 
     .product-img {
@@ -394,6 +389,41 @@
 
     .product-card:hover .product-img {
       transform: scale(1.06);
+    }
+
+    /* MULTI-IMAGE THUMBNAIL PREVIEWS */
+    .gallery-thumbs-row {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: #f1f5f9;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .thumb-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 4px;
+      border: 2px solid transparent;
+      padding: 2px;
+      background: #fff;
+      cursor: pointer;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .thumb-btn.active {
+      border-color: var(--primary);
+    }
+
+    .thumb-btn img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
     }
 
     .product-body {
@@ -1223,7 +1253,7 @@
         <div class="section-header" style="margin-bottom:30px;">
           <span class="section-subtitle" style="color:var(--gold);">Cloud Store Management</span>
           <h2 class="section-title" style="color:#ffffff;">F2 Sports Admin Control Center</h2>
-          <p class="section-desc" style="color:#94a3b8;">Real-time Cloud Database, Free Photo Uploads &amp; Catalog Management.</p>
+          <p class="section-desc" style="color:#94a3b8;">Real-time Cloud Database, Multi-Photo Uploads &amp; Catalog Management.</p>
         </div>
 
         <div class="admin-workspace" id="adminWorkspace">
@@ -1332,15 +1362,15 @@
                     <input type="text" id="newProdTag" class="form-input" placeholder="e.g. Grade 1 English Willow / Reserve Cleft" required />
                   </div>
                   <div class="form-group">
-                    <label class="form-label">Image URL / Path</label>
-                    <input type="text" id="newProdImg" class="form-input" placeholder="e.g. ./custom_bat.jpg" required />
+                    <label class="form-label">Main Image URL / Path (or enter multiple separated by commas)</label>
+                    <input type="text" id="newProdImg" class="form-input" placeholder="e.g. ./front.jpg, ./back.jpg, ./side.jpg" required />
                   </div>
                 </div>
 
-                <!-- DIRECT FREE CLOUD PHOTO UPLOADER -->
+                <!-- MULTI-FILE UPLOADER -->
                 <div class="form-group" style="background:rgba(59, 130, 246, 0.1); padding:14px; border-radius:8px; border:1px dashed #3b82f6;">
-                  <label class="form-label" style="color:#93c5fd;"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Bat Photo from Phone / PC (Free Direct Cloud Sync)</label>
-                  <input type="file" id="newProdFileInput" class="form-input" accept="image/*" onchange="processDirectPhoto(this, 'newProdImg', 'newProdUploadStatus')" />
+                  <label class="form-label" style="color:#93c5fd;"><i class="fa-solid fa-images"></i> Upload Multiple Bat Photos (Front, Back, Side, Profile)</label>
+                  <input type="file" id="newProdFileInput" class="form-input" accept="image/*" multiple onchange="processMultiplePhotos(this, 'newProdImg', 'newProdUploadStatus')" />
                   <div id="newProdUploadStatus" style="font-size:0.8rem; color:#38bdf8; margin-top:6px; font-weight:600;"></div>
                 </div>
 
@@ -1507,11 +1537,11 @@
     </div>
   </div>
 
-  <!-- EDIT PRODUCT MODAL -->
+  <!-- EDIT PRODUCT MODAL WITH MULTI-IMAGE UPLOADER -->
   <div class="modal-overlay" id="editProductModal">
     <div class="modal-box" style="background:#1e293b; color:#fff; max-width:600px;">
       <div class="modal-header" style="background:#0f172a;">
-        <h3><i class="fa-solid fa-pen-to-square" style="color:var(--gold);"></i> Edit Bat Details &amp; Upload Photo</h3>
+        <h3><i class="fa-solid fa-pen-to-square" style="color:var(--gold);"></i> Edit Bat Details &amp; Photos</h3>
         <button class="close-cart-btn" onclick="closeEditModal()"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div class="modal-body">
@@ -1550,15 +1580,15 @@
               <input type="text" id="editProdTag" class="form-input" required />
             </div>
             <div class="form-group">
-              <label class="form-label">Current Image URL / Path</label>
+              <label class="form-label">Image URLs (comma separated for multiple)</label>
               <input type="text" id="editProdImg" class="form-input" required />
             </div>
           </div>
 
-          <!-- DIRECT PHOTO UPLOADER (FREE CLOUD BASE64 SYNC) -->
+          <!-- MULTI-PHOTO UPLOADER -->
           <div class="form-group" style="background:rgba(59, 130, 246, 0.1); padding:14px; border-radius:8px; border:1px dashed #3b82f6;">
-            <label class="form-label" style="color:#93c5fd;"><i class="fa-solid fa-cloud-arrow-up"></i> Upload New Photo from Device (Free Direct Cloud Sync)</label>
-            <input type="file" id="editProdFileInput" class="form-input" accept="image/*" onchange="processDirectPhoto(this, 'editProdImg', 'editProdUploadStatus')" />
+            <label class="form-label" style="color:#93c5fd;"><i class="fa-solid fa-images"></i> Upload Multiple Photos from Device (Front, Back, Side)</label>
+            <input type="file" id="editProdFileInput" class="form-input" accept="image/*" multiple onchange="processMultiplePhotos(this, 'editProdImg', 'editProdUploadStatus')" />
             <div id="editProdUploadStatus" style="font-size:0.8rem; color:#38bdf8; margin-top:6px; font-weight:600;"></div>
           </div>
 
@@ -1675,52 +1705,58 @@
       console.warn("Firebase notice:", e);
     }
 
-    // DIRECT PHOTO PROCESSOR & COMPRESSOR (Zero Cost, No Billing Required)
-    function processDirectPhoto(fileInputElement, targetUrlInputId, statusDisplayId) {
-      const file = fileInputElement.files[0];
-      if (!file) return;
+    // MULTI-IMAGE COMPRESSOR & PROCESSOR
+    function compressImageFile(file) {
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const img = new Image();
+          img.onload = function() {
+            const canvas = document.createElement('canvas');
+            const maxDim = 800;
+            let width = img.width;
+            let height = img.height;
+
+            if (width > height) {
+              if (width > maxDim) {
+                height *= maxDim / width;
+                width = maxDim;
+              }
+            } else {
+              if (height > maxDim) {
+                width *= maxDim / height;
+                height = maxDim;
+              }
+            }
+
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, width, height);
+            resolve(canvas.toDataURL('image/jpeg', 0.82));
+          };
+          img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    async function processMultiplePhotos(fileInputElement, targetUrlInputId, statusDisplayId) {
+      const files = Array.from(fileInputElement.files);
+      if (!files.length) return;
 
       const statusEl = document.getElementById(statusDisplayId);
-      if (statusEl) statusEl.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing image for cloud sync...';
+      if (statusEl) statusEl.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Compressing ${files.length} images...`;
 
-      const reader = new FileReader();
-      reader.onload = function(event) {
-        const img = new Image();
-        img.onload = function() {
-          const canvas = document.createElement('canvas');
-          const maxDim = 800;
-          let width = img.width;
-          let height = img.height;
-
-          if (width > height) {
-            if (width > maxDim) {
-              height *= maxDim / width;
-              width = maxDim;
-            }
-          } else {
-            if (height > maxDim) {
-              width *= maxDim / height;
-              height = maxDim;
-            }
-          }
-
-          canvas.width = width;
-          canvas.height = height;
-          const ctx = canvas.getContext('2d');
-          ctx.drawImage(img, 0, 0, width, height);
-
-          // Convert to compressed WebP/JPEG data string
-          const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.82);
-          document.getElementById(targetUrlInputId).value = compressedDataUrl;
-
-          if (statusEl) {
-            statusEl.innerHTML = `<span style="color:#10b981;"><i class="fa-solid fa-check-circle"></i> Photo processed &amp; ready to save!</span>`;
-          }
-          showToast('Photo ready for cloud save!');
-        };
-        img.src = event.target.result;
-      };
-      reader.readAsDataURL(file);
+      try {
+        const base64List = await Promise.all(files.map(f => compressImageFile(f)));
+        const combined = base64List.join(' , ');
+        document.getElementById(targetUrlInputId).value = combined;
+        if (statusEl) statusEl.innerHTML = `<span style="color:#10b981;"><i class="fa-solid fa-check-circle"></i> ${files.length} photos ready for gallery!</span>`;
+        showToast(`${files.length} photos processed!`);
+      } catch (err) {
+        console.error("Multi-image upload error:", err);
+      }
     }
 
     const initialProducts = [
@@ -1731,6 +1767,7 @@
         name: 'F2 Pro Grade A English Willow Bat',
         price: 24999,
         tag: 'Grade A Cleft',
+        images: ['./grade_a_english.jpg'],
         img: './grade_a_english.jpg',
         inStock: true,
         saleBadge: '15% OFF',
@@ -1744,6 +1781,7 @@
         name: 'F2 Match Grade B English Willow Bat',
         price: 16999,
         tag: 'Grade B Cleft',
+        images: ['./grade_b_english.jpg'],
         img: './grade_b_english.jpg',
         inStock: true,
         saleBadge: '',
@@ -1757,6 +1795,7 @@
         name: 'F2 Players Edition Kashmir Leather Bat',
         price: 7999,
         tag: 'Top Reserve KW',
+        images: ['./Players_edition.jpg'],
         img: './Players_edition.jpg',
         inStock: true,
         saleBadge: '20% OFF',
@@ -1770,6 +1809,7 @@
         name: 'F2 Platinum Leather Bat',
         price: 6499,
         tag: 'Platinum Reserve',
+        images: ['./platinum.jpg'],
         img: './platinum.jpg',
         inStock: true,
         saleBadge: '',
@@ -1783,6 +1823,7 @@
         name: 'F2 Diamond Leather Bat',
         price: 5199,
         tag: 'Diamond Series',
+        images: ['./diamond.jpg'],
         img: './diamond.jpg',
         inStock: true,
         saleBadge: '',
@@ -1796,6 +1837,7 @@
         name: 'F2 Gold Reserve Leather Bat',
         price: 4199,
         tag: 'Gold Standard',
+        images: ['./gold.jpg'],
         img: './gold.jpg',
         inStock: false,
         saleBadge: '',
@@ -1809,6 +1851,7 @@
         name: 'F2 Silver Club Leather Bat',
         price: 3299,
         tag: 'Silver Club',
+        images: ['./silver.jpg'],
         img: './silver.jpg',
         inStock: true,
         saleBadge: '',
@@ -1822,6 +1865,7 @@
         name: 'F2 Laser-Designed Hard Tennis Bat',
         price: 2499,
         tag: 'UV 3D Graphics',
+        images: ['./designed.jpg'],
         img: './designed.jpg',
         inStock: true,
         saleBadge: '10% OFF',
@@ -1835,6 +1879,7 @@
         name: 'F2 Classic Raw (Without Design) Tennis Bat',
         price: 1999,
         tag: 'Raw Natural Polish',
+        images: ['./without_design.jpg'],
         img: './without_design.jpg',
         inStock: true,
         saleBadge: '',
@@ -1848,6 +1893,7 @@
         name: 'F2 Popular Turf Dominator Tennis Bat',
         price: 1799,
         tag: 'Top Turf Seller',
+        images: ['./popular.jpg'],
         img: './popular.jpg',
         inStock: true,
         saleBadge: '',
@@ -1861,6 +1907,7 @@
         name: 'F2 Full Cane Handle Tennis Bat',
         price: 2899,
         tag: '9-Piece Cane Handle',
+        images: ['./cane.jpg'],
         img: './cane.jpg',
         inStock: false,
         saleBadge: '',
@@ -1874,6 +1921,7 @@
         name: 'F2 Kissan Tennis Heavy Punch Bat',
         price: 2299,
         tag: 'Heavy Punch Willow',
+        images: ['./kissan_tennis.jpg'],
         img: './kissan_tennis.jpg',
         inStock: true,
         saleBadge: '',
@@ -1887,6 +1935,7 @@
         name: 'F2 36-Inch Long Blade Monster Tennis Bat',
         price: 2999,
         tag: '36-Inch Long Blade',
+        images: ['./36inch.jpg'],
         img: './36inch.jpg',
         inStock: true,
         saleBadge: '',
@@ -1901,7 +1950,6 @@
 
     function saveProducts() {
       localStorage.setItem('f2_products', JSON.stringify(products));
-      // Cloud catalog sync into Firestore
       if (db) {
         try {
           db.collection("catalog").doc("current").set({ products: products });
@@ -1918,7 +1966,6 @@
     function listenToCloudOrders() {
       if (!db) return;
       
-      // Real-time Cloud Sync for Product Catalog
       db.collection("catalog").doc("current").onSnapshot(doc => {
         if (doc.exists && doc.data().products) {
           products = doc.data().products;
@@ -1928,7 +1975,6 @@
         }
       }, err => console.log("Catalog listener active"));
 
-      // Real-time Cloud Sync for Customer Orders
       db.collection("orders").orderBy("createdAt", "desc").onSnapshot(snapshot => {
         orders = snapshot.docs.map(doc => ({ docId: doc.id, ...doc.data() }));
         saveOrders();
@@ -1939,6 +1985,17 @@
     function handleImgError(imgElement) {
       imgElement.onerror = null;
       imgElement.src = fallbackImage;
+    }
+
+    function switchProductImage(productId, imgUrl, btnElement) {
+      const mainImg = document.getElementById(`main-img-${productId}`);
+      if (mainImg) mainImg.src = imgUrl;
+
+      const parent = btnElement.parentElement;
+      if (parent) {
+        parent.querySelectorAll('.thumb-btn').forEach(b => b.classList.remove('active'));
+        btnElement.classList.add('active');
+      }
     }
 
     function renderProducts() {
@@ -1957,6 +2014,23 @@
         const isAvailable = product.inStock !== false;
         const hasSale = Boolean(product.saleBadge && product.saleBadge.trim() !== '');
 
+        // Standardize multi-image array
+        const imgList = (product.images && product.images.length) 
+          ? product.images 
+          : (product.img ? product.img.split(',').map(s => s.trim()).filter(Boolean) : [fallbackImage]);
+
+        const mainSrc = imgList[0] || fallbackImage;
+
+        const thumbsHtml = imgList.length > 1 ? `
+          <div class="gallery-thumbs-row">
+            ${imgList.map((im, idx) => `
+              <button type="button" class="thumb-btn ${idx === 0 ? 'active' : ''}" onclick="switchProductImage('${product.id}', '${im.replace(/'/g, "\\'")}', this)">
+                <img src="${im}" onerror="handleImgError(this)" />
+              </button>
+            `).join('')}
+          </div>
+        ` : '';
+
         const cardHtml = `
           <div class="product-card ${!isAvailable ? 'out-of-stock' : ''}" id="card-${product.id}">
             <span class="product-tag ${product.category === 'english' ? 'gold-tag' : ''}">${product.tag}</span>
@@ -1973,8 +2047,10 @@
             ` : ''}
 
             <div class="product-img-wrapper">
-              <img src="${product.img}" alt="${product.name}" class="product-img" loading="lazy" onerror="handleImgError(this)" />
+              <img id="main-img-${product.id}" src="${mainSrc}" alt="${product.name}" class="product-img" loading="lazy" onerror="handleImgError(this)" />
             </div>
+
+            ${thumbsHtml}
 
             <div class="product-body">
               <span class="product-cat-name">${product.catName}</span>
@@ -2026,8 +2102,10 @@
       const product = products.find(p => p.id === productId);
       if (!product || product.inStock === false) return;
 
+      const singleImg = (product.images && product.images[0]) ? product.images[0] : (product.img ? product.img.split(',')[0].trim() : fallbackImage);
+
       if (!cart[productId]) {
-        cart[productId] = { ...product, qty: 1 };
+        cart[productId] = { ...product, img: singleImg, qty: 1 };
       } else {
         cart[productId].qty += 1;
       }
@@ -2351,12 +2429,18 @@
         const isAvailable = p.inStock !== false;
         const saleBadgeStr = p.saleBadge ? `<span style="background:#ef4444; color:#fff; padding:2px 6px; border-radius:4px; font-weight:700; font-size:0.75rem;">${p.saleBadge}</span>` : '<span style="color:#64748b;">None</span>';
         
+        const firstImg = (p.images && p.images.length) ? p.images[0] : (p.img ? p.img.split(',')[0].trim() : fallbackImage);
+        const countImages = (p.images && p.images.length) ? p.images.length : (p.img ? p.img.split(',').length : 1);
+
         tbody.innerHTML += `
           <tr>
             <td>
               <div style="display:flex; align-items:center; gap:10px;">
-                <img src="${p.img}" alt="${p.name}" style="width:36px; height:36px; object-fit:contain; background:#fff; border-radius:4px; padding:2px;" onerror="handleImgError(this)" />
-                <b>${p.name}</b>
+                <img src="${firstImg}" alt="${p.name}" style="width:36px; height:36px; object-fit:contain; background:#fff; border-radius:4px; padding:2px;" onerror="handleImgError(this)" />
+                <div>
+                  <b>${p.name}</b>
+                  <div style="font-size:0.75rem; color:#94a3b8;">${countImages} photo(s)</div>
+                </div>
               </div>
             </td>
             <td style="text-transform:capitalize;">${p.category} Willow</td>
@@ -2393,13 +2477,15 @@
       const prod = products.find(p => p.id === productId);
       if (!prod) return;
 
+      const imgsStr = (prod.images && prod.images.length) ? prod.images.join(' , ') : (prod.img || '');
+
       document.getElementById('editProdId').value = prod.id;
       document.getElementById('editProdCategory').value = prod.category;
       document.getElementById('editProdCatName').value = prod.catName;
       document.getElementById('editProdName').value = prod.name;
       document.getElementById('editProdPrice').value = prod.price;
       document.getElementById('editProdTag').value = prod.tag;
-      document.getElementById('editProdImg').value = prod.img;
+      document.getElementById('editProdImg').value = imgsStr;
       document.getElementById('editProdSaleBadge').value = prod.saleBadge || '';
       document.getElementById('editProdSaleDesc').value = prod.saleDesc || '';
       document.getElementById('editProdFeatures').value = (prod.features || []).join(', ');
@@ -2426,6 +2512,9 @@
       const featuresStr = document.getElementById('editProdFeatures').value;
       const features = featuresStr.split(',').map(f => f.trim()).filter(f => f.length > 0);
 
+      const rawImgs = document.getElementById('editProdImg').value;
+      const imagesArr = rawImgs.split(',').map(s => s.trim()).filter(Boolean);
+
       products[index] = {
         ...products[index],
         category: document.getElementById('editProdCategory').value,
@@ -2433,7 +2522,8 @@
         name: document.getElementById('editProdName').value,
         price: Number(document.getElementById('editProdPrice').value),
         tag: document.getElementById('editProdTag').value,
-        img: document.getElementById('editProdImg').value,
+        images: imagesArr.length ? imagesArr : [fallbackImage],
+        img: imagesArr[0] || fallbackImage,
         saleBadge: document.getElementById('editProdSaleBadge').value.trim(),
         saleDesc: document.getElementById('editProdSaleDesc').value.trim(),
         features: features.length ? features : ['Tournament Quality', 'Handcrafted Willow'],
@@ -2454,7 +2544,9 @@
       const name = document.getElementById('newProdName').value;
       const price = Number(document.getElementById('newProdPrice').value);
       const tag = document.getElementById('newProdTag').value;
-      const img = document.getElementById('newProdImg').value;
+      const rawImgs = document.getElementById('newProdImg').value;
+      const imagesArr = rawImgs.split(',').map(s => s.trim()).filter(Boolean);
+
       const saleBadge = document.getElementById('newProdSaleBadge').value.trim();
       const saleDesc = document.getElementById('newProdSaleDesc').value.trim();
       const featuresStr = document.getElementById('newProdFeatures').value;
@@ -2469,7 +2561,8 @@
         name,
         price,
         tag,
-        img,
+        images: imagesArr.length ? imagesArr : [fallbackImage],
+        img: imagesArr[0] || fallbackImage,
         saleBadge,
         saleDesc,
         inStock,
