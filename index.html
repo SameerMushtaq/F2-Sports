@@ -249,7 +249,7 @@
       justify-content: center;
     }
 
-    /* CONTAINER 2: HERO SECTION */
+    /* CONTAINER 2: HERO SECTION WITH BLACK OUTLINE ON FALCON 2 */
     .hero-sports-wrapper {
       background: var(--hero-radial);
       border-bottom: 2px solid var(--border-theme);
@@ -327,6 +327,9 @@
       line-height: 1;
       margin: 2px 0;
       letter-spacing: -1px;
+      /* Black outline / stroke */
+      -webkit-text-stroke: 2px #000000;
+      text-shadow: 3px 3px 0px #000000, -1px -1px 0px #000000, 1px -1px 0px #000000, -1px 1px 0px #000000, 1px 1px 0px #000000;
     }
 
     .hero-title-suffix {
@@ -1171,25 +1174,6 @@
       background: var(--accent-primary-hover);
     }
 
-    /* CUSTOM SUCCESS MODAL CONTAINER */
-    .success-modal-content {
-      text-align: center;
-      padding: 20px 10px;
-    }
-
-    .success-modal-icon {
-      font-size: 3.5rem;
-      color: #10b981;
-      margin-bottom: 16px;
-      animation: bounceIn 0.5s ease;
-    }
-
-    @keyframes bounceIn {
-      0% { transform: scale(0); opacity: 0; }
-      60% { transform: scale(1.15); opacity: 1; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-
     /* DEDICATED BULK ORDER PAGE VIEW */
     .bulk-standalone-view {
       display: none;
@@ -1553,7 +1537,7 @@
       </div>
     </header>
 
-    <!-- CONTAINER 2: HERO SECTION WITH FULL-HEIGHT VERTICAL PNG PHOTOS & MULTI-COLOR FALCON 2 -->
+    <!-- CONTAINER 2: HERO SECTION WITH FULL-HEIGHT VERTICAL PNG PHOTOS & OUTLINED MULTI-COLOR FALCON 2 -->
     <section class="hero-sports-wrapper" id="home">
       <div class="hero-grid-showcase">
         <!-- LEFT 2 TRANSPARENT PNG PHOTOS -->
@@ -1566,12 +1550,12 @@
           </div>
         </div>
 
-        <!-- CENTER TEXT WITH MULTI-COLOR FALCON 2 -->
+        <!-- CENTER TEXT WITH MULTI-COLOR OUTLINED FALCON 2 -->
         <div class="hero-center-content">
           <h1>
             <span class="hero-title-prefix">Power Your Game With</span>
-            <span class="hero-title-main multi-color-text">FALCON 2 SPORTS</span>
-            <span class="hero-title-suffix">Mastercraft Bats</span>
+            <span class="hero-title-main multi-color-text">Falcon 2</span>
+            <span class="hero-title-suffix">Sports Mastercraft Bats</span>
           </h1>
           <p>Hand-crafted for extraordinary rebound ping, razor-sharp balance, and monster power hitting across all formats.</p>
         </div>
@@ -3111,7 +3095,7 @@
       renderAdminProductsTable();
     }
 
-    /* PROMPT POPUP CONFIRMATION FOR ORDER DELETION */
+    /* PROMPT POPUP CONFIRMATION FOR ORDER DELETION & PERSISTENT SAVE */
     function promptDeleteOrder(index) {
       const order = orders[index];
       document.getElementById('pendingDeleteOrderIndex').value = index;
@@ -3136,7 +3120,7 @@
         }
       }
       orders.splice(index, 1);
-      saveOrders();
+      saveOrders(); // Persist changes so orders do not come back on refresh
       updateAdminDashboard();
       closeDeleteOrderModal();
       showToast(`Order #${order.orderId} deleted successfully.`);
@@ -3156,7 +3140,7 @@
         const itemsListStr = order.items.map(i => `${i.name} (x${i.qty})`).join(', ');
         container.innerHTML += `
           <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:8px; padding:20px; margin-bottom:16px; position:relative;">
-            <!-- DELETE BUTTON PLACED ON THE OTHER CORNER (TOP RIGHT) -->
+            <!-- DELETE BUTTON PLACED ON THE OPPOSITE CORNER (TOP RIGHT) -->
             <div style="position: absolute; top: 16px; right: 16px;">
               <button class="admin-action-btn" style="background:#ef4444; color:#fff; padding: 6px 12px; font-weight: 700;" onclick="promptDeleteOrder(${index})">
                 <i class="fa-solid fa-trash"></i> Delete Order
