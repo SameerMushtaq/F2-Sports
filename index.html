@@ -822,7 +822,7 @@
       display: block;
     }
 
-    /* CUSTOM REQUEST FORM */
+    /* HARMONIZED CUSTOM REQUEST FORM */
     .custom-req-input, .custom-req-textarea {
       width: 100%;
       background: rgba(0, 0, 0, 0.25);
@@ -846,7 +846,7 @@
       box-shadow: 0 0 10px rgba(225, 29, 72, 0.3);
     }
 
-    /* MULTI-COLOR PROMINENT BRAND BANNER (INCREASED SIZE BY 10PX & LOGO ICON) */
+    /* MULTI-COLOR PROMINENT BRAND BANNER (+10PX LARGER WITH LOGO ICON) */
     .falcon-brand-banner {
       background: var(--bg-surface);
       padding: 36px 20px 24px;
@@ -920,9 +920,7 @@
       color: var(--accent-primary);
     }
 
-    /* ==========================================================================
-       ISOLATED CART DRAWER & MODAL OVERLAYS (PREVENTS BROKEN RENDER BUG)
-       ========================================================================== */
+    /* ISOLATED CART DRAWER & MODAL OVERLAYS */
     .cart-drawer-overlay, .modal-overlay {
       position: fixed;
       inset: 0;
@@ -1172,6 +1170,25 @@
 
     .btn-submit-order:hover {
       background: var(--accent-primary-hover);
+    }
+
+    /* CUSTOM SUCCESS MODAL CONTAINER */
+    .success-modal-content {
+      text-align: center;
+      padding: 20px 10px;
+    }
+
+    .success-modal-icon {
+      font-size: 3.5rem;
+      color: #10b981;
+      margin-bottom: 16px;
+      animation: bounceIn 0.5s ease;
+    }
+
+    @keyframes bounceIn {
+      0% { transform: scale(0); opacity: 0; }
+      60% { transform: scale(1.15); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
     }
 
     /* DEDICATED BULK ORDER PAGE VIEW */
@@ -1618,7 +1635,7 @@
         <div class="product-grid" id="tennisProductsGrid"></div>
       </section>
 
-      <!-- FOLLOW US ON SOCIAL MEDIA STRIP (INSTAGRAM ONLY) -->
+      <!-- FOLLOW US ON INSTAGRAM STRIP -->
       <section class="social-follow-strip">
         <div class="social-follow-wrapper">
           <a href="https://www.instagram.com/f2sports__?igsi=ZDNlZDc0MzIxNw==" target="_blank" class="social-btn instagram">
@@ -1705,7 +1722,7 @@
       </section>
     </main>
 
-    <!-- PROMINENT MULTI-COLOR BRAND BANNER -->
+    <!-- PROMINENT MULTI-COLOR BRAND BANNER (INCREASED SIZE BY 10PX & LOGO ICON) -->
     <div class="falcon-brand-banner">
       <div class="falcon-brand-banner-title">
         <img src="logo.png" alt="F2 Logo" class="falcon-banner-logo-img" onerror="this.style.display='none'" />
@@ -1714,7 +1731,7 @@
       <div class="falcon-brand-banner-tag">Mastercraft Cricket Blades &amp; High Velocity Dominators</div>
     </div>
 
-    <!-- MINIMAL CLEAN FOOTER -->
+    <!-- MINIMAL CLEAN FOOTER (TRADEMARKS ON TWO CORNERS, LOCATION IN MIDDLE) -->
     <footer>
       <div class="footer-bar-clean">
         <div><i class="fa-solid fa-trademark" style="color:var(--accent-primary);"></i> F2 SPORTS is a Registered Trademark</div>
@@ -1836,7 +1853,7 @@
         <button class="admin-tab-btn" onclick="switchAdminTab('hero-photos')"><i class="fa-solid fa-images"></i> Manage Header 4 Photos</button>
       </div>
 
-      <!-- TAB 1: ORDERS (WITH DELETE ORDER OPTION FOR FOUL PLAY) -->
+      <!-- TAB 1: ORDERS -->
       <div class="admin-tab-pane active" id="adminPaneOrders">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; flex-wrap:wrap; gap:10px;">
           <h4 style="font-size:1.2rem; color:var(--text-main);">Cloud Orders Record (Booking to Dispatch)</h4>
@@ -2037,6 +2054,25 @@
           </div>
           <button type="submit" class="btn-submit-order">Confirm &amp; Place Order</button>
         </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ORDER SUCCESS / THANK YOU MODAL CONTAINER -->
+  <div class="modal-overlay" id="orderSuccessModal" onclick="closeOrderSuccessModal()">
+    <div class="modal-box" onclick="event.stopPropagation()" style="max-width: 440px;">
+      <div class="modal-header">
+        <h3 style="font-size:1.2rem;"><i class="fa-solid fa-circle-check" style="color:#10b981;"></i> Order Successful</h3>
+        <button class="close-cart-btn" onclick="closeOrderSuccessModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body success-modal-content">
+        <div class="success-modal-icon">
+          <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <h3 class="multi-color-text" style="font-size: 1.8rem; font-weight: 800; margin-bottom: 8px;" id="successModalTitle">Falcon 2</h3>
+        <p style="font-size: 1rem; font-weight: 700; color: var(--text-main); margin-bottom: 6px;" id="successCustomerHeading">Thank you, Valued Player!</p>
+        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px;" id="successOrderIdText">Your order has been successfully recorded and sent to fulfillment.</p>
+        <button onclick="closeOrderSuccessModal()" class="btn-submit-order">Continue Shopping</button>
       </div>
     </div>
   </div>
@@ -2771,6 +2807,16 @@
       document.getElementById('checkoutModal').classList.remove('active');
     }
 
+    function openOrderSuccessModal(custName, orderId) {
+      document.getElementById('successCustomerHeading').innerText = `Thank you, ${custName}!`;
+      document.getElementById('successOrderIdText').innerText = `Your order #${orderId} has been successfully recorded.`;
+      document.getElementById('orderSuccessModal').classList.add('active');
+    }
+
+    function closeOrderSuccessModal() {
+      document.getElementById('orderSuccessModal').classList.remove('active');
+    }
+
     function toggleFaq(el) {
       el.parentElement.classList.toggle('active');
     }
@@ -2867,8 +2913,6 @@
         console.error("Web3Forms transmission notice:", err);
       }
 
-      alert(`🎉 Thank you, ${name}!\nYour order #${orderId} has been successfully recorded.`);
-
       if (submitBtn) {
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalBtnText;
@@ -2878,6 +2922,9 @@
       updateCartUI();
       closeCheckoutModal();
       document.getElementById('orderForm').reset();
+
+      // Open custom success modal container
+      openOrderSuccessModal(name, orderId);
     }
 
     function handleSuggestionSubmit(e) {
