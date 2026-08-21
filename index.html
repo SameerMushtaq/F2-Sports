@@ -220,12 +220,12 @@
       justify-content: center;
     }
 
-    /* NEON HERO SECTION */
+    /* NEON HERO SECTION (WITHOUT CATEGORY BUTTONS) */
     .hero {
       background: radial-gradient(circle at center, rgba(0, 136, 255, 0.22) 0%, rgba(4, 9, 20, 0.98) 75%), 
                   url('https://images.unsplash.com/photo-1531415074868-036b107e775a?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
       color: white;
-      padding: 90px 24px 75px;
+      padding: 95px 24px 80px;
       text-align: center;
       position: relative;
       border-bottom: 1px solid var(--border-neon);
@@ -298,7 +298,7 @@
       gap: 24px;
     }
 
-    /* NEON THEMED PRODUCT CARD */
+    /* NEON PRODUCT CARD */
     .product-card {
       background: var(--dark-card);
       border-radius: var(--radius);
@@ -1314,7 +1314,7 @@
     </div>
   </header>
 
-  <!-- HERO SECTION WITH CUSTOM TITLE AND NEON THEME -->
+  <!-- HERO SECTION WITH CUSTOM TITLE AND NEON THEME (BUTTONS REMOVED FROM THIS CONTAINER) -->
   <section class="hero" id="home">
     <h1>
       Power Your Game With <br>
@@ -1324,14 +1324,36 @@
     <p>Professional Cricket Bats handpicked for extraordinary ping, perfect balance, and monstrous power hitting across all formats.</p>
   </section>
 
+  <!-- PRODUCT SECTIONS WITH ALL 3 CATEGORIES RESTORED -->
   <main>
-    <section class="container" id="store-catalog">
+    <!-- 1. ENGLISH WILLOW CATEGORY SECTION -->
+    <section class="container" id="english-section">
       <div class="section-header">
-        <span class="section-subtitle">Championship Willow Series</span>
-        <h2 class="section-title">Official Bats Showcase</h2>
-        <p class="section-desc">Hand-selected master clefts engineered for explosive sweet spots and featherlight pickup.</p>
+        <span class="section-subtitle">International Standard</span>
+        <h2 class="section-title">English Willow Bats Collection</h2>
+        <p class="section-desc">Hand-crafted from genuine imported English Willow clefts for maximum rebound velocity and feather-light pickup.</p>
       </div>
-      <div class="product-grid" id="mainProductsGrid"></div>
+      <div class="product-grid" id="englishProductsGrid"></div>
+    </section>
+
+    <!-- 2. KASHMIR WILLOW CATEGORY SECTION -->
+    <section class="container" id="kashmir-section" style="padding-top: 0;">
+      <div class="section-header">
+        <span class="section-subtitle">Traditional Power</span>
+        <h2 class="section-title">Kashmir Willow Leather Bats Collection</h2>
+        <p class="section-desc">Selected Grade Kashmir Willow leather ball bats crafted with heavy spines and thick edges for tournament performance.</p>
+      </div>
+      <div class="product-grid" id="kashmirProductsGrid"></div>
+    </section>
+
+    <!-- 3. TENNIS CRICKET CATEGORY SECTION -->
+    <section class="container" id="tennis-section" style="padding-top: 0;">
+      <div class="section-header">
+        <span class="section-subtitle">Hard &amp; Soft Tennis Dominators</span>
+        <h2 class="section-title">Tennis Cricket Bats Collection</h2>
+        <p class="section-desc">Engineered specifically for tennis ball cricket with scoop and power-blade dynamics for 360-degree boundary clearing.</p>
+      </div>
+      <div class="product-grid" id="tennisProductsGrid"></div>
     </section>
 
     <!-- BULK ORDER SECTION -->
@@ -1421,6 +1443,7 @@
                 <thead>
                   <tr>
                     <th>Product</th>
+                    <th>Category</th>
                     <th>Price</th>
                     <th>Sale / Offer Tag</th>
                     <th>Stock</th>
@@ -1438,19 +1461,23 @@
               <form id="addNewProductForm" onsubmit="handleAdminAddNewProduct(event)">
                 <div class="form-grid-2">
                   <div class="form-group">
-                    <label class="form-label">Product Full Name / Title</label>
-                    <input type="text" id="newProdName" class="form-input" placeholder="e.g. F2 Mastercraft Power Pro Bat" required />
+                    <label class="form-label">Category Section</label>
+                    <select id="newProdCategory" class="form-select" required>
+                      <option value="english">English Willow Bats</option>
+                      <option value="kashmir">Kashmir Willow Bats</option>
+                      <option value="tennis">Tennis Cricket Bats</option>
+                    </select>
                   </div>
                   <div class="form-group">
-                    <label class="form-label">Price in Rs. (INR)</label>
-                    <input type="number" id="newProdPrice" class="form-input" placeholder="e.g. 17499" required />
+                    <label class="form-label">Product Full Name / Title</label>
+                    <input type="text" id="newProdName" class="form-input" placeholder="e.g. F2 Mastercraft Power Pro Bat" required />
                   </div>
                 </div>
 
                 <div class="form-grid-2">
                   <div class="form-group">
-                    <label class="form-label">Willow Specification Tag</label>
-                    <input type="text" id="newProdTag" class="form-input" placeholder="e.g. Grade 1 English Willow / Reserve Cleft" required />
+                    <label class="form-label">Price in Rs. (INR)</label>
+                    <input type="number" id="newProdPrice" class="form-input" placeholder="e.g. 17499" required />
                   </div>
                   <div class="form-group">
                     <label class="form-label">Image Filename / Main URL</label>
@@ -1640,19 +1667,23 @@
           
           <div class="form-grid-2">
             <div class="form-group">
-              <label class="form-label">Product Name</label>
-              <input type="text" id="editProdName" class="form-input" required />
+              <label class="form-label">Category Section</label>
+              <select id="editProdCategory" class="form-select" required>
+                <option value="english">English Willow Bats</option>
+                <option value="kashmir">Kashmir Willow Bats</option>
+                <option value="tennis">Tennis Cricket Bats</option>
+              </select>
             </div>
             <div class="form-group">
-              <label class="form-label">Price in Rs. (INR)</label>
-              <input type="number" id="editProdPrice" class="form-input" required />
+              <label class="form-label">Product Name</label>
+              <input type="text" id="editProdName" class="form-input" required />
             </div>
           </div>
 
           <div class="form-grid-2">
             <div class="form-group">
-              <label class="form-label">Willow Specification Tag</label>
-              <input type="text" id="editProdTag" class="form-input" required />
+              <label class="form-label">Price in Rs. (INR)</label>
+              <input type="number" id="editProdPrice" class="form-input" required />
             </div>
             <div class="form-group">
               <label class="form-label">Main Image URL / Path</label>
@@ -1710,27 +1741,26 @@
         <p>Precision handcrafted cricket bats designed for boundary power, premium aesthetics, and long-lasting match durability.</p>
       </div>
       <div class="footer-col">
-        <h4>Catalog</h4>
+        <h4>English Willow</h4>
         <ul class="footer-links">
-          <li><a href="#store-catalog">Pro Grade English Willow</a></li>
-          <li><a href="#store-catalog">Match Grade Bats</a></li>
-          <li><a href="#store-catalog">Power Tennis Series</a></li>
+          <li><a href="#english-section">Grade A English Willow</a></li>
+          <li><a href="#english-section">Grade B English Willow</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Quick Links</h4>
+        <h4>Kashmir Willow</h4>
         <ul class="footer-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#bulk-order">Bulk Procurement</a></li>
-          <li><a href="#help-suggestions">FAQs &amp; Help</a></li>
+          <li><a href="#kashmir-section">Players Edition</a></li>
+          <li><a href="#kashmir-section">Platinum</a></li>
+          <li><a href="#kashmir-section">Diamond</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Support</h4>
+        <h4>Tennis Series</h4>
         <ul class="footer-links">
-          <li><a href="#help-suggestions">Bat Care Guide</a></li>
-          <li><a href="#help-suggestions">Custom Profiling</a></li>
-          <li><a href="javascript:void(0)" onclick="triggerAdminModal()">Admin Login</a></li>
+          <li><a href="#tennis-section">Designed</a></li>
+          <li><a href="#tennis-section">Without Design</a></li>
+          <li><a href="#tennis-section">Popular</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -1776,9 +1806,9 @@
     const initialProducts = [
       {
         id: 'EW1',
+        category: 'english',
         name: 'F2 Pro Grade A English Willow Bat',
         price: 17499,
-        tag: 'Grade A Cleft',
         img: './grade_a_english.jpg',
         images: ['./grade_a_english.jpg'],
         inStock: true,
@@ -1788,9 +1818,9 @@
       },
       {
         id: 'EW2',
+        category: 'english',
         name: 'F2 Match Grade B English Willow Bat',
         price: 16999,
-        tag: 'Grade B Cleft',
         img: './grade_b_english.jpg',
         images: ['./grade_b_english.jpg'],
         inStock: true,
@@ -1800,9 +1830,9 @@
       },
       {
         id: 'KW1',
+        category: 'kashmir',
         name: 'F2 Players Edition Kashmir Leather Bat',
         price: 7999,
-        tag: 'Top Reserve KW',
         img: './Players_edition.jpg',
         images: ['./Players_edition.jpg'],
         inStock: true,
@@ -1811,16 +1841,124 @@
         features: ['Selected Kashmir Willow Grains', '40mm Heavy Edges', 'Full Spine Profile (1190–1210g)']
       },
       {
+        id: 'KW2',
+        category: 'kashmir',
+        name: 'F2 Platinum Leather Bat',
+        price: 6499,
+        img: './platinum.jpg',
+        images: ['./platinum.jpg'],
+        inStock: true,
+        saleBadge: '',
+        saleDesc: '',
+        features: ['Natural Wood Dense Grains', '38mm Thick Edges', 'Curved Power Profile (1180–1200g)']
+      },
+      {
+        id: 'KW3',
+        category: 'kashmir',
+        name: 'F2 Diamond Leather Bat',
+        price: 5199,
+        img: './diamond.jpg',
+        images: ['./diamond.jpg'],
+        inStock: true,
+        saleBadge: '',
+        saleDesc: '',
+        features: ['Hard-Pressed Willow Face', '38mm Robust Edges', 'Balanced Pickup Profile (1180g)']
+      },
+      {
+        id: 'KW4',
+        category: 'kashmir',
+        name: 'F2 Gold Reserve Leather Bat',
+        price: 4199,
+        img: './gold.jpg',
+        images: ['./gold.jpg'],
+        inStock: false,
+        saleBadge: '',
+        saleDesc: '',
+        features: ['Clean Natural Face', '36mm Match Edges', 'Full Spine Swell (1190g)']
+      },
+      {
+        id: 'KW5',
+        category: 'kashmir',
+        name: 'F2 Silver Club Leather Bat',
+        price: 3299,
+        img: './silver.jpg',
+        images: ['./silver.jpg'],
+        inStock: true,
+        saleBadge: '',
+        saleDesc: '',
+        features: ['Durable Seasoned Grains', '35mm Edges', 'Light Swing Weight (1170g)']
+      },
+      {
         id: 'TN1',
+        category: 'tennis',
         name: 'F2 Laser-Designed Hard Tennis Bat',
         price: 2499,
-        tag: 'UV 3D Graphics',
         img: './designed.jpg',
         images: ['./designed.jpg'],
         inStock: true,
         saleBadge: '10% OFF',
         saleDesc: 'Turf Special',
         features: ['High-Gloss UV Graphics', '50mm Monster Blade', 'Featherlight Pickup (1030g)']
+      },
+      {
+        id: 'TN2',
+        category: 'tennis',
+        name: 'F2 Classic Raw (Without Design) Tennis Bat',
+        price: 1999,
+        img: './without_design.jpg',
+        images: ['./without_design.jpg'],
+        inStock: true,
+        saleBadge: '',
+        saleDesc: '',
+        features: ['Natural Wood Polish Grains', 'Thick Center Meat Profile', 'Even Balance (1040g)']
+      },
+      {
+        id: 'TN3',
+        category: 'tennis',
+        name: 'F2 Popular Turf Dominator Tennis Bat',
+        price: 1799,
+        img: './popular.jpg',
+        images: ['./popular.jpg'],
+        inStock: true,
+        saleBadge: '',
+        saleDesc: '',
+        features: ['Duckbill Toe Dynamic', 'Soft & Light Tennis Spec', 'Fast Aero Swing (1010g)']
+      },
+      {
+        id: 'TN4',
+        category: 'tennis',
+        name: 'F2 Full Cane Handle Tennis Bat',
+        price: 2899,
+        img: './cane.jpg',
+        images: ['./cane.jpg'],
+        inStock: false,
+        saleBadge: '',
+        saleDesc: '',
+        features: ['9-Piece Cane Shock Absorber', 'Extra Thick Edges', 'Heavy Hard Ball Punch (1060g)']
+      },
+      {
+        id: 'TN5',
+        category: 'tennis',
+        name: 'F2 Kissan Tennis Heavy Punch Bat',
+        price: 2299,
+        img: './kissan_tennis.jpg',
+        images: ['./kissan_tennis.jpg'],
+        inStock: true,
+        saleBadge: '',
+        saleDesc: '',
+        features: ['4.5-Inch Broad Blade', 'Hard Seasoned Willow', 'Heavy Red Ball Power (1080g)']
+      },
+      {
+        id: 'TN6',
+        category: 'tennis',
+        name: 'F2 36-Inch Long Blade Monster Tennis Bat',
+        price: 2999,
+        img: './36inch.jpg',
+        images: ['./36inch.jpg'],
+        inStock: true,
+        saleBadge: '',
+        saleDesc: '',
+        features: ['Extended 36-Inch Leverage', 'Extra Reach Wide Profile', 'Monstrous Leverage (1070g)']
       }
     ];
 
@@ -1908,10 +2046,15 @@
     }
 
     function renderProducts() {
-      const mainContainer = document.getElementById('mainProductsGrid');
-      if (!mainContainer) return;
+      const englishContainer = document.getElementById('englishProductsGrid');
+      const kashmirContainer = document.getElementById('kashmirProductsGrid');
+      const tennisContainer = document.getElementById('tennisProductsGrid');
 
-      mainContainer.innerHTML = '';
+      if (!englishContainer || !kashmirContainer || !tennisContainer) return;
+
+      englishContainer.innerHTML = '';
+      kashmirContainer.innerHTML = '';
+      tennisContainer.innerHTML = '';
 
       products.forEach(product => {
         const qty = cart[product.id] ? cart[product.id].qty : 0;
@@ -1980,7 +2123,13 @@
           </div>
         `;
 
-        mainContainer.innerHTML += cardHtml;
+        if (product.category === 'english') {
+          englishContainer.innerHTML += cardHtml;
+        } else if (product.category === 'kashmir') {
+          kashmirContainer.innerHTML += cardHtml;
+        } else if (product.category === 'tennis') {
+          tennisContainer.innerHTML += cardHtml;
+        }
       });
     }
 
@@ -2338,6 +2487,7 @@
                 </div>
               </div>
             </td>
+            <td style="text-transform:capitalize; color:var(--neon-cyan);">${p.category}</td>
             <td>Rs. ${Number(p.price).toLocaleString('en-IN')}</td>
             <td>
               <div>${saleBadgeStr}</div>
@@ -2371,9 +2521,9 @@
       if (!prod) return;
 
       document.getElementById('editProdId').value = prod.id;
+      document.getElementById('editProdCategory').value = prod.category;
       document.getElementById('editProdName').value = prod.name;
       document.getElementById('editProdPrice').value = prod.price;
-      document.getElementById('editProdTag').value = prod.tag;
       document.getElementById('editProdImg').value = prod.img;
       document.getElementById('editProdSaleBadge').value = prod.saleBadge || '';
       document.getElementById('editProdSaleDesc').value = prod.saleDesc || '';
@@ -2479,9 +2629,9 @@
 
       products[index] = {
         ...products[index],
+        category: document.getElementById('editProdCategory').value,
         name: document.getElementById('editProdName').value,
         price: Number(document.getElementById('editProdPrice').value),
-        tag: document.getElementById('editProdTag').value,
         img: mainImg,
         images: tempEditImages.length > 0 ? tempEditImages : [mainImg],
         saleBadge: document.getElementById('editProdSaleBadge').value.trim(),
@@ -2499,9 +2649,9 @@
 
     function handleAdminAddNewProduct(e) {
       e.preventDefault();
+      const category = document.getElementById('newProdCategory').value;
       const name = document.getElementById('newProdName').value;
       const price = Number(document.getElementById('newProdPrice').value);
-      const tag = document.getElementById('newProdTag').value;
       const img = document.getElementById('newProdImg').value;
       const saleBadge = document.getElementById('newProdSaleBadge').value.trim();
       const saleDesc = document.getElementById('newProdSaleDesc').value.trim();
@@ -2512,9 +2662,9 @@
 
       const newProduct = {
         id: 'PROD-' + Date.now(),
+        category,
         name,
         price,
-        tag,
         img,
         images: [img],
         saleBadge,
