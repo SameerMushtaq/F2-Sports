@@ -100,7 +100,7 @@
     .logo-container {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       text-decoration: none;
       flex-shrink: 0;
     }
@@ -1537,7 +1537,7 @@
   <div id="storefrontView">
     <header>
       <div class="navbar">
-        <!-- LOGO AT LEFT CORNER WITH DOUBLE-CLICK TRIGGER TO OPEN ADMIN LOGIN & ACTIVE ADMIN WELCOME BADGE -->
+        <!-- LOGO AT LEFT CORNER WITH DOUBLE-CLICK TRIGGER TO OPEN ADMIN LOGIN & WELCOME BADGE -->
         <div class="logo-container">
           <img src="logo.png" alt="F2 Sports Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
           <div class="logo-fallback" style="display:none;">F2</div>
@@ -1545,7 +1545,7 @@
             <span class="logo-title">F2 <span>SPORTS</span></span>
             <span class="logo-tagline">Engineered For Champions</span>
           </div>
-          <!-- Welcome Admin badge placed right after logo on top bar -->
+          <!-- Welcome Admin badge placed right in the top navbar -->
           <div class="admin-welcome-top-badge" id="adminWelcomeBadge">
             <i class="fa-solid fa-user-shield"></i> <span id="adminWelcomeText">Welcome</span>
           </div>
@@ -1574,7 +1574,7 @@
       </div>
     </header>
 
-    <!-- CONTAINER 2: HERO SECTION WITH FULL-HEIGHT VERTICAL PNG PHOTOS & MULTI-COLOR FALCON 2 (NO STROKE) -->
+    <!-- CONTAINER 2: HERO SECTION -->
     <section class="hero-sports-wrapper" id="home">
       <div class="hero-grid-showcase">
         <!-- LEFT 2 TRANSPARENT PNG PHOTOS -->
@@ -3020,7 +3020,7 @@
       document.getElementById('activeAdminHeaderLabel').innerText = `Active Admin: ${adminName}`;
       document.getElementById('activeAdminUserDisplay').innerText = adminName;
       
-      // Update top bar welcome badge
+      // Update welcome banner on top bar
       const badge = document.getElementById('adminWelcomeBadge');
       const text = document.getElementById('adminWelcomeText');
       if (badge && text) {
@@ -3037,8 +3037,18 @@
       document.getElementById('adminStandaloneView').style.display = 'none';
       document.getElementById('bulkStandaloneView').style.display = 'none';
       document.getElementById('storefrontView').style.display = 'block';
+      
+      // Keep welcome badge visible on storefront header if logged in
+      const activeAdmin = sessionStorage.getItem('f2_active_admin_user');
       const badge = document.getElementById('adminWelcomeBadge');
-      if (badge) badge.style.display = 'none';
+      const text = document.getElementById('adminWelcomeText');
+      if (activeAdmin && badge && text) {
+        text.innerText = `Welcome ${activeAdmin}`;
+        badge.style.display = 'flex';
+      } else if (badge) {
+        badge.style.display = 'none';
+      }
+
       window.scrollTo(0, 0);
     }
 
