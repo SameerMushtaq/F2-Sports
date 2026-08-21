@@ -195,6 +195,19 @@
       flex-shrink: 0;
     }
 
+    .admin-welcome-badge {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent-gold);
+      background: rgba(251, 191, 36, 0.1);
+      padding: 6px 12px;
+      border-radius: 50px;
+      border: 1px solid rgba(251, 191, 36, 0.3);
+      display: none;
+      align-items: center;
+      gap: 6px;
+    }
+
     .theme-toggle-btn {
       background: var(--bg-surface);
       border: 1.5px solid var(--border-theme);
@@ -249,7 +262,7 @@
       justify-content: center;
     }
 
-    /* CONTAINER 2: HERO SECTION WITH ENLARGED MULTI-COLOR FALCON 2 (NO STROKE) */
+    /* CONTAINER 2: HERO SECTION */
     .hero-sports-wrapper {
       background: var(--hero-radial);
       border-bottom: 2px solid var(--border-theme);
@@ -1540,8 +1553,11 @@
           <li><a href="javascript:void(0)" onclick="openBulkOrderPage()"><i class="fa-solid fa-truck-ramp-box"></i> Bulk Order</a></li>
         </ul>
 
-        <!-- RIGHT CORNER: THEME TOGGLE & CART -->
+        <!-- RIGHT CORNER: WELCOME ADMIN BADGE, THEME TOGGLE & CART -->
         <div class="nav-actions">
+          <div class="admin-welcome-badge" id="adminWelcomeBadge">
+            <i class="fa-solid fa-user-shield"></i> <span id="adminWelcomeText">Welcome</span>
+          </div>
           <button class="theme-toggle-btn" onclick="toggleColorTheme()" title="Toggle Color Theme">
             <i class="fa-solid fa-circle-half-stroke"></i> <span id="themeToggleLabel">Green Mode</span>
           </button>
@@ -2999,6 +3015,15 @@
       document.getElementById('adminStandaloneView').style.display = 'block';
       document.getElementById('activeAdminHeaderLabel').innerText = `Active Admin: ${adminName}`;
       document.getElementById('activeAdminUserDisplay').innerText = adminName;
+      
+      // Update welcome banner on top bar if active
+      const badge = document.getElementById('adminWelcomeBadge');
+      const text = document.getElementById('adminWelcomeText');
+      if (badge && text) {
+        text.innerText = `Welcome ${adminName}`;
+        badge.style.display = 'flex';
+      }
+
       applyHeroPhotos();
       updateAdminDashboard();
       window.scrollTo(0, 0);
@@ -3008,12 +3033,16 @@
       document.getElementById('adminStandaloneView').style.display = 'none';
       document.getElementById('bulkStandaloneView').style.display = 'none';
       document.getElementById('storefrontView').style.display = 'block';
+      const badge = document.getElementById('adminWelcomeBadge');
+      if (badge) badge.style.display = 'none';
       window.scrollTo(0, 0);
     }
 
     function handleMainAdminLogout() {
       sessionStorage.removeItem('f2_active_admin_user');
       showToast('Logged out from Admin Dashboard');
+      const badge = document.getElementById('adminWelcomeBadge');
+      if (badge) badge.style.display = 'none';
       returnToStorefront();
     }
 
@@ -3130,14 +3159,11 @@
 
       if (supabaseClient) {
         try {
-          // Permanently delete record from Supabase table using docId (uuid) or order_id
           if (order.docId) {
-            const { error } = await supabaseClient.from('orders').delete().eq('id', order.docId);
-            if (error) console.error("Supabase delete error by id:", error);
+            await supabaseClient.from('orders').delete().eq('id', order.docId);
           }
           if (order.orderId) {
-            const { error } = await supabaseClient.from('orders').delete().eq('order_id', order.orderId);
-            if (error) console.error("Supabase delete error by order_id:", error);
+            await supabaseClient.from('orders').delete().eq('order_id', order.orderId);
           }
         } catch (e) {
           console.error("Supabase order deletion exception:", e);
@@ -3145,7 +3171,7 @@
       }
       
       orders.splice(index, 1);
-      saveOrders(); // Persist local array updates so refreshed sessions don't restore deleted orders
+      saveOrders();
       updateAdminDashboard();
       closeDeleteOrderModal();
       showToast(`Order #${order.orderId} deleted from database successfully.`);
