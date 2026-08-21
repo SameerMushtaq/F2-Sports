@@ -264,37 +264,41 @@
       justify-content: center;
     }
 
-    /* CONTAINER 2: HERO SECTION WITH 4+4 (TOTAL 8) PICTURES SHOWCASE */
+    /* CONTAINER 2: HERO SECTION WITH 3+3 (TOTAL 6) PICTURES IN A SINGLE ROW ON BOTH SIDES */
     .hero-sports-wrapper {
       background: var(--hero-radial);
       border-bottom: 2px solid var(--border-theme);
       position: relative;
       overflow: hidden;
       padding: 10px 20px;
-      min-height: 310px;
+      min-height: 260px;
       display: flex;
       align-items: center;
     }
 
     .hero-grid-showcase {
-      max-width: 1500px;
+      max-width: 1600px;
       width: 100%;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 380px 1fr 380px;
+      grid-template-columns: 460px 1fr 460px;
       align-items: stretch;
-      gap: 20px;
+      gap: 15px;
     }
 
     .hero-side-column {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
       align-items: center;
+      gap: 8px;
+      width: 100%;
+      height: 100%;
     }
 
     .hero-png-item {
-      height: 240px;
+      flex: 1;
+      height: 210px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -333,7 +337,7 @@
     }
 
     .hero-title-main {
-      font-size: 4.6rem;
+      font-size: 4.2rem;
       font-weight: 900;
       display: block;
       line-height: 1;
@@ -342,7 +346,7 @@
     }
 
     .hero-title-suffix {
-      font-size: 1.45rem;
+      font-size: 1.35rem;
       font-weight: 700;
       color: var(--accent-secondary);
       display: block;
@@ -354,7 +358,7 @@
     .hero-center-content p {
       font-size: 0.9rem;
       color: var(--text-muted);
-      max-width: 540px;
+      max-width: 500px;
       margin: 8px auto 0;
       line-height: 1.4;
       font-weight: 500;
@@ -1494,7 +1498,7 @@
       object-fit: contain;
     }
 
-    @media (max-width: 1100px) {
+    @media (max-width: 1200px) {
       .nav-links {
         display: none;
       }
@@ -1508,8 +1512,8 @@
       }
       .hero-side-column {
         justify-content: center;
-        grid-template-columns: repeat(4, 1fr);
-        height: 140px;
+        grid-template-columns: repeat(3, 1fr);
+        height: 160px;
       }
     }
 
@@ -1570,33 +1574,31 @@
       </div>
     </header>
 
-    <!-- CONTAINER 2: HERO SECTION WITH 4+4 (TOTAL 8) PICTURES SHOWCASE (4 ON LEFT, 4 ON RIGHT) -->
+    <!-- CONTAINER 2: HERO SECTION WITH 3+3 (TOTAL 6) PICTURES IN A SINGLE ROW ON BOTH SIDES -->
     <section class="hero-sports-wrapper" id="home">
       <div class="hero-grid-showcase">
-        <!-- LEFT 4 PICTURES (2x2 GRID) -->
+        <!-- LEFT 3 PICTURES IN A SINGLE ROW -->
         <div class="hero-side-column">
           <div class="hero-png-item"><img src="./hero_bat_1.png" id="heroPhotoImg1" class="hero-png-img" alt="Bat 1" onerror="handleImgError(this)" /></div>
           <div class="hero-png-item"><img src="./hero_bat_2.png" id="heroPhotoImg2" class="hero-png-img" alt="Bat 2" onerror="handleImgError(this)" /></div>
           <div class="hero-png-item"><img src="./hero_bat_1.png" id="heroPhotoImg5" class="hero-png-img" alt="Bat 5" onerror="handleImgError(this)" /></div>
-          <div class="hero-png-item"><img src="./hero_bat_2.png" id="heroPhotoImg6" class="hero-png-img" alt="Bat 6" onerror="handleImgError(this)" /></div>
         </div>
 
         <!-- CENTER TEXT WITH MULTI-COLOR FALCON 2 -->
         <div class="hero-center-content">
           <h1>
             <span class="hero-title-prefix">Power Your Game With</span>
-            <span class="hero-title-main multi-color-text">Falcon 2</span>
-            <span class="hero-title-suffix">Sports Mastercraft Bats</span>
+            <span class="hero-title-main multi-color-text">FALCON 2 SPORTS</span>
+            <span class="hero-title-suffix">Mastercraft Bats</span>
           </h1>
           <p>Hand-crafted for extraordinary rebound ping, razor-sharp balance, and monster power hitting across all formats.</p>
         </div>
 
-        <!-- RIGHT 4 PICTURES (2x2 GRID) -->
+        <!-- RIGHT 3 PICTURES IN A SINGLE ROW -->
         <div class="hero-side-column">
           <div class="hero-png-item"><img src="./hero_bat_3.png" id="heroPhotoImg3" class="hero-png-img" alt="Bat 3" onerror="handleImgError(this)" /></div>
           <div class="hero-png-item"><img src="./hero_bat_4.png" id="heroPhotoImg4" class="hero-png-img" alt="Bat 4" onerror="handleImgError(this)" /></div>
-          <div class="hero-png-item"><img src="./hero_bat_3.png" id="heroPhotoImg7" class="hero-png-img" alt="Bat 7" onerror="handleImgError(this)" /></div>
-          <div class="hero-png-item"><img src="./hero_bat_4.png" id="heroPhotoImg8" class="hero-png-img" alt="Bat 8" onerror="handleImgError(this)" /></div>
+          <div class="hero-png-item"><img src="./hero_bat_3.png" id="heroPhotoImg6" class="hero-png-img" alt="Bat 6" onerror="handleImgError(this)" /></div>
         </div>
       </div>
     </section>
@@ -1743,7 +1745,7 @@
       <div class="falcon-brand-banner-tag">Mastercraft Cricket Blades &amp; High Velocity Dominators</div>
     </div>
 
-    <!-- MINIMAL CLEAN FOOTER (NO EXTRA TEXT AT BOTTOM, TRADEMARKS + LOCATION ONLY) -->
+    <!-- MINIMAL CLEAN FOOTER (CLEANED UP COMPLETELY WITHOUT EXTRA MESSAGES AT THE BOTTOM) -->
     <footer>
       <div class="footer-bar-clean">
         <div><i class="fa-solid fa-trademark" style="color:var(--accent-primary);"></i> F2 SPORTS is a Registered Trademark</div>
@@ -1862,7 +1864,7 @@
         <button class="admin-tab-btn active" onclick="switchAdminTab('orders')"><i class="fa-solid fa-clipboard-list"></i> Customer Orders (<span id="adminOrdersTabCount">0</span>)</button>
         <button class="admin-tab-btn" onclick="switchAdminTab('products')"><i class="fa-solid fa-boxes-packing"></i> Manage Catalog (<span id="adminProdsTabCount">0</span>)</button>
         <button class="admin-tab-btn" onclick="switchAdminTab('add-product')"><i class="fa-solid fa-plus-circle"></i> Add New Bat</button>
-        <button class="admin-tab-btn" onclick="switchAdminTab('hero-photos')"><i class="fa-solid fa-images"></i> Manage Header 4 Photos</button>
+        <button class="admin-tab-btn" onclick="switchAdminTab('hero-photos')"><i class="fa-solid fa-images"></i> Manage Header Photos</button>
       </div>
 
       <!-- TAB 1: ORDERS -->
@@ -1958,43 +1960,42 @@
         </div>
       </div>
 
-      <!-- TAB 4: HEADER 4 PHOTOS MANAGER -->
+      <!-- TAB 4: HEADER PHOTOS MANAGER -->
       <div class="admin-tab-pane" id="adminPaneHeroPhotos">
         <div class="admin-form-box">
-          <h4 style="font-size:1.2rem; color:var(--text-main); margin-bottom:8px;"><i class="fa-solid fa-images" style="color:var(--accent-primary);"></i> Change 2nd Container Header Photos (4 Transparent PNGs)</h4>
+          <h4 style="font-size:1.2rem; color:var(--text-main); margin-bottom:8px;"><i class="fa-solid fa-images" style="color:var(--accent-primary);"></i> Change 2nd Container Header Photos (6 Transparent PNGs)</h4>
           <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:20px;">Upload transparent background .png photos for the left and right showcase slots in the 2nd container.</p>
 
           <div class="hero-editor-grid">
             <div class="hero-slot-card">
               <span class="form-label">Left Slot 1</span>
-              <div class="hero-slot-preview">
-                <img src="./hero_bat_1.png" id="slotPreviewImg1" alt="Slot 1 Preview" onerror="handleImgError(this)" />
-              </div>
+              <div class="hero-slot-preview"><img src="./hero_bat_1.png" id="slotPreviewImg1" alt="Slot 1" onerror="handleImgError(this)" /></div>
               <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 0)" class="form-input" style="font-size:0.75rem;" />
             </div>
-
             <div class="hero-slot-card">
               <span class="form-label">Left Slot 2</span>
-              <div class="hero-slot-preview">
-                <img src="./hero_bat_2.png" id="slotPreviewImg2" alt="Slot 2 Preview" onerror="handleImgError(this)" />
-              </div>
+              <div class="hero-slot-preview"><img src="./hero_bat_2.png" id="slotPreviewImg2" alt="Slot 2" onerror="handleImgError(this)" /></div>
               <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 1)" class="form-input" style="font-size:0.75rem;" />
             </div>
-
+            <div class="hero-slot-card">
+              <span class="form-label">Left Slot 3</span>
+              <div class="hero-slot-preview"><img src="./hero_bat_1.png" id="slotPreviewImg5" alt="Slot 5" onerror="handleImgError(this)" /></div>
+              <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 4)" class="form-input" style="font-size:0.75rem;" />
+            </div>
             <div class="hero-slot-card">
               <span class="form-label">Right Slot 1</span>
-              <div class="hero-slot-preview">
-                <img src="./hero_bat_3.png" id="slotPreviewImg3" alt="Slot 3 Preview" onerror="handleImgError(this)" />
-              </div>
+              <div class="hero-slot-preview"><img src="./hero_bat_3.png" id="slotPreviewImg3" alt="Slot 3" onerror="handleImgError(this)" /></div>
               <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 2)" class="form-input" style="font-size:0.75rem;" />
             </div>
-
             <div class="hero-slot-card">
               <span class="form-label">Right Slot 2</span>
-              <div class="hero-slot-preview">
-                <img src="./hero_bat_4.png" id="slotPreviewImg4" alt="Slot 4 Preview" onerror="handleImgError(this)" />
-              </div>
+              <div class="hero-slot-preview"><img src="./hero_bat_4.png" id="slotPreviewImg4" alt="Slot 4" onerror="handleImgError(this)" /></div>
               <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 3)" class="form-input" style="font-size:0.75rem;" />
+            </div>
+            <div class="hero-slot-card">
+              <span class="form-label">Right Slot 3</span>
+              <div class="hero-slot-preview"><img src="./hero_bat_3.png" id="slotPreviewImg6" alt="Slot 6" onerror="handleImgError(this)" /></div>
+              <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 5)" class="form-input" style="font-size:0.75rem;" />
             </div>
           </div>
           <div id="heroPhotoUploadStatus" style="color:var(--accent-primary); font-size:0.85rem; font-weight:700; margin-top:14px; display:none;"></div>
@@ -2329,16 +2330,14 @@
       showToast(`Switched to ${currentTheme === 'dark-red' ? 'Complete Dark Red' : 'Light Green Blue'} Mode`);
     }
 
-    // Default 8 Header Showcase Transparent PNGs (4 left, 4 right)
+    // Default 6 Header Showcase Transparent PNGs (3 left, 3 right)
     const defaultHeroPhotos = [
       './hero_bat_1.png',
       './hero_bat_2.png',
       './hero_bat_3.png',
       './hero_bat_4.png',
       './hero_bat_1.png',
-      './hero_bat_2.png',
-      './hero_bat_3.png',
-      './hero_bat_4.png'
+      './hero_bat_3.png'
     ];
 
     let heroPhotos = JSON.parse(localStorage.getItem('f2_hero_photos')) || defaultHeroPhotos;
@@ -2520,7 +2519,7 @@
     }
 
     function applyHeroPhotos() {
-      for (let i = 0; i < 8; i++) {
+      for (let i = 0; i < 6; i++) {
         const heroElem = document.getElementById(`heroPhotoImg${i + 1}`);
         const slotElem = document.getElementById(`slotPreviewImg${i + 1}`);
         if (heroElem && heroPhotos[i]) heroElem.src = heroPhotos[i];
