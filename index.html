@@ -264,6 +264,7 @@
       justify-content: center;
     }
 
+    /* CONTAINER 2: HERO SECTION WITH 3+3 (TOTAL 6) PICTURES IN A SINGLE ROW ON BOTH SIDES */
     .hero-sports-wrapper {
       background: var(--hero-radial);
       border-bottom: 2px solid var(--border-theme);
@@ -363,6 +364,7 @@
       font-weight: 500;
     }
 
+    /* FLOATING TICKER STRIP */
     .floating-ticker-wrapper {
       background: var(--ticker-bg);
       border-top: 1px solid rgba(255, 255, 255, 0.2);
@@ -434,6 +436,7 @@
       font-size: 0.92rem;
     }
 
+    /* 5 CARDS IN A ROW PRODUCT GRID */
     .product-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -705,6 +708,7 @@
       color: var(--text-main);
     }
 
+    /* FULLSCREEN LIGHTBOX */
     .lightbox-modal {
       position: fixed;
       inset: 0;
@@ -756,6 +760,7 @@
       background: var(--accent-primary);
     }
 
+    /* SOCIAL FOLLOW STRIP */
     .social-follow-strip {
       background: var(--bg-surface);
       border-top: 1px solid var(--border-subtle);
@@ -796,6 +801,7 @@
       box-shadow: 0 6px 16px rgba(220, 39, 67, 0.45);
     }
 
+    /* COMPACT PLAYER SUPPORT CONTAINER */
     .info-section {
       background: var(--bg-surface);
       border-bottom: 1px solid var(--border-subtle);
@@ -852,6 +858,7 @@
       display: block;
     }
 
+    /* CUSTOM REQUEST FORM */
     .custom-req-input, .custom-req-textarea {
       width: 100%;
       background: rgba(0, 0, 0, 0.25);
@@ -875,6 +882,7 @@
       box-shadow: 0 0 10px rgba(225, 29, 72, 0.3);
     }
 
+    /* MULTI-COLOR PROMINENT BRAND BANNER */
     .falcon-brand-banner {
       background: var(--bg-surface);
       padding: 36px 20px 24px;
@@ -916,6 +924,7 @@
       margin-top: 6px;
     }
 
+    /* CLEAN MINIMAL FOOTER */
     footer {
       background: var(--bg-main);
       color: var(--text-muted);
@@ -947,6 +956,7 @@
       color: var(--accent-primary);
     }
 
+    /* ISOLATED CART DRAWER & MODAL OVERLAYS */
     .cart-drawer-overlay, .modal-overlay {
       position: fixed;
       inset: 0;
@@ -1147,7 +1157,6 @@
       background: white;
       padding: 8px;
       border-radius: 6px;
-      object-fit: contain;
     }
 
     .form-group {
@@ -1199,6 +1208,7 @@
       background: var(--accent-primary-hover);
     }
 
+    /* CUSTOM SUCCESS MODAL CONTAINER */
     .success-modal-content {
       text-align: center;
       padding: 20px 10px;
@@ -1217,6 +1227,7 @@
       100% { transform: scale(1); opacity: 1; }
     }
 
+    /* DEDICATED BULK ORDER PAGE VIEW */
     .bulk-standalone-view {
       display: none;
       min-height: 100vh;
@@ -1277,6 +1288,7 @@
       color: var(--text-muted);
     }
 
+    /* DEDICATED ADMIN PORTAL VIEW */
     .admin-standalone-view {
       display: none;
       min-height: 100vh;
@@ -1505,6 +1517,34 @@
       max-width: 100%;
       object-fit: contain;
     }
+
+    @media (max-width: 1400px) {
+      .hero-sports-wrapper {
+        height: auto;
+        padding: 30px 20px;
+      }
+      .hero-grid-showcase {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .hero-side-column {
+        justify-content: center;
+        height: 180px;
+      }
+    }
+
+    @media (max-width: 992px) {
+      .footer-bar-clean {
+        flex-direction: column;
+        text-align: center;
+      }
+      .hero-title-main {
+        font-size: 3.2rem;
+      }
+      .falcon-brand-banner-title {
+        font-size: 2.3rem;
+      }
+    }
   </style>
 </head>
 <body data-theme="dark-red">
@@ -1513,6 +1553,7 @@
   <div id="storefrontView">
     <header>
       <div class="navbar">
+        <!-- LOGO AT LEFT CORNER WITH DOUBLE-CLICK TRIGGER TO OPEN ADMIN LOGIN -->
         <div class="logo-container">
           <img src="logo.png" alt="F2 Sports Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
           <div class="logo-fallback" style="display:none;">F2</div>
@@ -1520,11 +1561,13 @@
             <span class="logo-title">F2 <span>SPORTS</span></span>
             <span class="logo-tagline">Engineered For Champions</span>
           </div>
+          <!-- Welcome Admin badge placed right in the top navbar -->
           <div class="admin-welcome-top-badge" id="adminWelcomeBadge">
             <i class="fa-solid fa-user-shield"></i> <span id="adminWelcomeText">Welcome</span>
           </div>
         </div>
 
+        <!-- CENTERED NAVIGATION -->
         <ul class="nav-links">
           <li><a href="#home"><i class="fa-solid fa-house"></i> Home</a></li>
           <li><a href="#kashmir-section"><i class="fa-solid fa-shield-halved"></i> Kashmir Willow</a></li>
@@ -1533,6 +1576,7 @@
           <li><a href="javascript:void(0)" onclick="openBulkOrderPage()"><i class="fa-solid fa-truck-ramp-box"></i> Bulk Order</a></li>
         </ul>
 
+        <!-- RIGHT CORNER: THEME TOGGLE & CART -->
         <div class="nav-actions">
           <button class="theme-toggle-btn" onclick="toggleColorTheme()" title="Toggle Color Theme">
             <i class="fa-solid fa-circle-half-stroke"></i> <span id="themeToggleLabel">Green Mode</span>
@@ -1546,14 +1590,17 @@
       </div>
     </header>
 
+    <!-- CONTAINER 2: HERO SECTION WITH 3+3 (TOTAL 6) PICTURES IN A SINGLE ROW ON BOTH SIDES -->
     <section class="hero-sports-wrapper" id="home">
       <div class="hero-grid-showcase">
+        <!-- LEFT 3 PICTURES IN A SINGLE ROW -->
         <div class="hero-side-column">
           <div class="hero-png-item"><img src="./hero_bat_1.png" id="heroPhotoImg1" class="hero-png-img" alt="Bat 1" onerror="handleImgError(this)" /></div>
           <div class="hero-png-item"><img src="./hero_bat_2.png" id="heroPhotoImg2" class="hero-png-img" alt="Bat 2" onerror="handleImgError(this)" /></div>
           <div class="hero-png-item"><img src="./hero_bat_1.png" id="heroPhotoImg5" class="hero-png-img" alt="Bat 5" onerror="handleImgError(this)" /></div>
         </div>
 
+        <!-- CENTER TEXT WITH MULTI-COLOR FALCON 2 -->
         <div class="hero-center-content">
           <h1>
             <span class="hero-title-prefix">Power Your Game With</span>
@@ -1563,6 +1610,7 @@
           <p>Hand-crafted for extraordinary rebound ping, razor-sharp balance, and monster power hitting across all formats.</p>
         </div>
 
+        <!-- RIGHT 3 PICTURES IN A SINGLE ROW -->
         <div class="hero-side-column">
           <div class="hero-png-item"><img src="./hero_bat_3.png" id="heroPhotoImg3" class="hero-png-img" alt="Bat 3" onerror="handleImgError(this)" /></div>
           <div class="hero-png-item"><img src="./hero_bat_4.png" id="heroPhotoImg4" class="hero-png-img" alt="Bat 4" onerror="handleImgError(this)" /></div>
@@ -1571,8 +1619,13 @@
       </div>
     </section>
 
+    <!-- CONTINUOUS FLOATING TICKER STRIP -->
     <div class="floating-ticker-wrapper">
       <div class="floating-ticker-track">
+        <span class="ticker-item"><i class="fa-solid fa-truck-fast"></i> Pan-India Express Courier Delivery</span>
+        <span class="ticker-item"><i class="fa-solid fa-shield-halved"></i> 100% Genuine Handcrafted Cricket Willow</span>
+        <span class="ticker-item"><i class="fa-solid fa-bolt"></i> Tournament Grade Ping &amp; Balance Tested</span>
+        <span class="ticker-item"><i class="fa-solid fa-qrcode"></i> Instant UPI &amp; Direct QR Booking Available</span>
         <span class="ticker-item"><i class="fa-solid fa-truck-fast"></i> Pan-India Express Courier Delivery</span>
         <span class="ticker-item"><i class="fa-solid fa-shield-halved"></i> 100% Genuine Handcrafted Cricket Willow</span>
         <span class="ticker-item"><i class="fa-solid fa-bolt"></i> Tournament Grade Ping &amp; Balance Tested</span>
@@ -1580,7 +1633,9 @@
       </div>
     </div>
 
+    <!-- PRODUCT CATALOG (5 CARDS PER ROW) -->
     <main>
+      <!-- 1. KASHMIR WILLOW CATEGORY -->
       <section class="container" id="kashmir-section">
         <div class="section-header">
           <span class="section-subtitle">Traditional Power</span>
@@ -1590,6 +1645,7 @@
         <div class="product-grid" id="kashmirProductsGrid"></div>
       </section>
 
+      <!-- 2. ENGLISH WILLOW CATEGORY -->
       <section class="container" id="english-section" style="padding-top: 0;">
         <div class="section-header">
           <span class="section-subtitle">International Standard</span>
@@ -1599,6 +1655,7 @@
         <div class="product-grid" id="englishProductsGrid"></div>
       </section>
 
+      <!-- 3. TENNIS CRICKET CATEGORY -->
       <section class="container" id="tennis-section" style="padding-top: 0;">
         <div class="section-header">
           <span class="section-subtitle">Hard &amp; Soft Tennis Dominators</span>
@@ -1608,6 +1665,7 @@
         <div class="product-grid" id="tennisProductsGrid"></div>
       </section>
 
+      <!-- FOLLOW US ON INSTAGRAM STRIP -->
       <section class="social-follow-strip">
         <div class="social-follow-wrapper">
           <a href="https://www.instagram.com/f2sports__?igsi=ZDNlZDc0MzIxNw==" target="_blank" class="social-btn instagram">
@@ -1616,6 +1674,7 @@
         </div>
       </section>
 
+      <!-- COMPACT PLAYER SUPPORT CONTAINER -->
       <section class="info-section" id="help-suggestions">
         <div class="container" style="padding: 0;">
           <div class="section-header" style="margin-bottom: 16px;">
@@ -1658,6 +1717,22 @@
                 </div>
                 <div class="faq-answer">We offer pan-India express dispatch. Deliveries generally arrive in 3 to 5 business days with live tracking provided upon shipment.</div>
               </div>
+
+              <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                  <span>Can I request custom weight or handle shapes?</span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">Yes! You can specify your preferred pickup weight, round/oval handle shape, and edge profile in the custom request box on the right.</div>
+              </div>
+
+              <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                  <span>What is the return/replacement policy for damaged deliveries?</span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">In case of any transit damages, provide an unboxing video to our WhatsApp desk within 48 hours for immediate replacement verification.</div>
+              </div>
             </div>
 
             <div class="info-card">
@@ -1677,6 +1752,7 @@
       </section>
     </main>
 
+    <!-- PROMINENT MULTI-COLOR BRAND BANNER -->
     <div class="falcon-brand-banner">
       <div class="falcon-brand-banner-title">
         <img src="logo.png" alt="F2 Logo" class="falcon-banner-logo-img" onerror="this.style.display='none'" />
@@ -1685,6 +1761,7 @@
       <div class="falcon-brand-banner-tag">Mastercraft Cricket Blades &amp; High Velocity Dominators</div>
     </div>
 
+    <!-- MINIMAL CLEAN FOOTER -->
     <footer>
       <div class="footer-bar-clean">
         <div><i class="fa-solid fa-trademark" style="color:var(--accent-primary);"></i> F2 SPORTS is a Registered Trademark</div>
@@ -1696,7 +1773,277 @@
     </footer>
   </div>
 
-  <!-- BULK VIEW & ADMIN VIEW CONTAINERS OMITTED FOR BRIEFNESS -->
+  <!-- 2. DEDICATED BULK ORDER PAGE CONTAINER -->
+  <div class="bulk-standalone-view" id="bulkStandaloneView">
+    <div class="bulk-portal-container">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid var(--border-theme); padding-bottom:16px; margin-bottom:20px;">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <img src="logo.png" alt="F2 Logo" style="height:44px;" onerror="this.style.display='none'" />
+          <div>
+            <h2 style="font-size:1.6rem; color:var(--text-main); margin-bottom:2px;">Falcon 2 Sports <span style="color:var(--accent-primary);">Bulk Procurement</span></h2>
+            <p style="color:var(--text-muted); font-size:0.82rem; text-transform:uppercase; letter-spacing:1px; font-weight:700;">Club, Academy &amp; Sponsor Direct Desk</p>
+          </div>
+        </div>
+        <button onclick="returnToStorefrontFromBulk()" class="btn-submit-order" style="width:auto; padding:8px 18px; margin-top:0; font-size:0.85rem;">
+          <i class="fa-solid fa-arrow-left"></i> Back to Store
+        </button>
+      </div>
+
+      <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.6; margin-bottom:15px;">
+        Connect directly with our master manufacturing team for customized cleft selection, team logo engraving, wholesale price tiers, and priority tournament shipping. Choose your preferred contact channel below:
+      </p>
+
+      <div class="bulk-channel-grid">
+        <a href="https://wa.me/918493977654?text=Hi%20F2%20Sports,%20I%20want%20to%20inquire%20about%20a%20bulk%20order%20of%20cricket%20bats." target="_blank" class="bulk-channel-card">
+          <i class="fa-brands fa-whatsapp" style="color:#25d366;"></i>
+          <span>WhatsApp Desk</span>
+          <small>Instant chat &amp; catalog</small>
+        </a>
+
+        <a href="mailto:f2sportsstore@gmail.com?cc=Zeesajid55@gmail.com&subject=Bulk%20Order%20Inquiry%20-%20F2%20Sports" class="bulk-channel-card">
+          <i class="fa-solid fa-envelope" style="color:var(--accent-primary);"></i>
+          <span>Official Email</span>
+          <small>Quotations &amp; specs</small>
+        </a>
+
+        <a href="https://www.instagram.com/f2sports__?igsi=ZDNlZDc0MzIxNw==" target="_blank" class="bulk-channel-card">
+          <i class="fa-brands fa-instagram" style="color:#e1306c;"></i>
+          <span>Instagram DM</span>
+          <small>Live bat videos &amp; ping test</small>
+        </a>
+
+        <a href="tel:+918493977654" class="bulk-channel-card">
+          <i class="fa-solid fa-phone" style="color:#38bdf8;"></i>
+          <span>Direct Phone</span>
+          <small>+91 84939 77654</small>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. DEDICATED ADMIN PORTAL VIEW -->
+  <div class="admin-standalone-view" id="adminStandaloneView">
+    <div style="max-width:1280px; margin:0 auto;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px; border-bottom:2px solid var(--border-theme); padding-bottom:18px; flex-wrap:wrap; gap:12px;">
+        <div style="display:flex; align-items:center; gap:14px;">
+          <img src="logo.png" alt="F2 Logo" style="height:44px;" onerror="this.style.display='none'" />
+          <div>
+            <h2 style="color:var(--text-main); font-size:1.8rem;">Falcon 2 Sports <span style="color:var(--accent-primary);">Admin Portal</span></h2>
+            <p style="color:var(--text-muted); font-size:0.8rem; letter-spacing:1px; text-transform:uppercase; font-weight:700;" id="activeAdminHeaderLabel">Active Admin: Sajid Mushtaq</p>
+          </div>
+        </div>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <button onclick="openChangePasswordModal()" class="admin-action-btn" style="background:var(--bg-surface); color:var(--text-main); border:1px solid var(--border-theme); padding:8px 16px;">
+            <i class="fa-solid fa-key"></i> Change Password
+          </button>
+          <button onclick="returnToStorefront()" class="admin-action-btn" style="background:var(--bg-surface); color:var(--text-main); border:1px solid var(--border-theme); padding:8px 16px;">
+            <i class="fa-solid fa-store"></i> Return to Storefront
+          </button>
+          <button onclick="handleMainAdminLogout()" class="admin-action-btn" style="background:#ef4444; color:#fff; padding:8px 16px;">
+            <i class="fa-solid fa-power-off"></i> Logout
+          </button>
+        </div>
+      </div>
+
+      <div class="admin-stats-grid">
+        <div class="stat-box">
+          <div class="stat-icon" style="background:rgba(225, 29, 72, 0.15); color:var(--accent-primary);"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+          <div>
+            <div class="stat-num" id="statRevenue">Rs. 0</div>
+            <div class="stat-label">Total Revenue</div>
+          </div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-icon" style="background:rgba(2, 132, 199, 0.15); color:var(--accent-secondary);"><i class="fa-solid fa-truck-fast"></i></div>
+          <div>
+            <div class="stat-num" id="statOrders">0</div>
+            <div class="stat-label">Total Cloud Orders</div>
+          </div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-icon" style="background:rgba(16, 185, 129, 0.15); color:#10b981;"><i class="fa-solid fa-baseball-bat-ball"></i></div>
+          <div>
+            <div class="stat-num" id="statProducts">0</div>
+            <div class="stat-label">Live Bats Catalog</div>
+          </div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-icon" style="background:rgba(251, 191, 36, 0.15); color:var(--accent-gold);"><i class="fa-solid fa-user-check"></i></div>
+          <div>
+            <div style="font-size:1.1rem; font-weight:800; color:var(--text-main);" id="activeAdminUserDisplay">Sajid Mushtaq</div>
+            <div class="stat-label">Authorized Access</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="admin-tabs-nav">
+        <button class="admin-tab-btn active" onclick="switchAdminTab('orders')"><i class="fa-solid fa-clipboard-list"></i> Customer Orders (<span id="adminOrdersTabCount">0</span>)</button>
+        <button class="admin-tab-btn" onclick="switchAdminTab('products')"><i class="fa-solid fa-boxes-packing"></i> Manage Catalog (<span id="adminProdsTabCount">0</span>)</button>
+        <button class="admin-tab-btn" onclick="switchAdminTab('add-product')"><i class="fa-solid fa-plus-circle"></i> Add New Bat</button>
+        <button class="admin-tab-btn" onclick="switchAdminTab('hero-photos')"><i class="fa-solid fa-images"></i> Manage Header Photos</button>
+      </div>
+
+      <!-- TAB 1: ORDERS -->
+      <div class="admin-tab-pane active" id="adminPaneOrders">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; flex-wrap:wrap; gap:10px;">
+          <h4 style="font-size:1.2rem; color:var(--text-main);">Cloud Orders Record (Booking to Dispatch)</h4>
+        </div>
+        <div id="mainAdminOrdersList"></div>
+      </div>
+
+      <!-- TAB 2: PRODUCTS -->
+      <div class="admin-tab-pane" id="adminPaneProducts">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+          <h4 style="font-size:1.2rem; color:var(--text-main);">Active Bat Products List</h4>
+          <button class="admin-action-btn" style="background:var(--accent-primary); color:#fff;" onclick="switchAdminTab('add-product')"><i class="fa-solid fa-plus"></i> Add Another Bat</button>
+        </div>
+        <div class="admin-table-wrapper">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Sale / Offer Tag</th>
+                <th>Stock</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="adminProductsTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB 3: ADD PRODUCT -->
+      <div class="admin-tab-pane" id="adminPaneAddProduct">
+        <div class="admin-form-box">
+          <h4 style="font-size:1.2rem; color:var(--text-main); margin-bottom:18px;"><i class="fa-solid fa-circle-plus" style="color:var(--accent-primary);"></i> Add New Bat to Catalog</h4>
+          <form id="addNewProductForm" onsubmit="handleAdminAddNewProduct(event)">
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">Category Section</label>
+                <select id="newProdCategory" class="form-select" required>
+                  <option value="kashmir">Kashmir Willow Bats</option>
+                  <option value="english">English Willow Bats</option>
+                  <option value="tennis">Tennis Cricket Bats</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Product Full Name / Title</label>
+                <input type="text" id="newProdName" class="form-input" placeholder="e.g. F2 Mastercraft Power Pro Bat" required />
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">Price in Rs. (INR)</label>
+                <input type="number" id="newProdPrice" class="form-input" placeholder="e.g. 17499" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Image Filename / Main URL</label>
+                <input type="text" id="newProdImg" class="form-input" placeholder="e.g. ./grade_a_english.jpg" required />
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label">Sale / Discount Badge (Optional)</label>
+                <input type="text" id="newProdSaleBadge" class="form-input" placeholder="e.g. 15% OFF, FLAT 1000 OFF" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Offer Description (Optional)</label>
+                <input type="text" id="newProdSaleDesc" class="form-input" placeholder="e.g. Eid Special Offer, Festival Deal" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Key Specifications (comma separated)</label>
+              <input type="text" id="newProdFeatures" class="form-input" placeholder="e.g. 8-11 Straight Grains, 40mm Monster Edges, Full Concave (1160-1180g)" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Initial Stock Status</label>
+              <select id="newProdStock" class="form-select">
+                <option value="true">Available in Stock</option>
+                <option value="false">Out of Stock</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn-submit-order" style="max-width:260px;">
+              <i class="fa-solid fa-plus-circle"></i> Publish Product
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- TAB 4: HEADER PHOTOS MANAGER -->
+      <div class="admin-tab-pane" id="adminPaneHeroPhotos">
+        <div class="admin-form-box">
+          <h4 style="font-size:1.2rem; color:var(--text-main); margin-bottom:8px;"><i class="fa-solid fa-images" style="color:var(--accent-primary);"></i> Change 2nd Container Header Photos (6 Transparent PNGs)</h4>
+          <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:20px;">Upload transparent background .png photos for the left and right showcase slots in the 2nd container.</p>
+
+          <div class="hero-editor-grid">
+            <div class="hero-slot-card">
+              <span class="form-label">Left Slot 1</span>
+              <div class="hero-slot-preview"><img src="./hero_bat_1.png" id="slotPreviewImg1" alt="Slot 1" onerror="handleImgError(this)" /></div>
+              <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 0)" class="form-input" style="font-size:0.75rem;" />
+            </div>
+            <div class="hero-slot-card">
+              <span class="form-label">Left Slot 2</span>
+              <div class="hero-slot-preview"><img src="./hero_bat_2.png" id="slotPreviewImg2" alt="Slot 2" onerror="handleImgError(this)" /></div>
+              <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 1)" class="form-input" style="font-size:0.75rem;" />
+            </div>
+            <div class="hero-slot-card">
+              <span class="form-label">Left Slot 3</span>
+              <div class="hero-slot-preview"><img src="./hero_bat_1.png" id="slotPreviewImg5" alt="Slot 5" onerror="handleImgError(this)" /></div>
+              <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 4)" class="form-input" style="font-size:0.75rem;" />
+            </div>
+            <div class="hero-slot-card">
+              <span class="form-label">Right Slot 1</span>
+              <div class="hero-slot-preview"><img src="./hero_bat_3.png" id="slotPreviewImg3" alt="Slot 3" onerror="handleImgError(this)" /></div>
+              <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 2)" class="form-input" style="font-size:0.75rem;" />
+            </div>
+            <div class="hero-slot-card">
+              <span class="form-label">Right Slot 2</span>
+              <div class="hero-slot-preview"><img src="./hero_bat_4.png" id="slotPreviewImg4" alt="Slot 4" onerror="handleImgError(this)" /></div>
+              <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 3)" class="form-input" style="font-size:0.75rem;" />
+            </div>
+            <div class="hero-slot-card">
+              <span class="form-label">Right Slot 3</span>
+              <div class="hero-slot-preview"><img src="./hero_bat_3.png" id="slotPreviewImg6" alt="Slot 6" onerror="handleImgError(this)" /></div>
+              <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 5)" class="form-input" style="font-size:0.75rem;" />
+            </div>
+          </div>
+          <div id="heroPhotoUploadStatus" style="color:var(--accent-primary); font-size:0.85rem; font-weight:700; margin-top:14px; display:none;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FULLSCREEN LIGHTBOX -->
+  <div class="lightbox-modal" id="imageLightbox" onclick="closeLightbox()">
+    <button class="lightbox-close-btn" onclick="closeLightbox()"><i class="fa-solid fa-xmark"></i></button>
+    <img src="" alt="Enlarged Product View" class="lightbox-content" id="lightboxImg" onclick="event.stopPropagation()" />
+  </div>
+
+  <!-- FIXED OVERLAY CART DRAWER -->
+  <div class="cart-drawer-overlay" id="cartOverlay" onclick="toggleCartDrawer()"></div>
+  <div class="cart-drawer" id="cartDrawer" onclick="event.stopPropagation()">
+    <div class="cart-header">
+      <h3 style="font-size:1.2rem;"><i class="fa-solid fa-basket-shopping" style="color:var(--accent-primary);"></i> Your Cart (<span id="cartCountTitle">0</span>)</h3>
+      <button class="close-cart-btn" onclick="toggleCartDrawer()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="cart-items-container" id="cartItemsList"></div>
+    <div class="cart-footer">
+      <div class="cart-total-row">
+        <span>Grand Total:</span>
+        <span id="cartGrandTotal" style="color:var(--accent-primary);">Rs. 0</span>
+      </div>
+      <button class="btn-checkout" id="checkoutBtn" onclick="openCheckoutModal()" disabled>
+        <i class="fa-solid fa-lock"></i> Proceed to QR / UPI Checkout
+      </button>
+    </div>
+  </div>
 
   <!-- CHECKOUT MODAL -->
   <div class="modal-overlay" id="checkoutModal" onclick="closeCheckoutModal()">
@@ -1708,9 +2055,8 @@
       <div class="modal-body">
         <div class="qr-container">
           <p style="font-size:0.85rem; margin-bottom:8px; font-weight:600; color:var(--text-muted);">Scan with GPay, PhonePe, Paytm, or BHIM</p>
-          <img src="./qr.png" alt="F2 Sports QR Scanner" class="qr-image" onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=170x170&data=upi://pay?pa=zeesajid55-1@okicici%26pn=F2%20Sports%20Official%26mc=5945'" />
+          <img src="qr.png" alt="F2 Sports QR Scanner" class="qr-image" onerror="this.onerror=null; this.src='https://api.qrserver.com/v1/create-qr-code/?size=170x170&amp;data=upi://pay?pa=zeesajid55-1@okicici%26pn=F2%20Sports%20Official%26mc=5945';" />
           <p style="font-family:monospace; font-weight:700; font-size:0.95rem; color:var(--accent-primary);">UPI ID: zeesajid55-1@okicici</p>
-          <p style="font-size:0.85rem; margin-top:4px; font-weight:700; color:var(--text-main);">Contact: +91 84939 77654</p>
           <p style="font-size:0.85rem; margin-top:6px;">Payable Amount: <b style="color:var(--accent-primary);" id="checkoutModalTotal">Rs. 0</b></p>
         </div>
 
@@ -1725,7 +2071,7 @@
           </div>
           <div class="form-group">
             <label class="form-label">WhatsApp / Contact Number</label>
-            <input type="tel" id="custPhone" class="form-input" placeholder="+91 84939 77654" required />
+            <input type="tel" id="custPhone" class="form-input" value="+91-8493977654" required />
           </div>
           <div class="form-group">
             <label class="form-label">Delivery Address &amp; Pincode</label>
@@ -1741,12 +2087,246 @@
     </div>
   </div>
 
-  <!-- OTHER MODALS (LIGHTBOX, SUCCESS, ADMIN, ETC.) -->
+  <!-- ADMIN LOGIN MODAL -->
+  <div class="modal-overlay" id="adminLoginModal" onclick="closeAdminLoginModal()">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h3 style="font-size:1.2rem;"><i class="fa-solid fa-shield-halved" style="color:var(--accent-primary);"></i> Admin Portal Login</h3>
+        <button class="close-cart-btn" onclick="closeAdminLoginModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <form onsubmit="handleModalAdminLogin(event)">
+          <div class="form-group">
+            <label class="form-label">Select Admin User</label>
+            <select id="modalAdminUser" class="form-select" required>
+              <option value="Sajid Mushtaq">Sajid Mushtaq</option>
+              <option value="Sameer Mushtaq">Sameer Mushtaq</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Password</label>
+            <input type="password" id="modalAdminPass" class="form-input" placeholder="••••••••" required />
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+            <a href="javascript:void(0)" onclick="openForgotPasswordModal()" style="color:var(--accent-primary); font-size:0.8rem; font-weight:700; text-decoration:none;">
+              <i class="fa-solid fa-question-circle"></i> Forgot Password?
+            </a>
+          </div>
+          <button type="submit" class="btn-submit-order">
+            <i class="fa-solid fa-right-to-bracket"></i> Login to Workspace
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORGOT PASSWORD MODAL -->
+  <div class="modal-overlay" id="forgotPasswordModal" onclick="closeForgotPasswordModal()">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h3 style="font-size:1.2rem;"><i class="fa-solid fa-unlock-keyhole" style="color:var(--accent-primary);"></i> Reset Admin Password</h3>
+        <button class="close-cart-btn" onclick="closeForgotPasswordModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <form onsubmit="handleForgotPasswordSubmit(event)">
+          <div class="form-group">
+            <label class="form-label">Select Admin</label>
+            <select id="forgotAdminUser" class="form-select" required>
+              <option value="Sajid Mushtaq">Sajid Mushtaq</option>
+              <option value="Sameer Mushtaq">Sameer Mushtaq</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Master Recovery Key</label>
+            <input type="password" id="forgotMasterKey" class="form-input" placeholder="Enter recovery key (f2sportsmaster)" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">New Password</label>
+            <input type="password" id="forgotNewPass" class="form-input" placeholder="Enter new password" required />
+          </div>
+          <button type="submit" class="btn-submit-order">
+            <i class="fa-solid fa-rotate"></i> Reset Password
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHANGE PASSWORD MODAL -->
+  <div class="modal-overlay" id="changePasswordModal" onclick="closeChangePasswordModal()">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h3 style="font-size:1.2rem;"><i class="fa-solid fa-key" style="color:var(--accent-primary);"></i> Change Admin Password</h3>
+        <button class="close-cart-btn" onclick="closeChangePasswordModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <form onsubmit="handleChangePasswordSubmit(event)">
+          <div class="form-group">
+            <label class="form-label">Active Admin</label>
+            <input type="text" id="changePassAdminUser" class="form-input" readonly />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Current Password</label>
+            <input type="password" id="changePassOld" class="form-input" placeholder="Enter current password" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">New Password</label>
+            <input type="password" id="changePassNew" class="form-input" placeholder="Enter new password" required />
+          </div>
+          <button type="submit" class="btn-submit-order">
+            <i class="fa-solid fa-check"></i> Update Password
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ORDER DELETE CONFIRMATION POPUP MODAL -->
+  <div class="modal-overlay" id="deleteOrderConfirmModal" onclick="closeDeleteOrderModal()">
+    <div class="modal-box" onclick="event.stopPropagation()" style="max-width: 400px; text-align: center;">
+      <div class="modal-header" style="background: #b91c1c;">
+        <h3 style="font-size:1.2rem; color: #fff;"><i class="fa-solid fa-triangle-exclamation"></i> Confirm Order Deletion</h3>
+        <button class="close-cart-btn" onclick="closeDeleteOrderModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body" style="padding: 24px;">
+        <p style="font-size: 0.95rem; color: var(--text-main); margin-bottom: 20px;" id="deleteOrderConfirmText">Are you sure you want to delete this order for foul play?</p>
+        <input type="hidden" id="pendingDeleteOrderIndex" />
+        <div style="display: flex; gap: 12px; justify-content: center;">
+          <button onclick="closeDeleteOrderModal()" class="admin-action-btn" style="background: #475569; color: #fff; padding: 10px 20px; font-size: 0.9rem;">Cancel</button>
+          <button onclick="confirmDeleteOrderAction()" class="admin-action-btn" style="background: #ef4444; color: #fff; padding: 10px 20px; font-size: 0.9rem;">Yes, Delete Order</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCT DELETE CONFIRMATION POPUP MODAL -->
+  <div class="modal-overlay" id="deleteProductConfirmModal" onclick="closeDeleteProductModal()">
+    <div class="modal-box" onclick="event.stopPropagation()" style="max-width: 400px; text-align: center;">
+      <div class="modal-header" style="background: #b91c1c;">
+        <h3 style="font-size:1.2rem; color: #fff;"><i class="fa-solid fa-triangle-exclamation"></i> Confirm Product Deletion</h3>
+        <button class="close-cart-btn" onclick="closeDeleteProductModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body" style="padding: 24px;">
+        <p style="font-size: 0.95rem; color: var(--text-main); margin-bottom: 20px;" id="deleteProductConfirmText">Are you sure you want to delete this product from your store?</p>
+        <input type="hidden" id="pendingDeleteProductId" />
+        <div style="display: flex; gap: 12px; justify-content: center;">
+          <button onclick="closeDeleteProductModal()" class="admin-action-btn" style="background: #475569; color: #fff; padding: 10px 20px; font-size: 0.9rem;">Cancel</button>
+          <button onclick="confirmDeleteProductAction()" class="admin-action-btn" style="background: #ef4444; color: #fff; padding: 10px 20px; font-size: 0.9rem;">Yes, Delete Product</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ORDER SUCCESS / THANK YOU MODAL CONTAINER -->
+  <div class="modal-overlay" id="orderSuccessModal" onclick="closeOrderSuccessModal()">
+    <div class="modal-box" onclick="event.stopPropagation()" style="max-width: 440px;">
+      <div class="modal-header">
+        <h3 style="font-size:1.2rem;"><i class="fa-solid fa-circle-check" style="color:#10b981;"></i> Order Successful</h3>
+        <button class="close-cart-btn" onclick="closeOrderSuccessModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body success-modal-content">
+        <div class="success-modal-icon">
+          <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <h3 class="multi-color-text" style="font-size: 1.8rem; font-weight: 800; margin-bottom: 8px;">Falcon 2</h3>
+        <p style="font-size: 1rem; font-weight: 700; color: var(--text-main); margin-bottom: 6px;" id="successCustomerHeading">Thank you, Valued Player!</p>
+        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px;" id="successOrderIdText">Your order has been successfully recorded and sent to fulfillment.</p>
+        <button onclick="closeOrderSuccessModal()" class="btn-submit-order">Continue Shopping</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDIT PRODUCT MODAL -->
+  <div class="modal-overlay" id="editProductModal" onclick="closeEditModal()">
+    <div class="modal-box" style="max-width:640px;" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h3 style="font-size:1.2rem;"><i class="fa-solid fa-pen-to-square" style="color:var(--accent-primary);"></i> Edit Bat Details &amp; Photos</h3>
+        <button class="close-cart-btn" onclick="closeEditModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <form id="editProductForm" onsubmit="handleSaveEditedProduct(event)">
+          <input type="hidden" id="editProdId" />
+          
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label">Category Section</label>
+              <select id="editProdCategory" class="form-select" required>
+                <option value="kashmir">Kashmir Willow Bats</option>
+                <option value="english">English Willow Bats</option>
+                <option value="tennis">Tennis Cricket Bats</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Product Name</label>
+              <input type="text" id="editProdName" class="form-input" required />
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label">Price in Rs. (INR)</label>
+              <input type="number" id="editProdPrice" class="form-input" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Main Image URL / Path</label>
+              <input type="text" id="editProdImg" class="form-input" required />
+            </div>
+          </div>
+
+          <!-- MULTIPLE PHOTO UPLOAD SECTION TO SUPABASE -->
+          <div class="form-group" style="background:rgba(225, 29, 72, 0.05); padding:14px; border-radius:8px; border:1px dashed var(--border-theme);">
+            <label class="form-label">
+              <i class="fa-solid fa-cloud-arrow-up"></i> Upload Bat Photos to Supabase Storage (Multi-Select)
+            </label>
+            <input type="file" id="editProdMultiFiles" class="form-input" multiple accept="image/*" onchange="handleMultiplePhotosUpload(event)" />
+            <div id="uploadStatusNotice" style="font-size:0.78rem; color:var(--accent-primary); margin-top:6px; display:none;"></div>
+            <div class="photos-preview-gallery" id="editPhotosPreviewList"></div>
+          </div>
+
+          <div class="form-grid-2" style="background:rgba(225, 29, 72, 0.05); padding:12px; border-radius:8px; border:1px dashed var(--border-theme); margin-bottom:14px;">
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label"><i class="fa-solid fa-tag"></i> Sale Label (e.g. 15% OFF)</label>
+              <input type="text" id="editProdSaleBadge" class="form-input" placeholder="Leave empty if no sale" />
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label class="form-label"><i class="fa-solid fa-gift"></i> Sale Description (e.g. Eid Offer)</label>
+              <input type="text" id="editProdSaleDesc" class="form-input" placeholder="e.g. Eid Special Discount" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Features &amp; Specifications (comma separated)</label>
+            <input type="text" id="editProdFeatures" class="form-input" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Stock Status</label>
+            <select id="editProdStock" class="form-select">
+              <option value="true">Available in Stock</option>
+              <option value="false">Out of Stock</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn-submit-order" id="btnSaveEditedProd">
+            <i class="fa-solid fa-floppy-disk"></i> Save &amp; Update Product
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="appToast">
+    <i class="fa-solid fa-circle-check" style="color:var(--accent-primary);"></i>
+    <span id="toastMsg">Added to cart</span>
+  </div>
 
   <script>
     const fallbackImage = 'https://images.unsplash.com/photo-1531415074868-036b107e775a?q=80&w=600&auto=format&fit=crop';
+    
+    // Web3Forms API Key registered for f2sportsstore@gmail.com
     const WEB3FORMS_ACCESS_KEY = "bbabe700-fc35-4a93-8f7c-244ec811d041";
 
+    // Supabase Configuration
     const SUPABASE_URL = "https://pgfibpfvlxcllpqbekum.supabase.co";
     const SUPABASE_ANON_KEY = "sb_publishable_PJIkuydJjYiyPRg4ldF75A__zUloDKH";
 
@@ -1759,6 +2339,7 @@
       console.warn("Supabase initialization notice:", e);
     }
 
+    /* ADMIN CREDENTIALS & MULTI-USER MANAGEMENT */
     const defaultAdminAccounts = {
       "Sajid Mushtaq": "Sajid@123",
       "Sameer Mushtaq": "S@m33r1921"
@@ -1767,6 +2348,11 @@
     let adminAccounts = JSON.parse(localStorage.getItem('f2_admin_accounts')) || defaultAdminAccounts;
     const MASTER_RECOVERY_KEY = "f2sportsmaster";
 
+    function saveAdminAccounts() {
+      localStorage.setItem('f2_admin_accounts', JSON.stringify(adminAccounts));
+    }
+
+    // Color Theme Switcher Logic
     let currentTheme = localStorage.getItem('f2_theme') || 'dark-red';
     function applyColorTheme(theme) {
       document.body.setAttribute('data-theme', theme);
@@ -1780,9 +2366,19 @@
     function toggleColorTheme() {
       currentTheme = currentTheme === 'dark-red' ? 'light-green-blue' : 'dark-red';
       applyColorTheme(currentTheme);
+      showToast(`Switched to ${currentTheme === 'dark-red' ? 'Complete Dark Red' : 'Light Green Blue'} Mode`);
     }
 
-    const defaultHeroPhotos = ['./hero_bat_1.png', './hero_bat_2.png', './hero_bat_1.png', './hero_bat_3.png', './hero_bat_4.png', './hero_bat_3.png'];
+    // Default 6 Header Showcase Transparent PNGs (3 left, 3 right)
+    const defaultHeroPhotos = [
+      './hero_bat_1.png',
+      './hero_bat_2.png',
+      './hero_bat_1.png',
+      './hero_bat_3.png',
+      './hero_bat_4.png',
+      './hero_bat_3.png'
+    ];
+
     let heroPhotos = JSON.parse(localStorage.getItem('f2_hero_photos')) || defaultHeroPhotos;
 
     const initialProducts = [
@@ -1797,13 +2393,169 @@
         saleBadge: '20% OFF',
         saleDesc: 'Eid Mubarak Festival Deal',
         features: ['Selected Kashmir Willow Grains', '40mm Heavy Edges', 'Full Spine Profile (1190–1210g)']
+      },
+      {
+        id: 'KW2',
+        category: 'kashmir',
+        name: 'F2 Platinum Leather Bat',
+        price: 6499,
+        img: './platinum.jpg',
+        images: ['./platinum.jpg'],
+        inStock: true,
+        saleBadge: '',
+        saleDesc: '',
+        features: ['Natural Wood Dense Grains', '38mm Thick Edges', 'Curved Power Profile (1180–1200g)']
+      },
+      {
+        id: 'KW3',
+        category: 'kashmir',
+        name: 'F2 Diamond Leather Bat',
+        price: 5199,
+        img: './diamond.jpg',
+        images: ['./diamond.jpg'],
+        inStock: true,
+        saleBadge: '',
+        saleDesc: '',
+        features: ['Hard-Pressed Willow Face', '38mm Robust Edges', 'Balanced Pickup Profile (1180g)']
+      },
+      {
+        id: 'KW4',
+        category: 'kashmir',
+        name: 'F2 Gold Reserve Leather Bat',
+        price: 4199,
+        img: './gold.jpg',
+        images: ['./gold.jpg'],
+        inStock: false,
+        saleBadge: '',
+        saleDesc: '',
+        features: ['Clean Natural Face', '36mm Match Edges', 'Full Spine Swell (1190g)']
+      },
+      {
+        id: 'KW5',
+        category: 'kashmir',
+        name: 'F2 Silver Club Leather Bat',
+        price: 3299,
+        img: './silver.jpg',
+        images: ['./silver.jpg'],
+        inStock: true,
+        saleBadge: '',
+        saleDesc: '',
+        features: ['Durable Seasoned Grains', '35mm Edges', 'Light Swing Weight (1170g)']
+      },
+      {
+        id: 'EW1',
+        category: 'english',
+        name: 'F2 Pro Grade A English Willow Bat',
+        price: 17499,
+        img: './grade_a_english.jpg',
+        images: ['./grade_a_english.jpg'],
+        inStock: true,
+        saleBadge: '15% OFF',
+        saleDesc: 'Eid Special Offer',
+        features: ['8–11 Straight Defined Grains', '40mm Monster Edges', 'Full Concave Profile (1160–1180g)']
+      },
+      {
+        id: 'EW2',
+        category: 'english',
+        name: 'F2 Match Grade B English Willow Bat',
+        price: 16999,
+        img: './grade_b_english.jpg',
+        images: ['./grade_b_english.jpg'],
+        inStock: true,
+        saleBadge: '',
+        saleDesc: '',
+        features: ['6–8 Straight Defined Grains', '38mm Power Edges', 'Mid-to-Low Profile (1170–1190g)']
+      },
+      {
+        id: 'TN1',
+        category: 'tennis',
+        name: 'F2 Laser-Designed Hard Tennis Bat',
+        price: 2499,
+        img: './designed.jpg',
+        images: ['./designed.jpg'],
+        inStock: true,
+        saleBadge: '10% OFF',
+        saleDesc: 'Turf Special',
+        features: ['High-Gloss UV Graphics', '50mm Monster Blade', 'Featherlight Pickup (1030g)']
+      },
+      {
+        id: 'TN2',
+        category: 'tennis',
+        name: 'F2 Classic Raw (Without Design) Tennis Bat',
+        price: 1999,
+        img: './without_design.jpg',
+        images: ['./without_design.jpg'],
+        inStock: true,
+        saleBadge: '',
+        saleDesc: '',
+        features: ['Natural Wood Polish Grains', 'Thick Center Meat Profile', 'Even Balance (1040g)']
+      },
+      {
+        id: 'TN3',
+        category: 'tennis',
+        name: 'F2 Popular Turf Dominator Tennis Bat',
+        price: 1799,
+        img: './popular.jpg',
+        images: ['./popular.jpg'],
+        inStock: true,
+        saleBadge: '',
+        saleDesc: '',
+        features: ['Duckbill Toe Dynamic', 'Soft & Light Tennis Spec', 'Fast Aero Swing (1010g)']
+      },
+      {
+        id: 'TN4',
+        category: 'tennis',
+        name: 'F2 Full Cane Handle Tennis Bat',
+        price: 2899,
+        img: './cane.jpg',
+        images: ['./cane.jpg'],
+        inStock: false,
+        saleBadge: '',
+        saleDesc: '',
+        features: ['9-Piece Cane Shock Absorber', 'Extra Thick Edges', 'Heavy Hard Ball Punch (1060g)']
+      },
+      {
+        id: 'TN5',
+        category: 'tennis',
+        name: 'F2 Kissan Tennis Heavy Punch Bat',
+        price: 2299,
+        img: './kissan_tennis.jpg',
+        images: ['./kissan_tennis.jpg'],
+        inStock: true,
+        saleBadge: '',
+        saleDesc: '',
+        features: ['4.5-Inch Broad Blade', 'Hard Seasoned Willow', 'Heavy Red Ball Power (1080g)']
+      },
+      {
+        id: 'TN6',
+        category: 'tennis',
+        name: 'F2 36-Inch Long Blade Monster Tennis Bat',
+        price: 2999,
+        img: './36inch.jpg',
+        images: ['./36inch.jpg'],
+        inStock: true,
+        saleBadge: '',
+        saleDesc: '',
+        features: ['Extended 36-Inch Leverage', 'Extra Reach Wide Profile', 'Monstrous Leverage (1070g)']
       }
-      // ... (other products)
     ];
 
     let products = JSON.parse(localStorage.getItem('f2_products')) || initialProducts;
     let orders = JSON.parse(localStorage.getItem('f2_orders')) || [];
     let cart = {};
+    let tempEditImages = [];
+
+    function saveProducts() {
+      localStorage.setItem('f2_products', JSON.stringify(products));
+    }
+
+    function saveOrders() {
+      localStorage.setItem('f2_orders', JSON.stringify(orders));
+    }
+
+    function saveHeroPhotos() {
+      localStorage.setItem('f2_hero_photos', JSON.stringify(heroPhotos));
+    }
 
     function applyHeroPhotos() {
       for (let i = 0; i < 6; i++) {
@@ -1814,18 +2566,1039 @@
       }
     }
 
+    async function uploadHeroSlotPhoto(e, slotIndex) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const statusElem = document.getElementById('heroPhotoUploadStatus');
+      statusElem.style.display = 'block';
+      statusElem.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Uploading transparent PNG to Supabase...`;
+
+      if (supabaseClient) {
+        try {
+          const fileExt = file.name.split('.').pop();
+          const fileName = `hero_slot_${slotIndex + 1}_${Date.now()}.${fileExt}`;
+          const { error } = await supabaseClient.storage.from('product-images').upload(fileName, file, { upsert: true });
+
+          if (!error) {
+            const { data } = supabaseClient.storage.from('product-images').getPublicUrl(fileName);
+            if (data && data.publicUrl) {
+              heroPhotos[slotIndex] = data.publicUrl;
+            }
+          }
+        } catch (err) {
+          console.error("Hero upload error:", err);
+        }
+      } else {
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          heroPhotos[slotIndex] = ev.target.result;
+          saveHeroPhotos();
+          applyHeroPhotos();
+        };
+        reader.readAsDataURL(file);
+      }
+
+      saveHeroPhotos();
+      applyHeroPhotos();
+      statusElem.innerHTML = `<i class="fa-solid fa-check"></i> Slot ${slotIndex + 1} photo updated!`;
+      setTimeout(() => statusElem.style.display = 'none', 3500);
+      showToast(`Header Slot ${slotIndex + 1} updated!`);
+    }
+
+    async function loadCloudOrders() {
+      if (!supabaseClient) return;
+      try {
+        const { data, error } = await supabaseClient
+          .from('orders')
+          .select('*')
+          .order('created_at', { ascending: false });
+
+        if (!error && data) {
+          orders = data.map(o => ({
+            docId: o.id,
+            orderId: o.order_id,
+            date: o.date,
+            createdAt: o.created_at,
+            customer: o.customer,
+            utr: o.utr,
+            items: o.items,
+            totalAmount: o.total_amount,
+            numericAmount: o.numeric_amount,
+            status: o.status
+          }));
+          saveOrders();
+          updateAdminDashboard();
+        }
+      } catch (err) {
+        console.warn("Supabase fetch notice:", err);
+      }
+    }
+
+    function listenToCloudOrders() {
+      loadCloudOrders();
+      if (!supabaseClient) return;
+
+      supabaseClient
+        .channel('public:orders')
+        .on('postgres_changes', { event: '*', schema: 'public', table: 'orders' }, () => {
+          loadCloudOrders();
+        })
+        .subscribe();
+    }
+
     function handleImgError(imgElement) {
       imgElement.onerror = null;
       imgElement.src = fallbackImage;
+    }
+
+    function switchProductImage(productId, newSrc, e) {
+      if (e) e.stopPropagation();
+      const imgElem = document.getElementById(`main-img-${productId}`);
+      if (imgElem) {
+        imgElem.src = newSrc;
+      }
+    }
+
+    function openLightbox(imgSrc) {
+      const modal = document.getElementById('imageLightbox');
+      const img = document.getElementById('lightboxImg');
+      if (modal && img) {
+        img.src = imgSrc;
+        modal.classList.add('active');
+      }
+    }
+
+    function closeLightbox() {
+      const modal = document.getElementById('imageLightbox');
+      if (modal) {
+        modal.classList.remove('active');
+      }
+    }
+
+    function renderProducts() {
+      const kashmirContainer = document.getElementById('kashmirProductsGrid');
+      const englishContainer = document.getElementById('englishProductsGrid');
+      const tennisContainer = document.getElementById('tennisProductsGrid');
+
+      if (!kashmirContainer || !englishContainer || !tennisContainer) return;
+
+      kashmirContainer.innerHTML = '';
+      englishContainer.innerHTML = '';
+      tennisContainer.innerHTML = '';
+
+      products.forEach(product => {
+        const qty = cart[product.id] ? cart[product.id].qty : 0;
+        const isAvailable = product.inStock !== false;
+        const hasSale = Boolean(product.saleBadge && product.saleBadge.trim() !== '');
+        const imagesList = product.images && product.images.length > 0 ? product.images : [product.img];
+
+        const thumbsHtml = imagesList.length > 1 ? `
+          <div class="product-thumbs-strip">
+            ${imagesList.map(imgUrl => `
+              <img src="${imgUrl}" class="product-thumb-item" onclick="switchProductImage('${product.id}', '${imgUrl}', event)" onerror="handleImgError(this)" />
+            `).join('')}
+          </div>
+        ` : '';
+
+        const cardHtml = `
+          <div class="product-card ${!isAvailable ? 'out-of-stock' : ''}" id="card-${product.id}">
+            <span class="stock-badge ${isAvailable ? 'stock-available' : 'stock-out'}">
+              <i class="fa-solid ${isAvailable ? 'fa-circle-check' : 'fa-circle-xmark'}"></i>
+              ${isAvailable ? 'Available' : 'Out of Stock'}
+            </span>
+
+            ${hasSale ? `
+              <span class="sale-badge">
+                <i class="fa-solid fa-bolt"></i> ${product.saleBadge}
+              </span>
+            ` : ''}
+
+            <div class="product-img-wrapper" onclick="openLightbox(document.getElementById('main-img-${product.id}').src)">
+              <img src="${product.img}" alt="${product.name}" id="main-img-${product.id}" class="product-img" loading="lazy" onerror="handleImgError(this)" />
+              ${thumbsHtml}
+            </div>
+
+            <div class="product-body">
+              <h3 class="product-title">${product.name}</h3>
+
+              ${hasSale && product.saleDesc ? `
+                <div class="sale-promo-strip">
+                  <i class="fa-solid fa-tag"></i> <span>${product.saleDesc}</span>
+                </div>
+              ` : ''}
+
+              <ul class="product-features">
+                ${product.features.map(f => `<li><i class="fa-solid fa-circle-check"></i> ${f}</li>`).join('')}
+              </ul>
+
+              <div class="product-footer">
+                <div class="price-value">Rs. ${Number(product.price).toLocaleString('en-IN')}</div>
+                <div id="btn-container-${product.id}">
+                  ${!isAvailable ? `
+                    <button class="btn-out-of-stock" disabled><i class="fa-solid fa-ban"></i> Sold Out</button>
+                  ` : qty === 0 ? `
+                    <button class="btn-add-cart" onclick="addToCart('${product.id}')">
+                      <i class="fa-solid fa-cart-plus"></i> Add
+                    </button>
+                  ` : `
+                    <div class="qty-control-inline">
+                      <button class="qty-btn" onclick="updateQuantity('${product.id}', -1)">-</button>
+                      <span class="qty-number">${qty}</span>
+                      <button class="qty-btn" onclick="updateQuantity('${product.id}', 1)">+</button>
+                    </div>
+                  `}
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+
+        if (product.category === 'kashmir') {
+          kashmirContainer.innerHTML += cardHtml;
+        } else if (product.category === 'english') {
+          englishContainer.innerHTML += cardHtml;
+        } else if (product.category === 'tennis') {
+          tennisContainer.innerHTML += cardHtml;
+        }
+      });
+    }
+
+    function addToCart(productId) {
+      const product = products.find(p => p.id === productId);
+      if (!product || product.inStock === false) return;
+
+      if (!cart[productId]) {
+        cart[productId] = { ...product, qty: 1 };
+      } else {
+        cart[productId].qty += 1;
+      }
+      updateCartUI();
+      showToast(`${product.name} added to cart!`);
+    }
+
+    function updateQuantity(productId, delta) {
+      if (!cart[productId]) return;
+      cart[productId].qty += delta;
+      if (cart[productId].qty <= 0) {
+        delete cart[productId];
+        showToast('Item removed from cart');
+      }
+      updateCartUI();
+    }
+
+    function updateCartUI() {
+      const totalItems = Object.values(cart).reduce((sum, item) => sum + item.qty, 0);
+      document.getElementById('cartCountBadge').innerText = totalItems;
+      document.getElementById('cartCountTitle').innerText = totalItems;
+
+      const cartList = document.getElementById('cartItemsList');
+      const checkoutBtn = document.getElementById('checkoutBtn');
+
+      if (totalItems === 0) {
+        cartList.innerHTML = `<div style="text-align:center; padding:50px 20px; color:var(--text-muted);">
+          <i class="fa-solid fa-basket-shopping" style="font-size:3rem; margin-bottom:10px;"></i>
+          <h4>Your cart is empty</h4>
+        </div>`;
+        checkoutBtn.disabled = true;
+        document.getElementById('cartGrandTotal').innerText = 'Rs. 0';
+      } else {
+        let totalAmount = 0;
+        cartList.innerHTML = '';
+        Object.values(cart).forEach(item => {
+          const itemTotal = Number(item.price) * item.qty;
+          totalAmount += itemTotal;
+          cartList.innerHTML += `
+            <div class="cart-item">
+              <img src="${item.img}" alt="${item.name}" class="cart-item-img" onerror="handleImgError(this)" />
+              <div class="cart-item-details">
+                <div class="cart-item-title">${item.name}</div>
+                <div style="font-size:0.75rem; color:var(--text-muted);">Rs. ${Number(item.price).toLocaleString('en-IN')} each</div>
+                <div class="cart-item-price">Rs. ${itemTotal.toLocaleString('en-IN')}</div>
+              </div>
+              <div class="qty-control-inline">
+                <button class="qty-btn" onclick="updateQuantity('${item.id}', -1)">-</button>
+                <span class="qty-number">${item.qty}</span>
+                <button class="qty-btn" onclick="updateQuantity('${item.id}', 1)">+</button>
+              </div>
+            </div>
+          `;
+        });
+        document.getElementById('cartGrandTotal').innerText = `Rs. ${totalAmount.toLocaleString('en-IN')}`;
+        checkoutBtn.disabled = false;
+      }
+
+      products.forEach(p => {
+        const btnContainer = document.getElementById(`btn-container-${p.id}`);
+        if (!btnContainer) return;
+        const currentQty = cart[p.id] ? cart[p.id].qty : 0;
+        const isAvailable = p.inStock !== false;
+
+        if (!isAvailable) {
+          btnContainer.innerHTML = `<button class="btn-out-of-stock" disabled><i class="fa-solid fa-ban"></i> Sold Out</button>`;
+        } else if (currentQty === 0) {
+          btnContainer.innerHTML = `<button class="btn-add-cart" onclick="addToCart('${p.id}')"><i class="fa-solid fa-cart-plus"></i> Add</button>`;
+        } else {
+          btnContainer.innerHTML = `
+            <div class="qty-control-inline">
+              <button class="qty-btn" onclick="updateQuantity('${p.id}', -1)">-</button>
+              <span class="qty-number">${currentQty}</span>
+              <button class="qty-btn" onclick="updateQuantity('${p.id}', 1)">+</button>
+            </div>
+          `;
+        }
+      });
+    }
+
+    function toggleCartDrawer() {
+      const overlay = document.getElementById('cartOverlay');
+      const drawer = document.getElementById('cartDrawer');
+      const isActive = drawer.classList.contains('active');
+      
+      if (isActive) {
+        drawer.classList.remove('active');
+        overlay.classList.remove('active');
+      } else {
+        overlay.classList.add('active');
+        drawer.classList.add('active');
+      }
+    }
+
+    function openCheckoutModal() {
+      toggleCartDrawer();
+      document.getElementById('checkoutModalTotal').innerText = document.getElementById('cartGrandTotal').innerText;
+      document.getElementById('checkoutModal').classList.add('active');
+    }
+
+    function closeCheckoutModal() {
+      document.getElementById('checkoutModal').classList.remove('active');
+    }
+
+    function openOrderSuccessModal(custName, orderId) {
+      document.getElementById('successCustomerHeading').innerText = `Thank you, ${custName}!`;
+      document.getElementById('successOrderIdText').innerText = `Your order #${orderId} has been successfully recorded.`;
+      document.getElementById('orderSuccessModal').classList.add('active');
+    }
+
+    function closeOrderSuccessModal() {
+      document.getElementById('orderSuccessModal').classList.remove('active');
     }
 
     function toggleFaq(el) {
       el.parentElement.classList.toggle('active');
     }
 
+    function showToast(msg) {
+      const toast = document.getElementById('appToast');
+      if (!toast) return;
+      document.getElementById('toastMsg').innerText = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2500);
+    }
+
+    async function handlePlaceOrder(e) {
+      e.preventDefault();
+
+      const submitBtn = e.target.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn ? submitBtn.innerHTML : '';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing Order...';
+      }
+
+      const name = document.getElementById('custName').value.trim();
+      const email = document.getElementById('custEmail').value.trim();
+      const phone = document.getElementById('custPhone').value.trim();
+      const address = document.getElementById('custAddress').value.trim();
+      const utr = document.getElementById('custUtr').value.trim();
+      const totalAmount = document.getElementById('cartGrandTotal').innerText;
+      const rawNum = Number(totalAmount.replace(/[^0-9]/g, '')) || 0;
+
+      const orderId = 'F2-' + Math.floor(100000 + Math.random() * 900000);
+      const itemsList = Object.values(cart);
+      const itemsSummary = itemsList.map(i => `${i.name} (Qty: ${i.qty}) - Rs. ${(Number(i.price) * i.qty).toLocaleString('en-IN')}`).join('\n');
+
+      const orderData = {
+        orderId: orderId,
+        date: new Date().toLocaleString('en-IN'),
+        createdAt: Date.now(),
+        customer: { name, email, phone, address },
+        utr: utr,
+        items: itemsList,
+        totalAmount: totalAmount,
+        numericAmount: rawNum,
+        status: 'Order Booked'
+      };
+
+      if (supabaseClient) {
+        try {
+          const { data, error } = await supabaseClient.from("orders").insert([{
+            order_id: orderId,
+            date: orderData.date,
+            customer: orderData.customer,
+            utr: orderData.utr,
+            items: orderData.items,
+            total_amount: orderData.totalAmount,
+            numeric_amount: orderData.numericAmount,
+            status: orderData.status
+          }]).select();
+
+          if (data && data[0]) {
+            orderData.docId = data[0].id;
+          }
+        } catch (err) {
+          console.error("Supabase database write error:", err);
+        }
+      }
+
+      orders.unshift(orderData);
+      saveOrders();
+      updateAdminDashboard();
+
+      try {
+        await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify({
+            access_key: WEB3FORMS_ACCESS_KEY,
+            subject: `New F2 Sports Bat Order: #${orderId} (${totalAmount})`,
+            from_name: "F2 Sports Storefront",
+            customer_name: name,
+            customer_email: email,
+            customer_phone: phone,
+            delivery_address: address,
+            upi_utr_id: utr,
+            order_total: totalAmount,
+            ordered_bats: itemsSummary,
+            message: `New Order Received!\n\nOrder ID: #${orderId}\nCustomer: ${name}\nPhone: ${phone}\nEmail: ${email}\nDelivery Address: ${address}\nUPI UTR: ${utr}\nTotal Amount: ${totalAmount}\n\nItems Ordered:\n${itemsSummary}\n\nStore Management: f2sportsstore@gmail.com | Zeesajid55@gmail.com`
+          })
+        });
+      } catch (err) {
+        console.error("Web3Forms transmission notice:", err);
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+      }
+
+      cart = {};
+      updateCartUI();
+      closeCheckoutModal();
+      document.getElementById('orderForm').reset();
+
+      openOrderSuccessModal(name, orderId);
+    }
+
+    function handleSuggestionSubmit(e) {
+      e.preventDefault();
+      alert('Thank you for your valuable suggestion! The F2 Sports bat crafting team will review it.');
+      e.target.reset();
+    }
+
+    /* DEDICATED BULK ORDER PAGE NAVIGATION */
+    function openBulkOrderPage() {
+      document.getElementById('storefrontView').style.display = 'none';
+      document.getElementById('adminStandaloneView').style.display = 'none';
+      document.getElementById('bulkStandaloneView').style.display = 'block';
+      window.scrollTo(0, 0);
+    }
+
+    function returnToStorefrontFromBulk() {
+      document.getElementById('bulkStandaloneView').style.display = 'none';
+      document.getElementById('storefrontView').style.display = 'block';
+      window.scrollTo(0, 0);
+    }
+
+    /* AUTHENTICATION & MULTI-ADMIN ROUTING (TRIGGERED VIA DOUBLE-CLICK) */
+    function openAdminPortalPage() {
+      const activeAdmin = sessionStorage.getItem('f2_active_admin_user');
+      if (activeAdmin) {
+        showAdminPageView(activeAdmin);
+      } else {
+        document.getElementById('adminLoginModal').classList.add('active');
+      }
+    }
+
+    function closeAdminLoginModal() {
+      document.getElementById('adminLoginModal').classList.remove('active');
+    }
+
+    function handleModalAdminLogin(e) {
+      e.preventDefault();
+      const user = document.getElementById('modalAdminUser').value;
+      const pass = document.getElementById('modalAdminPass').value;
+
+      if (adminAccounts[user] && adminAccounts[user] === pass) {
+        sessionStorage.setItem('f2_active_admin_user', user);
+        closeAdminLoginModal();
+        showToast(`Welcome ${user}!`);
+        showAdminPageView(user);
+      } else {
+        alert('Invalid password for ' + user + '! Please verify credentials.');
+      }
+    }
+
+    function showAdminPageView(adminName) {
+      document.getElementById('storefrontView').style.display = 'none';
+      document.getElementById('bulkStandaloneView').style.display = 'none';
+      document.getElementById('adminStandaloneView').style.display = 'block';
+      document.getElementById('activeAdminHeaderLabel').innerText = `Active Admin: ${adminName}`;
+      document.getElementById('activeAdminUserDisplay').innerText = adminName;
+      
+      const badge = document.getElementById('adminWelcomeBadge');
+      const text = document.getElementById('adminWelcomeText');
+      if (badge && text) {
+        text.innerText = `Welcome ${adminName}`;
+        badge.style.display = 'flex';
+      }
+
+      applyHeroPhotos();
+      updateAdminDashboard();
+      window.scrollTo(0, 0);
+    }
+
+    function returnToStorefront() {
+      document.getElementById('adminStandaloneView').style.display = 'none';
+      document.getElementById('bulkStandaloneView').style.display = 'none';
+      document.getElementById('storefrontView').style.display = 'block';
+      
+      const activeAdmin = sessionStorage.getItem('f2_active_admin_user');
+      const badge = document.getElementById('adminWelcomeBadge');
+      const text = document.getElementById('adminWelcomeText');
+      if (activeAdmin && badge && text) {
+        text.innerText = `Welcome ${activeAdmin}`;
+        badge.style.display = 'flex';
+      } else if (badge) {
+        badge.style.display = 'none';
+      }
+
+      window.scrollTo(0, 0);
+    }
+
+    function handleMainAdminLogout() {
+      sessionStorage.removeItem('f2_active_admin_user');
+      showToast('Logged out from Admin Dashboard');
+      const badge = document.getElementById('adminWelcomeBadge');
+      if (badge) badge.style.display = 'none';
+      returnToStorefront();
+    }
+
+    /* FORGOT PASSWORD LOGIC */
+    function openForgotPasswordModal() {
+      closeAdminLoginModal();
+      document.getElementById('forgotPasswordModal').classList.add('active');
+    }
+
+    function closeForgotPasswordModal() {
+      document.getElementById('forgotPasswordModal').classList.remove('active');
+    }
+
+    function handleForgotPasswordSubmit(e) {
+      e.preventDefault();
+      const user = document.getElementById('forgotAdminUser').value;
+      const key = document.getElementById('forgotMasterKey').value;
+      const newPass = document.getElementById('forgotNewPass').value;
+
+      if (key === MASTER_RECOVERY_KEY) {
+        adminAccounts[user] = newPass;
+        saveAdminAccounts();
+        closeForgotPasswordModal();
+        alert(`Password for ${user} has been successfully reset!`);
+        openAdminPortalPage();
+      } else {
+        alert('Incorrect Master Recovery Key! Default recovery key is: f2sportsmaster');
+      }
+    }
+
+    /* CHANGE PASSWORD LOGIC INSIDE DASHBOARD */
+    function openChangePasswordModal() {
+      const activeAdmin = sessionStorage.getItem('f2_active_admin_user') || 'Sajid Mushtaq';
+      document.getElementById('changePassAdminUser').value = activeAdmin;
+      document.getElementById('changePasswordModal').classList.add('active');
+    }
+
+    function closeChangePasswordModal() {
+      document.getElementById('changePasswordModal').classList.remove('active');
+    }
+
+    function handleChangePasswordSubmit(e) {
+      e.preventDefault();
+      const user = document.getElementById('changePassAdminUser').value;
+      const oldPass = document.getElementById('changePassOld').value;
+      const newPass = document.getElementById('changePassNew').value;
+
+      if (adminAccounts[user] === oldPass) {
+        adminAccounts[user] = newPass;
+        saveAdminAccounts();
+        closeChangePasswordModal();
+        showToast(`Password updated for ${user}!`);
+        document.getElementById('changePassOld').value = '';
+        document.getElementById('changePassNew').value = '';
+      } else {
+        alert('Current password does not match!');
+      }
+    }
+
+    function switchAdminTab(tabName) {
+      const tabs = document.querySelectorAll('.admin-tab-btn');
+      const panes = document.querySelectorAll('.admin-tab-pane');
+
+      tabs.forEach(t => t.classList.remove('active'));
+      panes.forEach(p => p.classList.remove('active'));
+
+      if (tabName === 'orders') {
+        tabs[0].classList.add('active');
+        document.getElementById('adminPaneOrders').classList.add('active');
+      } else if (tabName === 'products') {
+        tabs[1].classList.add('active');
+        document.getElementById('adminPaneProducts').classList.add('active');
+      } else if (tabName === 'add-product') {
+        tabs[2].classList.add('active');
+        document.getElementById('adminPaneAddProduct').classList.add('active');
+      } else if (tabName === 'hero-photos') {
+        tabs[3].classList.add('active');
+        document.getElementById('adminPaneHeroPhotos').classList.add('active');
+      }
+    }
+
+    function updateAdminDashboard() {
+      const totalRev = orders.reduce((sum, o) => sum + (o.numericAmount || 0), 0);
+      
+      const revElem = document.getElementById('statRevenue');
+      if (revElem) {
+        revElem.innerText = `Rs. ${totalRev.toLocaleString('en-IN')}`;
+        document.getElementById('statOrders').innerText = orders.length;
+        document.getElementById('statProducts').innerText = products.length;
+        document.getElementById('adminOrdersTabCount').innerText = orders.length;
+        document.getElementById('adminProdsTabCount').innerText = products.length;
+      }
+
+      renderAdminOrdersList();
+      renderAdminProductsTable();
+    }
+
+    /* PROMPT POPUP CONFIRMATION FOR ORDER DELETION & SUPABASE DATABASE SYNC */
+    function promptDeleteOrder(index) {
+      const order = orders[index];
+      document.getElementById('pendingDeleteOrderIndex').value = index;
+      document.getElementById('deleteOrderConfirmText').innerText = `Are you sure you want to delete Order #${order.orderId} for foul play?`;
+      document.getElementById('deleteOrderConfirmModal').classList.add('active');
+    }
+
+    function closeDeleteOrderModal() {
+      document.getElementById('deleteOrderConfirmModal').classList.remove('active');
+    }
+
+    async function confirmDeleteOrderAction() {
+      const index = parseInt(document.getElementById('pendingDeleteOrderIndex').value);
+      const order = orders[index];
+      if (!order) return;
+
+      if (supabaseClient) {
+        try {
+          if (order.docId) {
+            await supabaseClient.from('orders').delete().eq('id', order.docId);
+          }
+          if (order.orderId) {
+            await supabaseClient.from('orders').delete().eq('order_id', order.orderId);
+          }
+        } catch (e) {
+          console.error("Supabase order deletion exception:", e);
+        }
+      }
+      
+      orders.splice(index, 1);
+      saveOrders();
+      updateAdminDashboard();
+      closeDeleteOrderModal();
+      showToast(`Order #${order.orderId} deleted from database successfully.`);
+    }
+
+    /* PROMPT POPUP CONFIRMATION FOR PRODUCT DELETION */
+    function deleteProduct(productId) {
+      const prod = products.find(p => p.id === productId);
+      if (!prod) return;
+      document.getElementById('pendingDeleteProductId').value = productId;
+      document.getElementById('deleteProductConfirmText').innerText = `Are you sure you want to delete "${prod.name}" from your store?`;
+      document.getElementById('deleteProductConfirmModal').classList.add('active');
+    }
+
+    function closeDeleteProductModal() {
+      document.getElementById('deleteProductConfirmModal').classList.remove('active');
+    }
+
+    function confirmDeleteProductAction() {
+      const productId = document.getElementById('pendingDeleteProductId').value;
+      products = products.filter(p => p.id !== productId);
+      saveProducts();
+      renderProducts();
+      updateCartUI();
+      updateAdminDashboard();
+      closeDeleteProductModal();
+      showToast('Product removed from store successfully.');
+    }
+
+    function renderAdminOrdersList() {
+      const container = document.getElementById('mainAdminOrdersList');
+      if (!container) return;
+
+      if (orders.length === 0) {
+        container.innerHTML = '<div style="text-align:center; color:var(--text-muted); padding:30px; background:var(--bg-card); border-radius:6px;">No customer orders placed yet.</div>';
+        return;
+      }
+
+      container.innerHTML = '';
+      orders.forEach((order, index) => {
+        const itemsListStr = order.items.map(i => `${i.name} (x${i.qty})`).join(', ');
+        container.innerHTML += `
+          <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:8px; padding:20px; margin-bottom:16px; position:relative;">
+            <!-- DELETE BUTTON PLACED ON THE OPPOSITE CORNER (TOP RIGHT) -->
+            <div style="position: absolute; top: 16px; right: 16px;">
+              <button class="admin-action-btn" style="background:#ef4444; color:#fff; padding: 6px 12px; font-weight: 700;" onclick="promptDeleteOrder(${index})">
+                <i class="fa-solid fa-trash"></i> Delete Order
+              </button>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border-subtle); padding-bottom:10px; margin-bottom:12px; font-weight:800; font-size:1.15rem; padding-right: 120px;">
+              <span>Order #${order.orderId}</span>
+              <span style="color:var(--accent-primary);">${order.totalAmount}</span>
+            </div>
+            <div style="font-size:0.88rem; line-height:1.6; color:var(--text-muted);">
+              <p><b>Date:</b> ${order.date}</p>
+              <p><b>Customer:</b> ${order.customer.name} | <b>Email:</b> ${order.customer.email} | <b>Phone:</b> ${order.customer.phone}</p>
+              <p><b>Address:</b> ${order.customer.address}</p>
+              <p><b>Bats Ordered:</b> ${itemsListStr}</p>
+              <p><b>UPI UTR Number:</b> <code style="background:var(--bg-surface); padding:2px 8px; border-radius:4px; color:var(--accent-primary); font-weight:700;">${order.utr}</code></p>
+              <p><b>Current Stage:</b> <span style="font-weight:700; color:#10b981;">${order.status}</span></p>
+            </div>
+            <div style="margin-top:14px; padding-top:12px; border-top:1px dashed var(--border-subtle); display:flex; gap:10px; flex-wrap:wrap;">
+              <button class="admin-action-btn" style="background:#0284c7; color:#fff;" onclick="sendOrderPlacedEmail(${index})">
+                <i class="fa-solid fa-envelope"></i> Send Confirmation Email
+              </button>
+              <button class="admin-action-btn" style="background:#059669; color:#fff;" onclick="markOrderDispatched(${index})">
+                <i class="fa-solid fa-truck-fast"></i> Update Dispatch &amp; Email Tracking
+              </button>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function renderAdminProductsTable() {
+      const tbody = document.getElementById('adminProductsTableBody');
+      if (!tbody) return;
+
+      tbody.innerHTML = '';
+
+      products.forEach(p => {
+        const isAvailable = p.inStock !== false;
+        const saleBadgeStr = p.saleBadge ? `<span style="background:var(--accent-primary); color:#fff; padding:2px 6px; border-radius:3px; font-weight:800; font-size:0.75rem;">${p.saleBadge}</span>` : '<span style="color:var(--text-muted);">None</span>';
+        const imgCount = (p.images && p.images.length) ? p.images.length : 1;
+
+        tbody.innerHTML += `
+          <tr>
+            <td>
+              <div style="display:flex; align-items:center; gap:10px;">
+                <img src="${p.img}" alt="${p.name}" style="width:36px; height:36px; object-fit:cover; background:var(--bg-surface); border-radius:4px; padding:2px; border:1px solid var(--border-subtle);" onerror="handleImgError(this)" />
+                <div>
+                  <b>${p.name}</b>
+                  <div style="font-size:0.72rem; color:var(--text-muted);"><i class="fa-solid fa-images"></i> ${imgCount} photo(s)</div>
+                </div>
+              </div>
+            </td>
+            <td style="text-transform:capitalize; color:var(--accent-primary); font-weight:700;">${p.category}</td>
+            <td style="font-weight:700;">Rs. ${Number(p.price).toLocaleString('en-IN')}</td>
+            <td>
+              <div>${saleBadgeStr}</div>
+              ${p.saleDesc ? `<div style="font-size:0.75rem; color:var(--text-muted);">${p.saleDesc}</div>` : ''}
+            </td>
+            <td>
+              <span class="stock-badge ${isAvailable ? 'stock-available' : 'stock-out'}" style="position:static; display:inline-block;">
+                ${isAvailable ? 'In Stock' : 'Out of Stock'}
+              </span>
+            </td>
+            <td>
+              <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                <button class="admin-action-btn btn-edit-prod" onclick="openEditModal('${p.id}')">
+                  <i class="fa-solid fa-pen-to-square"></i> Edit
+                </button>
+                <button class="admin-action-btn btn-toggle-stock" onclick="toggleProductStock('${p.id}')">
+                  <i class="fa-solid fa-arrows-rotate"></i> Stock
+                </button>
+                <button class="admin-action-btn btn-delete-prod" onclick="deleteProduct('${p.id}')">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+      });
+    }
+
+    function openEditModal(productId) {
+      const prod = products.find(p => p.id === productId);
+      if (!prod) return;
+
+      document.getElementById('editProdId').value = prod.id;
+      document.getElementById('editProdCategory').value = prod.category;
+      document.getElementById('editProdName').value = prod.name;
+      document.getElementById('editProdPrice').value = prod.price;
+      document.getElementById('editProdImg').value = prod.img;
+      document.getElementById('editProdSaleBadge').value = prod.saleBadge || '';
+      document.getElementById('editProdSaleDesc').value = prod.saleDesc || '';
+      document.getElementById('editProdFeatures').value = (prod.features || []).join(', ');
+      document.getElementById('editProdStock').value = prod.inStock !== false ? 'true' : 'false';
+
+      tempEditImages = prod.images && prod.images.length ? [...prod.images] : [prod.img];
+      renderEditPhotosGallery();
+
+      document.getElementById('editProductModal').classList.add('active');
+    }
+
+    function renderEditPhotosGallery() {
+      const container = document.getElementById('editPhotosPreviewList');
+      if (!container) return;
+      container.innerHTML = '';
+
+      tempEditImages.forEach((imgUrl, idx) => {
+        container.innerHTML += `
+          <div class="photo-thumb-wrapper">
+            <img src="${imgUrl}" class="photo-thumb-img" onerror="handleImgError(this)" />
+            <button type="button" class="photo-remove-btn" onclick="removePhotoFromEdit(${idx})"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+        `;
+      });
+    }
+
+    function removePhotoFromEdit(index) {
+      tempEditImages.splice(index, 1);
+      if (tempEditImages.length > 0) {
+        document.getElementById('editProdImg').value = tempEditImages[0];
+      }
+      renderEditPhotosGallery();
+    }
+
+    async function handleMultiplePhotosUpload(e) {
+      const files = Array.from(e.target.files);
+      if (!files.length) return;
+
+      if (!supabaseClient) {
+        alert("Supabase client is not initialized.");
+        return;
+      }
+
+      const notice = document.getElementById('uploadStatusNotice');
+      const saveBtn = document.getElementById('btnSaveEditedProd');
+      notice.style.display = 'block';
+      saveBtn.disabled = true;
+
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        notice.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Uploading photo ${i + 1} of ${files.length} to Supabase...`;
+        
+        const fileExt = file.name.split('.').pop();
+        const fileName = `bat_${Date.now()}_${Math.random().toString(36).substring(2, 8)}.${fileExt}`;
+        const filePath = `${fileName}`;
+
+        try {
+          const { error } = await supabaseClient.storage
+            .from('product-images')
+            .upload(filePath, file, { cacheControl: '3600', upsert: false });
+
+          if (error) {
+            console.error("Upload error for file:", file.name, error);
+            continue;
+          }
+
+          const { data: publicUrlData } = supabaseClient.storage
+            .from('product-images')
+            .getPublicUrl(filePath);
+
+          if (publicUrlData && publicUrlData.publicUrl) {
+            tempEditImages.push(publicUrlData.publicUrl);
+            if (!document.getElementById('editProdImg').value || document.getElementById('editProdImg').value.startsWith('./')) {
+              document.getElementById('editProdImg').value = publicUrlData.publicUrl;
+            }
+          }
+        } catch (err) {
+          console.error("Supabase Storage upload error:", err);
+        }
+      }
+
+      renderEditPhotosGallery();
+      notice.innerHTML = `<i class="fa-solid fa-circle-check" style="color:var(--accent-primary);"></i> Uploaded ${files.length} photo(s) successfully!`;
+      saveBtn.disabled = false;
+      e.target.value = '';
+      setTimeout(() => { notice.style.display = 'none'; }, 4000);
+    }
+
+    function closeEditModal() {
+      document.getElementById('editProductModal').classList.remove('active');
+    }
+
+    function handleSaveEditedProduct(e) {
+      e.preventDefault();
+      const id = document.getElementById('editProdId').value;
+      const index = products.findIndex(p => p.id === id);
+      if (index === -1) return;
+
+      const featuresStr = document.getElementById('editProdFeatures').value;
+      const features = featuresStr.split(',').map(f => f.trim()).filter(f => f.length > 0);
+      const mainImg = tempEditImages.length > 0 ? tempEditImages[0] : document.getElementById('editProdImg').value;
+
+      products[index] = {
+        ...products[index],
+        category: document.getElementById('editProdCategory').value,
+        name: document.getElementById('editProdName').value,
+        price: Number(document.getElementById('editProdPrice').value),
+        img: mainImg,
+        images: tempEditImages.length > 0 ? tempEditImages : [mainImg],
+        saleBadge: document.getElementById('editProdSaleBadge').value.trim(),
+        saleDesc: document.getElementById('editProdSaleDesc').value.trim(),
+        features: features.length ? features : ['Tournament Quality', 'Handcrafted Willow'],
+        inStock: document.getElementById('editProdStock').value === 'true'
+      };
+
+      saveProducts();
+      renderProducts();
+      updateAdminDashboard();
+      closeEditModal();
+      showToast(`Updated "${products[index].name}"!`);
+    }
+
+    function handleAdminAddNewProduct(e) {
+      e.preventDefault();
+      const category = document.getElementById('newProdCategory').value;
+      const name = document.getElementById('newProdName').value;
+      const price = Number(document.getElementById('newProdPrice').value);
+      const img = document.getElementById('newProdImg').value;
+      const saleBadge = document.getElementById('newProdSaleBadge').value.trim();
+      const saleDesc = document.getElementById('newProdSaleDesc').value.trim();
+      const featuresStr = document.getElementById('newProdFeatures').value;
+      const inStock = document.getElementById('newProdStock').value === 'true';
+
+      const features = featuresStr.split(',').map(f => f.trim()).filter(f => f.length > 0);
+
+      const newProduct = {
+        id: 'PROD-' + Date.now(),
+        category,
+        name,
+        price,
+        img,
+        images: [img],
+        saleBadge,
+        saleDesc,
+        inStock,
+        features: features.length ? features : ['Tournament Quality', 'Handmade Willow']
+      };
+
+      products.unshift(newProduct);
+      saveProducts();
+      renderProducts();
+      updateAdminDashboard();
+      
+      showToast(`${name} added to catalog!`);
+      e.target.reset();
+      switchAdminTab('products');
+    }
+
+    function toggleProductStock(productId) {
+      const prod = products.find(p => p.id === productId);
+      if (prod) {
+        prod.inStock = (prod.inStock === false) ? true : false;
+        saveProducts();
+        renderProducts();
+        updateCartUI();
+        updateAdminDashboard();
+        showToast(`${prod.name} stock updated!`);
+      }
+    }
+
+    function sendOrderPlacedEmail(index) {
+      const order = orders[index];
+      const itemsList = order.items.map(i => `- ${i.name} (Qty: ${i.qty}) - Rs. ${(Number(i.price) * i.qty).toLocaleString('en-IN')}`).join('%0D%0A');
+      
+      const subject = encodeURIComponent(`Order Confirmation - #${order.orderId} | F2 Sports`);
+      const body = encodeURIComponent(
+        `Dear ${order.customer.name},\n\n` +
+        `Thank you for choosing F2 Sports! Your order #${order.orderId} has been confirmed.\n\n` +
+        `Order Details:\n` +
+        `Order ID: #${order.orderId}\n` +
+        `Total Amount: ${order.totalAmount}\n` +
+        `UPI Reference ID: ${order.utr}\n\n` +
+        `Items in your Order:\n`
+      ) + itemsList + encodeURIComponent(
+        `\n\nDelivery Address:\n${order.customer.address}\n\n` +
+        `We will notify you with courier tracking details once your package is dispatched.\n\n` +
+        `Warm regards,\n` +
+        `Sajid & F2 Sports Team\n` +
+        `f2sportsstore@gmail.com | Zeesajid55@gmail.com`
+      );
+
+      window.location.href = `mailto:${order.customer.email}?cc=f2sportsstore@gmail.com,Zeesajid55@gmail.com&subject=${subject}&body=${body}`;
+    }
+
+    async function markOrderDispatched(index) {
+      const order = orders[index];
+      const trackingNo = prompt(`Enter Courier Tracking / AWB Number for Order #${order.orderId}:`, 'DTDC' + Math.floor(100000000 + Math.random() * 900000000));
+      if (!trackingNo) return;
+
+      const courierName = prompt('Enter Courier Name (e.g. BlueDart, DTDC, Delhivery):', 'BlueDart Express');
+      if (!courierName) return;
+
+      order.status = `Dispatched via ${courierName} (AWB: ${trackingNo})`;
+
+      if (supabaseClient && order.docId) {
+        try {
+          await supabaseClient
+            .from('orders')
+            .update({ status: order.status })
+            .eq('id', order.docId);
+        } catch (e) {
+          console.error("Supabase status update error:", e);
+        }
+      }
+
+      saveOrders();
+      updateAdminDashboard();
+
+      const subject = encodeURIComponent(`Your Bat Has Dispatched! - #${order.orderId} | F2 Sports`);
+      const body = encodeURIComponent(
+        `Dear ${order.customer.name},\n\n` +
+        `Great news! Your F2 Sports bat order #${order.orderId} has been packed and dispatched.\n\n` +
+        `Shipment Tracking Information:\n` +
+        `Courier Partner: ${courierName}\n` +
+        `Tracking / AWB Number: ${trackingNo}\n` +
+        `Delivery Destination: ${order.customer.address}\n\n` +
+        `You can track your package on the ${courierName} website. Expected delivery within 3-5 working days.\n\n` +
+        `Thank you for trusting F2 Sports!\n\n` +
+        `Best regards,\n` +
+        `F2 Sports Dispatch & Fulfillment Team\n` +
+        `f2sportsstore@gmail.com | Zeesajid55@gmail.com`
+      );
+
+      window.location.href = `mailto:${order.customer.email}?cc=f2sportsstore@gmail.com,Zeesajid55@gmail.com&subject=${subject}&body=${body}`;
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
       applyColorTheme(currentTheme);
       applyHeroPhotos();
+      renderProducts();
+      updateCartUI();
+      listenToCloudOrders();
+      const activeAdmin = sessionStorage.getItem('f2_active_admin_user');
+      if (activeAdmin) {
+        const badge = document.getElementById('adminWelcomeBadge');
+        const text = document.getElementById('adminWelcomeText');
+        if (badge && text) {
+          text.innerText = `Welcome ${activeAdmin}`;
+          badge.style.display = 'flex';
+        }
+      }
     });
   </script>
 </body>
