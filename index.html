@@ -302,14 +302,6 @@
       transition: transform 0.4s ease;
     }
 
-    /* Flip left icon so it faces inward toward the center text */
-    .hero-side-logo-box.left-flipped img {
-      transform: scaleX(-1);
-    }
-    .hero-side-logo-box.left-flipped:hover img {
-      transform: scaleX(-1) scale(1.05);
-    }
-
     .hero-side-logo-box:hover img {
       transform: scale(1.05);
     }
@@ -1534,7 +1526,7 @@
         text-align: center;
       }
       .hero-title-main {
-        font-size: 3.2rem;
+        font-size: 3rem;
       }
       .falcon-brand-banner-title {
         font-size: 2.3rem;
@@ -1588,8 +1580,8 @@
     <!-- CONTAINER 2: HERO SECTION WITH STORE LOGO ON BOTH SIDES & "F2 Sports" -->
     <section class="hero-sports-wrapper" id="home">
       <div class="hero-grid-showcase">
-        <!-- LEFT SIDE STORE LOGO (FLIPPED HORIZONTALLY TO FACE INWARD) -->
-        <div class="hero-side-logo-box left-flipped">
+        <!-- LEFT SIDE STORE LOGO (ORIGINAL ORIENTATION) -->
+        <div class="hero-side-logo-box">
           <img src="logo.png" alt="F2 Sports Left Logo" class="hero-side-logo-img" onerror="this.src='https://images.unsplash.com/photo-1531415074868-036b107e775a?q=80&w=300&auto=format&fit=crop'" />
         </div>
 
@@ -1905,7 +1897,7 @@
         </div>
       </div>
 
-      <!-- TAB 3: ADD PRODUCT (WITH MULTI-PHOTO UPLOAD TO SUPABASE) -->
+      <!-- TAB 3: ADD PRODUCT WITH IMAGE UPLOAD -->
       <div class="admin-tab-pane" id="adminPaneAddProduct">
         <div class="admin-form-box">
           <h4 style="font-size:1.2rem; color:var(--text-main); margin-bottom:18px;"><i class="fa-solid fa-circle-plus" style="color:var(--accent-primary);"></i> Add New Bat to Catalog</h4>
@@ -1932,7 +1924,7 @@
               </div>
               <div class="form-group">
                 <label class="form-label">Main Image URL / Path</label>
-                <input type="text" id="newProdImg" class="form-input" placeholder="e.g. ./grade_a_english.jpg" required />
+                <input type="text" id="newProdImg" class="form-input" placeholder="e.g. https://... or upload below" required />
               </div>
             </div>
 
@@ -2549,6 +2541,55 @@
 
     function saveProducts() {
       localStorage.setItem('f2_products', JSON.stringify(products));
+      syncProductsToCloud();
+    }
+
+    async function syncProductsToCloud() {
+      if (!supabaseClient) return;
+      try {
+        for (let p of products) {
+          await supabaseClient.from('products').upsert({
+            product_id: p.id,
+            category: p.category,
+            name: p.name,
+            price: p.price,
+            img: p.img,
+            images: p.images,
+            in_stock: p.inStock,
+            sale_badge: p.saleBadge || '',
+            sale_desc: p.saleDesc || '',
+            features: p.features
+          }, { onConflict: 'product_id' });
+        }
+      } catch (err) {
+        console.warn("Supabase products sync notice:", err);
+      }
+    }
+
+    async function loadCloudProducts() {
+      if (!supabaseClient) return;
+      try {
+        const { data, error } = await supabaseClient.from('products').select('*');
+        if (!error && data && data.length > 0) {
+          products = data.map(p => ({
+            id: p.product_id,
+            category: p.category,
+            name: p.name,
+            price: p.price,
+            img: p.img,
+            images: p.images || [p.img],
+            inStock: p.in_stock,
+            saleBadge: p.sale_badge,
+            saleDesc: p.sale_desc,
+            features: p.features || []
+          }));
+          localStorage.setItem('f2_products', JSON.stringify(products));
+          renderProducts();
+          updateAdminDashboard();
+        }
+      } catch (err) {
+        console.warn("Supabase products fetch notice:", err);
+      }
     }
 
     function saveOrders() {
@@ -3574,87 +3615,10 @@
       switchAdminTab('products');
     }
 
-    function toggleProductStock(productId) {
-      const prod = products.find(p => p.id === productId);
-      if (prod) {
-        prod.inStock = (prod.inStock === false) ? true : false;
-        saveProducts();
-        renderProducts();
-        updateCartUI();
-        updateAdminDashboard();
-        showToast(`${prod.name} stock updated!`);
-      }
-    }
-
-    function sendOrderPlacedEmail(index) {
-      const order = orders[index];
-      const itemsList = order.items.map(i => `- ${i.name} (Qty: ${i.qty}) - Rs. ${(Number(i.price) * i.qty).toLocaleString('en-IN')}`).join('%0D%0A');
-      
-      const subject = encodeURIComponent(`Order Confirmation - #${order.orderId} | F2 Sports`);
-      const body = encodeURIComponent(
-        `Dear ${order.customer.name},\n\n` +
-        `Thank you for choosing F2 Sports! Your order #${order.orderId} has been confirmed.\n\n` +
-        `Order Details:\n` +
-        `Order ID: #${order.orderId}\n` +
-        `Total Amount: ${order.totalAmount}\n` +
-        `UPI Reference ID: ${order.utr}\n\n` +
-        `Items in your Order:\n`
-      ) + itemsList + encodeURIComponent(
-        `\n\nDelivery Address:\n${order.customer.address}\n\n` +
-        `We will notify you with courier tracking details once your package is dispatched.\n\n` +
-        `Warm regards,\n` +
-        `Sajid & F2 Sports Team\n` +
-        `f2sportsstore@gmail.com | Zeesajid55@gmail.com`
-      );
-
-      window.location.href = `mailto:${order.customer.email}?cc=f2sportsstore@gmail.com,Zeesajid55@gmail.com&subject=${subject}&body=${body}`;
-    }
-
-    async function markOrderDispatched(index) {
-      const order = orders[index];
-      const trackingNo = prompt(`Enter Courier Tracking / AWB Number for Order #${order.orderId}:`, 'DTDC' + Math.floor(100000000 + Math.random() * 900000000));
-      if (!trackingNo) return;
-
-      const courierName = prompt('Enter Courier Name (e.g. BlueDart, DTDC, Delhivery):', 'BlueDart Express');
-      if (!courierName) return;
-
-      order.status = `Dispatched via ${courierName} (AWB: ${trackingNo})`;
-
-      if (supabaseClient && order.docId) {
-        try {
-          await supabaseClient
-            .from('orders')
-            .update({ status: order.status })
-            .eq('id', order.docId);
-        } catch (e) {
-          console.error("Supabase status update error:", e);
-        }
-      }
-
-      saveOrders();
-      updateAdminDashboard();
-
-      const subject = encodeURIComponent(`Your Bat Has Dispatched! - #${order.orderId} | F2 Sports`);
-      const body = encodeURIComponent(
-        `Dear ${order.customer.name},\n\n` +
-        `Great news! Your F2 Sports bat order #${order.orderId} has been packed and dispatched.\n\n` +
-        `Shipment Tracking Information:\n` +
-        `Courier Partner: ${courierName}\n` +
-        `Tracking / AWB Number: ${trackingNo}\n` +
-        `Delivery Destination: ${order.customer.address}\n\n` +
-        `You can track your package on the ${courierName} website. Expected delivery within 3-5 working days.\n\n` +
-        `Thank you for trusting F2 Sports!\n\n` +
-        `Best regards,\n` +
-        `F2 Sports Dispatch & Fulfillment Team\n` +
-        `f2sportsstore@gmail.com | Zeesajid55@gmail.com`
-      );
-
-      window.location.href = `mailto:${order.customer.email}?cc=f2sportsstore@gmail.com,Zeesajid55@gmail.com&subject=${subject}&body=${body}`;
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', async () => {
       applyColorTheme(currentTheme);
       applyHeroPhotos();
+      await loadCloudProducts();
       renderProducts();
       updateCartUI();
       listenToCloudOrders();
