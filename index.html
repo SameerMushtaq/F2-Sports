@@ -264,7 +264,7 @@
       justify-content: center;
     }
 
-    /* CONTAINER 2: HERO SECTION WITH LOGO IMAGES ON BOTH SIDES & F2 SPORTS */
+    /* CONTAINER 2: HERO SECTION */
     .hero-sports-wrapper {
       background: var(--hero-radial);
       border-bottom: 2px solid var(--border-theme);
@@ -302,7 +302,15 @@
       transition: transform 0.4s ease;
     }
 
-    .hero-side-logo-box:hover .hero-side-logo-img {
+    /* Flip left icon so it faces inward toward the center text */
+    .hero-side-logo-box.left-flipped img {
+      transform: scaleX(-1);
+    }
+    .hero-side-logo-box.left-flipped:hover img {
+      transform: scaleX(-1) scale(1.05);
+    }
+
+    .hero-side-logo-box:hover img {
       transform: scale(1.05);
     }
 
@@ -1526,7 +1534,7 @@
         text-align: center;
       }
       .hero-title-main {
-        font-size: 3rem;
+        font-size: 3.2rem;
       }
       .falcon-brand-banner-title {
         font-size: 2.3rem;
@@ -1580,8 +1588,8 @@
     <!-- CONTAINER 2: HERO SECTION WITH STORE LOGO ON BOTH SIDES & "F2 Sports" -->
     <section class="hero-sports-wrapper" id="home">
       <div class="hero-grid-showcase">
-        <!-- LEFT SIDE STORE LOGO -->
-        <div class="hero-side-logo-box">
+        <!-- LEFT SIDE STORE LOGO (FLIPPED HORIZONTALLY TO FACE INWARD) -->
+        <div class="hero-side-logo-box left-flipped">
           <img src="logo.png" alt="F2 Sports Left Logo" class="hero-side-logo-img" onerror="this.src='https://images.unsplash.com/photo-1531415074868-036b107e775a?q=80&w=300&auto=format&fit=crop'" />
         </div>
 
@@ -1863,6 +1871,7 @@
         <button class="admin-tab-btn active" onclick="switchAdminTab('orders')"><i class="fa-solid fa-clipboard-list"></i> Customer Orders (<span id="adminOrdersTabCount">0</span>)</button>
         <button class="admin-tab-btn" onclick="switchAdminTab('products')"><i class="fa-solid fa-boxes-packing"></i> Manage Catalog (<span id="adminProdsTabCount">0</span>)</button>
         <button class="admin-tab-btn" onclick="switchAdminTab('add-product')"><i class="fa-solid fa-plus-circle"></i> Add New Bat</button>
+        <button class="admin-tab-btn" onclick="switchAdminTab('hero-photos')"><i class="fa-solid fa-images"></i> Manage Header Photos</button>
       </div>
 
       <!-- TAB 1: ORDERS -->
@@ -1896,7 +1905,7 @@
         </div>
       </div>
 
-      <!-- TAB 3: ADD PRODUCT -->
+      <!-- TAB 3: ADD PRODUCT (WITH MULTI-PHOTO UPLOAD TO SUPABASE) -->
       <div class="admin-tab-pane" id="adminPaneAddProduct">
         <div class="admin-form-box">
           <h4 style="font-size:1.2rem; color:var(--text-main); margin-bottom:18px;"><i class="fa-solid fa-circle-plus" style="color:var(--accent-primary);"></i> Add New Bat to Catalog</h4>
@@ -1922,9 +1931,19 @@
                 <input type="number" id="newProdPrice" class="form-input" placeholder="e.g. 17499" required />
               </div>
               <div class="form-group">
-                <label class="form-label">Image Filename / Main URL</label>
+                <label class="form-label">Main Image URL / Path</label>
                 <input type="text" id="newProdImg" class="form-input" placeholder="e.g. ./grade_a_english.jpg" required />
               </div>
+            </div>
+
+            <!-- MULTIPLE PHOTO UPLOAD FOR NEW PRODUCT -->
+            <div class="form-group" style="background:rgba(225, 29, 72, 0.05); padding:14px; border-radius:8px; border:1px dashed var(--border-theme);">
+              <label class="form-label">
+                <i class="fa-solid fa-cloud-arrow-up"></i> Upload Bat Photos to Supabase Storage (Multi-Select)
+              </label>
+              <input type="file" id="newProdMultiFiles" class="form-input" multiple accept="image/*" onchange="handleNewProductPhotosUpload(event)" />
+              <div id="newUploadStatusNotice" style="font-size:0.78rem; color:var(--accent-primary); margin-top:6px; display:none;"></div>
+              <div class="photos-preview-gallery" id="newPhotosPreviewList"></div>
             </div>
 
             <div class="form-grid-2">
@@ -1951,10 +1970,52 @@
               </select>
             </div>
 
-            <button type="submit" class="btn-submit-order" style="max-width:260px;">
+            <button type="submit" class="btn-submit-order" id="btnPublishNewProd" style="max-width:260px;">
               <i class="fa-solid fa-plus-circle"></i> Publish Product
             </button>
           </form>
+        </div>
+      </div>
+
+      <!-- TAB 4: HEADER PHOTOS MANAGER -->
+      <div class="admin-tab-pane" id="adminPaneHeroPhotos">
+        <div class="admin-form-box">
+          <h4 style="font-size:1.2rem; color:var(--text-main); margin-bottom:8px;"><i class="fa-solid fa-images" style="color:var(--accent-primary);"></i> Change 2nd Container Header Photos (6 Transparent PNGs)</h4>
+          <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:20px;">Upload transparent background .png photos for the left and right showcase slots in the 2nd container.</p>
+
+          <div class="hero-editor-grid">
+            <div class="hero-slot-card">
+              <span class="form-label">Left Slot 1</span>
+              <div class="hero-slot-preview"><img src="./hero_bat_1.png" id="slotPreviewImg1" alt="Slot 1" onerror="handleImgError(this)" /></div>
+              <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 0)" class="form-input" style="font-size:0.75rem;" />
+            </div>
+            <div class="hero-slot-card">
+              <span class="form-label">Left Slot 2</span>
+              <div class="hero-slot-preview"><img src="./hero_bat_2.png" id="slotPreviewImg2" alt="Slot 2" onerror="handleImgError(this)" /></div>
+              <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 1)" class="form-input" style="font-size:0.75rem;" />
+            </div>
+            <div class="hero-slot-card">
+              <span class="form-label">Left Slot 3</span>
+              <div class="hero-slot-preview"><img src="./hero_bat_1.png" id="slotPreviewImg5" alt="Slot 5" onerror="handleImgError(this)" /></div>
+              <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 4)" class="form-input" style="font-size:0.75rem;" />
+            </div>
+            <div class="hero-slot-card">
+              <span class="form-label">Right Slot 1</span>
+              <div class="hero-slot-preview"><img src="./hero_bat_3.png" id="slotPreviewImg3" alt="Slot 3" onerror="handleImgError(this)" /></div>
+              <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 2)" class="form-input" style="font-size:0.75rem;" />
+            </div>
+            <div class="hero-slot-card">
+              <span class="form-label">Right Slot 2</span>
+              <div class="hero-slot-preview"><img src="./hero_bat_4.png" id="slotPreviewImg4" alt="Slot 4" onerror="handleImgError(this)" /></div>
+              <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 3)" class="form-input" style="font-size:0.75rem;" />
+            </div>
+            <div class="hero-slot-card">
+              <span class="form-label">Right Slot 3</span>
+              <div class="hero-slot-preview"><img src="./hero_bat_3.png" id="slotPreviewImg6" alt="Slot 6" onerror="handleImgError(this)" /></div>
+              <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 5)" class="form-input" style="font-size:0.75rem;" />
+            </div>
+          </div>
+          <div id="heroPhotoUploadStatus" style="color:var(--accent-primary); font-size:0.85rem; font-weight:700; margin-top:14px; display:none;"></div>
         </div>
       </div>
     </div>
@@ -2309,14 +2370,26 @@
       showToast(`Switched to ${currentTheme === 'dark-red' ? 'Complete Dark Red' : 'Light Green Blue'} Mode`);
     }
 
+    // Default 6 Header Showcase Transparent PNGs (3 left, 3 right)
+    const defaultHeroPhotos = [
+      './hero_bat_1.png',
+      './hero_bat_2.png',
+      './hero_bat_1.png',
+      './hero_bat_3.png',
+      './hero_bat_4.png',
+      './hero_bat_3.png'
+    ];
+
+    let heroPhotos = JSON.parse(localStorage.getItem('f2_hero_photos')) || defaultHeroPhotos;
+
     const initialProducts = [
       {
         id: 'KW1',
         category: 'kashmir',
         name: 'F2 Players Edition Kashmir Leather Bat',
         price: 7999,
-        img: './Players_edition.jpg',
-        images: ['./Players_edition.jpg'],
+        img: 'https://images.unsplash.com/photo-1593341646782-e0b495cffc6d?q=80&w=600&auto=format&fit=crop',
+        images: ['https://images.unsplash.com/photo-1593341646782-e0b495cffc6d?q=80&w=600&auto=format&fit=crop'],
         inStock: true,
         saleBadge: '20% OFF',
         saleDesc: 'Eid Mubarak Festival Deal',
@@ -2327,8 +2400,8 @@
         category: 'kashmir',
         name: 'F2 Platinum Leather Bat',
         price: 6499,
-        img: './platinum.jpg',
-        images: ['./platinum.jpg'],
+        img: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=600&auto=format&fit=crop',
+        images: ['https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=600&auto=format&fit=crop'],
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -2339,8 +2412,8 @@
         category: 'kashmir',
         name: 'F2 Diamond Leather Bat',
         price: 5199,
-        img: './diamond.jpg',
-        images: ['./diamond.jpg'],
+        img: 'https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?q=80&w=600&auto=format&fit=crop',
+        images: ['https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?q=80&w=600&auto=format&fit=crop'],
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -2351,8 +2424,8 @@
         category: 'kashmir',
         name: 'F2 Gold Reserve Leather Bat',
         price: 4199,
-        img: './gold.jpg',
-        images: ['./gold.jpg'],
+        img: 'https://images.unsplash.com/photo-1578269174936-2799b94b1536?q=80&w=600&auto=format&fit=crop',
+        images: ['https://images.unsplash.com/photo-1578269174936-2799b94b1536?q=80&w=600&auto=format&fit=crop'],
         inStock: false,
         saleBadge: '',
         saleDesc: '',
@@ -2363,8 +2436,8 @@
         category: 'kashmir',
         name: 'F2 Silver Club Leather Bat',
         price: 3299,
-        img: './silver.jpg',
-        images: ['./silver.jpg'],
+        img: 'https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?q=80&w=600&auto=format&fit=crop',
+        images: ['https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?q=80&w=600&auto=format&fit=crop'],
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -2375,8 +2448,8 @@
         category: 'english',
         name: 'F2 Pro Grade A English Willow Bat',
         price: 17499,
-        img: './grade_a_english.jpg',
-        images: ['./grade_a_english.jpg'],
+        img: 'https://images.unsplash.com/photo-1593341646782-e0b495cffc6d?q=80&w=600&auto=format&fit=crop',
+        images: ['https://images.unsplash.com/photo-1593341646782-e0b495cffc6d?q=80&w=600&auto=format&fit=crop'],
         inStock: true,
         saleBadge: '15% OFF',
         saleDesc: 'Eid Special Offer',
@@ -2387,8 +2460,8 @@
         category: 'english',
         name: 'F2 Match Grade B English Willow Bat',
         price: 16999,
-        img: './grade_b_english.jpg',
-        images: ['./grade_b_english.jpg'],
+        img: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=600&auto=format&fit=crop',
+        images: ['https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=600&auto=format&fit=crop'],
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -2399,8 +2472,8 @@
         category: 'tennis',
         name: 'F2 Laser-Designed Hard Tennis Bat',
         price: 2499,
-        img: './designed.jpg',
-        images: ['./designed.jpg'],
+        img: 'https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?q=80&w=600&auto=format&fit=crop',
+        images: ['https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?q=80&w=600&auto=format&fit=crop'],
         inStock: true,
         saleBadge: '10% OFF',
         saleDesc: 'Turf Special',
@@ -2411,8 +2484,8 @@
         category: 'tennis',
         name: 'F2 Classic Raw (Without Design) Tennis Bat',
         price: 1999,
-        img: './without_design.jpg',
-        images: ['./without_design.jpg'],
+        img: 'https://images.unsplash.com/photo-1578269174936-2799b94b1536?q=80&w=600&auto=format&fit=crop',
+        images: ['https://images.unsplash.com/photo-1578269174936-2799b94b1536?q=80&w=600&auto=format&fit=crop'],
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -2423,8 +2496,8 @@
         category: 'tennis',
         name: 'F2 Popular Turf Dominator Tennis Bat',
         price: 1799,
-        img: './popular.jpg',
-        images: ['./popular.jpg'],
+        img: 'https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?q=80&w=600&auto=format&fit=crop',
+        images: ['https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?q=80&w=600&auto=format&fit=crop'],
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -2435,8 +2508,8 @@
         category: 'tennis',
         name: 'F2 Full Cane Handle Tennis Bat',
         price: 2899,
-        img: './cane.jpg',
-        images: ['./cane.jpg'],
+        img: 'https://images.unsplash.com/photo-1593341646782-e0b495cffc6d?q=80&w=600&auto=format&fit=crop',
+        images: ['https://images.unsplash.com/photo-1593341646782-e0b495cffc6d?q=80&w=600&auto=format&fit=crop'],
         inStock: false,
         saleBadge: '',
         saleDesc: '',
@@ -2447,8 +2520,8 @@
         category: 'tennis',
         name: 'F2 Kissan Tennis Heavy Punch Bat',
         price: 2299,
-        img: './kissan_tennis.jpg',
-        images: ['./kissan_tennis.jpg'],
+        img: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=600&auto=format&fit=crop',
+        images: ['https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=600&auto=format&fit=crop'],
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -2459,8 +2532,8 @@
         category: 'tennis',
         name: 'F2 36-Inch Long Blade Monster Tennis Bat',
         price: 2999,
-        img: './36inch.jpg',
-        images: ['./36inch.jpg'],
+        img: 'https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?q=80&w=600&auto=format&fit=crop',
+        images: ['https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?q=80&w=600&auto=format&fit=crop'],
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -2472,6 +2545,7 @@
     let orders = JSON.parse(localStorage.getItem('f2_orders')) || [];
     let cart = {};
     let tempEditImages = [];
+    let tempNewImages = [];
 
     function saveProducts() {
       localStorage.setItem('f2_products', JSON.stringify(products));
@@ -2479,6 +2553,59 @@
 
     function saveOrders() {
       localStorage.setItem('f2_orders', JSON.stringify(orders));
+    }
+
+    function saveHeroPhotos() {
+      localStorage.setItem('f2_hero_photos', JSON.stringify(heroPhotos));
+    }
+
+    function applyHeroPhotos() {
+      for (let i = 0; i < 6; i++) {
+        const heroElem = document.getElementById(`heroPhotoImg${i + 1}`);
+        const slotElem = document.getElementById(`slotPreviewImg${i + 1}`);
+        if (heroElem && heroPhotos[i]) heroElem.src = heroPhotos[i];
+        if (slotElem && heroPhotos[i]) slotElem.src = heroPhotos[i];
+      }
+    }
+
+    async function uploadHeroSlotPhoto(e, slotIndex) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const statusElem = document.getElementById('heroPhotoUploadStatus');
+      statusElem.style.display = 'block';
+      statusElem.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Uploading transparent PNG to Supabase...`;
+
+      if (supabaseClient) {
+        try {
+          const fileExt = file.name.split('.').pop();
+          const fileName = `hero_slot_${slotIndex + 1}_${Date.now()}.${fileExt}`;
+          const { error } = await supabaseClient.storage.from('product-images').upload(fileName, file, { upsert: true });
+
+          if (!error) {
+            const { data } = supabaseClient.storage.from('product-images').getPublicUrl(fileName);
+            if (data && data.publicUrl) {
+              heroPhotos[slotIndex] = data.publicUrl;
+            }
+          }
+        } catch (err) {
+          console.error("Hero upload error:", err);
+        }
+      } else {
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          heroPhotos[slotIndex] = ev.target.result;
+          saveHeroPhotos();
+          applyHeroPhotos();
+        };
+        reader.readAsDataURL(file);
+      }
+
+      saveHeroPhotos();
+      applyHeroPhotos();
+      statusElem.innerHTML = `<i class="fa-solid fa-check"></i> Slot ${slotIndex + 1} photo updated!`;
+      setTimeout(() => statusElem.style.display = 'none', 3500);
+      showToast(`Header Slot ${slotIndex + 1} updated!`);
     }
 
     async function loadCloudOrders() {
@@ -2931,6 +3058,7 @@
         badge.style.display = 'flex';
       }
 
+      applyHeroPhotos();
       updateAdminDashboard();
       window.scrollTo(0, 0);
     }
@@ -3033,6 +3161,9 @@
       } else if (tabName === 'add-product') {
         tabs[2].classList.add('active');
         document.getElementById('adminPaneAddProduct').classList.add('active');
+      } else if (tabName === 'hero-photos') {
+        tabs[3].classList.add('active');
+        document.getElementById('adminPaneHeroPhotos').classList.add('active');
       }
     }
 
@@ -3307,6 +3438,70 @@
       setTimeout(() => { notice.style.display = 'none'; }, 4000);
     }
 
+    async function handleNewProductPhotosUpload(e) {
+      const files = Array.from(e.target.files);
+      if (!files.length) return;
+
+      if (!supabaseClient) {
+        alert("Supabase client is not initialized.");
+        return;
+      }
+
+      const notice = document.getElementById('newUploadStatusNotice');
+      const pubBtn = document.getElementById('btnPublishNewProd');
+      notice.style.display = 'block';
+      pubBtn.disabled = true;
+
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        notice.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Uploading photo ${i + 1} of ${files.length} to Supabase...`;
+        
+        const fileExt = file.name.split('.').pop();
+        const fileName = `bat_${Date.now()}_${Math.random().toString(36).substring(2, 8)}.${fileExt}`;
+        const filePath = `${fileName}`;
+
+        try {
+          const { error } = await supabaseClient.storage
+            .from('product-images')
+            .upload(filePath, file, { cacheControl: '3600', upsert: false });
+
+          if (error) {
+            console.error("Upload error:", error);
+            continue;
+          }
+
+          const { data: publicUrlData } = supabaseClient.storage
+            .from('product-images')
+            .getPublicUrl(filePath);
+
+          if (publicUrlData && publicUrlData.publicUrl) {
+            tempNewImages.push(publicUrlData.publicUrl);
+            if (!document.getElementById('newProdImg').value || document.getElementById('newProdImg').value.startsWith('./')) {
+              document.getElementById('newProdImg').value = publicUrlData.publicUrl;
+            }
+          }
+        } catch (err) {
+          console.error("Supabase Storage upload error:", err);
+        }
+      }
+
+      const gallery = document.getElementById('newPhotosPreviewList');
+      gallery.innerHTML = '';
+      tempNewImages.forEach((imgUrl, idx) => {
+        gallery.innerHTML += `
+          <div class="photo-thumb-wrapper">
+            <img src="${imgUrl}" class="photo-thumb-img" onerror="handleImgError(this)" />
+            <button type="button" class="photo-remove-btn" onclick="tempNewImages.splice(${idx},1); handleNewProductPhotosUpload({target:{files:[]}})"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+        `;
+      });
+
+      notice.innerHTML = `<i class="fa-solid fa-circle-check" style="color:var(--accent-primary);"></i> Uploaded ${files.length} photo(s) successfully!`;
+      pubBtn.disabled = false;
+      e.target.value = '';
+      setTimeout(() => { notice.style.display = 'none'; }, 4000);
+    }
+
     function closeEditModal() {
       document.getElementById('editProductModal').classList.remove('active');
     }
@@ -3346,7 +3541,7 @@
       const category = document.getElementById('newProdCategory').value;
       const name = document.getElementById('newProdName').value;
       const price = Number(document.getElementById('newProdPrice').value);
-      const img = document.getElementById('newProdImg').value;
+      const img = document.getElementById('newProdImg').value || (tempNewImages.length > 0 ? tempNewImages[0] : fallbackImage);
       const saleBadge = document.getElementById('newProdSaleBadge').value.trim();
       const saleDesc = document.getElementById('newProdSaleDesc').value.trim();
       const featuresStr = document.getElementById('newProdFeatures').value;
@@ -3359,8 +3554,8 @@
         category,
         name,
         price,
-        img,
-        images: [img],
+        img: img,
+        images: tempNewImages.length > 0 ? [...tempNewImages] : [img],
         saleBadge,
         saleDesc,
         inStock,
@@ -3372,6 +3567,8 @@
       renderProducts();
       updateAdminDashboard();
       
+      tempNewImages = [];
+      document.getElementById('newPhotosPreviewList').innerHTML = '';
       showToast(`${name} added to catalog!`);
       e.target.reset();
       switchAdminTab('products');
@@ -3457,6 +3654,7 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       applyColorTheme(currentTheme);
+      applyHeroPhotos();
       renderProducts();
       updateCartUI();
       listenToCloudOrders();
