@@ -264,58 +264,46 @@
       justify-content: center;
     }
 
-    /* CONTAINER 2: HERO SECTION WITH 3+3 (TOTAL 6) PICTURES IN A SINGLE ROW ON BOTH SIDES */
+    /* CONTAINER 2: HERO SECTION */
     .hero-sports-wrapper {
       background: var(--hero-radial);
       border-bottom: 2px solid var(--border-theme);
       position: relative;
       overflow: hidden;
-      padding: 10px 20px;
+      padding: 20px;
       min-height: 260px;
       display: flex;
       align-items: center;
     }
 
     .hero-grid-showcase {
-      max-width: 1600px;
+      max-width: 1500px;
       width: 100%;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 460px 1fr 460px;
-      align-items: stretch;
-      gap: 15px;
-    }
-
-    .hero-side-column {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
+      grid-template-columns: 280px 1fr 280px;
       align-items: center;
-      gap: 8px;
-      width: 100%;
-      height: 100%;
+      gap: 20px;
     }
 
-    .hero-png-item {
-      flex: 1;
-      height: 210px;
+    .hero-side-logo-box {
+      width: 100%;
+      height: 180px;
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
-      overflow: hidden;
     }
 
-    .hero-png-img {
-      width: 100%;
-      height: 100%;
+    .hero-side-logo-img {
+      max-width: 100%;
+      max-height: 100%;
       object-fit: contain;
-      filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.4));
+      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
       transition: transform 0.4s ease;
     }
 
-    .hero-png-item:hover .hero-png-img {
-      transform: scale(1.06);
+    .hero-side-logo-box:hover img {
+      transform: scale(1.05);
     }
 
     .hero-center-content {
@@ -1488,36 +1476,6 @@
       justify-content: center;
     }
 
-    .hero-editor-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 18px;
-    }
-
-    .hero-slot-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-theme);
-      border-radius: var(--radius);
-      padding: 16px;
-      text-align: center;
-    }
-
-    .hero-slot-preview {
-      height: 160px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 12px;
-      background: var(--bg-card);
-      border-radius: 8px;
-    }
-
-    .hero-slot-preview img {
-      max-height: 100%;
-      max-width: 100%;
-      object-fit: contain;
-    }
-
     @media (max-width: 1400px) {
       .hero-sports-wrapper {
         height: auto;
@@ -1527,9 +1485,8 @@
         grid-template-columns: 1fr;
         gap: 20px;
       }
-      .hero-side-column {
-        justify-content: center;
-        height: 180px;
+      .hero-side-logo-box {
+        height: 140px;
       }
     }
 
@@ -1539,7 +1496,7 @@
         text-align: center;
       }
       .hero-title-main {
-        font-size: 3.2rem;
+        font-size: 3rem;
       }
       .falcon-brand-banner-title {
         font-size: 2.3rem;
@@ -1590,31 +1547,27 @@
       </div>
     </header>
 
-    <!-- CONTAINER 2: HERO SECTION WITH 3+3 (TOTAL 6) PICTURES IN A SINGLE ROW ON BOTH SIDES -->
+    <!-- CONTAINER 2: HERO SECTION WITH STORE LOGO ON BOTH SIDES & "F2 Sports" -->
     <section class="hero-sports-wrapper" id="home">
       <div class="hero-grid-showcase">
-        <!-- LEFT 3 PICTURES IN A SINGLE ROW -->
-        <div class="hero-side-column">
-          <div class="hero-png-item"><img src="./hero_bat_1.png" id="heroPhotoImg1" class="hero-png-img" alt="Bat 1" onerror="handleImgError(this)" /></div>
-          <div class="hero-png-item"><img src="./hero_bat_2.png" id="heroPhotoImg2" class="hero-png-img" alt="Bat 2" onerror="handleImgError(this)" /></div>
-          <div class="hero-png-item"><img src="./hero_bat_1.png" id="heroPhotoImg5" class="hero-png-img" alt="Bat 5" onerror="handleImgError(this)" /></div>
+        <!-- LEFT SIDE STORE LOGO (ORIGINAL ORIENTATION) -->
+        <div class="hero-side-logo-box">
+          <img src="logo.png" alt="F2 Sports Left Logo" class="hero-side-logo-img" onerror="this.src='https://images.unsplash.com/photo-1531415074868-036b107e775a?q=80&w=300&auto=format&fit=crop'" />
         </div>
 
-        <!-- CENTER TEXT WITH MULTI-COLOR FALCON 2 -->
+        <!-- CENTER TEXT WITH F2 SPORTS -->
         <div class="hero-center-content">
           <h1>
             <span class="hero-title-prefix">Power Your Game With</span>
-            <span class="hero-title-main multi-color-text">FALCON 2 SPORTS</span>
+            <span class="hero-title-main multi-color-text">F2 Sports</span>
             <span class="hero-title-suffix">Mastercraft Bats</span>
           </h1>
           <p>Hand-crafted for extraordinary rebound ping, razor-sharp balance, and monster power hitting across all formats.</p>
         </div>
 
-        <!-- RIGHT 3 PICTURES IN A SINGLE ROW -->
-        <div class="hero-side-column">
-          <div class="hero-png-item"><img src="./hero_bat_3.png" id="heroPhotoImg3" class="hero-png-img" alt="Bat 3" onerror="handleImgError(this)" /></div>
-          <div class="hero-png-item"><img src="./hero_bat_4.png" id="heroPhotoImg4" class="hero-png-img" alt="Bat 4" onerror="handleImgError(this)" /></div>
-          <div class="hero-png-item"><img src="./hero_bat_3.png" id="heroPhotoImg6" class="hero-png-img" alt="Bat 6" onerror="handleImgError(this)" /></div>
+        <!-- RIGHT SIDE STORE LOGO -->
+        <div class="hero-side-logo-box">
+          <img src="logo.png" alt="F2 Sports Right Logo" class="hero-side-logo-img" onerror="this.src='https://images.unsplash.com/photo-1531415074868-036b107e775a?q=80&w=300&auto=format&fit=crop'" />
         </div>
       </div>
     </section>
@@ -1880,7 +1833,6 @@
         <button class="admin-tab-btn active" onclick="switchAdminTab('orders')"><i class="fa-solid fa-clipboard-list"></i> Customer Orders (<span id="adminOrdersTabCount">0</span>)</button>
         <button class="admin-tab-btn" onclick="switchAdminTab('products')"><i class="fa-solid fa-boxes-packing"></i> Manage Catalog (<span id="adminProdsTabCount">0</span>)</button>
         <button class="admin-tab-btn" onclick="switchAdminTab('add-product')"><i class="fa-solid fa-plus-circle"></i> Add New Bat</button>
-        <button class="admin-tab-btn" onclick="switchAdminTab('hero-photos')"><i class="fa-solid fa-images"></i> Manage Header Photos</button>
       </div>
 
       <!-- TAB 1: ORDERS -->
@@ -1914,7 +1866,7 @@
         </div>
       </div>
 
-      <!-- TAB 3: ADD PRODUCT -->
+      <!-- TAB 3: ADD PRODUCT WITH IMAGE UPLOAD -->
       <div class="admin-tab-pane" id="adminPaneAddProduct">
         <div class="admin-form-box">
           <h4 style="font-size:1.2rem; color:var(--text-main); margin-bottom:18px;"><i class="fa-solid fa-circle-plus" style="color:var(--accent-primary);"></i> Add New Bat to Catalog</h4>
@@ -1940,9 +1892,19 @@
                 <input type="number" id="newProdPrice" class="form-input" placeholder="e.g. 17499" required />
               </div>
               <div class="form-group">
-                <label class="form-label">Image Filename / Main URL</label>
-                <input type="text" id="newProdImg" class="form-input" placeholder="e.g. ./grade_a_english.jpg" required />
+                <label class="form-label">Main Image URL / Path</label>
+                <input type="text" id="newProdImg" class="form-input" placeholder="e.g. https://... or upload below" required />
               </div>
+            </div>
+
+            <!-- MULTIPLE PHOTO UPLOAD FOR NEW PRODUCT -->
+            <div class="form-group" style="background:rgba(225, 29, 72, 0.05); padding:14px; border-radius:8px; border:1px dashed var(--border-theme);">
+              <label class="form-label">
+                <i class="fa-solid fa-cloud-arrow-up"></i> Upload Bat Photos to Supabase Storage (Multi-Select)
+              </label>
+              <input type="file" id="newProdMultiFiles" class="form-input" multiple accept="image/*" onchange="handleNewProductPhotosUpload(event)" />
+              <div id="newUploadStatusNotice" style="font-size:0.78rem; color:var(--accent-primary); margin-top:6px; display:none;"></div>
+              <div class="photos-preview-gallery" id="newPhotosPreviewList"></div>
             </div>
 
             <div class="form-grid-2">
@@ -1969,52 +1931,10 @@
               </select>
             </div>
 
-            <button type="submit" class="btn-submit-order" style="max-width:260px;">
+            <button type="submit" class="btn-submit-order" id="btnPublishNewProd" style="max-width:260px;">
               <i class="fa-solid fa-plus-circle"></i> Publish Product
             </button>
           </form>
-        </div>
-      </div>
-
-      <!-- TAB 4: HEADER PHOTOS MANAGER -->
-      <div class="admin-tab-pane" id="adminPaneHeroPhotos">
-        <div class="admin-form-box">
-          <h4 style="font-size:1.2rem; color:var(--text-main); margin-bottom:8px;"><i class="fa-solid fa-images" style="color:var(--accent-primary);"></i> Change 2nd Container Header Photos (6 Transparent PNGs)</h4>
-          <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:20px;">Upload transparent background .png photos for the left and right showcase slots in the 2nd container.</p>
-
-          <div class="hero-editor-grid">
-            <div class="hero-slot-card">
-              <span class="form-label">Left Slot 1</span>
-              <div class="hero-slot-preview"><img src="./hero_bat_1.png" id="slotPreviewImg1" alt="Slot 1" onerror="handleImgError(this)" /></div>
-              <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 0)" class="form-input" style="font-size:0.75rem;" />
-            </div>
-            <div class="hero-slot-card">
-              <span class="form-label">Left Slot 2</span>
-              <div class="hero-slot-preview"><img src="./hero_bat_2.png" id="slotPreviewImg2" alt="Slot 2" onerror="handleImgError(this)" /></div>
-              <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 1)" class="form-input" style="font-size:0.75rem;" />
-            </div>
-            <div class="hero-slot-card">
-              <span class="form-label">Left Slot 3</span>
-              <div class="hero-slot-preview"><img src="./hero_bat_1.png" id="slotPreviewImg5" alt="Slot 5" onerror="handleImgError(this)" /></div>
-              <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 4)" class="form-input" style="font-size:0.75rem;" />
-            </div>
-            <div class="hero-slot-card">
-              <span class="form-label">Right Slot 1</span>
-              <div class="hero-slot-preview"><img src="./hero_bat_3.png" id="slotPreviewImg3" alt="Slot 3" onerror="handleImgError(this)" /></div>
-              <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 2)" class="form-input" style="font-size:0.75rem;" />
-            </div>
-            <div class="hero-slot-card">
-              <span class="form-label">Right Slot 2</span>
-              <div class="hero-slot-preview"><img src="./hero_bat_4.png" id="slotPreviewImg4" alt="Slot 4" onerror="handleImgError(this)" /></div>
-              <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 3)" class="form-input" style="font-size:0.75rem;" />
-            </div>
-            <div class="hero-slot-card">
-              <span class="form-label">Right Slot 3</span>
-              <div class="hero-slot-preview"><img src="./hero_bat_3.png" id="slotPreviewImg6" alt="Slot 6" onerror="handleImgError(this)" /></div>
-              <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 5)" class="form-input" style="font-size:0.75rem;" />
-            </div>
-          </div>
-          <div id="heroPhotoUploadStatus" style="color:var(--accent-primary); font-size:0.85rem; font-weight:700; margin-top:14px; display:none;"></div>
         </div>
       </div>
     </div>
@@ -2315,6 +2235,10 @@
     </div>
   </div>
 
+  <div class="toast" id="appToast">
+    <i class="fa-solid fa-circle-check" style="color:var(--accent-primary);"></i>
+    <span id="toastMsg">Added to cart</span>
+  </div>
 
   <script>
     const fallbackImage = 'https://images.unsplash.com/photo-1531415074868-036b107e775a?q=80&w=600&auto=format&fit=crop';
@@ -2383,8 +2307,8 @@
         category: 'kashmir',
         name: 'F2 Players Edition Kashmir Leather Bat',
         price: 7999,
-        img: './Players_edition.jpg',
-        images: ['./Players_edition.jpg'],
+        img: 'https://images.unsplash.com/photo-1593341646782-e0b495cffc6d?q=80&w=600&auto=format&fit=crop',
+        images: ['https://images.unsplash.com/photo-1593341646782-e0b495cffc6d?q=80&w=600&auto=format&fit=crop'],
         inStock: true,
         saleBadge: '20% OFF',
         saleDesc: 'Eid Mubarak Festival Deal',
@@ -2395,8 +2319,8 @@
         category: 'kashmir',
         name: 'F2 Platinum Leather Bat',
         price: 6499,
-        img: './platinum.jpg',
-        images: ['./platinum.jpg'],
+        img: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=600&auto=format&fit=crop',
+        images: ['https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=600&auto=format&fit=crop'],
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -2407,8 +2331,8 @@
         category: 'kashmir',
         name: 'F2 Diamond Leather Bat',
         price: 5199,
-        img: './diamond.jpg',
-        images: ['./diamond.jpg'],
+        img: 'https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?q=80&w=600&auto=format&fit=crop',
+        images: ['https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?q=80&w=600&auto=format&fit=crop'],
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -2419,8 +2343,8 @@
         category: 'kashmir',
         name: 'F2 Gold Reserve Leather Bat',
         price: 4199,
-        img: './gold.jpg',
-        images: ['./gold.jpg'],
+        img: 'https://images.unsplash.com/photo-1578269174936-2799b94b1536?q=80&w=600&auto=format&fit=crop',
+        images: ['https://images.unsplash.com/photo-1578269174936-2799b94b1536?q=80&w=600&auto=format&fit=crop'],
         inStock: false,
         saleBadge: '',
         saleDesc: '',
@@ -2431,8 +2355,8 @@
         category: 'kashmir',
         name: 'F2 Silver Club Leather Bat',
         price: 3299,
-        img: './silver.jpg',
-        images: ['./silver.jpg'],
+        img: 'https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?q=80&w=600&auto=format&fit=crop',
+        images: ['https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?q=80&w=600&auto=format&fit=crop'],
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -2443,8 +2367,8 @@
         category: 'english',
         name: 'F2 Pro Grade A English Willow Bat',
         price: 17499,
-        img: './grade_a_english.jpg',
-        images: ['./grade_a_english.jpg'],
+        img: 'https://images.unsplash.com/photo-1593341646782-e0b495cffc6d?q=80&w=600&auto=format&fit=crop',
+        images: ['https://images.unsplash.com/photo-1593341646782-e0b495cffc6d?q=80&w=600&auto=format&fit=crop'],
         inStock: true,
         saleBadge: '15% OFF',
         saleDesc: 'Eid Special Offer',
@@ -2455,8 +2379,8 @@
         category: 'english',
         name: 'F2 Match Grade B English Willow Bat',
         price: 16999,
-        img: './grade_b_english.jpg',
-        images: ['./grade_b_english.jpg'],
+        img: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=600&auto=format&fit=crop',
+        images: ['https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=600&auto=format&fit=crop'],
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -2467,8 +2391,8 @@
         category: 'tennis',
         name: 'F2 Laser-Designed Hard Tennis Bat',
         price: 2499,
-        img: './designed.jpg',
-        images: ['./designed.jpg'],
+        img: 'https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?q=80&w=600&auto=format&fit=crop',
+        images: ['https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?q=80&w=600&auto=format&fit=crop'],
         inStock: true,
         saleBadge: '10% OFF',
         saleDesc: 'Turf Special',
@@ -2479,8 +2403,8 @@
         category: 'tennis',
         name: 'F2 Classic Raw (Without Design) Tennis Bat',
         price: 1999,
-        img: './without_design.jpg',
-        images: ['./without_design.jpg'],
+        img: 'https://images.unsplash.com/photo-1578269174936-2799b94b1536?q=80&w=600&auto=format&fit=crop',
+        images: ['https://images.unsplash.com/photo-1578269174936-2799b94b1536?q=80&w=600&auto=format&fit=crop'],
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -2491,8 +2415,8 @@
         category: 'tennis',
         name: 'F2 Popular Turf Dominator Tennis Bat',
         price: 1799,
-        img: './popular.jpg',
-        images: ['./popular.jpg'],
+        img: 'https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?q=80&w=600&auto=format&fit=crop',
+        images: ['https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?q=80&w=600&auto=format&fit=crop'],
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -2503,8 +2427,8 @@
         category: 'tennis',
         name: 'F2 Full Cane Handle Tennis Bat',
         price: 2899,
-        img: './cane.jpg',
-        images: ['./cane.jpg'],
+        img: 'https://images.unsplash.com/photo-1593341646782-e0b495cffc6d?q=80&w=600&auto=format&fit=crop',
+        images: ['https://images.unsplash.com/photo-1593341646782-e0b495cffc6d?q=80&w=600&auto=format&fit=crop'],
         inStock: false,
         saleBadge: '',
         saleDesc: '',
@@ -2515,8 +2439,8 @@
         category: 'tennis',
         name: 'F2 Kissan Tennis Heavy Punch Bat',
         price: 2299,
-        img: './kissan_tennis.jpg',
-        images: ['./kissan_tennis.jpg'],
+        img: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=600&auto=format&fit=crop',
+        images: ['https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=600&auto=format&fit=crop'],
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -2527,8 +2451,8 @@
         category: 'tennis',
         name: 'F2 36-Inch Long Blade Monster Tennis Bat',
         price: 2999,
-        img: './36inch.jpg',
-        images: ['./36inch.jpg'],
+        img: 'https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?q=80&w=600&auto=format&fit=crop',
+        images: ['https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?q=80&w=600&auto=format&fit=crop'],
         inStock: true,
         saleBadge: '',
         saleDesc: '',
@@ -2540,9 +2464,49 @@
     let orders = JSON.parse(localStorage.getItem('f2_orders')) || [];
     let cart = {};
     let tempEditImages = [];
+    let tempNewImages = [];
 
     function saveProducts() {
       localStorage.setItem('f2_products', JSON.stringify(products));
+      syncProductsToCloud();
+    }
+
+    async function syncProductsToCloud() {
+      if (!supabaseClient) return;
+      try {
+        for (let p of products) {
+          await supabaseClient.from('catalog').upsert({
+            id: p.id,
+            data: p
+          }, { onConflict: 'id' });
+        }
+      } catch (err) {
+        console.warn("Supabase products sync notice:", err);
+      }
+    }
+
+    async function loadCloudProducts() {
+      if (!supabaseClient) return;
+      try {
+        const { data, error } = await supabaseClient.from('catalog').select('*');
+        if (!error && data && data.length > 0) {
+          products = data.map(row => row.data);
+          localStorage.setItem('f2_products', JSON.stringify(products));
+          renderProducts();
+          updateAdminDashboard();
+        }
+      } catch (err) {
+        console.warn("Supabase products fetch notice:", err);
+      }
+    }
+
+    async function deleteCloudProduct(productId) {
+      if (!supabaseClient) return;
+      try {
+        await supabaseClient.from('catalog').delete().eq('id', productId);
+      } catch (e) {
+        console.warn("Supabase product delete error:", e);
+      }
     }
 
     function saveOrders() {
@@ -2995,6 +2959,82 @@
       e.target.reset();
     }
 
+    /* AUTOMATED WEB3FORMS EMAIL DISPATCH FOR ADMIN ACTIONS */
+    async function sendAutomatedEmail(recipientEmail, emailSubject, emailMessage) {
+      try {
+        const response = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify({
+            access_key: WEB3FORMS_ACCESS_KEY,
+            subject: emailSubject,
+            from_name: "F2 Sports Management",
+            to_email: recipientEmail,
+            message: emailMessage
+          })
+        });
+        const result = await response.json();
+        return result.success;
+      } catch (err) {
+        console.error("Email transmission error:", err);
+        return false;
+      }
+    }
+
+    async function sendOrderPlacedEmail(index) {
+      const order = orders[index];
+      const itemsList = order.items.map(i => `- ${i.name} (Qty: ${i.qty}) - Rs. ${(Number(i.price) * i.qty).toLocaleString('en-IN')}`).join('\n');
+      const subject = `Order Confirmation - #${order.orderId} | F2 Sports`;
+      const message = `Dear ${order.customer.name},\n\nThank you for choosing F2 Sports! Your order #${order.orderId} has been confirmed.\n\nOrder Details:\nOrder ID: #${order.orderId}\nTotal Amount: ${order.totalAmount}\nUPI Reference ID: ${order.utr}\n\nItems Ordered:\n${itemsList}\n\nDelivery Address:\n${order.customer.address}\n\nWe will notify you with courier tracking details once your package is dispatched.\n\nWarm regards,\nSajid & F2 Sports Team\nf2sportsstore@gmail.com`;
+
+      showToast(`Sending confirmation email to ${order.customer.email}...`);
+      const sent = await sendAutomatedEmail(order.customer.email, subject, message);
+      if (sent) {
+        showToast('Confirmation email sent successfully via cloud!');
+      } else {
+        alert('Failed to send email. Please check your Web3Forms key.');
+      }
+    }
+
+    async function markOrderDispatched(index) {
+      const order = orders[index];
+      const trackingNo = prompt(`Enter Courier Tracking / AWB Number for Order #${order.orderId}:`, 'DTDC' + Math.floor(100000000 + Math.random() * 900000000));
+      if (!trackingNo) return;
+
+      const courierName = prompt('Enter Courier Name (e.g. BlueDart, DTDC, Delhivery):', 'BlueDart Express');
+      if (!courierName) return;
+
+      order.status = `Dispatched via ${courierName} (AWB: ${trackingNo})`;
+
+      if (supabaseClient && order.docId) {
+        try {
+          await supabaseClient
+            .from('orders')
+            .update({ status: order.status })
+            .eq('id', order.docId);
+        } catch (e) {
+          console.error("Supabase status update error:", e);
+        }
+      }
+
+      saveOrders();
+      updateAdminDashboard();
+
+      const subject = `Your Bat Has Dispatched! - #${order.orderId} | F2 Sports`;
+      const message = `Dear ${order.customer.name},\n\nGreat news! Your F2 Sports bat order #${order.orderId} has been packed and dispatched.\n\nShipment Tracking Information:\nCourier Partner: ${courierName}\nTracking / AWB Number: ${trackingNo}\nDelivery Destination: ${order.customer.address}\n\nYou can track your package on the ${courierName} website. Expected delivery within 3-5 working days.\n\nThank you for trusting F2 Sports!\n\nBest regards,\nF2 Sports Dispatch & Fulfillment Team\nf2sportsstore@gmail.com`;
+
+      showToast(`Sending dispatch & tracking email to ${order.customer.email}...`);
+      const sent = await sendAutomatedEmail(order.customer.email, subject, message);
+      if (sent) {
+        showToast('Dispatch & tracking email sent successfully via cloud!');
+      } else {
+        alert('Status updated, but email dispatch failed.');
+      }
+    }
+
     /* DEDICATED BULK ORDER PAGE NAVIGATION */
     function openBulkOrderPage() {
       document.getElementById('storefrontView').style.display = 'none';
@@ -3052,7 +3092,6 @@
         badge.style.display = 'flex';
       }
 
-      applyHeroPhotos();
       updateAdminDashboard();
       window.scrollTo(0, 0);
     }
@@ -3155,9 +3194,6 @@
       } else if (tabName === 'add-product') {
         tabs[2].classList.add('active');
         document.getElementById('adminPaneAddProduct').classList.add('active');
-      } else if (tabName === 'hero-photos') {
-        tabs[3].classList.add('active');
-        document.getElementById('adminPaneHeroPhotos').classList.add('active');
       }
     }
 
@@ -3227,10 +3263,11 @@
       document.getElementById('deleteProductConfirmModal').classList.remove('active');
     }
 
-    function confirmDeleteProductAction() {
+    async function confirmDeleteProductAction() {
       const productId = document.getElementById('pendingDeleteProductId').value;
       products = products.filter(p => p.id !== productId);
       saveProducts();
+      await deleteCloudProduct(productId);
       renderProducts();
       updateCartUI();
       updateAdminDashboard();
@@ -3432,6 +3469,70 @@
       setTimeout(() => { notice.style.display = 'none'; }, 4000);
     }
 
+    async function handleNewProductPhotosUpload(e) {
+      const files = Array.from(e.target.files);
+      if (!files.length) return;
+
+      if (!supabaseClient) {
+        alert("Supabase client is not initialized.");
+        return;
+      }
+
+      const notice = document.getElementById('newUploadStatusNotice');
+      const pubBtn = document.getElementById('btnPublishNewProd');
+      notice.style.display = 'block';
+      pubBtn.disabled = true;
+
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        notice.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Uploading photo ${i + 1} of ${files.length} to Supabase...`;
+        
+        const fileExt = file.name.split('.').pop();
+        const fileName = `bat_${Date.now()}_${Math.random().toString(36).substring(2, 8)}.${fileExt}`;
+        const filePath = `${fileName}`;
+
+        try {
+          const { error } = await supabaseClient.storage
+            .from('product-images')
+            .upload(filePath, file, { cacheControl: '3600', upsert: false });
+
+          if (error) {
+            console.error("Upload error:", error);
+            continue;
+          }
+
+          const { data: publicUrlData } = supabaseClient.storage
+            .from('product-images')
+            .getPublicUrl(filePath);
+
+          if (publicUrlData && publicUrlData.publicUrl) {
+            tempNewImages.push(publicUrlData.publicUrl);
+            if (!document.getElementById('newProdImg').value || document.getElementById('newProdImg').value.startsWith('./')) {
+              document.getElementById('newProdImg').value = publicUrlData.publicUrl;
+            }
+          }
+        } catch (err) {
+          console.error("Supabase Storage upload error:", err);
+        }
+      }
+
+      const gallery = document.getElementById('newPhotosPreviewList');
+      gallery.innerHTML = '';
+      tempNewImages.forEach((imgUrl, idx) => {
+        gallery.innerHTML += `
+          <div class="photo-thumb-wrapper">
+            <img src="${imgUrl}" class="photo-thumb-img" onerror="handleImgError(this)" />
+            <button type="button" class="photo-remove-btn" onclick="tempNewImages.splice(${idx},1); handleNewProductPhotosUpload({target:{files:[]}})"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+        `;
+      });
+
+      notice.innerHTML = `<i class="fa-solid fa-circle-check" style="color:var(--accent-primary);"></i> Uploaded ${files.length} photo(s) successfully!`;
+      pubBtn.disabled = false;
+      e.target.value = '';
+      setTimeout(() => { notice.style.display = 'none'; }, 4000);
+    }
+
     function closeEditModal() {
       document.getElementById('editProductModal').classList.remove('active');
     }
@@ -3471,7 +3572,7 @@
       const category = document.getElementById('newProdCategory').value;
       const name = document.getElementById('newProdName').value;
       const price = Number(document.getElementById('newProdPrice').value);
-      const img = document.getElementById('newProdImg').value;
+      const img = document.getElementById('newProdImg').value || (tempNewImages.length > 0 ? tempNewImages[0] : fallbackImage);
       const saleBadge = document.getElementById('newProdSaleBadge').value.trim();
       const saleDesc = document.getElementById('newProdSaleDesc').value.trim();
       const featuresStr = document.getElementById('newProdFeatures').value;
@@ -3484,8 +3585,8 @@
         category,
         name,
         price,
-        img,
-        images: [img],
+        img: img,
+        images: tempNewImages.length > 0 ? [...tempNewImages] : [img],
         saleBadge,
         saleDesc,
         inStock,
@@ -3497,6 +3598,8 @@
       renderProducts();
       updateAdminDashboard();
       
+      tempNewImages = [];
+      document.getElementById('newPhotosPreviewList').innerHTML = '';
       showToast(`${name} added to catalog!`);
       e.target.reset();
       switchAdminTab('products');
@@ -3514,75 +3617,10 @@
       }
     }
 
-    function sendOrderPlacedEmail(index) {
-      const order = orders[index];
-      const itemsList = order.items.map(i => `- ${i.name} (Qty: ${i.qty}) - Rs. ${(Number(i.price) * i.qty).toLocaleString('en-IN')}`).join('%0D%0A');
-      
-      const subject = encodeURIComponent(`Order Confirmation - #${order.orderId} | F2 Sports`);
-      const body = encodeURIComponent(
-        `Dear ${order.customer.name},\n\n` +
-        `Thank you for choosing F2 Sports! Your order #${order.orderId} has been confirmed.\n\n` +
-        `Order Details:\n` +
-        `Order ID: #${order.orderId}\n` +
-        `Total Amount: ${order.totalAmount}\n` +
-        `UPI Reference ID: ${order.utr}\n\n` +
-        `Items in your Order:\n`
-      ) + itemsList + encodeURIComponent(
-        `\n\nDelivery Address:\n${order.customer.address}\n\n` +
-        `We will notify you with courier tracking details once your package is dispatched.\n\n` +
-        `Warm regards,\n` +
-        `Sajid & F2 Sports Team\n` +
-        `f2sportsstore@gmail.com | Zeesajid55@gmail.com`
-      );
-
-      window.location.href = `mailto:${order.customer.email}?cc=f2sportsstore@gmail.com,Zeesajid55@gmail.com&subject=${subject}&body=${body}`;
-    }
-
-    async function markOrderDispatched(index) {
-      const order = orders[index];
-      const trackingNo = prompt(`Enter Courier Tracking / AWB Number for Order #${order.orderId}:`, 'DTDC' + Math.floor(100000000 + Math.random() * 900000000));
-      if (!trackingNo) return;
-
-      const courierName = prompt('Enter Courier Name (e.g. BlueDart, DTDC, Delhivery):', 'BlueDart Express');
-      if (!courierName) return;
-
-      order.status = `Dispatched via ${courierName} (AWB: ${trackingNo})`;
-
-      if (supabaseClient && order.docId) {
-        try {
-          await supabaseClient
-            .from('orders')
-            .update({ status: order.status })
-            .eq('id', order.docId);
-        } catch (e) {
-          console.error("Supabase status update error:", e);
-        }
-      }
-
-      saveOrders();
-      updateAdminDashboard();
-
-      const subject = encodeURIComponent(`Your Bat Has Dispatched! - #${order.orderId} | F2 Sports`);
-      const body = encodeURIComponent(
-        `Dear ${order.customer.name},\n\n` +
-        `Great news! Your F2 Sports bat order #${order.orderId} has been packed and dispatched.\n\n` +
-        `Shipment Tracking Information:\n` +
-        `Courier Partner: ${courierName}\n` +
-        `Tracking / AWB Number: ${trackingNo}\n` +
-        `Delivery Destination: ${order.customer.address}\n\n` +
-        `You can track your package on the ${courierName} website. Expected delivery within 3-5 working days.\n\n` +
-        `Thank you for trusting F2 Sports!\n\n` +
-        `Best regards,\n` +
-        `F2 Sports Dispatch & Fulfillment Team\n` +
-        `f2sportsstore@gmail.com | Zeesajid55@gmail.com`
-      );
-
-      window.location.href = `mailto:${order.customer.email}?cc=f2sportsstore@gmail.com,Zeesajid55@gmail.com&subject=${subject}&body=${body}`;
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', async () => {
       applyColorTheme(currentTheme);
       applyHeroPhotos();
+      await loadCloudProducts();
       renderProducts();
       updateCartUI();
       listenToCloudOrders();
