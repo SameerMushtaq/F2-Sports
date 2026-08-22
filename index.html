@@ -2548,18 +2548,10 @@
       if (!supabaseClient) return;
       try {
         for (let p of products) {
-          await supabaseClient.from('products').upsert({
-            product_id: p.id,
-            category: p.category,
-            name: p.name,
-            price: p.price,
-            img: p.img,
-            images: p.images,
-            in_stock: p.inStock,
-            sale_badge: p.saleBadge || '',
-            sale_desc: p.saleDesc || '',
-            features: p.features
-          }, { onConflict: 'product_id' });
+          await supabaseClient.from('catalog').upsert({
+            id: p.id,
+            data: p
+          }, { onConflict: 'id' });
         }
       } catch (err) {
         console.warn("Supabase products sync notice:", err);
@@ -2569,26 +2561,24 @@
     async function loadCloudProducts() {
       if (!supabaseClient) return;
       try {
-        const { data, error } = await supabaseClient.from('products').select('*');
+        const { data, error } = await supabaseClient.from('catalog').select('*');
         if (!error && data && data.length > 0) {
-          products = data.map(p => ({
-            id: p.product_id,
-            category: p.category,
-            name: p.name,
-            price: p.price,
-            img: p.img,
-            images: p.images || [p.img],
-            inStock: p.in_stock,
-            saleBadge: p.sale_badge,
-            saleDesc: p.sale_desc,
-            features: p.features || []
-          }));
+          products = data.map(row => row.data);
           localStorage.setItem('f2_products', JSON.stringify(products));
           renderProducts();
           updateAdminDashboard();
         }
       } catch (err) {
         console.warn("Supabase products fetch notice:", err);
+      }
+    }
+
+    async function deleteCloudProduct(productId) {
+      if (!supabaseClient) return;
+      try {
+        await supabaseClient.from('catalog').delete().eq('id', productId);
+      } catch (e) {
+        console.warn("Supabase product delete error:", e);
       }
     }
 
@@ -3274,10 +3264,11 @@
       document.getElementById('deleteProductConfirmModal').classList.remove('active');
     }
 
-    function confirmDeleteProductAction() {
+    async function confirmDeleteProductAction() {
       const productId = document.getElementById('pendingDeleteProductId').value;
       products = products.filter(p => p.id !== productId);
       saveProducts();
+      await deleteCloudProduct(productId);
       renderProducts();
       updateCartUI();
       updateAdminDashboard();
@@ -3613,6 +3604,18 @@
       showToast(`${name} added to catalog!`);
       e.target.reset();
       switchAdminTab('products');
+    }
+
+    function toggleProductStock(productId) {
+      const prod = products.find(p => p.id === productId);
+      if (prod) {
+        prod.inStock = (prod.inStock === false) ? true : false;
+        saveProducts();
+        renderProducts();
+        updateCartUI();
+        updateAdminDashboard();
+        showToast(`${prod.name} stock updated!`);
+      }
     }
 
     document.addEventListener('DOMContentLoaded', async () => {
