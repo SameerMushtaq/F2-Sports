@@ -351,6 +351,13 @@
       line-height: 1.4;
       font-weight: 500;
     }
+    
+    .multi-color-text { 
+      background: linear-gradient(135deg, #00f0ff 0%, #38bdf8 30%, #fbbf24 60%, #e11d48 100%); 
+      -webkit-background-clip: text; 
+      -webkit-text-fill-color: transparent; 
+      filter: drop-shadow(0 2px 10px rgba(225, 29, 72, 0.3));
+    }
 
     /* FLOATING TICKER STRIP */
     .floating-ticker-wrapper {
@@ -431,24 +438,6 @@
       gap: 20px;
     }
 
-    @media (max-width: 1400px) {
-      .product-grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
-    }
-
-    @media (max-width: 1100px) {
-      .product-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 640px) {
-      .product-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
     .product-card {
       background: var(--bg-card);
       border-radius: var(--radius);
@@ -484,15 +473,8 @@
       z-index: 5;
     }
 
-    .stock-available {
-      background: #10b981;
-      color: #fff;
-    }
-
-    .stock-out {
-      background: #ef4444;
-      color: #fff;
-    }
+    .stock-available { background: #10b981; color: #fff; }
+    .stock-out { background: #ef4444; color: #fff; }
 
     .sale-badge {
       position: absolute;
@@ -684,10 +666,7 @@
       font-size: 0.8rem;
     }
 
-    .qty-btn:hover {
-      background: var(--accent-primary);
-      color: #fff;
-    }
+    .qty-btn:hover { background: var(--accent-primary); color: #fff; }
 
     .qty-number {
       padding: 0 6px;
@@ -712,10 +691,7 @@
       padding: 20px;
     }
 
-    .lightbox-modal.active {
-      opacity: 1;
-      visibility: visible;
-    }
+    .lightbox-modal.active { opacity: 1; visibility: visible; }
 
     .lightbox-content {
       max-width: 92vw;
@@ -744,9 +720,7 @@
       transition: var(--transition);
     }
 
-    .lightbox-close-btn:hover {
-      background: var(--accent-primary);
-    }
+    .lightbox-close-btn:hover { background: var(--accent-primary); }
 
     /* SOCIAL FOLLOW STRIP */
     .social-follow-strip {
@@ -842,9 +816,7 @@
       line-height: 1.35;
     }
 
-    .faq-item.active .faq-answer {
-      display: block;
-    }
+    .faq-item.active .faq-answer { display: block; }
 
     /* CUSTOM REQUEST FORM */
     .custom-req-input, .custom-req-textarea {
@@ -887,13 +859,6 @@
       gap: 14px;
       letter-spacing: -0.5px;
       line-height: 1.1;
-    }
-
-    .multi-color-text {
-      background: linear-gradient(135deg, #00f0ff 0%, #38bdf8 30%, #fbbf24 60%, #e11d48 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 2px 10px rgba(225, 29, 72, 0.3));
     }
 
     .falcon-banner-logo-img {
@@ -940,9 +905,7 @@
       text-align: center;
     }
 
-    .footer-bar-location i {
-      color: var(--accent-primary);
-    }
+    .footer-bar-location i { color: var(--accent-primary); }
 
     /* ISOLATED CART DRAWER & MODAL OVERLAYS */
     .cart-drawer-overlay, .modal-overlay {
@@ -980,9 +943,7 @@
       transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .cart-drawer.active {
-      transform: translateX(0);
-    }
+    .cart-drawer.active { transform: translateX(0); }
 
     .cart-header {
       padding: 18px 22px;
@@ -1010,10 +971,7 @@
       transition: var(--transition);
     }
 
-    .close-cart-btn:hover {
-      background: var(--accent-primary);
-      color: #fff;
-    }
+    .close-cart-btn:hover { background: var(--accent-primary); color: #fff; }
 
     .cart-items-container {
       flex-grow: 1;
@@ -1044,21 +1002,9 @@
       border: 1px solid var(--border-theme);
     }
 
-    .cart-item-details {
-      flex-grow: 1;
-    }
-
-    .cart-item-title {
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--text-main);
-    }
-
-    .cart-item-price {
-      font-weight: 800;
-      color: var(--accent-primary);
-      font-size: 0.9rem;
-    }
+    .cart-item-details { flex-grow: 1; }
+    .cart-item-title { font-size: 0.9rem; font-weight: 700; color: var(--text-main); }
+    .cart-item-price { font-weight: 800; color: var(--accent-primary); font-size: 0.9rem; }
 
     .cart-footer {
       padding: 18px 22px;
@@ -1091,15 +1037,8 @@
       box-shadow: var(--shadow-accent);
     }
 
-    .btn-checkout:hover {
-      background: var(--accent-primary-hover);
-    }
-
-    .btn-checkout:disabled {
-      background: #475569;
-      cursor: not-allowed;
-      box-shadow: none;
-    }
+    .btn-checkout:hover { background: var(--accent-primary-hover); }
+    .btn-checkout:disabled { background: #475569; cursor: not-allowed; box-shadow: none; }
 
     .modal-box {
       background: var(--bg-surface);
@@ -1147,11 +1086,7 @@
       border-radius: 6px;
     }
 
-    .form-group {
-      margin-bottom: 14px;
-      text-align: left;
-    }
-
+    .form-group { margin-bottom: 14px; text-align: left; }
     .form-label {
       display: block;
       font-size: 0.83rem;
@@ -1192,16 +1127,10 @@
       box-shadow: var(--shadow-accent);
     }
 
-    .btn-submit-order:hover {
-      background: var(--accent-primary-hover);
-    }
+    .btn-submit-order:hover { background: var(--accent-primary-hover); }
 
     /* CUSTOM SUCCESS MODAL CONTAINER */
-    .success-modal-content {
-      text-align: center;
-      padding: 20px 10px;
-    }
-
+    .success-modal-content { text-align: center; padding: 20px 10px; }
     .success-modal-icon {
       font-size: 3.5rem;
       color: #10b981;
@@ -1262,19 +1191,9 @@
       box-shadow: var(--shadow-accent);
     }
 
-    .bulk-channel-card i {
-      font-size: 2.2rem;
-    }
-
-    .bulk-channel-card span {
-      font-weight: 700;
-      font-size: 1rem;
-    }
-
-    .bulk-channel-card small {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-    }
+    .bulk-channel-card i { font-size: 2.2rem; }
+    .bulk-channel-card span { font-weight: 700; font-size: 1rem; }
+    .bulk-channel-card small { font-size: 0.78rem; color: var(--text-muted); }
 
     /* DEDICATED ADMIN PORTAL VIEW */
     .admin-standalone-view {
@@ -1354,13 +1273,8 @@
       border-radius: 8px 8px 0 0;
     }
 
-    .admin-tab-pane {
-      display: none;
-    }
-
-    .admin-tab-pane.active {
-      display: block;
-    }
+    .admin-tab-pane { display: none; }
+    .admin-tab-pane.active { display: block; }
 
     .admin-table-wrapper {
       background: var(--bg-card);
@@ -1493,23 +1407,30 @@
     @media (max-width: 1400px) {
       .hero-sports-wrapper { height: auto; padding: 30px 20px; }
     }
+    
+    @media (max-width: 1100px) {
+      .product-grid { grid-template-columns: repeat(2, 1fr); }
+    }
 
     @media (max-width: 900px) {
       .navbar { flex-direction: column; gap: 15px; padding: 15px; }
       .nav-links { position: relative; left: 0; transform: none; flex-wrap: wrap; justify-content: center; gap: 12px; width: 100%; }
       .nav-actions { width: 100%; justify-content: space-between; }
       
-      /* Ensure hero side logos shrink but stay visible */
+      /* Fixed Hero side logos for mobile */
       .hero-grid-showcase { grid-template-columns: 80px 1fr 80px; gap: 10px; justify-items: center; }
-      .hero-side-logo-box { height: 100px; display: flex; }
+      .hero-side-logo-box { height: 100px; display: flex !important; }
       .hero-title-main { font-size: 2.5rem; }
-      .falcon-brand-banner-title { font-size: 2.3rem; }
+    }
+
+    @media (max-width: 640px) {
+      .product-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 480px) {
       /* Shrink further for very small mobile screens */
       .hero-grid-showcase { grid-template-columns: 50px 1fr 50px; gap: 5px; }
-      .hero-side-logo-box { height: 60px; }
+      .hero-side-logo-box { height: 60px; display: flex !important; }
       .hero-title-main { font-size: 1.8rem; }
       .nav-links a { font-size: 0.85rem; }
     }
@@ -1517,11 +1438,10 @@
 </head>
 <body data-theme="dark-red">
 
-  <!-- 1. MAIN STOREFRONT VIEW -->
+  <!-- ================= MODULE 1: STOREFRONT VIEW (`storefront.html`) ================= -->
   <div id="storefrontView">
     <header>
       <div class="navbar">
-        <!-- LOGO AT LEFT CORNER WITH DOUBLE-CLICK TRIGGER TO OPEN ADMIN LOGIN -->
         <div class="logo-container">
           <img src="logo.png" alt="F2 Sports Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
           <div class="logo-fallback" style="display:none;">F2</div>
@@ -1529,13 +1449,11 @@
             <span class="logo-title">F2 <span>SPORTS</span></span>
             <span class="logo-tagline">Engineered For Champions</span>
           </div>
-          <!-- Welcome Admin badge placed right in the top navbar -->
           <div class="admin-welcome-top-badge" id="adminWelcomeBadge">
             <i class="fa-solid fa-user-shield"></i> <span id="adminWelcomeText">Welcome</span>
           </div>
         </div>
 
-        <!-- CENTERED NAVIGATION -->
         <ul class="nav-links">
           <li><a href="#home"><i class="fa-solid fa-house"></i> Home</a></li>
           <li><a href="#kashmir-section"><i class="fa-solid fa-shield-halved"></i> Kashmir Willow</a></li>
@@ -1544,7 +1462,6 @@
           <li><a href="javascript:void(0)" onclick="openBulkOrderPage()"><i class="fa-solid fa-truck-ramp-box"></i> Bulk Order</a></li>
         </ul>
 
-        <!-- RIGHT CORNER: THEME TOGGLE & CART -->
         <div class="nav-actions">
           <button class="theme-toggle-btn" onclick="toggleColorTheme()" title="Toggle Color Theme">
             <i class="fa-solid fa-circle-half-stroke"></i> <span id="themeToggleLabel">Green Mode</span>
@@ -1558,15 +1475,9 @@
       </div>
     </header>
 
-    <!-- CONTAINER 2: HERO SECTION WITH STORE LOGO ON BOTH SIDES & "F2 Sports" -->
     <section class="hero-sports-wrapper" id="home">
       <div class="hero-grid-showcase">
-        <!-- LEFT SIDE STORE LOGO -->
-        <div class="hero-side-logo-box">
-          <img src="logo.png" alt="F2 Sports Left Logo" class="hero-side-logo-img" onerror="this.src='https://images.unsplash.com/photo-1531415074868-036b107e775a?q=80&w=300&auto=format&fit=crop'" />
-        </div>
-
-        <!-- CENTER TEXT WITH F2 SPORTS -->
+        <div class="hero-side-logo-box"><img src="logo.png" alt="Logo" class="hero-side-logo-img" onerror="this.src='https://images.unsplash.com/photo-1531415074868-036b107e775a?q=80&w=300&auto=format&fit=crop'" /></div>
         <div class="hero-center-content">
           <h1>
             <span class="hero-title-prefix">Power Your Game With</span>
@@ -1575,31 +1486,24 @@
           </h1>
           <p>Hand-crafted for extraordinary rebound ping, razor-sharp balance, and monster power hitting across all formats.</p>
         </div>
-
-        <!-- RIGHT SIDE STORE LOGO -->
-        <div class="hero-side-logo-box">
-          <img src="logo.png" alt="F2 Sports Right Logo" class="hero-side-logo-img" onerror="this.src='https://images.unsplash.com/photo-1531415074868-036b107e775a?q=80&w=300&auto=format&fit=crop'" />
-        </div>
+        <div class="hero-side-logo-box"><img src="logo.png" alt="Logo" class="hero-side-logo-img" onerror="this.src='https://images.unsplash.com/photo-1531415074868-036b107e775a?q=80&w=300&auto=format&fit=crop'" /></div>
       </div>
     </section>
 
-    <!-- CONTINUOUS FLOATING TICKER STRIP -->
     <div class="floating-ticker-wrapper">
       <div class="floating-ticker-track">
         <span class="ticker-item"><i class="fa-solid fa-truck-fast"></i> Pan-India Express Courier Delivery</span>
         <span class="ticker-item"><i class="fa-solid fa-shield-halved"></i> 100% Genuine Handcrafted Cricket Willow</span>
-        <span class="ticker-item"><i class="fa-solid fa-bolt"></i> Tournament Grade Ping &amp; Balance Tested</span>
-        <span class="ticker-item"><i class="fa-solid fa-qrcode"></i> Instant UPI &amp; Direct QR Booking Available</span>
+        <span class="ticker-item"><i class="fa-solid fa-bolt"></i> Tournament Grade Ping & Balance Tested</span>
+        <span class="ticker-item"><i class="fa-solid fa-qrcode"></i> Instant UPI & Direct QR Booking Available</span>
         <span class="ticker-item"><i class="fa-solid fa-truck-fast"></i> Pan-India Express Courier Delivery</span>
         <span class="ticker-item"><i class="fa-solid fa-shield-halved"></i> 100% Genuine Handcrafted Cricket Willow</span>
-        <span class="ticker-item"><i class="fa-solid fa-bolt"></i> Tournament Grade Ping &amp; Balance Tested</span>
-        <span class="ticker-item"><i class="fa-solid fa-qrcode"></i> Instant UPI &amp; Direct QR Booking Available</span>
+        <span class="ticker-item"><i class="fa-solid fa-bolt"></i> Tournament Grade Ping & Balance Tested</span>
+        <span class="ticker-item"><i class="fa-solid fa-qrcode"></i> Instant UPI & Direct QR Booking Available</span>
       </div>
     </div>
 
-    <!-- PRODUCT CATALOG (5 CARDS PER ROW) -->
     <main>
-      <!-- 1. KASHMIR WILLOW CATEGORY -->
       <section class="container" id="kashmir-section">
         <div class="section-header">
           <span class="section-subtitle">Traditional Power</span>
@@ -1609,7 +1513,6 @@
         <div class="product-grid" id="kashmirProductsGrid"></div>
       </section>
 
-      <!-- 2. ENGLISH WILLOW CATEGORY -->
       <section class="container" id="english-section" style="padding-top: 0;">
         <div class="section-header">
           <span class="section-subtitle">International Standard</span>
@@ -1619,26 +1522,23 @@
         <div class="product-grid" id="englishProductsGrid"></div>
       </section>
 
-      <!-- 3. TENNIS CRICKET CATEGORY -->
       <section class="container" id="tennis-section" style="padding-top: 0;">
         <div class="section-header">
-          <span class="section-subtitle">Hard &amp; Soft Tennis Dominators</span>
+          <span class="section-subtitle">Hard & Soft Tennis Dominators</span>
           <h2 class="section-title">Tennis Cricket Bats Collection</h2>
           <p class="section-desc">Engineered specifically for tennis ball cricket with scoop and power-blade dynamics for 360-degree boundary clearing.</p>
         </div>
         <div class="product-grid" id="tennisProductsGrid"></div>
       </section>
-
-      <!-- FOLLOW US ON INSTAGRAM STRIP -->
+      
       <section class="social-follow-strip">
         <div class="social-follow-wrapper">
-          <a href="https://www.instagram.com/f2sports__?igsi=ZDNlZDc0MzIxNw==" target="_blank" class="social-btn instagram">
+          <a href="https://www.instagram.com/f2sports__" target="_blank" class="social-btn instagram">
             <i class="fa-brands fa-instagram" style="font-size:1.2rem;"></i> Follow Us on Instagram
           </a>
         </div>
       </section>
-
-      <!-- COMPACT PLAYER SUPPORT CONTAINER -->
+      
       <section class="info-section" id="help-suggestions">
         <div class="container" style="padding: 0;">
           <div class="section-header" style="margin-bottom: 16px;">
@@ -1708,7 +1608,7 @@
                 <div class="form-group" style="margin-bottom: 10px;">
                   <textarea class="custom-req-textarea" rows="3" placeholder="Tell us your preferred weight, handle shape or custom specifications..." required></textarea>
                 </div>
-                <button type="submit" class="btn-submit-order" style="padding: 10px; font-size: 0.85rem; margin-top: 0; width: auto;">Submit Request</button>
+                <button type="submit" class="btn-submit-order" style="padding: 10px; font-size: 0.85rem; margin-top: 0;">Submit Request</button>
               </form>
             </div>
           </div>
@@ -1716,28 +1616,24 @@
       </section>
     </main>
 
-    <!-- PROMINENT MULTI-COLOR BRAND BANNER -->
     <div class="falcon-brand-banner">
       <div class="falcon-brand-banner-title">
         <img src="logo.png" alt="F2 Logo" class="falcon-banner-logo-img" onerror="this.style.display='none'" />
         <span class="multi-color-text">Falcon 2 Sports</span>
       </div>
-      <div class="falcon-brand-banner-tag">Mastercraft Cricket Blades &amp; High Velocity Dominators</div>
+      <div class="falcon-brand-banner-tag">Mastercraft Cricket Blades & High Velocity Dominators</div>
     </div>
 
-    <!-- MINIMAL CLEAN FOOTER -->
     <footer>
-      <div class="footer-bar-clean">
-        <div><i class="fa-solid fa-trademark" style="color:var(--accent-primary);"></i> F2 SPORTS is a Registered Trademark</div>
-        <div class="footer-bar-location">
-          <i class="fa-solid fa-location-dot"></i> Panchpora Sangam, Halmullah Dadoo Road Near Sub-Station Punchpora Marhama - 192124
-        </div>
-        <div>&copy; 2026 <strong class="multi-color-text">Falcon 2 Sports</strong>. All Rights Reserved.</div>
+      <div style="max-width: 1560px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; padding: 16px 20px;">
+        <div><i class="fa-solid fa-trademark" style="color:var(--accent-primary);"></i> F2 SPORTS Registered Trademark</div>
+        <div>Panchpora Sangam, Halmullah Dadoo Road, Marhama - 192124</div>
+        <div>© 2026 <strong class="multi-color-text">Falcon 2 Sports</strong>. All Rights Reserved.</div>
       </div>
     </footer>
   </div>
 
-  <!-- 2. DEDICATED BULK ORDER PAGE CONTAINER -->
+  <!-- ================= MODULE 2: BULK ORDER VIEW (`bulk_order.html`) ================= -->
   <div class="bulk-standalone-view" id="bulkStandaloneView">
     <div class="bulk-portal-container">
       <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid var(--border-theme); padding-bottom:16px; margin-bottom:20px;">
@@ -1745,7 +1641,7 @@
           <img src="logo.png" alt="F2 Logo" style="height:44px;" onerror="this.style.display='none'" />
           <div>
             <h2 style="font-size:1.6rem; color:var(--text-main); margin-bottom:2px;">Falcon 2 Sports <span style="color:var(--accent-primary);">Bulk Procurement</span></h2>
-            <p style="color:var(--text-muted); font-size:0.82rem; text-transform:uppercase; letter-spacing:1px; font-weight:700;">Club, Academy &amp; Sponsor Direct Desk</p>
+            <p style="color:var(--text-muted); font-size:0.82rem; text-transform:uppercase; letter-spacing:1px; font-weight:700;">Club, Academy & Sponsor Direct Desk</p>
           </div>
         </div>
         <button onclick="returnToStorefrontFromBulk()" class="btn-submit-order" style="width:auto; padding:8px 18px; margin-top:0; font-size:0.85rem;">
@@ -1761,19 +1657,19 @@
         <a href="https://wa.me/918493977654?text=Hi%20F2%20Sports,%20I%20want%20to%20inquire%20about%20a%20bulk%20order%20of%20cricket%20bats." target="_blank" class="bulk-channel-card">
           <i class="fa-brands fa-whatsapp" style="color:#25d366;"></i>
           <span>WhatsApp Desk</span>
-          <small>Instant chat &amp; catalog</small>
+          <small>Instant chat & catalog</small>
         </a>
 
-        <a href="mailto:f2sportsstore@gmail.com?cc=Zeesajid55@gmail.com&subject=Bulk%20Order%20Inquiry%20-%20F2%20Sports" class="bulk-channel-card">
+        <a href="mailto:f2sportsstore@gmail.com?subject=Bulk%20Order%20Inquiry%20-%20F2%20Sports" class="bulk-channel-card">
           <i class="fa-solid fa-envelope" style="color:var(--accent-primary);"></i>
           <span>Official Email</span>
-          <small>Quotations &amp; specs</small>
+          <small>Quotations & specs</small>
         </a>
 
-        <a href="https://www.instagram.com/f2sports__?igsi=ZDNlZDc0MzIxNw==" target="_blank" class="bulk-channel-card">
+        <a href="https://www.instagram.com/f2sports__" target="_blank" class="bulk-channel-card">
           <i class="fa-brands fa-instagram" style="color:#e1306c;"></i>
           <span>Instagram DM</span>
-          <small>Live bat videos &amp; ping test</small>
+          <small>Live bat videos & ping test</small>
         </a>
 
         <a href="tel:+918493977654" class="bulk-channel-card">
@@ -1785,7 +1681,96 @@
     </div>
   </div>
 
-  <!-- 3. DEDICATED ADMIN PORTAL VIEW -->
+  <!-- FIXED OVERLAY CART DRAWER -->
+  <div class="cart-drawer-overlay" id="cartOverlay" onclick="toggleCartDrawer()"></div>
+  <div class="cart-drawer" id="cartDrawer" onclick="event.stopPropagation()">
+    <div class="cart-header">
+      <h3 style="font-size:1.2rem;"><i class="fa-solid fa-basket-shopping" style="color:var(--accent-primary);"></i> Your Cart (<span id="cartCountTitle">0</span>)</h3>
+      <button class="close-cart-btn" onclick="toggleCartDrawer()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="cart-items-container" id="cartItemsList"></div>
+    <div class="cart-footer">
+      <div class="cart-total-row">
+        <span>Grand Total:</span>
+        <span id="cartGrandTotal" style="color:var(--accent-primary);">Rs. 0</span>
+      </div>
+      <button class="btn-checkout" id="checkoutBtn" onclick="openCheckoutModal()" disabled>
+        <i class="fa-solid fa-lock"></i> Proceed to QR / UPI Checkout
+      </button>
+    </div>
+  </div>
+
+  <!-- CHECKOUT MODAL WITH SCREENSHOT UPLOAD -->
+  <div class="modal-overlay" id="checkoutModal" onclick="closeCheckoutModal()">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h3 style="font-size:1.2rem;"><i class="fa-solid fa-qrcode" style="color:var(--accent-primary);"></i> Scan & Pay (UPI / QR)</h3>
+        <button class="close-cart-btn" onclick="closeCheckoutModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="qr-container">
+          <p style="font-size:0.85rem; margin-bottom:8px; font-weight:600; color:var(--text-muted);">Scan with GPay, PhonePe, Paytm, or BHIM</p>
+          <img src="qr.png" alt="F2 Sports QR Scanner" class="qr-image" onerror="this.onerror=null; this.src='https://api.qrserver.com/v1/create-qr-code/?size=170x170&amp;data=upi://pay?pa=zeesajid55-1@okicici%26pn=F2%20Sports%20Official%26mc=5945';" />
+          <p style="font-family:monospace; font-weight:700; font-size:0.95rem; color:var(--accent-primary);">UPI ID: zeesajid55-1@okicici</p>
+          <p style="font-size:0.85rem; margin-top:6px;">Payable Amount: <b style="color:var(--accent-primary);" id="checkoutModalTotal">Rs. 0</b></p>
+        </div>
+
+        <form id="orderForm" onsubmit="handlePlaceOrder(event)">
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input type="text" id="custName" class="form-input" placeholder="Your Name" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Customer Email Address</label>
+            <input type="email" id="custEmail" class="form-input" placeholder="customer@gmail.com" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">WhatsApp / Contact Number</label>
+            <input type="tel" id="custPhone" class="form-input" value="+91-8493977654" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Delivery Address & Pincode</label>
+            <textarea id="custAddress" class="form-textarea" rows="2" placeholder="Full delivery address" required></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label"><i class="fa-solid fa-image"></i> Upload Payment Screenshot</label>
+            <input type="file" id="paymentScreenshot" class="form-input" accept="image/*" required />
+          </div>
+          <button type="submit" class="btn-submit-order">Confirm & Place Order</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- DISPATCH POPUP MODAL -->
+  <div class="modal-overlay" id="dispatchModal" onclick="closeDispatchModal()">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h3 style="font-size:1.2rem;"><i class="fa-solid fa-truck-fast" style="color:var(--accent-primary);"></i> Dispatch Order</h3>
+        <button class="close-cart-btn" onclick="closeDispatchModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <form id="dispatchForm" onsubmit="submitDispatchDetails(event)">
+          <input type="hidden" id="dispatchOrderIndex" />
+          <div class="form-group">
+            <label class="form-label">Dispatched Via (Courier Name)</label>
+            <input type="text" id="dispatchCourier" class="form-input" placeholder="e.g. DTDC, BlueDart, Delhivery" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tracking / AWB Number</label>
+            <input type="text" id="dispatchTracking" class="form-input" placeholder="e.g. D123456789" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Dispatch Date</label>
+            <input type="date" id="dispatchDate" class="form-input" required />
+          </div>
+          <button type="submit" class="btn-submit-order">Confirm Dispatch &amp; Email Customer</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMIN PORTAL VIEW -->
   <div class="admin-standalone-view" id="adminStandaloneView">
     <div style="max-width:1280px; margin:0 auto;">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px; border-bottom:2px solid var(--border-theme); padding-bottom:18px; flex-wrap:wrap; gap:12px;">
@@ -1877,7 +1862,7 @@
         </div>
       </div>
 
-      <!-- TAB 3: ADD PRODUCT WITH IMAGE UPLOAD -->
+      <!-- TAB 3: ADD PRODUCT -->
       <div class="admin-tab-pane" id="adminPaneAddProduct">
         <div class="admin-form-box">
           <h4 style="font-size:1.2rem; color:var(--text-main); margin-bottom:18px;"><i class="fa-solid fa-circle-plus" style="color:var(--accent-primary);"></i> Add New Bat to Catalog</h4>
@@ -1908,7 +1893,6 @@
               </div>
             </div>
 
-            <!-- MULTIPLE PHOTO UPLOAD FOR NEW PRODUCT -->
             <div class="form-group" style="background:rgba(225, 29, 72, 0.05); padding:14px; border-radius:8px; border:1px dashed var(--border-theme);">
               <label class="form-label">
                 <i class="fa-solid fa-cloud-arrow-up"></i> Upload Bat Photos to Supabase Storage (Multi-Select)
@@ -1955,95 +1939,6 @@
   <div class="lightbox-modal" id="imageLightbox" onclick="closeLightbox()">
     <button class="lightbox-close-btn" onclick="closeLightbox()"><i class="fa-solid fa-xmark"></i></button>
     <img src="" alt="Enlarged Product View" class="lightbox-content" id="lightboxImg" onclick="event.stopPropagation()" />
-  </div>
-
-  <!-- FIXED OVERLAY CART DRAWER -->
-  <div class="cart-drawer-overlay" id="cartOverlay" onclick="toggleCartDrawer()"></div>
-  <div class="cart-drawer" id="cartDrawer" onclick="event.stopPropagation()">
-    <div class="cart-header">
-      <h3 style="font-size:1.2rem;"><i class="fa-solid fa-basket-shopping" style="color:var(--accent-primary);"></i> Your Cart (<span id="cartCountTitle">0</span>)</h3>
-      <button class="close-cart-btn" onclick="toggleCartDrawer()"><i class="fa-solid fa-xmark"></i></button>
-    </div>
-    <div class="cart-items-container" id="cartItemsList"></div>
-    <div class="cart-footer">
-      <div class="cart-total-row">
-        <span>Grand Total:</span>
-        <span id="cartGrandTotal" style="color:var(--accent-primary);">Rs. 0</span>
-      </div>
-      <button class="btn-checkout" id="checkoutBtn" onclick="openCheckoutModal()" disabled>
-        <i class="fa-solid fa-lock"></i> Proceed to QR / UPI Checkout
-      </button>
-    </div>
-  </div>
-
-  <!-- CHECKOUT MODAL WITH SCREENSHOT UPLOAD -->
-  <div class="modal-overlay" id="checkoutModal" onclick="closeCheckoutModal()">
-    <div class="modal-box" onclick="event.stopPropagation()">
-      <div class="modal-header">
-        <h3 style="font-size:1.2rem;"><i class="fa-solid fa-qrcode" style="color:var(--accent-primary);"></i> Scan &amp; Pay (UPI / QR)</h3>
-        <button class="close-cart-btn" onclick="closeCheckoutModal()"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <div class="modal-body">
-        <div class="qr-container">
-          <p style="font-size:0.85rem; margin-bottom:8px; font-weight:600; color:var(--text-muted);">Scan with GPay, PhonePe, Paytm, or BHIM</p>
-          <img src="qr.png" alt="F2 Sports QR Scanner" class="qr-image" onerror="this.onerror=null; this.src='https://api.qrserver.com/v1/create-qr-code/?size=170x170&amp;data=upi://pay?pa=zeesajid55-1@okicici%26pn=F2%20Sports%20Official%26mc=5945';" />
-          <p style="font-family:monospace; font-weight:700; font-size:0.95rem; color:var(--accent-primary);">UPI ID: zeesajid55-1@okicici</p>
-          <p style="font-size:0.85rem; margin-top:6px;">Payable Amount: <b style="color:var(--accent-primary);" id="checkoutModalTotal">Rs. 0</b></p>
-        </div>
-
-        <form id="orderForm" onsubmit="handlePlaceOrder(event)">
-          <div class="form-group">
-            <label class="form-label">Full Name</label>
-            <input type="text" id="custName" class="form-input" placeholder="Your Name" required />
-          </div>
-          <div class="form-group">
-            <label class="form-label">Customer Email Address</label>
-            <input type="email" id="custEmail" class="form-input" placeholder="customer@gmail.com" required />
-          </div>
-          <div class="form-group">
-            <label class="form-label">WhatsApp / Contact Number</label>
-            <input type="tel" id="custPhone" class="form-input" value="+91-8493977654" required />
-          </div>
-          <div class="form-group">
-            <label class="form-label">Delivery Address &amp; Pincode</label>
-            <textarea id="custAddress" class="form-textarea" rows="2" placeholder="Full delivery address" required></textarea>
-          </div>
-          <div class="form-group">
-            <label class="form-label"><i class="fa-solid fa-image"></i> Upload Payment Screenshot</label>
-            <input type="file" id="paymentScreenshot" class="form-input" accept="image/*" required />
-          </div>
-          <button type="submit" class="btn-submit-order">Confirm &amp; Place Order</button>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <!-- DISPATCH DETAILS MODAL -->
-  <div class="modal-overlay" id="dispatchModal" onclick="closeDispatchModal()">
-    <div class="modal-box" onclick="event.stopPropagation()">
-      <div class="modal-header">
-        <h3 style="font-size:1.2rem;"><i class="fa-solid fa-truck-fast" style="color:var(--accent-primary);"></i> Dispatch Details</h3>
-        <button class="close-cart-btn" onclick="closeDispatchModal()"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <div class="modal-body">
-        <form id="dispatchForm" onsubmit="submitDispatchDetails(event)">
-          <input type="hidden" id="dispatchOrderIndex" />
-          <div class="form-group">
-            <label class="form-label">Dispatched Via (Courier Name)</label>
-            <input type="text" id="dispatchCourier" class="form-input" placeholder="e.g. DTDC, BlueDart, Delhivery" required />
-          </div>
-          <div class="form-group">
-            <label class="form-label">Tracking / AWB Number</label>
-            <input type="text" id="dispatchTracking" class="form-input" placeholder="e.g. D123456789" required />
-          </div>
-          <div class="form-group">
-            <label class="form-label">Dispatch Date</label>
-            <input type="date" id="dispatchDate" class="form-input" required />
-          </div>
-          <button type="submit" class="btn-submit-order">Confirm Details &amp; Email Customer</button>
-        </form>
-      </div>
-    </div>
   </div>
 
   <!-- ADMIN LOGIN MODAL -->
@@ -2176,7 +2071,7 @@
     </div>
   </div>
 
-  <!-- ORDER SUCCESS / THANK YOU MODAL CONTAINER -->
+  <!-- ORDER SUCCESS MODAL -->
   <div class="modal-overlay" id="orderSuccessModal" onclick="closeOrderSuccessModal()">
     <div class="modal-box" onclick="event.stopPropagation()" style="max-width: 440px;">
       <div class="modal-header">
@@ -2276,7 +2171,7 @@
 
   <div class="toast" id="appToast">
     <i class="fa-solid fa-circle-check" style="color:var(--accent-primary);"></i>
-    <span id="toastMsg">Notification</span>
+    <span id="toastMsg">Added to cart</span>
   </div>
 
   <script>
@@ -2774,7 +2669,7 @@
       setTimeout(() => toast.classList.remove('show'), 2500);
     }
 
-    // CHECKOUT HANDLER: Now includes Screenshot upload logic
+    /* HANDLE CHECKOUT WITH SCREENSHOT UPLOAD */
     async function handlePlaceOrder(e) {
       e.preventDefault();
 
@@ -2782,7 +2677,7 @@
       const originalBtnText = submitBtn ? submitBtn.innerHTML : '';
       if (submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Uploading & Processing...';
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing Order...';
       }
 
       const name = document.getElementById('custName').value.trim();
@@ -2822,7 +2717,7 @@
         date: new Date().toLocaleString('en-IN'),
         createdAt: Date.now(),
         customer: { name, email, phone, address },
-        utr: screenshotUrl,
+        utr: screenshotUrl, // Overwrite with URL
         items: itemsList,
         totalAmount: totalAmount,
         numericAmount: rawNum,
@@ -2865,7 +2760,7 @@
             access_key: WEB3FORMS_ACCESS_KEY,
             subject: `New F2 Sports Bat Order: #${orderId} (${totalAmount})`,
             from_name: "F2 Sports Storefront",
-            message: `New Order Received!\n\nOrder ID: #${orderId}\nCustomer: ${name}\nPhone: ${phone}\nEmail: ${email}\nDelivery Address: ${address}\nPayment Screenshot: ${screenshotUrl}\nTotal Amount: ${totalAmount}\n\nItems Ordered:\n${itemsSummary}\n\nStore Management: f2sportsstore@gmail.com`
+            message: `New Order Received!\n\nOrder ID: #${orderId}\nCustomer: ${name}\nPhone: ${phone}\nEmail: ${email}\nDelivery Address: ${address}\nPayment Screenshot: ${screenshotUrl}\nTotal Amount: ${totalAmount}\n\nItems Ordered:\n${itemsSummary}\n\nStore Management: f2sportsstore@gmail.com | Zeesajid55@gmail.com`
           })
         });
       } catch (err) {
@@ -2906,13 +2801,13 @@
             from_name: "F2 Sports",
             from_email: "f2sportsstore@gmail.com",
             replyto: "f2sportsstore@gmail.com",
-            email: recipientEmail, // Web3forms dynamic routing
-            to: recipientEmail,
+            email: recipientEmail, // Web3Forms reads this to route to customer
+            to: recipientEmail, 
             message: emailMessage
           })
         });
         const result = await response.json();
-        return result.success || response.ok;
+        return result.success;
       } catch (err) {
         console.error("Email transmission error:", err);
         return false;
@@ -2930,11 +2825,11 @@
       if (sent) {
         showToast('Confirmation email sent successfully via cloud!');
       } else {
-        alert('Email triggered. Please check your Web3Forms configuration if not received.');
+        alert('Failed to send email. Please check your Web3Forms configuration.');
       }
     }
 
-    /* DISPATCH MODAL HANDLERS */
+    /* MODAL BASED DISPATCH UPDATES */
     function markOrderDispatched(index) {
       document.getElementById('dispatchOrderIndex').value = index;
       document.getElementById('dispatchDate').valueAsDate = new Date();
@@ -2978,14 +2873,14 @@
       updateAdminDashboard();
 
       const subject = `Your Bat Has Dispatched! - #${order.orderId} | F2 Sports`;
-      const message = `Dear ${order.customer.name},\n\nGreat news! Your F2 Sports bat order #${order.orderId} has been packed and dispatched on ${dispatchDate}.\n\nShipment Tracking Information:\nCourier Partner: ${courierName}\nTracking / AWB Number: ${trackingNo}\nDelivery Destination: ${order.customer.address}\n\nYou can track your package on the ${courierName} website. Expected delivery within 3-5 working days.\n\nThank you for trusting F2 Sports!\n\nBest regards,\nF2 Sports Dispatch & Fulfillment Team\nf2sportsstore@gmail.com`;
+      const message = `Dear ${order.customer.name},\n\nGreat news! Your F2 Sports bat order #${order.orderId} has been packed and dispatched on ${dispatchDate}.\n\nShipment Tracking Information:\nCourier Partner: ${courierName}\nTracking / AWB Number: ${trackingNo}\nDelivery Destination: ${order.customer.address}\n\nYou can track your package directly on the ${courierName} tracking portal. Expected delivery within 3-5 working days.\n\nThank you for trusting F2 Sports!\n\nBest regards,\nF2 Sports Dispatch & Fulfillment Team\nf2sportsstore@gmail.com`;
 
       showToast(`Sending dispatch & tracking email to ${order.customer.email}...`);
       const sent = await sendAutomatedEmail(order.customer.email, subject, message);
       if (sent) {
-        showToast('Dispatch & tracking email sent successfully via cloud!');
+        showToast('Dispatch & tracking email sent successfully!');
       } else {
-        alert('Status updated, but email dispatch routing relies on your Web3Forms subscription plan.');
+        alert('Status updated locally, but email failed. Check Web3Forms limits.');
       }
 
       submitBtn.disabled = false;
@@ -3246,7 +3141,7 @@
       orders.forEach((order, index) => {
         const itemsListStr = order.items.map(i => `${i.name} (x${i.qty})`).join(', ');
 
-        // RENDER SCREENSHOT PREVIEW IF AVAILABLE
+        // 4. SCREENSHOT THUMBNAIL LOGIC
         let proofHtml = '';
         if (order.utr && order.utr.startsWith('http')) {
           proofHtml = `
@@ -3256,7 +3151,7 @@
             </div>
           `;
         } else {
-          proofHtml = `<p><b>UPI UTR Number:</b> <code style="background:var(--bg-surface); padding:2px 8px; border-radius:4px; color:var(--accent-primary); font-weight:700;">${order.utr || 'No proof'}</code></p>`;
+          proofHtml = `<p><b>UPI UTR Number / Proof:</b> <code style="background:var(--bg-surface); padding:2px 8px; border-radius:4px; color:var(--accent-primary); font-weight:700;">${order.utr || 'No proof'}</code></p>`;
         }
 
         container.innerHTML += `
@@ -3280,8 +3175,8 @@
               <p><b>Bats Ordered:</b> ${itemsListStr}</p>
               
               ${proofHtml}
-              
-              <p style="margin-top: 8px;"><b>Current Stage:</b> <span style="font-weight:700; color:#10b981;">${order.status}</span></p>
+
+              <p style="margin-top:8px;"><b>Current Stage:</b> <span style="font-weight:700; color:#10b981;">${order.status}</span></p>
             </div>
             
             <div style="margin-top:14px; padding-top:12px; border-top:1px dashed var(--border-subtle); display:flex; gap:10px; flex-wrap:wrap;">
