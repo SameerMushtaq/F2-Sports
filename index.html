@@ -889,13 +889,6 @@
       line-height: 1.1;
     }
 
-    .multi-color-text {
-      background: linear-gradient(135deg, #00f0ff 0%, #38bdf8 30%, #fbbf24 60%, #e11d48 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 2px 10px rgba(225, 29, 72, 0.3));
-    }
-
     .falcon-banner-logo-img {
       height: 54px;
       width: auto;
@@ -1404,20 +1397,9 @@
       transition: var(--transition);
     }
 
-    .btn-edit-prod {
-      background: var(--accent-primary);
-      color: #ffffff;
-    }
-
-    .btn-toggle-stock {
-      background: var(--accent-secondary);
-      color: #ffffff;
-    }
-
-    .btn-delete-prod {
-      background: #ef4444;
-      color: white;
-    }
+    .btn-edit-prod { background: var(--accent-primary); color: #ffffff; }
+    .btn-toggle-stock { background: var(--accent-secondary); color: #ffffff; }
+    .btn-delete-prod { background: #ef4444; color: white; }
 
     .admin-form-box {
       background: var(--bg-card);
@@ -1476,60 +1458,64 @@
       justify-content: center;
     }
 
-    .hero-editor-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 18px;
-    }
-
-    .hero-slot-card {
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
       background: var(--bg-surface);
       border: 1px solid var(--border-theme);
-      border-radius: var(--radius);
-      padding: 16px;
-      text-align: center;
-    }
-
-    .hero-slot-preview {
-      height: 160px;
+      padding: 12px 20px;
+      border-radius: 8px;
+      z-index: 5000;
       display: flex;
       align-items: center;
-      justify-content: center;
-      margin-bottom: 12px;
-      background: var(--bg-card);
-      border-radius: 8px;
+      gap: 10px;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: var(--transition);
+      box-shadow: var(--shadow-accent);
+    }
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
     }
 
-    .hero-slot-preview img {
-      max-height: 100%;
-      max-width: 100%;
-      object-fit: contain;
-    }
-
-    @media (max-width: 1400px) {
-      .hero-sports-wrapper {
-        height: auto;
-        padding: 30px 20px;
+    /* MOBILE RESPONSIVENESS FIXES */
+    @media (max-width: 900px) {
+      .navbar {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+      }
+      .nav-links {
+        position: relative;
+        left: 0;
+        transform: none;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+        width: 100%;
+      }
+      .nav-actions {
+        width: 100%;
+        justify-content: space-between;
       }
       .hero-grid-showcase {
         grid-template-columns: 1fr;
-        gap: 20px;
+        text-align: center;
       }
+      /* Hide side logos on small screens to save vertical space */
       .hero-side-logo-box {
-        height: 140px;
+        display: none;
       }
     }
 
-    @media (max-width: 992px) {
-      .footer-bar-clean {
-        flex-direction: column;
-        text-align: center;
-      }
+    @media (max-width: 480px) {
       .hero-title-main {
-        font-size: 3rem;
+        font-size: 2.4rem;
       }
-      .falcon-brand-banner-title {
-        font-size: 2.3rem;
+      .nav-links a {
+        font-size: 0.85rem;
       }
     }
   </style>
@@ -1540,7 +1526,6 @@
   <div id="storefrontView">
     <header>
       <div class="navbar">
-        <!-- LOGO AT LEFT CORNER WITH DOUBLE-CLICK TRIGGER TO OPEN ADMIN LOGIN -->
         <div class="logo-container">
           <img src="logo.png" alt="F2 Sports Logo" class="logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
           <div class="logo-fallback" style="display:none;">F2</div>
@@ -1548,13 +1533,11 @@
             <span class="logo-title">F2 <span>SPORTS</span></span>
             <span class="logo-tagline">Engineered For Champions</span>
           </div>
-          <!-- Welcome Admin badge placed right in the top navbar -->
           <div class="admin-welcome-top-badge" id="adminWelcomeBadge">
             <i class="fa-solid fa-user-shield"></i> <span id="adminWelcomeText">Welcome</span>
           </div>
         </div>
 
-        <!-- CENTERED NAVIGATION -->
         <ul class="nav-links">
           <li><a href="#home"><i class="fa-solid fa-house"></i> Home</a></li>
           <li><a href="#kashmir-section"><i class="fa-solid fa-shield-halved"></i> Kashmir Willow</a></li>
@@ -1563,7 +1546,6 @@
           <li><a href="javascript:void(0)" onclick="openBulkOrderPage()"><i class="fa-solid fa-truck-ramp-box"></i> Bulk Order</a></li>
         </ul>
 
-        <!-- RIGHT CORNER: THEME TOGGLE & CART -->
         <div class="nav-actions">
           <button class="theme-toggle-btn" onclick="toggleColorTheme()" title="Toggle Color Theme">
             <i class="fa-solid fa-circle-half-stroke"></i> <span id="themeToggleLabel">Green Mode</span>
@@ -1577,15 +1559,11 @@
       </div>
     </header>
 
-    <!-- CONTAINER 2: HERO SECTION WITH STORE LOGO ON BOTH SIDES & "F2 Sports" -->
     <section class="hero-sports-wrapper" id="home">
       <div class="hero-grid-showcase">
-        <!-- LEFT SIDE STORE LOGO (ORIGINAL ORIENTATION) -->
         <div class="hero-side-logo-box">
           <img src="logo.png" alt="F2 Sports Left Logo" class="hero-side-logo-img" onerror="this.src='https://images.unsplash.com/photo-1531415074868-036b107e775a?q=80&w=300&auto=format&fit=crop'" />
         </div>
-
-        <!-- CENTER TEXT WITH F2 SPORTS -->
         <div class="hero-center-content">
           <h1>
             <span class="hero-title-prefix">Power Your Game With</span>
@@ -1594,15 +1572,12 @@
           </h1>
           <p>Hand-crafted for extraordinary rebound ping, razor-sharp balance, and monster power hitting across all formats.</p>
         </div>
-
-        <!-- RIGHT SIDE STORE LOGO -->
         <div class="hero-side-logo-box">
-          <img src="logo2.png" alt="F2 Sports Right Logo" class="hero-side-logo-img" onerror="this.src='https://images.unsplash.com/photo-1531415074868-036b107e775a?q=80&w=300&auto=format&fit=crop'" />
+          <img src="logo.png" alt="F2 Sports Right Logo" class="hero-side-logo-img" onerror="this.src='https://images.unsplash.com/photo-1531415074868-036b107e775a?q=80&w=300&auto=format&fit=crop'" />
         </div>
       </div>
     </section>
 
-    <!-- CONTINUOUS FLOATING TICKER STRIP -->
     <div class="floating-ticker-wrapper">
       <div class="floating-ticker-track">
         <span class="ticker-item"><i class="fa-solid fa-truck-fast"></i> Pan-India Express Courier Delivery</span>
@@ -1616,9 +1591,7 @@
       </div>
     </div>
 
-    <!-- PRODUCT CATALOG (5 CARDS PER ROW) -->
     <main>
-      <!-- 1. KASHMIR WILLOW CATEGORY -->
       <section class="container" id="kashmir-section">
         <div class="section-header">
           <span class="section-subtitle">Traditional Power</span>
@@ -1628,7 +1601,6 @@
         <div class="product-grid" id="kashmirProductsGrid"></div>
       </section>
 
-      <!-- 2. ENGLISH WILLOW CATEGORY -->
       <section class="container" id="english-section" style="padding-top: 0;">
         <div class="section-header">
           <span class="section-subtitle">International Standard</span>
@@ -1638,7 +1610,6 @@
         <div class="product-grid" id="englishProductsGrid"></div>
       </section>
 
-      <!-- 3. TENNIS CRICKET CATEGORY -->
       <section class="container" id="tennis-section" style="padding-top: 0;">
         <div class="section-header">
           <span class="section-subtitle">Hard &amp; Soft Tennis Dominators</span>
@@ -1648,16 +1619,14 @@
         <div class="product-grid" id="tennisProductsGrid"></div>
       </section>
 
-      <!-- FOLLOW US ON INSTAGRAM STRIP -->
       <section class="social-follow-strip">
         <div class="social-follow-wrapper">
-          <a href="https://www.instagram.com/f2sports__?igsi=ZDNlZDc0MzIxNw==" target="_blank" class="social-btn instagram">
+          <a href="https://www.instagram.com/f2sports__" target="_blank" class="social-btn instagram">
             <i class="fa-brands fa-instagram" style="font-size:1.2rem;"></i> Follow Us on Instagram
           </a>
         </div>
       </section>
 
-      <!-- COMPACT PLAYER SUPPORT CONTAINER -->
       <section class="info-section" id="help-suggestions">
         <div class="container" style="padding: 0;">
           <div class="section-header" style="margin-bottom: 16px;">
@@ -1668,7 +1637,6 @@
           <div class="info-grid">
             <div class="info-card">
               <h3><i class="fa-solid fa-circle-question" style="color:var(--accent-primary);"></i> Quick FAQs &amp; Bat Care</h3>
-              
               <div class="faq-item active">
                 <div class="faq-question" onclick="toggleFaq(this)">
                   <span>Willow Grade Differences?</span>
@@ -1676,15 +1644,13 @@
                 </div>
                 <div class="faq-answer">Grade A features 8-11 straight grains with minimal blemishes for match play. Grade B has 6-8 grains offering power and durability at a competitive price.</div>
               </div>
-
               <div class="faq-item">
                 <div class="faq-question" onclick="toggleFaq(this)">
                   <span>How to pay via UPI / QR?</span>
                   <i class="fa-solid fa-chevron-down"></i>
                 </div>
-                <div class="faq-answer">Add to cart, proceed to checkout, scan verified UPI QR with GPay/PhonePe/Paytm, and enter UTR.</div>
+                <div class="faq-answer">Add to cart, proceed to checkout, scan verified UPI QR code, and upload your payment screenshot.</div>
               </div>
-
               <div class="faq-item">
                 <div class="faq-question" onclick="toggleFaq(this)">
                   <span>Do bats come pre-knocked and oiled?</span>
@@ -1692,29 +1658,12 @@
                 </div>
                 <div class="faq-answer">Yes, all our willow bats undergo initial machine knocking and linseed oil seasoning. We recommend light net sessions with old leather balls before competitive match play.</div>
               </div>
-
               <div class="faq-item">
                 <div class="faq-question" onclick="toggleFaq(this)">
                   <span>What is the expected delivery timeframe?</span>
                   <i class="fa-solid fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">We offer pan-India express dispatch. Deliveries generally arrive in 3 to 5 business days with live tracking provided upon shipment.</div>
-              </div>
-
-              <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                  <span>Can I request custom weight or handle shapes?</span>
-                  <i class="fa-solid fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">Yes! You can specify your preferred pickup weight, round/oval handle shape, and edge profile in the custom request box on the right.</div>
-              </div>
-
-              <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                  <span>What is the return/replacement policy for damaged deliveries?</span>
-                  <i class="fa-solid fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">In case of any transit damages, provide an unboxing video to our WhatsApp desk within 48 hours for immediate replacement verification.</div>
               </div>
             </div>
 
@@ -1735,7 +1684,6 @@
       </section>
     </main>
 
-    <!-- PROMINENT MULTI-COLOR BRAND BANNER -->
     <div class="falcon-brand-banner">
       <div class="falcon-brand-banner-title">
         <img src="logo.png" alt="F2 Logo" class="falcon-banner-logo-img" onerror="this.style.display='none'" />
@@ -1744,7 +1692,6 @@
       <div class="falcon-brand-banner-tag">Mastercraft Cricket Blades &amp; High Velocity Dominators</div>
     </div>
 
-    <!-- MINIMAL CLEAN FOOTER -->
     <footer>
       <div class="footer-bar-clean">
         <div><i class="fa-solid fa-trademark" style="color:var(--accent-primary);"></i> F2 SPORTS is a Registered Trademark</div>
@@ -1756,7 +1703,7 @@
     </footer>
   </div>
 
-  <!-- 2. DEDICATED BULK ORDER PAGE CONTAINER -->
+  <!-- 2. DEDICATED BULK ORDER PAGE VIEW -->
   <div class="bulk-standalone-view" id="bulkStandaloneView">
     <div class="bulk-portal-container">
       <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid var(--border-theme); padding-bottom:16px; margin-bottom:20px;">
@@ -1783,13 +1730,13 @@
           <small>Instant chat &amp; catalog</small>
         </a>
 
-        <a href="mailto:f2sportsstore@gmail.com?cc=Zeesajid55@gmail.com&subject=Bulk%20Order%20Inquiry%20-%20F2%20Sports" class="bulk-channel-card">
+        <a href="mailto:f2sportsstore@gmail.com?subject=Bulk%20Order%20Inquiry%20-%20F2%20Sports" class="bulk-channel-card">
           <i class="fa-solid fa-envelope" style="color:var(--accent-primary);"></i>
           <span>Official Email</span>
           <small>Quotations &amp; specs</small>
         </a>
 
-        <a href="https://www.instagram.com/f2sports__?igsi=ZDNlZDc0MzIxNw==" target="_blank" class="bulk-channel-card">
+        <a href="https://www.instagram.com/f2sports__" target="_blank" class="bulk-channel-card">
           <i class="fa-brands fa-instagram" style="color:#e1306c;"></i>
           <span>Instagram DM</span>
           <small>Live bat videos &amp; ping test</small>
@@ -1863,7 +1810,6 @@
         <button class="admin-tab-btn active" onclick="switchAdminTab('orders')"><i class="fa-solid fa-clipboard-list"></i> Customer Orders (<span id="adminOrdersTabCount">0</span>)</button>
         <button class="admin-tab-btn" onclick="switchAdminTab('products')"><i class="fa-solid fa-boxes-packing"></i> Manage Catalog (<span id="adminProdsTabCount">0</span>)</button>
         <button class="admin-tab-btn" onclick="switchAdminTab('add-product')"><i class="fa-solid fa-plus-circle"></i> Add New Bat</button>
-        <button class="admin-tab-btn" onclick="switchAdminTab('hero-photos')"><i class="fa-solid fa-images"></i> Manage Header Photos</button>
       </div>
 
       <!-- TAB 1: ORDERS -->
@@ -1897,7 +1843,7 @@
         </div>
       </div>
 
-      <!-- TAB 3: ADD PRODUCT WITH IMAGE UPLOAD -->
+      <!-- TAB 3: ADD PRODUCT -->
       <div class="admin-tab-pane" id="adminPaneAddProduct">
         <div class="admin-form-box">
           <h4 style="font-size:1.2rem; color:var(--text-main); margin-bottom:18px;"><i class="fa-solid fa-circle-plus" style="color:var(--accent-primary);"></i> Add New Bat to Catalog</h4>
@@ -1968,58 +1914,16 @@
           </form>
         </div>
       </div>
-
-      <!-- TAB 4: HEADER PHOTOS MANAGER -->
-      <div class="admin-tab-pane" id="adminPaneHeroPhotos">
-        <div class="admin-form-box">
-          <h4 style="font-size:1.2rem; color:var(--text-main); margin-bottom:8px;"><i class="fa-solid fa-images" style="color:var(--accent-primary);"></i> Change 2nd Container Header Photos (6 Transparent PNGs)</h4>
-          <p style="color:var(--text-muted); font-size:0.85rem; margin-bottom:20px;">Upload transparent background .png photos for the left and right showcase slots in the 2nd container.</p>
-
-          <div class="hero-editor-grid">
-            <div class="hero-slot-card">
-              <span class="form-label">Left Slot 1</span>
-              <div class="hero-slot-preview"><img src="./hero_bat_1.png" id="slotPreviewImg1" alt="Slot 1" onerror="handleImgError(this)" /></div>
-              <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 0)" class="form-input" style="font-size:0.75rem;" />
-            </div>
-            <div class="hero-slot-card">
-              <span class="form-label">Left Slot 2</span>
-              <div class="hero-slot-preview"><img src="./hero_bat_2.png" id="slotPreviewImg2" alt="Slot 2" onerror="handleImgError(this)" /></div>
-              <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 1)" class="form-input" style="font-size:0.75rem;" />
-            </div>
-            <div class="hero-slot-card">
-              <span class="form-label">Left Slot 3</span>
-              <div class="hero-slot-preview"><img src="./hero_bat_1.png" id="slotPreviewImg5" alt="Slot 5" onerror="handleImgError(this)" /></div>
-              <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 4)" class="form-input" style="font-size:0.75rem;" />
-            </div>
-            <div class="hero-slot-card">
-              <span class="form-label">Right Slot 1</span>
-              <div class="hero-slot-preview"><img src="./hero_bat_3.png" id="slotPreviewImg3" alt="Slot 3" onerror="handleImgError(this)" /></div>
-              <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 2)" class="form-input" style="font-size:0.75rem;" />
-            </div>
-            <div class="hero-slot-card">
-              <span class="form-label">Right Slot 2</span>
-              <div class="hero-slot-preview"><img src="./hero_bat_4.png" id="slotPreviewImg4" alt="Slot 4" onerror="handleImgError(this)" /></div>
-              <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 3)" class="form-input" style="font-size:0.75rem;" />
-            </div>
-            <div class="hero-slot-card">
-              <span class="form-label">Right Slot 3</span>
-              <div class="hero-slot-preview"><img src="./hero_bat_3.png" id="slotPreviewImg6" alt="Slot 6" onerror="handleImgError(this)" /></div>
-              <input type="file" accept="image/png,image/*" onchange="uploadHeroSlotPhoto(event, 5)" class="form-input" style="font-size:0.75rem;" />
-            </div>
-          </div>
-          <div id="heroPhotoUploadStatus" style="color:var(--accent-primary); font-size:0.85rem; font-weight:700; margin-top:14px; display:none;"></div>
-        </div>
-      </div>
     </div>
   </div>
 
-  <!-- FULLSCREEN LIGHTBOX -->
+  <!-- LIGHTBOX -->
   <div class="lightbox-modal" id="imageLightbox" onclick="closeLightbox()">
     <button class="lightbox-close-btn" onclick="closeLightbox()"><i class="fa-solid fa-xmark"></i></button>
     <img src="" alt="Enlarged Product View" class="lightbox-content" id="lightboxImg" onclick="event.stopPropagation()" />
   </div>
 
-  <!-- FIXED OVERLAY CART DRAWER -->
+  <!-- CART DRAWER -->
   <div class="cart-drawer-overlay" id="cartOverlay" onclick="toggleCartDrawer()"></div>
   <div class="cart-drawer" id="cartDrawer" onclick="event.stopPropagation()">
     <div class="cart-header">
@@ -2033,22 +1937,22 @@
         <span id="cartGrandTotal" style="color:var(--accent-primary);">Rs. 0</span>
       </div>
       <button class="btn-checkout" id="checkoutBtn" onclick="openCheckoutModal()" disabled>
-        <i class="fa-solid fa-lock"></i> Proceed to QR / UPI Checkout
+        <i class="fa-solid fa-lock"></i> Proceed to Checkout
       </button>
     </div>
   </div>
 
-  <!-- CHECKOUT MODAL -->
+  <!-- CHECKOUT MODAL (WITH SCREENSHOT UPLOAD) -->
   <div class="modal-overlay" id="checkoutModal" onclick="closeCheckoutModal()">
     <div class="modal-box" onclick="event.stopPropagation()">
       <div class="modal-header">
-        <h3 style="font-size:1.2rem;"><i class="fa-solid fa-qrcode" style="color:var(--accent-primary);"></i> Scan &amp; Pay (UPI / QR)</h3>
+        <h3 style="font-size:1.2rem;"><i class="fa-solid fa-qrcode" style="color:var(--accent-primary);"></i> Scan &amp; Pay</h3>
         <button class="close-cart-btn" onclick="closeCheckoutModal()"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div class="modal-body">
         <div class="qr-container">
-          <p style="font-size:0.85rem; margin-bottom:8px; font-weight:600; color:var(--text-muted);">Scan with GPay, PhonePe, Paytm, or BHIM</p>
-          <img src="qr.png" alt="F2 Sports QR Scanner" class="qr-image" onerror="this.onerror=null; this.src='https://api.qrserver.com/v1/create-qr-code/?size=170x170&amp;data=upi://pay?pa=zeesajid55-1@okicici%26pn=F2%20Sports%20Official%26mc=5945';" />
+          <p style="font-size:0.85rem; margin-bottom:8px; font-weight:600; color:var(--text-muted);">Scan with GPay, PhonePe, Paytm</p>
+          <img src="qr.png" alt="F2 Sports QR" class="qr-image" onerror="this.onerror=null; this.src='https://api.qrserver.com/v1/create-qr-code/?size=170x170&amp;data=upi://pay?pa=zeesajid55-1@okicici%26pn=F2%20Sports%20Official%26mc=5945';" />
           <p style="font-family:monospace; font-weight:700; font-size:0.95rem; color:var(--accent-primary);">UPI ID: zeesajid55-1@okicici</p>
           <p style="font-size:0.85rem; margin-top:6px;">Payable Amount: <b style="color:var(--accent-primary);" id="checkoutModalTotal">Rs. 0</b></p>
         </div>
@@ -2059,21 +1963,24 @@
             <input type="text" id="custName" class="form-input" placeholder="Your Name" required />
           </div>
           <div class="form-group">
-            <label class="form-label">Customer Email Address</label>
+            <label class="form-label">Email Address</label>
             <input type="email" id="custEmail" class="form-input" placeholder="customer@gmail.com" required />
           </div>
           <div class="form-group">
-            <label class="form-label">WhatsApp / Contact Number</label>
-            <input type="tel" id="custPhone" class="form-input" value="+91-8493977654" required />
+            <label class="form-label">WhatsApp / Contact</label>
+            <input type="tel" id="custPhone" class="form-input" value="+91-" required />
           </div>
           <div class="form-group">
             <label class="form-label">Delivery Address &amp; Pincode</label>
             <textarea id="custAddress" class="form-textarea" rows="2" placeholder="Full delivery address" required></textarea>
           </div>
+          
+          <!-- REPLACED UTR WITH SCREENSHOT UPLOAD -->
           <div class="form-group">
-            <label class="form-label">UPI Transaction Reference ID (UTR)</label>
-            <input type="text" id="custUtr" class="form-input" placeholder="12-digit UTR after payment" required />
+            <label class="form-label"><i class="fa-solid fa-image"></i> Upload Payment Screenshot</label>
+            <input type="file" id="paymentScreenshot" class="form-input" accept="image/*" required />
           </div>
+          
           <button type="submit" class="btn-submit-order">Confirm &amp; Place Order</button>
         </form>
       </div>
@@ -2131,7 +2038,7 @@
           </div>
           <div class="form-group">
             <label class="form-label">Master Recovery Key</label>
-            <input type="password" id="forgotMasterKey" class="form-input" placeholder="Enter recovery key (f2sportsmaster)" required />
+            <input type="password" id="forgotMasterKey" class="form-input" placeholder="Enter recovery key" required />
           </div>
           <div class="form-group">
             <label class="form-label">New Password</label>
@@ -2174,7 +2081,7 @@
     </div>
   </div>
 
-  <!-- ORDER DELETE CONFIRMATION POPUP MODAL -->
+  <!-- ORDER DELETE CONFIRMATION MODAL -->
   <div class="modal-overlay" id="deleteOrderConfirmModal" onclick="closeDeleteOrderModal()">
     <div class="modal-box" onclick="event.stopPropagation()" style="max-width: 400px; text-align: center;">
       <div class="modal-header" style="background: #b91c1c;">
@@ -2192,7 +2099,7 @@
     </div>
   </div>
 
-  <!-- PRODUCT DELETE CONFIRMATION POPUP MODAL -->
+  <!-- PRODUCT DELETE CONFIRMATION MODAL -->
   <div class="modal-overlay" id="deleteProductConfirmModal" onclick="closeDeleteProductModal()">
     <div class="modal-box" onclick="event.stopPropagation()" style="max-width: 400px; text-align: center;">
       <div class="modal-header" style="background: #b91c1c;">
@@ -2210,7 +2117,7 @@
     </div>
   </div>
 
-  <!-- ORDER SUCCESS / THANK YOU MODAL CONTAINER -->
+  <!-- ORDER SUCCESS MODAL -->
   <div class="modal-overlay" id="orderSuccessModal" onclick="closeOrderSuccessModal()">
     <div class="modal-box" onclick="event.stopPropagation()" style="max-width: 440px;">
       <div class="modal-header">
@@ -2218,9 +2125,7 @@
         <button class="close-cart-btn" onclick="closeOrderSuccessModal()"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div class="modal-body success-modal-content">
-        <div class="success-modal-icon">
-          <i class="fa-solid fa-circle-check"></i>
-        </div>
+        <div class="success-modal-icon"><i class="fa-solid fa-circle-check"></i></div>
         <h3 class="multi-color-text" style="font-size: 1.8rem; font-weight: 800; margin-bottom: 8px;">Falcon 2</h3>
         <p style="font-size: 1rem; font-weight: 700; color: var(--text-main); margin-bottom: 6px;" id="successCustomerHeading">Thank you, Valued Player!</p>
         <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px;" id="successOrderIdText">Your order has been successfully recorded and sent to fulfillment.</p>
@@ -2233,13 +2138,12 @@
   <div class="modal-overlay" id="editProductModal" onclick="closeEditModal()">
     <div class="modal-box" style="max-width:640px;" onclick="event.stopPropagation()">
       <div class="modal-header">
-        <h3 style="font-size:1.2rem;"><i class="fa-solid fa-pen-to-square" style="color:var(--accent-primary);"></i> Edit Bat Details &amp; Photos</h3>
+        <h3 style="font-size:1.2rem;"><i class="fa-solid fa-pen-to-square" style="color:var(--accent-primary);"></i> Edit Bat Details</h3>
         <button class="close-cart-btn" onclick="closeEditModal()"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div class="modal-body">
         <form id="editProductForm" onsubmit="handleSaveEditedProduct(event)">
           <input type="hidden" id="editProdId" />
-          
           <div class="form-grid-2">
             <div class="form-group">
               <label class="form-label">Category Section</label>
@@ -2266,7 +2170,6 @@
             </div>
           </div>
 
-          <!-- MULTIPLE PHOTO UPLOAD SECTION TO SUPABASE -->
           <div class="form-group" style="background:rgba(225, 29, 72, 0.05); padding:14px; border-radius:8px; border:1px dashed var(--border-theme);">
             <label class="form-label">
               <i class="fa-solid fa-cloud-arrow-up"></i> Upload Bat Photos to Supabase Storage (Multi-Select)
@@ -2282,7 +2185,7 @@
               <input type="text" id="editProdSaleBadge" class="form-input" placeholder="Leave empty if no sale" />
             </div>
             <div class="form-group" style="margin-bottom:0;">
-              <label class="form-label"><i class="fa-solid fa-gift"></i> Sale Description (e.g. Eid Offer)</label>
+              <label class="form-label"><i class="fa-solid fa-gift"></i> Sale Description</label>
               <input type="text" id="editProdSaleDesc" class="form-input" placeholder="e.g. Eid Special Discount" />
             </div>
           </div>
@@ -2308,13 +2211,14 @@
     </div>
   </div>
 
+  <div class="toast" id="appToast">
+    <i class="fa-solid fa-circle-check" style="color:var(--accent-primary);"></i>
+    <span id="toastMsg">Notification</span>
+  </div>
+
   <script>
     const fallbackImage = 'https://images.unsplash.com/photo-1531415074868-036b107e775a?q=80&w=600&auto=format&fit=crop';
-    
-    // Web3Forms API Key registered for f2sportsstore@gmail.com
     const WEB3FORMS_ACCESS_KEY = "bbabe700-fc35-4a93-8f7c-244ec811d041";
-
-    // Supabase Configuration
     const SUPABASE_URL = "https://pgfibpfvlxcllpqbekum.supabase.co";
     const SUPABASE_ANON_KEY = "sb_publishable_PJIkuydJjYiyPRg4ldF75A__zUloDKH";
 
@@ -2324,208 +2228,30 @@
         supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
       }
     } catch (e) {
-      console.warn("Supabase initialization notice:", e);
+      console.warn("Supabase init error:", e);
     }
 
-    /* ADMIN CREDENTIALS & MULTI-USER MANAGEMENT */
-    const defaultAdminAccounts = {
-      "Sajid Mushtaq": "Sajid@123",
-      "Sameer Mushtaq": "S@m33r1921"
-    };
-
+    const defaultAdminAccounts = { "Sajid Mushtaq": "Sajid@123", "Sameer Mushtaq": "S@m33r1921" };
     let adminAccounts = JSON.parse(localStorage.getItem('f2_admin_accounts')) || defaultAdminAccounts;
     const MASTER_RECOVERY_KEY = "f2sportsmaster";
 
-    function saveAdminAccounts() {
-      localStorage.setItem('f2_admin_accounts', JSON.stringify(adminAccounts));
-    }
-
-    // Color Theme Switcher Logic
     let currentTheme = localStorage.getItem('f2_theme') || 'dark-red';
     function applyColorTheme(theme) {
       document.body.setAttribute('data-theme', theme);
       const label = document.getElementById('themeToggleLabel');
-      if (label) {
-        label.innerText = theme === 'dark-red' ? 'Green Mode' : 'Dark Red Mode';
-      }
+      if (label) label.innerText = theme === 'dark-red' ? 'Green Mode' : 'Dark Red Mode';
       localStorage.setItem('f2_theme', theme);
     }
-
     function toggleColorTheme() {
       currentTheme = currentTheme === 'dark-red' ? 'light-green-blue' : 'dark-red';
       applyColorTheme(currentTheme);
-      showToast(`Switched to ${currentTheme === 'dark-red' ? 'Complete Dark Red' : 'Light Green Blue'} Mode`);
+      showToast(`Switched to ${currentTheme === 'dark-red' ? 'Dark Red' : 'Light Green Blue'} Mode`);
     }
 
-    // Default 6 Header Showcase Transparent PNGs (3 left, 3 right)
-    const defaultHeroPhotos = [
-      './hero_bat_1.png',
-      './hero_bat_2.png',
-      './hero_bat_1.png',
-      './hero_bat_3.png',
-      './hero_bat_4.png',
-      './hero_bat_3.png'
-    ];
-
-    let heroPhotos = JSON.parse(localStorage.getItem('f2_hero_photos')) || defaultHeroPhotos;
-
     const initialProducts = [
-      {
-        id: 'KW1',
-        category: 'kashmir',
-        name: 'F2 Players Edition Kashmir Leather Bat',
-        price: 7999,
-        img: 'https://images.unsplash.com/photo-1593341646782-e0b495cffc6d?q=80&w=600&auto=format&fit=crop',
-        images: ['https://images.unsplash.com/photo-1593341646782-e0b495cffc6d?q=80&w=600&auto=format&fit=crop'],
-        inStock: true,
-        saleBadge: '20% OFF',
-        saleDesc: 'Eid Mubarak Festival Deal',
-        features: ['Selected Kashmir Willow Grains', '40mm Heavy Edges', 'Full Spine Profile (1190–1210g)']
-      },
-      {
-        id: 'KW2',
-        category: 'kashmir',
-        name: 'F2 Platinum Leather Bat',
-        price: 6499,
-        img: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=600&auto=format&fit=crop',
-        images: ['https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=600&auto=format&fit=crop'],
-        inStock: true,
-        saleBadge: '',
-        saleDesc: '',
-        features: ['Natural Wood Dense Grains', '38mm Thick Edges', 'Curved Power Profile (1180–1200g)']
-      },
-      {
-        id: 'KW3',
-        category: 'kashmir',
-        name: 'F2 Diamond Leather Bat',
-        price: 5199,
-        img: 'https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?q=80&w=600&auto=format&fit=crop',
-        images: ['https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?q=80&w=600&auto=format&fit=crop'],
-        inStock: true,
-        saleBadge: '',
-        saleDesc: '',
-        features: ['Hard-Pressed Willow Face', '38mm Robust Edges', 'Balanced Pickup Profile (1180g)']
-      },
-      {
-        id: 'KW4',
-        category: 'kashmir',
-        name: 'F2 Gold Reserve Leather Bat',
-        price: 4199,
-        img: 'https://images.unsplash.com/photo-1578269174936-2799b94b1536?q=80&w=600&auto=format&fit=crop',
-        images: ['https://images.unsplash.com/photo-1578269174936-2799b94b1536?q=80&w=600&auto=format&fit=crop'],
-        inStock: false,
-        saleBadge: '',
-        saleDesc: '',
-        features: ['Clean Natural Face', '36mm Match Edges', 'Full Spine Swell (1190g)']
-      },
-      {
-        id: 'KW5',
-        category: 'kashmir',
-        name: 'F2 Silver Club Leather Bat',
-        price: 3299,
-        img: 'https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?q=80&w=600&auto=format&fit=crop',
-        images: ['https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?q=80&w=600&auto=format&fit=crop'],
-        inStock: true,
-        saleBadge: '',
-        saleDesc: '',
-        features: ['Durable Seasoned Grains', '35mm Edges', 'Light Swing Weight (1170g)']
-      },
-      {
-        id: 'EW1',
-        category: 'english',
-        name: 'F2 Pro Grade A English Willow Bat',
-        price: 17499,
-        img: 'https://images.unsplash.com/photo-1593341646782-e0b495cffc6d?q=80&w=600&auto=format&fit=crop',
-        images: ['https://images.unsplash.com/photo-1593341646782-e0b495cffc6d?q=80&w=600&auto=format&fit=crop'],
-        inStock: true,
-        saleBadge: '15% OFF',
-        saleDesc: 'Eid Special Offer',
-        features: ['8–11 Straight Defined Grains', '40mm Monster Edges', 'Full Concave Profile (1160–1180g)']
-      },
-      {
-        id: 'EW2',
-        category: 'english',
-        name: 'F2 Match Grade B English Willow Bat',
-        price: 16999,
-        img: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=600&auto=format&fit=crop',
-        images: ['https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=600&auto=format&fit=crop'],
-        inStock: true,
-        saleBadge: '',
-        saleDesc: '',
-        features: ['6–8 Straight Defined Grains', '38mm Power Edges', 'Mid-to-Low Profile (1170–1190g)']
-      },
-      {
-        id: 'TN1',
-        category: 'tennis',
-        name: 'F2 Laser-Designed Hard Tennis Bat',
-        price: 2499,
-        img: 'https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?q=80&w=600&auto=format&fit=crop',
-        images: ['https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?q=80&w=600&auto=format&fit=crop'],
-        inStock: true,
-        saleBadge: '10% OFF',
-        saleDesc: 'Turf Special',
-        features: ['High-Gloss UV Graphics', '50mm Monster Blade', 'Featherlight Pickup (1030g)']
-      },
-      {
-        id: 'TN2',
-        category: 'tennis',
-        name: 'F2 Classic Raw (Without Design) Tennis Bat',
-        price: 1999,
-        img: 'https://images.unsplash.com/photo-1578269174936-2799b94b1536?q=80&w=600&auto=format&fit=crop',
-        images: ['https://images.unsplash.com/photo-1578269174936-2799b94b1536?q=80&w=600&auto=format&fit=crop'],
-        inStock: true,
-        saleBadge: '',
-        saleDesc: '',
-        features: ['Natural Wood Polish Grains', 'Thick Center Meat Profile', 'Even Balance (1040g)']
-      },
-      {
-        id: 'TN3',
-        category: 'tennis',
-        name: 'F2 Popular Turf Dominator Tennis Bat',
-        price: 1799,
-        img: 'https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?q=80&w=600&auto=format&fit=crop',
-        images: ['https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff?q=80&w=600&auto=format&fit=crop'],
-        inStock: true,
-        saleBadge: '',
-        saleDesc: '',
-        features: ['Duckbill Toe Dynamic', 'Soft & Light Tennis Spec', 'Fast Aero Swing (1010g)']
-      },
-      {
-        id: 'TN4',
-        category: 'tennis',
-        name: 'F2 Full Cane Handle Tennis Bat',
-        price: 2899,
-        img: 'https://images.unsplash.com/photo-1593341646782-e0b495cffc6d?q=80&w=600&auto=format&fit=crop',
-        images: ['https://images.unsplash.com/photo-1593341646782-e0b495cffc6d?q=80&w=600&auto=format&fit=crop'],
-        inStock: false,
-        saleBadge: '',
-        saleDesc: '',
-        features: ['9-Piece Cane Shock Absorber', 'Extra Thick Edges', 'Heavy Hard Ball Punch (1060g)']
-      },
-      {
-        id: 'TN5',
-        category: 'tennis',
-        name: 'F2 Kissan Tennis Heavy Punch Bat',
-        price: 2299,
-        img: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=600&auto=format&fit=crop',
-        images: ['https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=600&auto=format&fit=crop'],
-        inStock: true,
-        saleBadge: '',
-        saleDesc: '',
-        features: ['4.5-Inch Broad Blade', 'Hard Seasoned Willow', 'Heavy Red Ball Power (1080g)']
-      },
-      {
-        id: 'TN6',
-        category: 'tennis',
-        name: 'F2 36-Inch Long Blade Monster Tennis Bat',
-        price: 2999,
-        img: 'https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?q=80&w=600&auto=format&fit=crop',
-        images: ['https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?q=80&w=600&auto=format&fit=crop'],
-        inStock: true,
-        saleBadge: '',
-        saleDesc: '',
-        features: ['Extended 36-Inch Leverage', 'Extra Reach Wide Profile', 'Monstrous Leverage (1070g)']
-      }
+      { id: 'KW1', category: 'kashmir', name: 'F2 Players Edition Kashmir Leather Bat', price: 7999, img: 'https://images.unsplash.com/photo-1593341646782-e0b495cffc6d?q=80&w=600&auto=format&fit=crop', images: ['https://images.unsplash.com/photo-1593341646782-e0b495cffc6d?q=80&w=600&auto=format&fit=crop'], inStock: true, saleBadge: '20% OFF', saleDesc: 'Eid Mubarak Festival Deal', features: ['Selected Kashmir Willow', '40mm Edges'] },
+      { id: 'EW1', category: 'english', name: 'F2 Pro Grade A English Willow Bat', price: 17499, img: 'https://images.unsplash.com/photo-1593341646782-e0b495cffc6d?q=80&w=600&auto=format&fit=crop', images: ['https://images.unsplash.com/photo-1593341646782-e0b495cffc6d?q=80&w=600&auto=format&fit=crop'], inStock: true, saleBadge: '15% OFF', saleDesc: 'Eid Special Offer', features: ['8–11 Straight Grains', 'Monster Edges'] },
+      { id: 'TN1', category: 'tennis', name: 'F2 Laser-Designed Hard Tennis Bat', price: 2499, img: 'https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?q=80&w=600&auto=format&fit=crop', images: ['https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?q=80&w=600&auto=format&fit=crop'], inStock: true, saleBadge: '10% OFF', saleDesc: 'Turf Special', features: ['High-Gloss UV Graphics', 'Featherlight Pickup'] }
     ];
 
     let products = JSON.parse(localStorage.getItem('f2_products')) || initialProducts;
@@ -2538,19 +2264,15 @@
       localStorage.setItem('f2_products', JSON.stringify(products));
       syncProductsToCloud();
     }
+    function saveOrders() { localStorage.setItem('f2_orders', JSON.stringify(orders)); }
 
     async function syncProductsToCloud() {
       if (!supabaseClient) return;
       try {
         for (let p of products) {
-          await supabaseClient.from('catalog').upsert({
-            id: p.id,
-            data: p
-          }, { onConflict: 'id' });
+          await supabaseClient.from('catalog').upsert({ id: p.id, data: p }, { onConflict: 'id' });
         }
-      } catch (err) {
-        console.warn("Supabase products sync notice:", err);
-      }
+      } catch (err) {}
     }
 
     async function loadCloudProducts() {
@@ -2563,116 +2285,25 @@
           renderProducts();
           updateAdminDashboard();
         }
-      } catch (err) {
-        console.warn("Supabase products fetch notice:", err);
-      }
-    }
-
-    async function deleteCloudProduct(productId) {
-      if (!supabaseClient) return;
-      try {
-        await supabaseClient.from('catalog').delete().eq('id', productId);
-      } catch (e) {
-        console.warn("Supabase product delete error:", e);
-      }
-    }
-
-    function saveOrders() {
-      localStorage.setItem('f2_orders', JSON.stringify(orders));
-    }
-
-    function saveHeroPhotos() {
-      localStorage.setItem('f2_hero_photos', JSON.stringify(heroPhotos));
-    }
-
-    function applyHeroPhotos() {
-      for (let i = 0; i < 6; i++) {
-        const heroElem = document.getElementById(`heroPhotoImg${i + 1}`);
-        const slotElem = document.getElementById(`slotPreviewImg${i + 1}`);
-        if (heroElem && heroPhotos[i]) heroElem.src = heroPhotos[i];
-        if (slotElem && heroPhotos[i]) slotElem.src = heroPhotos[i];
-      }
-    }
-
-    async function uploadHeroSlotPhoto(e, slotIndex) {
-      const file = e.target.files[0];
-      if (!file) return;
-
-      const statusElem = document.getElementById('heroPhotoUploadStatus');
-      statusElem.style.display = 'block';
-      statusElem.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Uploading transparent PNG to Supabase...`;
-
-      if (supabaseClient) {
-        try {
-          const fileExt = file.name.split('.').pop();
-          const fileName = `hero_slot_${slotIndex + 1}_${Date.now()}.${fileExt}`;
-          const { error } = await supabaseClient.storage.from('product-images').upload(fileName, file, { upsert: true });
-
-          if (!error) {
-            const { data } = supabaseClient.storage.from('product-images').getPublicUrl(fileName);
-            if (data && data.publicUrl) {
-              heroPhotos[slotIndex] = data.publicUrl;
-            }
-          }
-        } catch (err) {
-          console.error("Hero upload error:", err);
-        }
-      } else {
-        const reader = new FileReader();
-        reader.onload = (ev) => {
-          heroPhotos[slotIndex] = ev.target.result;
-          saveHeroPhotos();
-          applyHeroPhotos();
-        };
-        reader.readAsDataURL(file);
-      }
-
-      saveHeroPhotos();
-      applyHeroPhotos();
-      statusElem.innerHTML = `<i class="fa-solid fa-check"></i> Slot ${slotIndex + 1} photo updated!`;
-      setTimeout(() => statusElem.style.display = 'none', 3500);
-      showToast(`Header Slot ${slotIndex + 1} updated!`);
+      } catch (err) {}
     }
 
     async function loadCloudOrders() {
       if (!supabaseClient) return;
       try {
-        const { data, error } = await supabaseClient
-          .from('orders')
-          .select('*')
-          .order('created_at', { ascending: false });
-
+        const { data, error } = await supabaseClient.from('orders').select('*').order('created_at', { ascending: false });
         if (!error && data) {
-          orders = data.map(o => ({
-            docId: o.id,
-            orderId: o.order_id,
-            date: o.date,
-            createdAt: o.created_at,
-            customer: o.customer,
-            utr: o.utr,
-            items: o.items,
-            totalAmount: o.total_amount,
-            numericAmount: o.numeric_amount,
-            status: o.status
-          }));
+          orders = data.map(o => ({ docId: o.id, orderId: o.order_id, date: o.date, createdAt: o.created_at, customer: o.customer, utr: o.utr, items: o.items, totalAmount: o.total_amount, numericAmount: o.numeric_amount, status: o.status }));
           saveOrders();
           updateAdminDashboard();
         }
-      } catch (err) {
-        console.warn("Supabase fetch notice:", err);
-      }
+      } catch (err) {}
     }
 
     function listenToCloudOrders() {
       loadCloudOrders();
       if (!supabaseClient) return;
-
-      supabaseClient
-        .channel('public:orders')
-        .on('postgres_changes', { event: '*', schema: 'public', table: 'orders' }, () => {
-          loadCloudOrders();
-        })
-        .subscribe();
+      supabaseClient.channel('public:orders').on('postgres_changes', { event: '*', schema: 'public', table: 'orders' }, () => { loadCloudOrders(); }).subscribe();
     }
 
     function handleImgError(imgElement) {
@@ -2683,26 +2314,14 @@
     function switchProductImage(productId, newSrc, e) {
       if (e) e.stopPropagation();
       const imgElem = document.getElementById(`main-img-${productId}`);
-      if (imgElem) {
-        imgElem.src = newSrc;
-      }
+      if (imgElem) imgElem.src = newSrc;
     }
 
     function openLightbox(imgSrc) {
-      const modal = document.getElementById('imageLightbox');
-      const img = document.getElementById('lightboxImg');
-      if (modal && img) {
-        img.src = imgSrc;
-        modal.classList.add('active');
-      }
+      document.getElementById('lightboxImg').src = imgSrc;
+      document.getElementById('imageLightbox').classList.add('active');
     }
-
-    function closeLightbox() {
-      const modal = document.getElementById('imageLightbox');
-      if (modal) {
-        modal.classList.remove('active');
-      }
-    }
+    function closeLightbox() { document.getElementById('imageLightbox').classList.remove('active'); }
 
     function renderProducts() {
       const kashmirContainer = document.getElementById('kashmirProductsGrid');
@@ -2710,10 +2329,7 @@
       const tennisContainer = document.getElementById('tennisProductsGrid');
 
       if (!kashmirContainer || !englishContainer || !tennisContainer) return;
-
-      kashmirContainer.innerHTML = '';
-      englishContainer.innerHTML = '';
-      tennisContainer.innerHTML = '';
+      kashmirContainer.innerHTML = ''; englishContainer.innerHTML = ''; tennisContainer.innerHTML = '';
 
       products.forEach(product => {
         const qty = cart[product.id] ? cart[product.id].qty : 0;
@@ -2723,24 +2339,15 @@
 
         const thumbsHtml = imagesList.length > 1 ? `
           <div class="product-thumbs-strip">
-            ${imagesList.map(imgUrl => `
-              <img src="${imgUrl}" class="product-thumb-item" onclick="switchProductImage('${product.id}', '${imgUrl}', event)" onerror="handleImgError(this)" />
-            `).join('')}
-          </div>
-        ` : '';
+            ${imagesList.map(imgUrl => `<img src="${imgUrl}" class="product-thumb-item" onclick="switchProductImage('${product.id}', '${imgUrl}', event)" onerror="handleImgError(this)" />`).join('')}
+          </div>` : '';
 
         const cardHtml = `
           <div class="product-card ${!isAvailable ? 'out-of-stock' : ''}" id="card-${product.id}">
             <span class="stock-badge ${isAvailable ? 'stock-available' : 'stock-out'}">
-              <i class="fa-solid ${isAvailable ? 'fa-circle-check' : 'fa-circle-xmark'}"></i>
-              ${isAvailable ? 'Available' : 'Out of Stock'}
+              <i class="fa-solid ${isAvailable ? 'fa-circle-check' : 'fa-circle-xmark'}"></i> ${isAvailable ? 'Available' : 'Out of Stock'}
             </span>
-
-            ${hasSale ? `
-              <span class="sale-badge">
-                <i class="fa-solid fa-bolt"></i> ${product.saleBadge}
-              </span>
-            ` : ''}
+            ${hasSale ? `<span class="sale-badge"><i class="fa-solid fa-bolt"></i> ${product.saleBadge}</span>` : ''}
 
             <div class="product-img-wrapper" onclick="openLightbox(document.getElementById('main-img-${product.id}').src)">
               <img src="${product.img}" alt="${product.name}" id="main-img-${product.id}" class="product-img" loading="lazy" onerror="handleImgError(this)" />
@@ -2749,13 +2356,7 @@
 
             <div class="product-body">
               <h3 class="product-title">${product.name}</h3>
-
-              ${hasSale && product.saleDesc ? `
-                <div class="sale-promo-strip">
-                  <i class="fa-solid fa-tag"></i> <span>${product.saleDesc}</span>
-                </div>
-              ` : ''}
-
+              ${hasSale && product.saleDesc ? `<div class="sale-promo-strip"><i class="fa-solid fa-tag"></i> <span>${product.saleDesc}</span></div>` : ''}
               <ul class="product-features">
                 ${product.features.map(f => `<li><i class="fa-solid fa-circle-check"></i> ${f}</li>`).join('')}
               </ul>
@@ -2763,44 +2364,26 @@
               <div class="product-footer">
                 <div class="price-value">Rs. ${Number(product.price).toLocaleString('en-IN')}</div>
                 <div id="btn-container-${product.id}">
-                  ${!isAvailable ? `
-                    <button class="btn-out-of-stock" disabled><i class="fa-solid fa-ban"></i> Sold Out</button>
-                  ` : qty === 0 ? `
-                    <button class="btn-add-cart" onclick="addToCart('${product.id}')">
-                      <i class="fa-solid fa-cart-plus"></i> Add
-                    </button>
-                  ` : `
-                    <div class="qty-control-inline">
-                      <button class="qty-btn" onclick="updateQuantity('${product.id}', -1)">-</button>
-                      <span class="qty-number">${qty}</span>
-                      <button class="qty-btn" onclick="updateQuantity('${product.id}', 1)">+</button>
-                    </div>
-                  `}
+                  ${!isAvailable ? `<button class="btn-out-of-stock" disabled><i class="fa-solid fa-ban"></i> Sold Out</button>` 
+                  : qty === 0 ? `<button class="btn-add-cart" onclick="addToCart('${product.id}')"><i class="fa-solid fa-cart-plus"></i> Add</button>` 
+                  : `<div class="qty-control-inline"><button class="qty-btn" onclick="updateQuantity('${product.id}', -1)">-</button><span class="qty-number">${qty}</span><button class="qty-btn" onclick="updateQuantity('${product.id}', 1)">+</button></div>`}
                 </div>
               </div>
             </div>
           </div>
         `;
 
-        if (product.category === 'kashmir') {
-          kashmirContainer.innerHTML += cardHtml;
-        } else if (product.category === 'english') {
-          englishContainer.innerHTML += cardHtml;
-        } else if (product.category === 'tennis') {
-          tennisContainer.innerHTML += cardHtml;
-        }
+        if (product.category === 'kashmir') kashmirContainer.innerHTML += cardHtml;
+        else if (product.category === 'english') englishContainer.innerHTML += cardHtml;
+        else if (product.category === 'tennis') tennisContainer.innerHTML += cardHtml;
       });
     }
 
     function addToCart(productId) {
       const product = products.find(p => p.id === productId);
       if (!product || product.inStock === false) return;
-
-      if (!cart[productId]) {
-        cart[productId] = { ...product, qty: 1 };
-      } else {
-        cart[productId].qty += 1;
-      }
+      if (!cart[productId]) cart[productId] = { ...product, qty: 1 };
+      else cart[productId].qty += 1;
       updateCartUI();
       showToast(`${product.name} added to cart!`);
     }
@@ -2824,10 +2407,7 @@
       const checkoutBtn = document.getElementById('checkoutBtn');
 
       if (totalItems === 0) {
-        cartList.innerHTML = `<div style="text-align:center; padding:50px 20px; color:var(--text-muted);">
-          <i class="fa-solid fa-basket-shopping" style="font-size:3rem; margin-bottom:10px;"></i>
-          <h4>Your cart is empty</h4>
-        </div>`;
+        cartList.innerHTML = `<div style="text-align:center; padding:50px 20px; color:var(--text-muted);"><i class="fa-solid fa-basket-shopping" style="font-size:3rem; margin-bottom:10px;"></i><h4>Your cart is empty</h4></div>`;
         checkoutBtn.disabled = true;
         document.getElementById('cartGrandTotal').innerText = 'Rs. 0';
       } else {
@@ -2849,47 +2429,17 @@
                 <span class="qty-number">${item.qty}</span>
                 <button class="qty-btn" onclick="updateQuantity('${item.id}', 1)">+</button>
               </div>
-            </div>
-          `;
+            </div>`;
         });
         document.getElementById('cartGrandTotal').innerText = `Rs. ${totalAmount.toLocaleString('en-IN')}`;
         checkoutBtn.disabled = false;
       }
-
-      products.forEach(p => {
-        const btnContainer = document.getElementById(`btn-container-${p.id}`);
-        if (!btnContainer) return;
-        const currentQty = cart[p.id] ? cart[p.id].qty : 0;
-        const isAvailable = p.inStock !== false;
-
-        if (!isAvailable) {
-          btnContainer.innerHTML = `<button class="btn-out-of-stock" disabled><i class="fa-solid fa-ban"></i> Sold Out</button>`;
-        } else if (currentQty === 0) {
-          btnContainer.innerHTML = `<button class="btn-add-cart" onclick="addToCart('${p.id}')"><i class="fa-solid fa-cart-plus"></i> Add</button>`;
-        } else {
-          btnContainer.innerHTML = `
-            <div class="qty-control-inline">
-              <button class="qty-btn" onclick="updateQuantity('${p.id}', -1)">-</button>
-              <span class="qty-number">${currentQty}</span>
-              <button class="qty-btn" onclick="updateQuantity('${p.id}', 1)">+</button>
-            </div>
-          `;
-        }
-      });
+      renderProducts();
     }
 
     function toggleCartDrawer() {
-      const overlay = document.getElementById('cartOverlay');
-      const drawer = document.getElementById('cartDrawer');
-      const isActive = drawer.classList.contains('active');
-      
-      if (isActive) {
-        drawer.classList.remove('active');
-        overlay.classList.remove('active');
-      } else {
-        overlay.classList.add('active');
-        drawer.classList.add('active');
-      }
+      document.getElementById('cartDrawer').classList.toggle('active');
+      document.getElementById('cartOverlay').classList.toggle('active');
     }
 
     function openCheckoutModal() {
@@ -2897,33 +2447,23 @@
       document.getElementById('checkoutModalTotal').innerText = document.getElementById('cartGrandTotal').innerText;
       document.getElementById('checkoutModal').classList.add('active');
     }
-
-    function closeCheckoutModal() {
-      document.getElementById('checkoutModal').classList.remove('active');
-    }
-
+    function closeCheckoutModal() { document.getElementById('checkoutModal').classList.remove('active'); }
     function openOrderSuccessModal(custName, orderId) {
       document.getElementById('successCustomerHeading').innerText = `Thank you, ${custName}!`;
       document.getElementById('successOrderIdText').innerText = `Your order #${orderId} has been successfully recorded.`;
       document.getElementById('orderSuccessModal').classList.add('active');
     }
-
-    function closeOrderSuccessModal() {
-      document.getElementById('orderSuccessModal').classList.remove('active');
-    }
-
-    function toggleFaq(el) {
-      el.parentElement.classList.toggle('active');
-    }
+    function closeOrderSuccessModal() { document.getElementById('orderSuccessModal').classList.remove('active'); }
+    function toggleFaq(el) { el.parentElement.classList.toggle('active'); }
 
     function showToast(msg) {
       const toast = document.getElementById('appToast');
-      if (!toast) return;
       document.getElementById('toastMsg').innerText = msg;
       toast.classList.add('show');
       setTimeout(() => toast.classList.remove('show'), 2500);
     }
 
+    // UPDATED: Order placement handles Screenshot Upload instead of UTR text
     async function handlePlaceOrder(e) {
       e.preventDefault();
 
@@ -2931,82 +2471,74 @@
       const originalBtnText = submitBtn ? submitBtn.innerHTML : '';
       if (submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing Order...';
+        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Uploading Screenshot...';
       }
 
       const name = document.getElementById('custName').value.trim();
       const email = document.getElementById('custEmail').value.trim();
       const phone = document.getElementById('custPhone').value.trim();
       const address = document.getElementById('custAddress').value.trim();
-      const utr = document.getElementById('custUtr').value.trim();
       const totalAmount = document.getElementById('cartGrandTotal').innerText;
       const rawNum = Number(totalAmount.replace(/[^0-9]/g, '')) || 0;
-
       const orderId = 'F2-' + Math.floor(100000 + Math.random() * 900000);
+
+      // Upload Screenshot to Supabase Storage
+      const fileInput = document.getElementById('paymentScreenshot');
+      const file = fileInput.files[0];
+      let screenshotUrl = "No screenshot uploaded";
+
+      if (file && supabaseClient) {
+        try {
+          const fileExt = file.name.split('.').pop();
+          const fileName = `payment_${orderId}_${Date.now()}.${fileExt}`;
+          const { error } = await supabaseClient.storage.from('product-images').upload(fileName, file, { cacheControl: '3600' });
+          
+          if (!error) {
+            const { data } = supabaseClient.storage.from('product-images').getPublicUrl(fileName);
+            if (data && data.publicUrl) screenshotUrl = data.publicUrl;
+          }
+        } catch (err) {
+          console.error("Screenshot upload failed:", err);
+        }
+      }
+
       const itemsList = Object.values(cart);
-      const itemsSummary = itemsList.map(i => `${i.name} (Qty: ${i.qty}) - Rs. ${(Number(i.price) * i.qty).toLocaleString('en-IN')}`).join('\n');
+      const itemsSummary = itemsList.map(i => `${i.name} (Qty: ${i.qty})`).join('\n');
 
       const orderData = {
-        orderId: orderId,
-        date: new Date().toLocaleString('en-IN'),
-        createdAt: Date.now(),
+        orderId: orderId, date: new Date().toLocaleString('en-IN'), createdAt: Date.now(),
         customer: { name, email, phone, address },
-        utr: utr,
-        items: itemsList,
-        totalAmount: totalAmount,
-        numericAmount: rawNum,
-        status: 'Order Booked'
+        utr: screenshotUrl, // Save URL instead of text UTR
+        items: itemsList, totalAmount: totalAmount, numericAmount: rawNum, status: 'Order Booked'
       };
 
       if (supabaseClient) {
         try {
-          const { data, error } = await supabaseClient.from("orders").insert([{
-            order_id: orderId,
-            date: orderData.date,
-            customer: orderData.customer,
-            utr: orderData.utr,
-            items: orderData.items,
-            total_amount: orderData.totalAmount,
-            numeric_amount: orderData.numericAmount,
-            status: orderData.status
+          const { data } = await supabaseClient.from("orders").insert([{
+            order_id: orderId, date: orderData.date, customer: orderData.customer, utr: orderData.utr,
+            items: orderData.items, total_amount: orderData.totalAmount, numeric_amount: orderData.numericAmount, status: orderData.status
           }]).select();
-
-          if (data && data[0]) {
-            orderData.docId = data[0].id;
-          }
-        } catch (err) {
-          console.error("Supabase database write error:", err);
-        }
+          if (data && data[0]) orderData.docId = data[0].id;
+        } catch (err) { console.error("Database write error:", err); }
       }
 
       orders.unshift(orderData);
       saveOrders();
       updateAdminDashboard();
 
+      // Notify Admin via Web3Forms
       try {
         await fetch("https://api.web3forms.com/submit", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Accept": "application/json"
-          },
+          headers: { "Content-Type": "application/json", "Accept": "application/json" },
           body: JSON.stringify({
             access_key: WEB3FORMS_ACCESS_KEY,
-            subject: `New F2 Sports Bat Order: #${orderId} (${totalAmount})`,
-            from_name: "F2 Sports Storefront",
-            customer_name: name,
-            customer_email: email,
-            customer_phone: phone,
-            delivery_address: address,
-            upi_utr_id: utr,
-            order_total: totalAmount,
-            ordered_bats: itemsSummary,
-            message: `New Order Received!\n\nOrder ID: #${orderId}\nCustomer: ${name}\nPhone: ${phone}\nEmail: ${email}\nDelivery Address: ${address}\nUPI UTR: ${utr}\nTotal Amount: ${totalAmount}\n\nItems Ordered:\n${itemsSummary}\n\nStore Management: f2sportsstore@gmail.com | Zeesajid55@gmail.com`
+            subject: `New F2 Order: #${orderId}`,
+            from_name: "F2 Storefront",
+            message: `New Order Received!\n\nID: #${orderId}\nCustomer: ${name}\nPhone: ${phone}\nEmail: ${email}\nAddress: ${address}\nAmount: ${totalAmount}\nPayment Proof: ${screenshotUrl}\n\nItems:\n${itemsSummary}`
           })
         });
-      } catch (err) {
-        console.error("Web3Forms transmission notice:", err);
-      }
+      } catch (err) {}
 
       if (submitBtn) {
         submitBtn.disabled = false;
@@ -3017,7 +2549,6 @@
       updateCartUI();
       closeCheckoutModal();
       document.getElementById('orderForm').reset();
-
       openOrderSuccessModal(name, orderId);
     }
 
@@ -3027,39 +2558,87 @@
       e.target.reset();
     }
 
-    /* DEDICATED BULK ORDER PAGE NAVIGATION */
+    // UPDATED AUTOMATED EMAIL DISPATCH FOR ADMIN ACTIONS
+    async function sendAutomatedEmail(recipientEmail, emailSubject, emailMessage) {
+      try {
+        const response = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          body: JSON.stringify({
+            access_key: WEB3FORMS_ACCESS_KEY,
+            subject: emailSubject,
+            from_name: "F2 Sports",
+            message: `Intended Recipient: ${recipientEmail}\n\n${emailMessage}`
+          })
+        });
+        return response.ok;
+      } catch (err) {
+        console.error("Email transmission error:", err);
+        return false;
+      }
+    }
+
+    async function sendOrderPlacedEmail(index) {
+      const order = orders[index];
+      const itemsList = order.items.map(i => `- ${i.name} (Qty: ${i.qty}) - Rs. ${(Number(i.price) * i.qty).toLocaleString('en-IN')}`).join('\n');
+      const subject = `Order Confirmation - #${order.orderId} | F2 Sports`;
+      const message = `Dear ${order.customer.name},\n\nThank you for choosing F2 Sports! Your order #${order.orderId} is confirmed.\n\nOrder Details:\nOrder ID: #${order.orderId}\nTotal Amount: ${order.totalAmount}\n\nItems Ordered:\n${itemsList}\n\nDelivery Address:\n${order.customer.address}\n\nWe will notify you with courier tracking details once your package is dispatched.\n\nWarm regards,\nF2 Sports Team`;
+
+      showToast(`Triggering confirmation for ${order.customer.email}...`);
+      const sent = await sendAutomatedEmail(order.customer.email, subject, message);
+      sent ? showToast('Confirmation triggered!') : alert('Email triggered, but relies on Web3Forms routing.');
+    }
+
+    async function markOrderDispatched(index) {
+      const order = orders[index];
+      const trackingNo = prompt(`Enter Courier Tracking / AWB Number for Order #${order.orderId}:`, 'DTDC' + Math.floor(100000000 + Math.random() * 900000000));
+      if (!trackingNo) return;
+      const courierName = prompt('Enter Courier Name (e.g. BlueDart, DTDC, Delhivery):', 'BlueDart Express');
+      if (!courierName) return;
+
+      order.status = `Dispatched via ${courierName} (AWB: ${trackingNo})`;
+
+      if (supabaseClient && order.docId) {
+        try {
+          await supabaseClient.from('orders').update({ status: order.status }).eq('id', order.docId);
+        } catch (e) { console.error("Supabase status update error:", e); }
+      }
+
+      saveOrders();
+      updateAdminDashboard();
+
+      const subject = `Your Bat Has Dispatched! - #${order.orderId} | F2 Sports`;
+      const message = `Dear ${order.customer.name},\n\nGreat news! Your F2 Sports bat order #${order.orderId} has been packed and dispatched.\n\nShipment Tracking Information:\nCourier Partner: ${courierName}\nTracking / AWB Number: ${trackingNo}\nDelivery Destination: ${order.customer.address}\n\nYou can track your package on the ${courierName} website. Expected delivery within 3-5 working days.\n\nThank you for trusting F2 Sports!`;
+
+      showToast(`Triggering dispatch & tracking email for ${order.customer.email}...`);
+      await sendAutomatedEmail(order.customer.email, subject, message);
+    }
+
+    // BULK ORDER ROUTING
     function openBulkOrderPage() {
       document.getElementById('storefrontView').style.display = 'none';
       document.getElementById('adminStandaloneView').style.display = 'none';
       document.getElementById('bulkStandaloneView').style.display = 'block';
       window.scrollTo(0, 0);
     }
-
     function returnToStorefrontFromBulk() {
       document.getElementById('bulkStandaloneView').style.display = 'none';
       document.getElementById('storefrontView').style.display = 'block';
       window.scrollTo(0, 0);
     }
 
-    /* AUTHENTICATION & MULTI-ADMIN ROUTING (TRIGGERED VIA DOUBLE-CLICK) */
+    // ADMIN AUTHENTICATION
     function openAdminPortalPage() {
       const activeAdmin = sessionStorage.getItem('f2_active_admin_user');
-      if (activeAdmin) {
-        showAdminPageView(activeAdmin);
-      } else {
-        document.getElementById('adminLoginModal').classList.add('active');
-      }
+      if (activeAdmin) showAdminPageView(activeAdmin);
+      else document.getElementById('adminLoginModal').classList.add('active');
     }
-
-    function closeAdminLoginModal() {
-      document.getElementById('adminLoginModal').classList.remove('active');
-    }
+    function closeAdminLoginModal() { document.getElementById('adminLoginModal').classList.remove('active'); }
 
     function handleModalAdminLogin(e) {
       e.preventDefault();
       const user = document.getElementById('modalAdminUser').value;
       const pass = document.getElementById('modalAdminPass').value;
-
       if (adminAccounts[user] && adminAccounts[user] === pass) {
         sessionStorage.setItem('f2_active_admin_user', user);
         closeAdminLoginModal();
@@ -3079,12 +2658,7 @@
       
       const badge = document.getElementById('adminWelcomeBadge');
       const text = document.getElementById('adminWelcomeText');
-      if (badge && text) {
-        text.innerText = `Welcome ${adminName}`;
-        badge.style.display = 'flex';
-      }
-
-      applyHeroPhotos();
+      if (badge && text) { text.innerText = `Welcome ${adminName}`; badge.style.display = 'flex'; }
       updateAdminDashboard();
       window.scrollTo(0, 0);
     }
@@ -3093,17 +2667,6 @@
       document.getElementById('adminStandaloneView').style.display = 'none';
       document.getElementById('bulkStandaloneView').style.display = 'none';
       document.getElementById('storefrontView').style.display = 'block';
-      
-      const activeAdmin = sessionStorage.getItem('f2_active_admin_user');
-      const badge = document.getElementById('adminWelcomeBadge');
-      const text = document.getElementById('adminWelcomeText');
-      if (activeAdmin && badge && text) {
-        text.innerText = `Welcome ${activeAdmin}`;
-        badge.style.display = 'flex';
-      } else if (badge) {
-        badge.style.display = 'none';
-      }
-
       window.scrollTo(0, 0);
     }
 
@@ -3115,15 +2678,12 @@
       returnToStorefront();
     }
 
-    /* FORGOT PASSWORD LOGIC */
+    // PASSWORD MANAGEMENT
     function openForgotPasswordModal() {
       closeAdminLoginModal();
       document.getElementById('forgotPasswordModal').classList.add('active');
     }
-
-    function closeForgotPasswordModal() {
-      document.getElementById('forgotPasswordModal').classList.remove('active');
-    }
+    function closeForgotPasswordModal() { document.getElementById('forgotPasswordModal').classList.remove('active'); }
 
     function handleForgotPasswordSubmit(e) {
       e.preventDefault();
@@ -3133,69 +2693,51 @@
 
       if (key === MASTER_RECOVERY_KEY) {
         adminAccounts[user] = newPass;
-        saveAdminAccounts();
+        localStorage.setItem('f2_admin_accounts', JSON.stringify(adminAccounts));
         closeForgotPasswordModal();
         alert(`Password for ${user} has been successfully reset!`);
         openAdminPortalPage();
-      } else {
-        alert('Incorrect Master Recovery Key! Default recovery key is: f2sportsmaster');
-      }
+      } else { alert('Incorrect Master Recovery Key!'); }
     }
 
-    /* CHANGE PASSWORD LOGIC INSIDE DASHBOARD */
     function openChangePasswordModal() {
       const activeAdmin = sessionStorage.getItem('f2_active_admin_user') || 'Sajid Mushtaq';
       document.getElementById('changePassAdminUser').value = activeAdmin;
       document.getElementById('changePasswordModal').classList.add('active');
     }
-
-    function closeChangePasswordModal() {
-      document.getElementById('changePasswordModal').classList.remove('active');
-    }
+    function closeChangePasswordModal() { document.getElementById('changePasswordModal').classList.remove('active'); }
 
     function handleChangePasswordSubmit(e) {
       e.preventDefault();
       const user = document.getElementById('changePassAdminUser').value;
       const oldPass = document.getElementById('changePassOld').value;
       const newPass = document.getElementById('changePassNew').value;
-
       if (adminAccounts[user] === oldPass) {
         adminAccounts[user] = newPass;
-        saveAdminAccounts();
+        localStorage.setItem('f2_admin_accounts', JSON.stringify(adminAccounts));
         closeChangePasswordModal();
         showToast(`Password updated for ${user}!`);
-        document.getElementById('changePassOld').value = '';
-        document.getElementById('changePassNew').value = '';
-      } else {
-        alert('Current password does not match!');
-      }
+        e.target.reset();
+      } else { alert('Current password does not match!'); }
     }
 
     function switchAdminTab(tabName) {
       const tabs = document.querySelectorAll('.admin-tab-btn');
       const panes = document.querySelectorAll('.admin-tab-pane');
-
       tabs.forEach(t => t.classList.remove('active'));
       panes.forEach(p => p.classList.remove('active'));
 
       if (tabName === 'orders') {
-        tabs[0].classList.add('active');
-        document.getElementById('adminPaneOrders').classList.add('active');
+        tabs[0].classList.add('active'); document.getElementById('adminPaneOrders').classList.add('active');
       } else if (tabName === 'products') {
-        tabs[1].classList.add('active');
-        document.getElementById('adminPaneProducts').classList.add('active');
+        tabs[1].classList.add('active'); document.getElementById('adminPaneProducts').classList.add('active');
       } else if (tabName === 'add-product') {
-        tabs[2].classList.add('active');
-        document.getElementById('adminPaneAddProduct').classList.add('active');
-      } else if (tabName === 'hero-photos') {
-        tabs[3].classList.add('active');
-        document.getElementById('adminPaneHeroPhotos').classList.add('active');
+        tabs[2].classList.add('active'); document.getElementById('adminPaneAddProduct').classList.add('active');
       }
     }
 
     function updateAdminDashboard() {
       const totalRev = orders.reduce((sum, o) => sum + (o.numericAmount || 0), 0);
-      
       const revElem = document.getElementById('statRevenue');
       if (revElem) {
         revElem.innerText = `Rs. ${totalRev.toLocaleString('en-IN')}`;
@@ -3204,49 +2746,33 @@
         document.getElementById('adminOrdersTabCount').innerText = orders.length;
         document.getElementById('adminProdsTabCount').innerText = products.length;
       }
-
       renderAdminOrdersList();
       renderAdminProductsTable();
     }
 
-    /* PROMPT POPUP CONFIRMATION FOR ORDER DELETION & SUPABASE DATABASE SYNC */
     function promptDeleteOrder(index) {
-      const order = orders[index];
       document.getElementById('pendingDeleteOrderIndex').value = index;
-      document.getElementById('deleteOrderConfirmText').innerText = `Are you sure you want to delete Order #${order.orderId} for foul play?`;
       document.getElementById('deleteOrderConfirmModal').classList.add('active');
     }
-
-    function closeDeleteOrderModal() {
-      document.getElementById('deleteOrderConfirmModal').classList.remove('active');
-    }
+    function closeDeleteOrderModal() { document.getElementById('deleteOrderConfirmModal').classList.remove('active'); }
 
     async function confirmDeleteOrderAction() {
       const index = parseInt(document.getElementById('pendingDeleteOrderIndex').value);
       const order = orders[index];
       if (!order) return;
-
       if (supabaseClient) {
         try {
-          if (order.docId) {
-            await supabaseClient.from('orders').delete().eq('id', order.docId);
-          }
-          if (order.orderId) {
-            await supabaseClient.from('orders').delete().eq('order_id', order.orderId);
-          }
-        } catch (e) {
-          console.error("Supabase order deletion exception:", e);
-        }
+          if (order.docId) await supabaseClient.from('orders').delete().eq('id', order.docId);
+          if (order.orderId) await supabaseClient.from('orders').delete().eq('order_id', order.orderId);
+        } catch (e) { console.error("Supabase order deletion exception:", e); }
       }
-      
       orders.splice(index, 1);
       saveOrders();
       updateAdminDashboard();
       closeDeleteOrderModal();
-      showToast(`Order #${order.orderId} deleted from database successfully.`);
+      showToast(`Order #${order.orderId} deleted.`);
     }
 
-    /* PROMPT POPUP CONFIRMATION FOR PRODUCT DELETION */
     function deleteProduct(productId) {
       const prod = products.find(p => p.id === productId);
       if (!prod) return;
@@ -3254,44 +2780,35 @@
       document.getElementById('deleteProductConfirmText').innerText = `Are you sure you want to delete "${prod.name}" from your store?`;
       document.getElementById('deleteProductConfirmModal').classList.add('active');
     }
-
-    function closeDeleteProductModal() {
-      document.getElementById('deleteProductConfirmModal').classList.remove('active');
-    }
+    function closeDeleteProductModal() { document.getElementById('deleteProductConfirmModal').classList.remove('active'); }
 
     async function confirmDeleteProductAction() {
       const productId = document.getElementById('pendingDeleteProductId').value;
       products = products.filter(p => p.id !== productId);
       saveProducts();
-      await deleteCloudProduct(productId);
+      if(supabaseClient) { try { await supabaseClient.from('catalog').delete().eq('id', productId); } catch (e) {} }
       renderProducts();
       updateCartUI();
       updateAdminDashboard();
       closeDeleteProductModal();
-      showToast('Product removed from store successfully.');
+      showToast('Product removed.');
     }
 
     function renderAdminOrdersList() {
       const container = document.getElementById('mainAdminOrdersList');
       if (!container) return;
-
       if (orders.length === 0) {
         container.innerHTML = '<div style="text-align:center; color:var(--text-muted); padding:30px; background:var(--bg-card); border-radius:6px;">No customer orders placed yet.</div>';
         return;
       }
-
       container.innerHTML = '';
       orders.forEach((order, index) => {
         const itemsListStr = order.items.map(i => `${i.name} (x${i.qty})`).join(', ');
         container.innerHTML += `
           <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:8px; padding:20px; margin-bottom:16px; position:relative;">
-            <!-- DELETE BUTTON PLACED ON THE OPPOSITE CORNER (TOP RIGHT) -->
             <div style="position: absolute; top: 16px; right: 16px;">
-              <button class="admin-action-btn" style="background:#ef4444; color:#fff; padding: 6px 12px; font-weight: 700;" onclick="promptDeleteOrder(${index})">
-                <i class="fa-solid fa-trash"></i> Delete Order
-              </button>
+              <button class="admin-action-btn" style="background:#ef4444; color:#fff; padding: 6px 12px;" onclick="promptDeleteOrder(${index})"><i class="fa-solid fa-trash"></i> Delete</button>
             </div>
-
             <div style="display:flex; justify-content:space-between; border-bottom:1px solid var(--border-subtle); padding-bottom:10px; margin-bottom:12px; font-weight:800; font-size:1.15rem; padding-right: 120px;">
               <span>Order #${order.orderId}</span>
               <span style="color:var(--accent-primary);">${order.totalAmount}</span>
@@ -3301,16 +2818,12 @@
               <p><b>Customer:</b> ${order.customer.name} | <b>Email:</b> ${order.customer.email} | <b>Phone:</b> ${order.customer.phone}</p>
               <p><b>Address:</b> ${order.customer.address}</p>
               <p><b>Bats Ordered:</b> ${itemsListStr}</p>
-              <p><b>UPI UTR Number:</b> <code style="background:var(--bg-surface); padding:2px 8px; border-radius:4px; color:var(--accent-primary); font-weight:700;">${order.utr}</code></p>
+              <p><b>Payment Proof:</b> ${order.utr && order.utr.startsWith('http') ? `<a href="${order.utr}" target="_blank" style="color:var(--accent-primary); font-weight:700; text-decoration:underline;">View Screenshot</a>` : `<code style="background:var(--bg-surface); padding:2px 8px; border-radius:4px; color:var(--accent-primary); font-weight:700;">${order.utr || 'No proof'}</code>`}</p>
               <p><b>Current Stage:</b> <span style="font-weight:700; color:#10b981;">${order.status}</span></p>
             </div>
             <div style="margin-top:14px; padding-top:12px; border-top:1px dashed var(--border-subtle); display:flex; gap:10px; flex-wrap:wrap;">
-              <button class="admin-action-btn" style="background:#0284c7; color:#fff;" onclick="sendOrderPlacedEmail(${index})">
-                <i class="fa-solid fa-envelope"></i> Send Confirmation Email
-              </button>
-              <button class="admin-action-btn" style="background:#059669; color:#fff;" onclick="markOrderDispatched(${index})">
-                <i class="fa-solid fa-truck-fast"></i> Update Dispatch &amp; Email Tracking
-              </button>
+              <button class="admin-action-btn" style="background:#0284c7; color:#fff;" onclick="sendOrderPlacedEmail(${index})"><i class="fa-solid fa-envelope"></i> Send Confirmation</button>
+              <button class="admin-action-btn" style="background:#059669; color:#fff;" onclick="markOrderDispatched(${index})"><i class="fa-solid fa-truck-fast"></i> Update Dispatch</button>
             </div>
           </div>
         `;
@@ -3320,14 +2833,11 @@
     function renderAdminProductsTable() {
       const tbody = document.getElementById('adminProductsTableBody');
       if (!tbody) return;
-
       tbody.innerHTML = '';
-
       products.forEach(p => {
         const isAvailable = p.inStock !== false;
         const saleBadgeStr = p.saleBadge ? `<span style="background:var(--accent-primary); color:#fff; padding:2px 6px; border-radius:3px; font-weight:800; font-size:0.75rem;">${p.saleBadge}</span>` : '<span style="color:var(--text-muted);">None</span>';
         const imgCount = (p.images && p.images.length) ? p.images.length : 1;
-
         tbody.innerHTML += `
           <tr>
             <td>
@@ -3341,26 +2851,13 @@
             </td>
             <td style="text-transform:capitalize; color:var(--accent-primary); font-weight:700;">${p.category}</td>
             <td style="font-weight:700;">Rs. ${Number(p.price).toLocaleString('en-IN')}</td>
-            <td>
-              <div>${saleBadgeStr}</div>
-              ${p.saleDesc ? `<div style="font-size:0.75rem; color:var(--text-muted);">${p.saleDesc}</div>` : ''}
-            </td>
-            <td>
-              <span class="stock-badge ${isAvailable ? 'stock-available' : 'stock-out'}" style="position:static; display:inline-block;">
-                ${isAvailable ? 'In Stock' : 'Out of Stock'}
-              </span>
-            </td>
+            <td><div>${saleBadgeStr}</div>${p.saleDesc ? `<div style="font-size:0.75rem; color:var(--text-muted);">${p.saleDesc}</div>` : ''}</td>
+            <td><span class="stock-badge ${isAvailable ? 'stock-available' : 'stock-out'}" style="position:static; display:inline-block;">${isAvailable ? 'In Stock' : 'Out of Stock'}</span></td>
             <td>
               <div style="display:flex; gap:6px; flex-wrap:wrap;">
-                <button class="admin-action-btn btn-edit-prod" onclick="openEditModal('${p.id}')">
-                  <i class="fa-solid fa-pen-to-square"></i> Edit
-                </button>
-                <button class="admin-action-btn btn-toggle-stock" onclick="toggleProductStock('${p.id}')">
-                  <i class="fa-solid fa-arrows-rotate"></i> Stock
-                </button>
-                <button class="admin-action-btn btn-delete-prod" onclick="deleteProduct('${p.id}')">
-                  <i class="fa-solid fa-trash"></i>
-                </button>
+                <button class="admin-action-btn btn-edit-prod" onclick="openEditModal('${p.id}')"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
+                <button class="admin-action-btn btn-toggle-stock" onclick="toggleProductStock('${p.id}')"><i class="fa-solid fa-arrows-rotate"></i> Stock</button>
+                <button class="admin-action-btn btn-delete-prod" onclick="deleteProduct('${p.id}')"><i class="fa-solid fa-trash"></i></button>
               </div>
             </td>
           </tr>
@@ -3371,7 +2868,6 @@
     function openEditModal(productId) {
       const prod = products.find(p => p.id === productId);
       if (!prod) return;
-
       document.getElementById('editProdId').value = prod.id;
       document.getElementById('editProdCategory').value = prod.category;
       document.getElementById('editProdName').value = prod.name;
@@ -3384,7 +2880,6 @@
 
       tempEditImages = prod.images && prod.images.length ? [...prod.images] : [prod.img];
       renderEditPhotosGallery();
-
       document.getElementById('editProductModal').classList.add('active');
     }
 
@@ -3392,7 +2887,6 @@
       const container = document.getElementById('editPhotosPreviewList');
       if (!container) return;
       container.innerHTML = '';
-
       tempEditImages.forEach((imgUrl, idx) => {
         container.innerHTML += `
           <div class="photo-thumb-wrapper">
@@ -3405,133 +2899,80 @@
 
     function removePhotoFromEdit(index) {
       tempEditImages.splice(index, 1);
-      if (tempEditImages.length > 0) {
-        document.getElementById('editProdImg').value = tempEditImages[0];
-      }
+      if (tempEditImages.length > 0) document.getElementById('editProdImg').value = tempEditImages[0];
       renderEditPhotosGallery();
     }
 
     async function handleMultiplePhotosUpload(e) {
       const files = Array.from(e.target.files);
       if (!files.length) return;
-
-      if (!supabaseClient) {
-        alert("Supabase client is not initialized.");
-        return;
-      }
-
+      if (!supabaseClient) { alert("Supabase client is not initialized."); return; }
+      
       const notice = document.getElementById('uploadStatusNotice');
       const saveBtn = document.getElementById('btnSaveEditedProd');
-      notice.style.display = 'block';
-      saveBtn.disabled = true;
+      notice.style.display = 'block'; saveBtn.disabled = true;
 
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
-        notice.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Uploading photo ${i + 1} of ${files.length} to Supabase...`;
-        
+        notice.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Uploading photo ${i + 1}...`;
         const fileExt = file.name.split('.').pop();
         const fileName = `bat_${Date.now()}_${Math.random().toString(36).substring(2, 8)}.${fileExt}`;
-        const filePath = `${fileName}`;
-
         try {
-          const { error } = await supabaseClient.storage
-            .from('product-images')
-            .upload(filePath, file, { cacheControl: '3600', upsert: false });
-
-          if (error) {
-            console.error("Upload error for file:", file.name, error);
-            continue;
-          }
-
-          const { data: publicUrlData } = supabaseClient.storage
-            .from('product-images')
-            .getPublicUrl(filePath);
-
-          if (publicUrlData && publicUrlData.publicUrl) {
-            tempEditImages.push(publicUrlData.publicUrl);
+          const { error } = await supabaseClient.storage.from('product-images').upload(fileName, file, { cacheControl: '3600' });
+          if (error) continue;
+          const { data } = supabaseClient.storage.from('product-images').getPublicUrl(fileName);
+          if (data && data.publicUrl) {
+            tempEditImages.push(data.publicUrl);
             if (!document.getElementById('editProdImg').value || document.getElementById('editProdImg').value.startsWith('./')) {
-              document.getElementById('editProdImg').value = publicUrlData.publicUrl;
+              document.getElementById('editProdImg').value = data.publicUrl;
             }
           }
-        } catch (err) {
-          console.error("Supabase Storage upload error:", err);
-        }
+        } catch (err) { console.error("Upload error:", err); }
       }
-
       renderEditPhotosGallery();
-      notice.innerHTML = `<i class="fa-solid fa-circle-check" style="color:var(--accent-primary);"></i> Uploaded ${files.length} photo(s) successfully!`;
-      saveBtn.disabled = false;
-      e.target.value = '';
+      notice.innerHTML = `<i class="fa-solid fa-circle-check"></i> Uploaded!`;
+      saveBtn.disabled = false; e.target.value = '';
       setTimeout(() => { notice.style.display = 'none'; }, 4000);
     }
 
     async function handleNewProductPhotosUpload(e) {
       const files = Array.from(e.target.files);
       if (!files.length) return;
-
-      if (!supabaseClient) {
-        alert("Supabase client is not initialized.");
-        return;
-      }
+      if (!supabaseClient) { alert("Supabase client is not initialized."); return; }
 
       const notice = document.getElementById('newUploadStatusNotice');
       const pubBtn = document.getElementById('btnPublishNewProd');
-      notice.style.display = 'block';
-      pubBtn.disabled = true;
+      notice.style.display = 'block'; pubBtn.disabled = true;
 
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
-        notice.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Uploading photo ${i + 1} of ${files.length} to Supabase...`;
-        
+        notice.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Uploading photo ${i + 1}...`;
         const fileExt = file.name.split('.').pop();
         const fileName = `bat_${Date.now()}_${Math.random().toString(36).substring(2, 8)}.${fileExt}`;
-        const filePath = `${fileName}`;
-
         try {
-          const { error } = await supabaseClient.storage
-            .from('product-images')
-            .upload(filePath, file, { cacheControl: '3600', upsert: false });
-
-          if (error) {
-            console.error("Upload error:", error);
-            continue;
-          }
-
-          const { data: publicUrlData } = supabaseClient.storage
-            .from('product-images')
-            .getPublicUrl(filePath);
-
-          if (publicUrlData && publicUrlData.publicUrl) {
-            tempNewImages.push(publicUrlData.publicUrl);
+          const { error } = await supabaseClient.storage.from('product-images').upload(fileName, file, { cacheControl: '3600' });
+          if (error) continue;
+          const { data } = supabaseClient.storage.from('product-images').getPublicUrl(fileName);
+          if (data && data.publicUrl) {
+            tempNewImages.push(data.publicUrl);
             if (!document.getElementById('newProdImg').value || document.getElementById('newProdImg').value.startsWith('./')) {
-              document.getElementById('newProdImg').value = publicUrlData.publicUrl;
+              document.getElementById('newProdImg').value = data.publicUrl;
             }
           }
-        } catch (err) {
-          console.error("Supabase Storage upload error:", err);
-        }
+        } catch (err) { console.error("Upload error:", err); }
       }
 
       const gallery = document.getElementById('newPhotosPreviewList');
       gallery.innerHTML = '';
       tempNewImages.forEach((imgUrl, idx) => {
-        gallery.innerHTML += `
-          <div class="photo-thumb-wrapper">
-            <img src="${imgUrl}" class="photo-thumb-img" onerror="handleImgError(this)" />
-            <button type="button" class="photo-remove-btn" onclick="tempNewImages.splice(${idx},1); handleNewProductPhotosUpload({target:{files:[]}})"><i class="fa-solid fa-xmark"></i></button>
-          </div>
-        `;
+        gallery.innerHTML += `<div class="photo-thumb-wrapper"><img src="${imgUrl}" class="photo-thumb-img" onerror="handleImgError(this)" /><button type="button" class="photo-remove-btn" onclick="tempNewImages.splice(${idx},1); handleNewProductPhotosUpload({target:{files:[]}})"><i class="fa-solid fa-xmark"></i></button></div>`;
       });
-
-      notice.innerHTML = `<i class="fa-solid fa-circle-check" style="color:var(--accent-primary);"></i> Uploaded ${files.length} photo(s) successfully!`;
-      pubBtn.disabled = false;
-      e.target.value = '';
+      notice.innerHTML = `<i class="fa-solid fa-circle-check"></i> Uploaded!`;
+      pubBtn.disabled = false; e.target.value = '';
       setTimeout(() => { notice.style.display = 'none'; }, 4000);
     }
 
-    function closeEditModal() {
-      document.getElementById('editProductModal').classList.remove('active');
-    }
+    function closeEditModal() { document.getElementById('editProductModal').classList.remove('active'); }
 
     function handleSaveEditedProduct(e) {
       e.preventDefault();
@@ -3539,8 +2980,7 @@
       const index = products.findIndex(p => p.id === id);
       if (index === -1) return;
 
-      const featuresStr = document.getElementById('editProdFeatures').value;
-      const features = featuresStr.split(',').map(f => f.trim()).filter(f => f.length > 0);
+      const features = document.getElementById('editProdFeatures').value.split(',').map(f => f.trim()).filter(f => f.length > 0);
       const mainImg = tempEditImages.length > 0 ? tempEditImages[0] : document.getElementById('editProdImg').value;
 
       products[index] = {
@@ -3565,27 +3005,19 @@
 
     function handleAdminAddNewProduct(e) {
       e.preventDefault();
-      const category = document.getElementById('newProdCategory').value;
-      const name = document.getElementById('newProdName').value;
-      const price = Number(document.getElementById('newProdPrice').value);
       const img = document.getElementById('newProdImg').value || (tempNewImages.length > 0 ? tempNewImages[0] : fallbackImage);
-      const saleBadge = document.getElementById('newProdSaleBadge').value.trim();
-      const saleDesc = document.getElementById('newProdSaleDesc').value.trim();
-      const featuresStr = document.getElementById('newProdFeatures').value;
-      const inStock = document.getElementById('newProdStock').value === 'true';
-
-      const features = featuresStr.split(',').map(f => f.trim()).filter(f => f.length > 0);
+      const features = document.getElementById('newProdFeatures').value.split(',').map(f => f.trim()).filter(f => f.length > 0);
 
       const newProduct = {
         id: 'PROD-' + Date.now(),
-        category,
-        name,
-        price,
+        category: document.getElementById('newProdCategory').value,
+        name: document.getElementById('newProdName').value,
+        price: Number(document.getElementById('newProdPrice').value),
         img: img,
         images: tempNewImages.length > 0 ? [...tempNewImages] : [img],
-        saleBadge,
-        saleDesc,
-        inStock,
+        saleBadge: document.getElementById('newProdSaleBadge').value.trim(),
+        saleDesc: document.getElementById('newProdSaleDesc').value.trim(),
+        inStock: document.getElementById('newProdStock').value === 'true',
         features: features.length ? features : ['Tournament Quality', 'Handmade Willow']
       };
 
@@ -3593,10 +3025,9 @@
       saveProducts();
       renderProducts();
       updateAdminDashboard();
-      
       tempNewImages = [];
       document.getElementById('newPhotosPreviewList').innerHTML = '';
-      showToast(`${name} added to catalog!`);
+      showToast(`${newProduct.name} added to catalog!`);
       e.target.reset();
       switchAdminTab('products');
     }
@@ -3615,7 +3046,6 @@
 
     document.addEventListener('DOMContentLoaded', async () => {
       applyColorTheme(currentTheme);
-      applyHeroPhotos();
       await loadCloudProducts();
       renderProducts();
       updateCartUI();
@@ -3624,10 +3054,7 @@
       if (activeAdmin) {
         const badge = document.getElementById('adminWelcomeBadge');
         const text = document.getElementById('adminWelcomeText');
-        if (badge && text) {
-          text.innerText = `Welcome ${activeAdmin}`;
-          badge.style.display = 'flex';
-        }
+        if (badge && text) { text.innerText = `Welcome ${activeAdmin}`; badge.style.display = 'flex'; }
       }
     });
   </script>
