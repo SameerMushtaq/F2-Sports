@@ -1514,7 +1514,7 @@
       }
     }
 
-    /* Tablet View Specific Media Query Adjustments */
+    /* Tablet View (768px to 1024px) */
     @media (min-width: 768px) and (max-width: 1024px) {
       .navbar {
         padding: 10px 15px;
@@ -1529,9 +1529,12 @@
       .hero-title-main {
         font-size: 3.2rem;
       }
+      .product-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+      }
     }
 
-    /* Mobile View Specific Media Query Adjustments */
+    /* Mobile View (Max 767px) */
     @media (max-width: 767px) {
       .navbar {
         flex-direction: column;
@@ -1561,6 +1564,9 @@
       }
       .admin-welcome-top-badge {
         margin-left: 0;
+      }
+      .product-grid {
+        grid-template-columns: 1fr !important;
       }
     }
 
@@ -2067,7 +2073,7 @@
             <label class="form-label">WhatsApp / Contact Number</label>
             <input type="tel" id="custPhone" class="form-input" value="+91-8493977654" required />
           </div>
-          
+
           <!-- SEPARATE 6-DIGIT PINCODE WITH AUTO-FETCH -->
           <div class="form-group">
             <label class="form-label">6-Digit Pincode</label>
