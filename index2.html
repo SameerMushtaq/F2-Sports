@@ -1140,7 +1140,7 @@
 
     .qr-image {
       width: 180px;
-      height: 190px;
+      height: 200px; /* Increased vertical size */
       margin: 0 auto 10px;
       display: block;
       background: white;
@@ -1679,7 +1679,7 @@
       <div class="modal-body">
         <div class="qr-container">
           <p style="font-size:0.85rem; margin-bottom:8px; font-weight:600; color:var(--text-muted);">Scan with GPay, PhonePe, Paytm</p>
-          <img src="images/qr.png" alt="F2 Sports QR" class="qr-image" onerror="this.onerror=null; this.src='https://api.qrserver.com/v1/create-qr-code/?size=170x170&amp;data=upi://pay?pa=zeesajid55-1@okicici%26pn=F2%20Sports%20Official%26mc=5945';" />
+          <img src="images/qr.png" alt="F2 Sports QR" class="qr-image" onerror="this.onerror=null; this.src='https://api.qrserver.com/v1/create-qr-code/?size=170x200&amp;data=upi://pay?pa=zeesajid55-1@okicici%26pn=F2%20Sports%20Official%26mc=5945';" />
           <p style="font-family:monospace; font-weight:700; font-size:0.95rem; color:var(--accent-primary);">UPI ID: zeesajid55-1@okicici</p>
           <p style="font-size:0.85rem; margin-top:6px;">Payable Amount: <b style="color:var(--accent-primary);" id="checkoutModalTotal">Rs. 0</b></p>
         </div>
@@ -2242,7 +2242,7 @@
       }
     }
 
-    // INSTANT SUPABASE BACKEND ORDER PLACEMENT & EMAIL DISPATCH
+    // INSTANT SUPABASE BACKEND ORDER PLACEMENT & AUTOMATED EMAIL DISPATCH
     async function handlePlaceOrder(e) {
       e.preventDefault();
 
@@ -2303,7 +2303,7 @@
           }]).select();
           if (data && data[0]) orderData.docId = data[0].id;
 
-          // Invoke Supabase Edge Function to deliver customer and company confirmation emails instantly
+          // AUTOMATED EMAIL TRIGGER TO CUSTOMER & ADMIN
           await supabaseClient.functions.invoke('send-order-email', {
             body: {
               type: 'confirmation',
@@ -2369,7 +2369,7 @@
         try {
           await supabaseClient.from('orders').update({ status: order.status }).eq('id', order.docId);
           
-          showToast(`Sending dispatch email to ${order.customer.email}...`);
+          showToast(`Sending dispatch tracking email to ${order.customer.email}...`);
           await supabaseClient.functions.invoke('send-order-email', {
             body: {
               type: 'dispatch',
@@ -2385,7 +2385,7 @@
       saveOrders();
       updateAdminDashboard();
       closeDispatchModal();
-      showToast(`Order #${order.orderId} dispatched & email sent!`);
+      showToast(`Order #${order.orderId} dispatched & tracking email sent!`);
 
       btn.disabled = false;
       btn.innerHTML = 'Confirm Dispatch & Email';
@@ -2641,7 +2641,7 @@
       orders.forEach((order, index) => {
         const itemsListStr = order.items.map(i => `${i.name} (x${i.qty})`).join(', ');
 
-        // HORIZONTALLY CENTERED SCREENSHOT THUMBNAIL
+        // HORIZONTALLY CENTERED PAYMENT PROOF SCREENSHOT THUMBNAIL
         const screenshotHtml = order.utr && order.utr.startsWith('http') ? `
           <div style="margin: 14px auto; text-align: center; width: 100%;">
             <p style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); margin-bottom: 4px;">Payment Receipt Proof:</p>
